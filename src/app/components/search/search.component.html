@@ -1,6 +1,6 @@
 <form #f="ngForm">
   <div class="form-group">
-    <label for="continent">Continent</label>
+    <label for="continent">{{ 'Continent' | translate }}</label>
     <input [(ngModel)]="model.continent"
             name="continent"
            [typeahead]="continents"
@@ -13,7 +13,7 @@
   </div>
 
   <div class="form-group" *ngIf="countries">
-    <label for="country">Country</label>
+    <label for="country">{{ 'Country' | translate }}</label>
     <input  [(ngModel)]="model.country"
             name="country"
             [typeahead]="countries"
@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-group">
-    <label for="city">City</label>
+    <label for="city">{{ 'City' | translate }}</label>
     <input  [(ngModel)]="model.city"
             name="city"
             class="form-control"
@@ -31,8 +31,8 @@
   </div>
 
   <div class="form-group">
-    <label for="partner">Partner institution</label>
-    <input  [(ngModel)]="model.city"
+    <label for="partner">{{ 'Partner institution' | translate }}</label>
+    <input  [(ngModel)]="model.partner"
             name="partner"
             class="form-control"
             id="partner"
@@ -41,13 +41,53 @@
   </div>
 
   <div class="form-group">
-    <label for="ucl_university">Faculty</label>
-    <input  [(ngModel)]="model.city"
+    <label for="ucl_university">{{ 'Faculty' | translate }}</label>
+    <input  [(ngModel)]="model.faculty"
             name="ucl_university"
             class="form-control"
             id="ucl_university"
             [typeahead]="config.ucl_universities"
             typeaheadOptionField="label">
   </div>
+
+  <div class="form-group">
+    <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
+    <input  [(ngModel)]="model.faculty"
+            name="ucl_university_labo"
+            class="form-control"
+            id="ucl_university_labo"
+            [typeahead]="config.ucl_university_labo"
+            typeaheadOptionField="label">
+  </div>
+
+  <div class="form-group">
+    <label for="campus">{{ 'Campus' | translate }}</label>
+    <input  [(ngModel)]="model.campus"
+            name="campus"
+            class="form-control"
+            id="campus">
+  </div>
+
+  <div class="form-group">
+    <label for="supervisor">{{ 'UCLouvain' | translate }}</label>
+    <input  [(ngModel)]="model.supervisor"
+            name="supervisor"
+            class="form-control"
+            id="supervisor"
+            [typeahead]="config.supervisors"
+            typeaheadOptionField="label">
+  </div>
+
+  <div class="form-group">
+    <label for="education_field">{{ 'Subject Area' | translate }}</label>
+    <input  [(ngModel)]="model.education_field"
+            name="education_field"
+            class="form-control"
+            id="education_field"
+            [typeahead]="config.education_fields"
+            typeaheadOptionField="label">
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="{{ 'Search' | translate }}" />
 </form>
 
