@@ -1,3 +1,11 @@
-<p>
-  search works!
-</p>
+<div class="form-group">
+  <label for="continent">Continent</label>
+  <input [(ngModel)]="model.continent"
+         [typeahead]="continents"
+         typeaheadOptionField="label"
+         class="form-control"
+         (typeaheadNoResults)="typeaheadNoContinent($event)"
+         id="continent">
+  <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
+</div>
+

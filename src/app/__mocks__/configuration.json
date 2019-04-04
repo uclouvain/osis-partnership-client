@@ -1,0 +1,118 @@
+{
+  "continents": [
+    {
+      "name": "Africa",
+      "countries": []
+    }, {
+      "name": "Europe",
+      "countries": [
+        "France",
+        "Belgium",
+        "Spain",
+        "Italy",
+        "Luxembourg",
+        "Germany"
+      ]
+    }, {
+      "name": "Asia",
+      "countries": [
+        "Japan",
+        "China",
+        "Singapore"
+      ]
+    }, {
+      "name": "North America",
+      "countries": [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Dakota",
+        "North Carolina",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
+      ]
+    }, {
+      "name": "South America",
+      "countries": []
+    }, {
+      "name": "Australia",
+      "countries": []
+    }, {
+      "name": "Antarctica",
+      "countries": []
+    }
+  ],
+  "partners": [
+    {
+      "id": "makina",
+      "label": "Makina"
+    }
+  ],
+  "ucl_universities": [
+    {
+      "id": "university_id",
+      "label": "University"
+    }
+  ],
+  "ucl_university_labo": [
+    {
+      "id": "labo",
+      "label": "Labo"
+    }
+  ],
+  "supervisors": [
+    {
+      "id": "mr_supervisor",
+      "label": "Mr Supervisor"
+    }
+  ],
+  "education_fields": [
+    {
+      "id": "education",
+      "label": "Education"
+    }
+  ]
+}

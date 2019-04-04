@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { SearchComponent } from './search.component';
 
@@ -8,6 +10,7 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ FormsModule, TypeaheadModule.forRoot() ],
       declarations: [ SearchComponent ]
     })
     .compileComponents();
