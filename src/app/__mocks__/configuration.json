@@ -93,8 +93,28 @@
   ],
   "ucl_universities": [
     {
-      "id": "university_id",
-      "label": "University"
+      "id": "MEDE",
+      "label": "Faculté de médecine et médecine dentaire"
+    },
+    {
+      "id": "FASB",
+      "label": "Faculté de pharmacie et des sciences biomédicales"
+    },
+    {
+      "id": "FSP",
+      "label": "Faculté de santé publique"
+    },
+    {
+      "id": "FSM",
+      "label": "Faculté des Sciences de la Motricité"
+    },
+    {
+      "id": "EPL",
+      "label": "Ecole Polytechnique de Louvain"
+    },
+    {
+      "id": "LOCI",
+      "label": "Faculté d'architecture, d'ingénierie architecturale, d'urbanisme"
     }
   ],
   "ucl_university_labo": [
@@ -111,8 +131,16 @@
   ],
   "education_fields": [
     {
-      "id": "education",
-      "label": "Education"
+      "id": "sante",
+      "label": "Sciences de la santé"
+    },
+    {
+      "id": "technology",
+      "label": "Sciences et technologies"
+    },
+    {
+      "id": "human",
+      "label": "Sciences humaines"
     }
   ]
 }
