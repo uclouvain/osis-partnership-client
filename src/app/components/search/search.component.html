@@ -1,11 +1,53 @@
-<div class="form-group">
-  <label for="continent">Continent</label>
-  <input [(ngModel)]="model.continent"
-         [typeahead]="continents"
-         typeaheadOptionField="label"
-         class="form-control"
-         (typeaheadNoResults)="typeaheadNoContinent($event)"
-         id="continent">
-  <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
-</div>
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="continent">Continent</label>
+    <input [(ngModel)]="model.continent"
+            name="continent"
+           [typeahead]="continents"
+           typeaheadOptionField="label"
+           class="form-control"
+           (typeaheadNoResults)="typeaheadNoContinent($event)"
+           (typeaheadOnSelect)="onContinentChanged($event)"
+           id="continent">
+    <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
+  </div>
+
+  <div class="form-group" *ngIf="countries">
+    <label for="country">Country</label>
+    <input  [(ngModel)]="model.country"
+            name="country"
+            [typeahead]="countries"
+            typeaheadOptionField="label"
+            class="form-control"
+            id="country">
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input  [(ngModel)]="model.city"
+            name="city"
+            class="form-control"
+            id="city">
+  </div>
+
+  <div class="form-group">
+    <label for="partner">Partner institution</label>
+    <input  [(ngModel)]="model.city"
+            name="partner"
+            class="form-control"
+            id="partner"
+            [typeahead]="config.partners"
+            typeaheadOptionField="label">
+  </div>
+
+  <div class="form-group">
+    <label for="ucl_university">Faculty</label>
+    <input  [(ngModel)]="model.city"
+            name="ucl_university"
+            class="form-control"
+            id="ucl_university"
+            [typeahead]="config.ucl_universities"
+            typeaheadOptionField="label">
+  </div>
+</form>
 

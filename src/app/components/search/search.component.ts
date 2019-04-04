@@ -23,14 +23,22 @@ export class SearchComponent implements OnInit {
 
   public config = config;
   public continents = getValueLabelList(config.continents);
+  public countries;
   public noContinent = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   typeaheadNoContinent(event: boolean): void {
     this.noContinent = event;
+  }
+
+  onContinentChanged(event: any): void {
+    if (event.value) {
+      this.countries = getValueLabelList(config.continents, { name: 'countries', value: event.value });
+    }
   }
 }

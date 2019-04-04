@@ -78,6 +78,28 @@ describe('getValueLabelList', () => {
     expect(getValueLabelList(input, level1)).toEqual(output);
   });
 
+  it('should returns a list of ValueLabel of level 1 if level 1 is an array of strings', () => {
+    const input = [
+      { name: 'A', countries: [
+        'A1',
+        'A2'
+      ] },
+      { name: 'B', countries: [
+        'B1',
+        'B2'
+      ] },
+    ];
+    const output = [
+      { id: 'B1', label: 'B1' },
+      { id: 'B2', label: 'B2' }
+    ];
+    const level1 = {
+      name: 'countries',
+      value: 'B'
+    };
+    expect(getValueLabelList(input, level1)).toEqual(output);
+  });
+
   it('should returns a list of ValueLabel of level 2', () => {
     const input = [
       { name: 'A', countries: [
