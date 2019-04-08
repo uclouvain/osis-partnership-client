@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
 import * as config from '../../__mocks__/configuration.json';
+import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,7 @@ export class SearchComponent implements OnInit {
     campus: '',
     supervisor: '',
     education_field: '',
-    mobility_type: [],
+    mobility_types: [],
     funding: []
   };
 
@@ -26,7 +27,15 @@ export class SearchComponent implements OnInit {
   public continents = getValueLabelList(config.continents);
   public countries;
   public noContinent = false;
-
+  public mobilityTypesOptions = [
+    new CheckboxItem('Student', 'Student'),
+    new CheckboxItem('Staff', 'Staff'),
+  ];
+  public fundingOptions = [
+    new CheckboxItem('Erasmus', 'Erasmus'),
+    new CheckboxItem('Belgica', 'Belgica'),
+    new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
+  ];
   constructor() {
   }
 
@@ -42,5 +51,17 @@ export class SearchComponent implements OnInit {
     if (event.value) {
       this.countries = getValueLabelList(config.continents, { name: 'countries', value: event.value });
     }
+  }
+
+  validate(event: any): void {
+    console.log(this.model);
+  }
+
+  onMobilityTypesChange(value) {
+    this.model.mobility_types = value;
+  }
+
+  onFundingChange(value) {
+    this.model.funding = value;
   }
 }

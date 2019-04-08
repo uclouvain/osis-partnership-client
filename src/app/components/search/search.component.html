@@ -88,6 +88,35 @@
             typeaheadOptionField="label">
   </div>
 
-  <input type="submit" class="btn btn-primary" value="{{ 'Search' | translate }}" />
+  <div class="form-group">
+    <label for="education_field">{{ 'Subject Area' | translate }}</label>
+    <input  [(ngModel)]="model.education_field"
+            name="education_field"
+            class="form-control"
+            id="education_field"
+            [typeahead]="config.education_fields"
+            typeaheadOptionField="label">
+  </div>
+
+  <div class="form-group">
+    <label>{{ 'Mobility Type' | translate }}</label>
+    <app-checkbox-group
+      [options]="mobilityTypesOptions"
+      (toggle)="onMobilityTypesChange($event)"
+      [selectedValues]="model.mobility_types"
+      >
+    </app-checkbox-group>
+  </div>
+
+  <div class="form-group">
+    <label>{{ 'Funding' | translate }}</label>
+    <app-checkbox-group
+      [options]="fundingOptions"
+      [selectedValues]="model.funding"
+      (toggle)="onFundingChange($event)"
+    ></app-checkbox-group>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="{{ 'Search' | translate }}" (click)="validate($event)" />
 </form>
 
