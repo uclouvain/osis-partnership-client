@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
 import * as config from '../../__mocks__/configuration.json';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -21,8 +22,7 @@ export class SearchComponent implements OnInit {
     funding: []
   };
 
-  // tslint ignore
-  public config = config.default;
+  public config = config;
   public continents = getValueLabelList(config.continents);
   public countries;
   public noContinent = false;
@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.config);
   }
 
   typeaheadNoContinent(event: boolean): void {
