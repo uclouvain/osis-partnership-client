@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import * as partners from '../../__mocks__/partners.json';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 import Partner from 'src/app/interfaces/partners.js';
+import * as partners from '../../__mocks__/partners.json';
 @Component({
   selector: 'app-list-partners',
   templateUrl: './list-partners.component.html',
@@ -18,7 +20,13 @@ export class ListPartnersComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
 
-  constructor() { }
+  modalRef: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef<any>, e: any) {
+    e.preventDefault();
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit() {
   }
