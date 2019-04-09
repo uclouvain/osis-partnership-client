@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import * as partners from '../../__mocks__/partners.json';
 @Component({
   selector: 'app-list-partners',
@@ -6,18 +6,21 @@ import * as partners from '../../__mocks__/partners.json';
   styleUrls: ['./list-partners.component.css']
 })
 export class ListPartnersComponent implements OnInit {
-  public rows = partners;
+  @ViewChild('partnershipSummaryCell')
+  partnershipSummaryCell: TemplateRef<any>;
+
+  public rows = partners.results;
   public columns = [
-    { prop: 'name' },
+    { name: 'Name' },
     { name: 'Country' },
     { name: 'City' },
-    { name: 'Partnerships' },
+    { prop: 'partnerships', summaryFunc: () => null, summaryTemplate: this.partnershipSummaryCell },
   ];
   loadingIndicator = true;
   reorderable = true;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

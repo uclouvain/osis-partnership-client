@@ -11,3 +11,7 @@
   [limit]="10"
   [rowHeight]="'auto'"
   [reorderable]="reorderable">
+
+<ng-template #partnershipSummaryCell let-row="row" let-value="value">
+  <a href="#">Voir les {{row.partnerships}} partenariats</a>
+</ng-template>

@@ -1,30 +1,156 @@
-[
-  {
-    "name": "Universität Hildesheim",
-    "country": "Germany",
-    "city": "Hildesheim",
-    "partnerships": "2",
-    "ucl_university": "FIAL"
-  },
-  {
-
-    "name": "Universidade Estadual de Camp",
-    "country": "Brasil",
-    "city": "Campinas",
-    "partnerships": 2,
-    "ucl_university": "EPL, MEDE"
-  },
-  {
-    "name": "Katholieke Universiteit Leuven",
-    "country": "Belgium",
-    "city": "Leuven",
-    "partnerships": 19
-  },
-  {
-    "name": "Université de Montréal",
-    "country": "Canada",
-    "city": "Montréal",
-    "partnerships": 12
-  }
-]
-
+{
+  "count": 1716,
+  "next": "http://localhost:8000/api/v1/partnerships/partners/?format=json&limit=25&offset=25",
+  "previous": null,
+  "results": [{
+    "name": "universite de ABC",
+    "erasmus_code": null,
+    "partner_type": "Université ou IES",
+    "city": "paris",
+    "country": "Afrique du Sud"
+  }, {
+    "name": "SWPS University",
+    "erasmus_code": "PL WARSZAW37",
+    "partner_type": "Université ou IES",
+    "city": "Varsovie",
+    "country": "Pologne"
+  }, {
+    "name": "Middle East Technical University",
+    "erasmus_code": "TR ANKARA04",
+    "partner_type": "Université ou IES",
+    "city": "Ankara",
+    "country": "Turquie"
+  }, {
+    "name": "The American University of Cairo",
+    "erasmus_code": null,
+    "partner_type": "Université ou IES",
+    "city": "Cairo",
+    "country": "Egypte"
+  }, {
+    "name": "Mary Immaculate College",
+    "erasmus_code": "IRLLIMERIC04",
+    "partner_type": "Université ou IES",
+    "city": "Limerick",
+    "country": "Irlande (Eire)"
+  }, {
+    "name": "Université d'Antsiranana",
+    "erasmus_code": null,
+    "partner_type": "Université ou IES",
+    "city": "Antananarivo",
+    "country": "Madagascar"
+  }, {
+    "name": "National University of Life and Environmental Sciences of Ukraine",
+    "erasmus_code": null,
+    "partner_type": "Université ou IES",
+    "city": "Kyiv",
+    "country": "Ukraine (République d')"
+  }, {
+    "name": "Libera Università di Bolzano",
+    "erasmus_code": "I  BOLZANO01",
+    "partner_type": "Université ou IES",
+    "city": "Bolzano",
+    "country": "Italie"
+  }, {
+    "name": "Indian School of Business",
+    "erasmus_code": null,
+    "partner_type": "Université ou IES",
+    "city": "Hyderabad",
+    "country": "Inde"
+  }, {
+    "name": "Université Côté d'Azur",
+    "erasmus_code": "F NICE41",
+    "partner_type": "Université ou IES",
+    "city": "Nice",
+    "country": "France"
+  }, {
+    "name": "Universidad Europea de Valencia",
+    "erasmus_code": "E  VALENCI91",
+    "partner_type": "Université ou IES",
+    "city": "Valencia",
+    "country": "Espagne"
+  }, {
+    "name": "Haute Ecole Louvain en Hainaut - HELHa",
+    "erasmus_code": "B MONS22",
+    "partner_type": "Université ou IES",
+    "city": "Mons",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole en Hainaut",
+    "erasmus_code": "B  MONS20",
+    "partner_type": "Université ou IES",
+    "city": "Mons",
+    "country": "Belgique"
+  }, {
+    "name": "Institut des Arts de diffusion",
+    "erasmus_code": "B LOUVAIN02",
+    "partner_type": "Université ou IES",
+    "city": "Louvain-la-Neuve",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole de Namur-Liège-Luxembourg",
+    "erasmus_code": "B NAMUR15",
+    "partner_type": "Université ou IES",
+    "city": "Namur",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole de la Province de Namur",
+    "erasmus_code": "B NAMUR14",
+    "partner_type": "Université ou IES",
+    "city": "Namur",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole Libre de Bruxelles - Ilya Prigogine",
+    "erasmus_code": "B BRUXEL85",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole Charlemagne",
+    "erasmus_code": "B LIEGE43",
+    "partner_type": "Université ou IES",
+    "city": "Liège",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole de la Communauté française Albert Jacquard",
+    "erasmus_code": "B  NAMUR11",
+    "partner_type": "Université ou IES",
+    "city": "Namur",
+    "country": "Belgique"
+  }, {
+    "name": "Ecole supérieure des Arts Saint-Luc de Bruxelles",
+    "erasmus_code": "B BRUXEL90",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }, {
+    "name": "Ecole de recherche graphique - Ecole supérieure des arts",
+    "erasmus_code": "B BRUXEL91",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole Provinciale de Hainaut - Condorcet",
+    "erasmus_code": "B  MONS23",
+    "partner_type": "Université ou IES",
+    "city": "Mons",
+    "country": "Belgique"
+  }, {
+    "name": "Ecole Pratique des Hautes Etudes Commerciales",
+    "erasmus_code": "B  BRUXEL82",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }, {
+    "name": "Haute Ecole Galilée",
+    "erasmus_code": "B BRUXEL84",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }, {
+    "name": "Groupe Ichec - ISC Saint-Louis - ISFSC",
+    "erasmus_code": "B BRUXEL86",
+    "partner_type": "Université ou IES",
+    "city": "Bruxelles",
+    "country": "Belgique"
+  }]
+}

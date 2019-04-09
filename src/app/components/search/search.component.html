@@ -8,7 +8,8 @@
            class="form-control"
            (typeaheadNoResults)="typeaheadNoContinent($event)"
            (typeaheadOnSelect)="onContinentChanged($event)"
-           id="continent">
+           id="continent"
+           autocomplete="off">
     <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
   </div>
 
@@ -19,7 +20,8 @@
             [typeahead]="countries"
             typeaheadOptionField="label"
             class="form-control"
-            id="country">
+            id="country"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -37,7 +39,8 @@
             class="form-control"
             id="partner"
             [typeahead]="config.partners"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -47,7 +50,8 @@
             class="form-control"
             id="ucl_university"
             [typeahead]="config.ucl_universities"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -57,7 +61,8 @@
             class="form-control"
             id="ucl_university_labo"
             [typeahead]="config.ucl_university_labo"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -65,7 +70,8 @@
     <input  [(ngModel)]="model.campus"
             name="campus"
             class="form-control"
-            id="campus">
+            id="campus"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -75,7 +81,8 @@
             class="form-control"
             id="supervisor"
             [typeahead]="config.supervisors"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -85,7 +92,8 @@
             class="form-control"
             id="education_field"
             [typeahead]="config.education_fields"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
@@ -95,7 +103,8 @@
             class="form-control"
             id="education_field"
             [typeahead]="config.education_fields"
-            typeaheadOptionField="label">
+            typeaheadOptionField="label"
+            autocomplete="off">
   </div>
 
   <div class="form-group">
