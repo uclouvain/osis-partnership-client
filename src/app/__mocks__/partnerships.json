@@ -1,1 +1,787 @@
-{"count":1133,"next":"http://localhost:8000/api/v1/partnerships/?format=json&limit=25&offset=25","previous":null,"results":[{"partner":{"name":"Middle East Technical University","erasmus_code":"TR ANKARA04","partner_type":"Université ou IES","city":"Ankara","country":"Turquie"},"supervisor":"VAN DEN BROUCKE, Stephan","ucl_university":"PSP","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":"contact-out@psp.fr","name":"HOUDÉ, Joelle","phone":null},"out_portal":"http://localhost:8000/out","out_funding":{"name":"Toto","url":"http://localhost:8000/api/v1/partnerships/"},"in_contact":{"email":"contact-in@psp.fr","name":"AIT-CHAALAL, Amine","phone":null},"in_portal":"http://localhost:8000/in","staff_contact_name":"PIQUART, Michèle","staff_funding":{"name":"Toto","url":"http://localhost:8000/api/v1/partnerships/"}},{"partner":{"name":"SWPS University","erasmus_code":"PL WARSZAW37","partner_type":"Université ou IES","city":"Varsovie","country":"Pologne"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"PSP","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":"contact-out@psp.fr","name":"HOUDÉ, Joelle","phone":null},"out_portal":"http://localhost:8000/out","out_funding":null,"in_contact":{"email":"contact-in@psp.fr","name":"AIT-CHAALAL, Amine","phone":null},"in_portal":"http://localhost:8000/in","staff_contact_name":"PIQUART, Michèle","staff_funding":null},{"partner":{"name":"Uniwersytet Warszawski","erasmus_code":"PL WARSZAW01","partner_type":"Ambassade","city":"Warszawa","country":"Pologne"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"DRT","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"JEAN, Amélie","staff_funding":null},{"partner":{"name":"Aix-Marseille Université","erasmus_code":"F  MARSEIL84","partner_type":"Ambassade","city":"Marseille","country":"France"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"DRT","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"JEAN, Amélie","staff_funding":null},{"partner":{"name":"Universidad de Granada","erasmus_code":"E  GRANADA01","partner_type":"Ambassade","city":"Granada","country":"Espagne"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"DRT","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"JEAN, Amélie","staff_funding":null},{"partner":{"name":"Ruprecht-Karls-Universität Heidelberg","erasmus_code":"D  HEIDELB01","partner_type":"Ambassade","city":"Heidelberg","country":"Allemagne"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"DRT","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"JEAN, Amélie","staff_funding":null},{"partner":{"name":"Università degli studi di Milano","erasmus_code":"I  MILANO01","partner_type":"Ambassade","city":"Milano","country":"Italie"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"FSP","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":"laetitia.deradzitzky@uclouvain.be","name":"DE RADZITZKY D'OSTROWICK, Laetitia","phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":"laetitia.deradzitzky@uclouvain.be","name":"DE RADZITZKY D'OSTROWICK, Laetitia","phone":null},"in_portal":null,"staff_contact_name":"DE RADZITZKY D'OSTROWICK, Laetitia","staff_funding":null},{"partner":{"name":"University of Toronto","erasmus_code":null,"partner_type":"Ambassade","city":"Toronto","country":"Canada"},"supervisor":"VAN BELLEGEM, Sébastien","ucl_university":"ESPO","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"DUQUESNE, Magaly","staff_funding":null},{"partner":{"name":"\"Matenadaran\" M. Mashtots Institute of Ancient Manuscripts","erasmus_code":null,"partner_type":"Université ou IES","city":"Yerevan","country":"Arménie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Universität Hildesheim","erasmus_code":"D  HILDESH01","partner_type":"Ambassade","city":"Hildesheim","country":"Allemagne"},"supervisor":"STREITBERGER, Alexander","ucl_university":"FIAL","ucl_university_labo":"ARKE","is_sms":false,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Ilia State University","erasmus_code":null,"partner_type":"Université ou IES","city":"Tbilisi","country":"Géorgie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Université Jean Moulin Lyon III","erasmus_code":"F  LYON03","partner_type":"Ambassade","city":"Lyon","country":"France"},"supervisor":"GUAY, Alexandre","ucl_university":"FIAL","ucl_university_labo":"EFIL","is_sms":false,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Ivane Javakhishvili Tbilisi State University","erasmus_code":null,"partner_type":"Université ou IES","city":"Tbilisi","country":"Géorgie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Yerevan State University","erasmus_code":null,"partner_type":"Université ou IES","city":"Yerevan","country":"Arménie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Université d'Antsiranana","erasmus_code":null,"partner_type":"Université ou IES","city":"Antananarivo","country":"Madagascar"},"supervisor":"SABEL, Joachim","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":null,"is_smp":null,"is_smst":null,"is_sta":null,"is_stt":null,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Yerevan Brusov State University of Languages and Social Sciences","erasmus_code":null,"partner_type":"Ambassade","city":"Yerevan","country":"Arménie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Georgian National Centre of Manuscripts","erasmus_code":null,"partner_type":"Autre","city":"Tbilisi","country":"Géorgie"},"supervisor":"COULIE, Bernard","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":false,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"The American University in Cairo","erasmus_code":null,"partner_type":"Université ou IES","city":"Le Caire","country":"Egypte"},"supervisor":"SEMAL, Pierre","ucl_university":"LSM","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":false,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"MARÉCHAL, Catherine","staff_funding":null},{"partner":{"name":"Universidad Alberto Hurtado","erasmus_code":null,"partner_type":"Ambassade","city":"Santiago","country":"Chili"},"supervisor":"FABRY, Geneviève","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Université de Caen Normandie","erasmus_code":"F  CAEN01","partner_type":"Ambassade","city":"Caen","country":"France"},"supervisor":"VAN DEN ABEELE, Baudouin","ucl_university":"FIAL","ucl_university_labo":"HIST","is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Università Ca' Foscari Venezia","erasmus_code":"I  VENEZIA01","partner_type":"Ambassade","city":"Venezia","country":"Italie"},"supervisor":"<method-wrapper '__str__' of NoneType object at 0x9d34e0>","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":null,"is_smp":null,"is_smst":null,"is_sta":null,"is_stt":null,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Université de Montréal","erasmus_code":null,"partner_type":"Ambassade","city":"Montréal","country":"Canada"},"supervisor":"VAN WYMEERSCH, Brigitte","ucl_university":"FIAL","ucl_university_labo":"ARKE","is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Universidad Nacional de Colombia","erasmus_code":null,"partner_type":"Ambassade","city":"Bogotá","country":"Colombie"},"supervisor":"FABRY, Geneviève","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Mary Immaculate College","erasmus_code":"IRLLIMERIC04","partner_type":"Université ou IES","city":"Limerick","country":"Irlande (Eire)"},"supervisor":"DE COCK, Sylvie","ucl_university":"FIAL","ucl_university_labo":null,"is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null},{"partner":{"name":"Università Ca' Foscari Venezia","erasmus_code":"I  VENEZIA01","partner_type":"Ambassade","city":"Venezia","country":"Italie"},"supervisor":"SABEL, Joachim","ucl_university":"FIAL","ucl_university_labo":"LMOD","is_sms":true,"is_smp":false,"is_smst":false,"is_sta":true,"is_stt":false,"out_contact":{"email":null,"name":null,"phone":null},"out_portal":null,"out_funding":null,"in_contact":{"email":null,"name":null,"phone":null},"in_portal":null,"staff_contact_name":"FONTANA, Isabella","staff_funding":null}]}
+{
+  "count": 1133,
+  "next": "http://localhost:8000/api/v1/partnerships/?format=json&limit=25&offset=25",
+  "previous": null,
+  "results": [{
+    "partner": {
+      "name": "Middle East Technical University",
+      "erasmus_code": "TR ANKARA04",
+      "partner_type": "Université ou IES",
+      "city": "Ankara",
+      "country": "Turquie"
+    },
+    "supervisor": "VAN DEN BROUCKE, Stephan",
+    "ucl_university": "PSP",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": "contact-out@psp.fr",
+      "name": "HOUDÉ, Joelle",
+      "phone": null
+    },
+    "out_portal": "http://localhost:8000/out",
+    "out_funding": {
+      "name": "Toto",
+      "url": "http://localhost:8000/api/v1/partnerships/"
+    },
+    "in_contact": {
+      "email": "contact-in@psp.fr",
+      "name": "AIT-CHAALAL, Amine",
+      "phone": null
+    },
+    "in_portal": "http://localhost:8000/in",
+    "staff_contact_name": "PIQUART, Michèle",
+    "staff_funding": {
+      "name": "Toto",
+      "url": "http://localhost:8000/api/v1/partnerships/"
+    }
+  }, {
+    "partner": {
+      "name": "SWPS University",
+      "erasmus_code": "PL WARSZAW37",
+      "partner_type": "Université ou IES",
+      "city": "Varsovie",
+      "country": "Pologne"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "PSP",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": "contact-out@psp.fr",
+      "name": "HOUDÉ, Joelle",
+      "phone": null
+    },
+    "out_portal": "http://localhost:8000/out",
+    "out_funding": null,
+    "in_contact": {
+      "email": "contact-in@psp.fr",
+      "name": "AIT-CHAALAL, Amine",
+      "phone": null
+    },
+    "in_portal": "http://localhost:8000/in",
+    "staff_contact_name": "PIQUART, Michèle",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Uniwersytet Warszawski",
+      "erasmus_code": "PL WARSZAW01",
+      "partner_type": "Ambassade",
+      "city": "Warszawa",
+      "country": "Pologne"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "DRT",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "JEAN, Amélie",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Aix-Marseille Université",
+      "erasmus_code": "F  MARSEIL84",
+      "partner_type": "Ambassade",
+      "city": "Marseille",
+      "country": "France"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "DRT",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "JEAN, Amélie",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Universidad de Granada",
+      "erasmus_code": "E  GRANADA01",
+      "partner_type": "Ambassade",
+      "city": "Granada",
+      "country": "Espagne"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "DRT",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "JEAN, Amélie",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Ruprecht-Karls-Universität Heidelberg",
+      "erasmus_code": "D  HEIDELB01",
+      "partner_type": "Ambassade",
+      "city": "Heidelberg",
+      "country": "Allemagne"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "DRT",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "JEAN, Amélie",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Università degli studi di Milano",
+      "erasmus_code": "I  MILANO01",
+      "partner_type": "Ambassade",
+      "city": "Milano",
+      "country": "Italie"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "FSP",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": "laetitia.deradzitzky@uclouvain.be",
+      "name": "DE RADZITZKY D'OSTROWICK, Laetitia",
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": "laetitia.deradzitzky@uclouvain.be",
+      "name": "DE RADZITZKY D'OSTROWICK, Laetitia",
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "DE RADZITZKY D'OSTROWICK, Laetitia",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "University of Toronto",
+      "erasmus_code": null,
+      "partner_type": "Ambassade",
+      "city": "Toronto",
+      "country": "Canada"
+    },
+    "supervisor": "VAN BELLEGEM, Sébastien",
+    "ucl_university": "ESPO",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "DUQUESNE, Magaly",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "\"Matenadaran\" M. Mashtots Institute of Ancient Manuscripts",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Yerevan",
+      "country": "Arménie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Universität Hildesheim",
+      "erasmus_code": "D  HILDESH01",
+      "partner_type": "Ambassade",
+      "city": "Hildesheim",
+      "country": "Allemagne"
+    },
+    "supervisor": "STREITBERGER, Alexander",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": "ARKE",
+    "is_sms": false,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Ilia State University",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Tbilisi",
+      "country": "Géorgie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Université Jean Moulin Lyon III",
+      "erasmus_code": "F  LYON03",
+      "partner_type": "Ambassade",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "supervisor": "GUAY, Alexandre",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": "EFIL",
+    "is_sms": false,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Ivane Javakhishvili Tbilisi State University",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Tbilisi",
+      "country": "Géorgie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Yerevan State University",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Yerevan",
+      "country": "Arménie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Université d'Antsiranana",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Antananarivo",
+      "country": "Madagascar"
+    },
+    "supervisor": "SABEL, Joachim",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": null,
+    "is_smp": null,
+    "is_smst": null,
+    "is_sta": null,
+    "is_stt": null,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Yerevan Brusov State University of Languages and Social Sciences",
+      "erasmus_code": null,
+      "partner_type": "Ambassade",
+      "city": "Yerevan",
+      "country": "Arménie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Georgian National Centre of Manuscripts",
+      "erasmus_code": null,
+      "partner_type": "Autre",
+      "city": "Tbilisi",
+      "country": "Géorgie"
+    },
+    "supervisor": "COULIE, Bernard",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": false,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "The American University in Cairo",
+      "erasmus_code": null,
+      "partner_type": "Université ou IES",
+      "city": "Le Caire",
+      "country": "Egypte"
+    },
+    "supervisor": "SEMAL, Pierre",
+    "ucl_university": "LSM",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "MARÉCHAL, Catherine",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Universidad Alberto Hurtado",
+      "erasmus_code": null,
+      "partner_type": "Ambassade",
+      "city": "Santiago",
+      "country": "Chili"
+    },
+    "supervisor": "FABRY, Geneviève",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Université de Caen Normandie",
+      "erasmus_code": "F  CAEN01",
+      "partner_type": "Ambassade",
+      "city": "Caen",
+      "country": "France"
+    },
+    "supervisor": "VAN DEN ABEELE, Baudouin",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": "HIST",
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Università Ca' Foscari Venezia",
+      "erasmus_code": "I  VENEZIA01",
+      "partner_type": "Ambassade",
+      "city": "Venezia",
+      "country": "Italie"
+    },
+    "supervisor": "<method-wrapper '__str__' of NoneType object at 0x9d34e0>",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": null,
+    "is_smp": null,
+    "is_smst": null,
+    "is_sta": null,
+    "is_stt": null,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Université de Montréal",
+      "erasmus_code": null,
+      "partner_type": "Ambassade",
+      "city": "Montréal",
+      "country": "Canada"
+    },
+    "supervisor": "VAN WYMEERSCH, Brigitte",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": "ARKE",
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Universidad Nacional de Colombia",
+      "erasmus_code": null,
+      "partner_type": "Ambassade",
+      "city": "Bogotá",
+      "country": "Colombie"
+    },
+    "supervisor": "FABRY, Geneviève",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Mary Immaculate College",
+      "erasmus_code": "IRLLIMERIC04",
+      "partner_type": "Université ou IES",
+      "city": "Limerick",
+      "country": "Irlande (Eire)"
+    },
+    "supervisor": "DE COCK, Sylvie",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": null,
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }, {
+    "partner": {
+      "name": "Università Ca' Foscari Venezia",
+      "erasmus_code": "I  VENEZIA01",
+      "partner_type": "Ambassade",
+      "city": "Venezia",
+      "country": "Italie"
+    },
+    "supervisor": "SABEL, Joachim",
+    "ucl_university": "FIAL",
+    "ucl_university_labo": "LMOD",
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": true,
+    "is_stt": false,
+    "out_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "out_portal": null,
+    "out_funding": null,
+    "in_contact": {
+      "email": null,
+      "name": null,
+      "phone": null
+    },
+    "in_portal": null,
+    "staff_contact_name": "FONTANA, Isabella",
+    "staff_funding": null
+  }]
+}

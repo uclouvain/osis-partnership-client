@@ -2,7 +2,6 @@
   class="bootstrap"
   [rows]="rows"
   [loadingIndicator]="loadingIndicator"
-  [columns]="columns"
   [columnMode]="'force'"
   [headerHeight]="40"
   [summaryRow]="true"
@@ -11,7 +10,27 @@
   [limit]="10"
   [rowHeight]="'auto'"
   [reorderable]="reorderable">
+  <ngx-datatable-column [name]="'Name' | translate" props="name">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
 
-<ng-template #partnershipSummaryCell let-row="row" let-value="value">
-  <a href="#">Voir les {{row.partnerships}} partenariats</a>
-</ng-template>
+  <ngx-datatable-column [name]="'Country' | translate" props="country">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'City' | translate" props="city">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column props="partner_type" [name]="'Partner type' | translate">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <a href="#">Voir les partenariats</a>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>

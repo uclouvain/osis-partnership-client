@@ -97,17 +97,6 @@
   </div>
 
   <div class="form-group">
-    <label for="education_field">{{ 'Subject Area' | translate }}</label>
-    <input  [(ngModel)]="model.education_field"
-            name="education_field"
-            class="form-control"
-            id="education_field"
-            [typeahead]="config.education_fields"
-            typeaheadOptionField="label"
-            autocomplete="off">
-  </div>
-
-  <div class="form-group">
     <label>{{ 'Mobility Type' | translate }}</label>
     <app-checkbox-group
       [options]="mobilityTypesOptions"
