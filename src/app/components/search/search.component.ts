@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
-import * as config from '../../__mocks__/configuration.json';
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
+import * as config from '../../__mocks__/configuration.json';
 
 @Component({
   selector: 'app-search',

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Universität Hildesheim",
+    "country": "Germany",
+    "city": "Hildesheim",
+    "partnerships": "2",
+    "ucl_university": "FIAL"
+  },
+  {
+
+    "name": "Universidade Estadual de Camp",
+    "country": "Brasil",
+    "city": "Campinas",
+    "partnerships": 2,
+    "ucl_university": "EPL, MEDE"
+  },
+  {
+    "name": "Katholieke Universiteit Leuven",
+    "country": "Belgium",
+    "city": "Leuven",
+    "partnerships": 19
+  },
+  {
+    "name": "Université de Montréal",
+    "country": "Canada",
+    "city": "Montréal",
+    "partnerships": 12
+  }
+]
+

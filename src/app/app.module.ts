@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -34,7 +35,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     TypeaheadModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
