@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import * as config from '../../__mocks__/configuration.json';
 
@@ -10,6 +14,7 @@ import * as config from '../../__mocks__/configuration.json';
 })
 export class SearchComponent implements OnInit {
   public model = {
+    type: 'partner',
     continent: '',
     country: '',
     city: '',
@@ -36,11 +41,31 @@ export class SearchComponent implements OnInit {
     new CheckboxItem('Belgica', 'Belgica'),
     new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
   ];
-  constructor() {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-    console.log(this.config);
+    this.route.queryParams
+      .pipe(
+        map(params => ({
+          ...this.model,
+          ...params,
+          mobility_types: params.mobility_types
+            ? typeof params.mobility_types === 'string' ? [params.mobility_types] : [...params.mobility_types]
+            : [],
+          funding: params.funding
+            ? typeof params.funding === 'string' ? [params.funding] : [...params.funding]
+            : []
+          })
+        )
+      )
+      .subscribe(params => {
+        console.log(params);
+        this.model = params;
+      });
   }
 
   typeaheadNoContinent(event: boolean): void {
@@ -53,8 +78,14 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  validate(event: any): void {
-    console.log(this.model);
+  searchPartners(event: any): void {
+    this.model.type = 'partners';
+    this.router.navigate(['/'], { queryParams: this.model });
+  }
+
+  searchPartnerships(event: any): void {
+    this.model.type = 'partnerships';
+    this.router.navigate(['/'], { queryParams: this.model });
   }
 
   onMobilityTypesChange(value) {

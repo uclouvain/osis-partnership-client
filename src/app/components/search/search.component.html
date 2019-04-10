@@ -115,7 +115,9 @@
     ></app-checkbox-group>
   </div>
 
-  <input type="submit" class="btn btn-primary" value="{{ 'Search partners' | translate }}" (click)="validate($event)" />
-  <input type="submit" class="btn btn-primary" value="{{ 'Search partnerships' | translate }}" (click)="validate($event)" />
+  <input type="submit" class="btn btn-primary" value="{{ 'Search partners' | translate }}" (click)="searchPartners($event)" />
+  <input type="submit" class="btn btn-primary" value="{{ 'Search partnerships' | translate }}" (click)="searchPartnerships($event)" />
 </form>
 
+<app-list-partners *ngIf="model.type === 'partners'"></app-list-partners>
+<app-list-partnerships *ngIf="model.type === 'partnerships'"></app-list-partnerships>

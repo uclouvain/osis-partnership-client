@@ -13,6 +13,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { ListPartnersComponent } from './components/list-partners/list-partners.component';
 import { ListPartnershipsComponent } from './components/list-partnerships/list-partnerships.component';
+import { AppRoutingModule } from './app-routing.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,7 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     TypeaheadModule.forRoot(),
     ModalModule.forRoot(),
     HttpClientModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
