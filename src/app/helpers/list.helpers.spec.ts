@@ -14,7 +14,7 @@ describe('getFormattedItemsList', () => {
       { id: 'id_b', label: 'B' },
       { id: 'id_c', label: 'C' },
     ];
-    expect(getFormattedItemsList(output)).toEqual(output);
+    expect(getFormattedItemsList(input)).toEqual(output);
   });
 
   it('should returns a list with only objects', () => {
@@ -28,7 +28,7 @@ describe('getFormattedItemsList', () => {
       { id: 'id_b', label: 'B' },
       { id: 'id_c', label: 'C' },
     ];
-    expect(getFormattedItemsList(output)).toEqual(output);
+    expect(getFormattedItemsList(input)).toEqual(output);
   });
 });
 
