@@ -1,0 +1,48 @@
+.personal-data {
+  padding: 30px;
+/*  margin-top: 30px;
+  margin-bottom: 30px;*/
+}
+.personal-data .profile-tabs {
+  margin-bottom: 0px;
+}
+.department-infos {
+  padding: 0px;
+  background-color: #F7F8FA;
+}
+.personal-data .department-infos .tab-pane {
+  background-color: #F7F8FA;
+}
+.personal-data .bottom > ul{
+  padding:0px !important;
+}
+.personal-data .nav-pills > li > a {
+  border-radius:0px;
+  color: inherit;
+}
+.personal-data .nav-pills > li.active > a {
+  background-color: inherit !important;
+}
+.personal-data .nav-pills > li.active.box:after{
+  content:"";
+  display:inline-block;
+  position:absolute;
+  border:10px solid white;
+  border-color:transparent #F7F8FA transparent transparent;
+  top:30px;
+  right:0px;
+}
+.personal-data .nav-pills > li.active.abbreviation {
+  color: #FFFFFF;
+  opacity : 1;
+}
+.personal-data .nav-pills > li.abbreviation {
+  opacity : 0.5;
+}
+.personal-data-img {
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  width:180px;
+  height:180px;
+}
