@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import Partnership from 'src/app/interfaces/partnership.js';
+import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 
 import * as partnerships from '../../__mocks__/partnerships.json';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 @Component({
   selector: 'app-list-partnerships',
   templateUrl: './list-partnerships.component.html',
@@ -13,8 +15,9 @@ export class ListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
-  public rows: any[] = partnerships.results.map(partner => ({
-    ...partner,
+  public rows: any[] = partnerships.results.map(partnership => ({
+    ...partnership,
+    mobility_type: getMobilityType(partnership),
     cellTemplate: this.partnershipSummaryCell
   }));
 
