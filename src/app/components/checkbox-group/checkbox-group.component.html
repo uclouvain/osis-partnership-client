@@ -1,15 +1,10 @@
-<div *ngFor="let item of options">
-  <div class="form-check">
+<div>
+  <label class="checkbox-inline" [for]="item.value" *ngFor="let item of options">
     <input
-      class="form-check-input"
       type="checkbox"
       [(ngModel)]="item.checked"
       [id]="item.value"
-      (change)="onToggle()">
-    <label class="form-check-label" [for]="item.value">
-      {{ item.label | translate }}
-    </label>
-  </div>
+      (change)="onToggle()"> {{ item.label | translate }}
+  </label>
 </div>
-
 

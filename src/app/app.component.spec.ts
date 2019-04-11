@@ -1,19 +1,29 @@
 import { TestBed, async } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
+import { HttpTestingController} from '@angular/common/http/testing';
+
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { SearchComponent } from './components/search/search.component';
+import { SharedModule } from './shared.module';
 
 describe('AppComponent', () => {
+  let translate: TranslateService;
+  // let http: HttpTestingController;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, TypeaheadModule.forRoot() ],
-      declarations: [
-        AppComponent,
-        SearchComponent
-      ],
+      declarations: [ AppComponent ],
+      imports: [
+        SharedModule
+      ]
     }).compileComponents();
+    translate = TestBed.get(TranslateService);
+    // http = TestBed.get(HttpTestingController);
   }));
+
+  afterEach(() => {
+    translate = undefined;
+    // http = undefined;
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
