@@ -24,9 +24,10 @@ export class SearchComponent implements OnInit {
     campus: '',
     supervisor: '',
     education_field: '',
-    mobility_types: [],
+    mobility_types: ['student'],
     funding: []
   };
+  public partnershipId: number;
 
   public config = config;
   public continents = getValueLabelList(config.continents);
