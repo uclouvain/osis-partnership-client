@@ -1,0 +1,259 @@
+.color-vantablack {
+    color: #0d0a0e;
+}
+
+.color-blue {
+    color: #42B5F4;
+}
+
+.color-green {
+    color: #0F9D58;
+}
+
+.color-yellow {
+    color: #F4B400;
+}
+
+.color-red {
+    color: #DB4337;
+}
+
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+.search-commands {
+    font-variant: small-caps;
+}
+
+.uclsearch-content {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.suggestion {
+    color: #337ab7;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.uclsearch-options-list {
+    overflow: visible;
+    margin-top: -20px;
+}
+
+main .input-group {
+    margin-top: 20px;
+}
+
+button.multiselect {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: left;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+button.multiselect > .caret {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+}
+
+ul.multiselect-container {
+    width: 100%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 5px !important;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px !important;
+}
+
+.pager {
+    font-family: 'Product Sans', Arial, sans-serif;
+    vertical-align: middle;
+    color: #337ab7;
+    font-weight: bold;
+}
+
+.pager li > a {
+    font-size: 1.5em;
+    border-width: 0px;
+}
+
+.pager li > a:hover, .pager li > a:visited {
+    font-size: 1.5em;
+    border-width: 0px;
+    background: #fff;
+}
+
+.uclsearch-results li {
+    margin-bottom: 20px;
+}
+
+.uclsearch-results a {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.uclsearch-results cite {
+    display: block;
+    font-size: 0.8em;
+}
+
+.directory-mandate {
+    font-weight: bold;
+}
+
+.ui-autocomplete {
+    z-index: 1060;
+}
+
+.ui-menu {
+    font-size: 0.9em;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 3px #bbb;
+}
+
+.ui-autocomplete-group {
+    /*color: #00214e;*/
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.ui-menu .ui-menu-item a {
+    color: #000;
+    padding-left: 10px;
+    font-size: 0.9em;
+}
+
+ul.uclsearch-tags {
+    padding: 0.2em;
+    border: 0px;
+}
+/* debug css */
+/*
+.uclsearch-content-container {
+    border: 1px solid pink;
+    padding:5px;
+}
+
+.uclsearch-facets-container {
+    border: 1px solid red;
+    padding:5px;
+}
+.uclsearch-facets  {
+    border: 1px solid green;
+    padding:5px;
+}
+.uclsearch-directory  {
+    border: 1px solid blue;
+    padding:5px;
+}
+*/
+
+/* Color UCL */
+#uclsearch-search-form .btn-primary {
+  background-color: #032F5D;
+}
+
+.uclsearch-pagination .pagination > .active > span {
+  border-color: #032F5D;
+  background-color: #032F5D;
+}
+.uclsearch-pagination .pagination > li > a {
+  color: #032F5D;
+}
+
+.uclsearch-facets-container .uclblock-col_menu {
+	background-color: #F7F8FA;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.intranet-content .uclsearch-facets-container .uclblock-col_menu {
+	background-color: #fff;
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+.uclsearch-facets-container .search-filter {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+h1.header-search-facets {
+	font-size: 35px;
+	font-family: "Crimson Text",serif;
+	font-weight: 600;
+	position: relative;
+	line-height: 40px;
+	margin-bottom: 15px;
+	margin-top: 27px;
+}
+
+div.uclsearch-keywords { margin-top: 5px }
+
+div#uclsearch-results div.row.item > div.content:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+div#uclsearch-results div.row.item > div.content > div.block-content-type > span.siteURL {
+    background-color: transparent;
+}
+
+div.uclsearch-pagination > div.uclblock-pager {
+    margin-left: 0px;
+    margin-right: 0px;
+    display: none;
+}
+div.uclblock-top { display: none }
+div.uclblock-top:hover { cursor: pointer }
+div.uclblock-top div.link_go_up {
+    background: #032f5d;
+    display: block;
+    padding: 20px 30px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: -120px !important;
+    margin-bottom: 0 !important;
+}
+div.uclblock-top div.link_go_up a { color: #fff }
+div.uclblock-top div.link_go_up a i.fa {
+    position: absolute;
+    right: 0;
+    padding: 0 30px;
+}

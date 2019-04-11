@@ -7,14 +7,35 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-9">
-        <app-root></app-root>
+  <!-- DRUPAL INTEGRATION: Must be removed when deploy in production env.-->
+  <div class="main-container">
+    <div class="container-fluid color-background container-page-header">
+      <div class="container">
+        <div class="row">
+            <ol class="breadcrumb"><li><a href="#">UCL Home</a></li>
+              <li><a href="#">Facultés</a></li>
+              <li><a href="#">Site de démonstration</a></li>
+              <li class="active">Mobilité partenariat</li>
+            </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="container content-inner">
+      <div class="row">
+        <aside class="col-sm-3 no_mobile_menu" role="complementary">
+          <div class="region region-sidebar-second">
+              <section id="block-uclcore-current-page-submenu" class="block block-uclcore clearfix">
+                <div class="link_back_to_parent hidden-xs">
+                <a href="#" title="Retour à la page supérieure">Retour à la page supérieure<i class="fa fa-arrow-up"></i></a></div>
+              </section>
+              </div>
+        </aside>
+        <div class="col-sm-9">
+          <app-root></app-root>
+        </div>
       </div>
     </div>
   </div>

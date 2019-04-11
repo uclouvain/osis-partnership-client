@@ -1,0 +1,314 @@
+/**
+ * This stylesheets contains small adaptation from the original theme and
+ * should be merge with the main sass files when possible
+ * @type css
+ */
+
+.ucl_active_trail_node {border-left: 5px solid #032f5d;}
+
+#block-views-list-books-block,
+#block-uclcore-list-multisite,
+#block-system-navigation,
+#block-shib-auth-login-box,
+#block-user-login
+{
+  vertical-align:top;
+  display: inline-block;
+  width: 33%;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 6px;
+  background-color: #eee;
+}
+
+.negative-background .breadcrumb,
+.negative-background .breadcrumb li,
+.negative-background .breadcrumb li a {
+  background-color: #032f5d !important;
+  color: #f7f8fa !important;
+}
+
+.negative-background .breadcrumb {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.negative-background .region-main-content,
+.negative-background .region-content-top,
+.negative-background .uclblock-texts {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.picto-list-icon {
+  font-size: 5em;
+  text-align: center;
+}
+
+.modalbox-close {
+  top: 75px !important;
+}
+
+.ucl-level2 {
+  /*background-color: #f7f8fa !important;*/
+}
+
+a:hover, a:focus {
+  /*text-decoration: none;*/
+  outline: 0;
+}
+
+#date-picker-container .fc-view-container table .fc-day-grid-container {
+  overflow: hidden;
+}
+
+/* Burger menu */
+.desktop-uclmenu_header-intranet .second-menu ul li.myucl-menu .dropdown-menu {
+  min-width: 600px;
+}
+
+.uclblock-name_left .col .block-content-abbreviation {
+  font-size: 28px;
+  line-height: 65px;
+}
+
+.ucl_collapse {
+  position: relative;
+}
+a.ucl_collapse_link:before {
+  content: "\f078";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  margin-right: 5px;
+}
+a.ucl_collapse_link.collapsed:before {
+  content: "\f054";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  margin-right: 5px;
+}
+
+span.ucl_mail {
+  color: #337ab7 !important;
+}
+.ucl_mail:hover {
+  color: #23527c !important;
+  text-decoration: underline;
+  cursor:  pointer;
+}
+
+.desktop-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown >span.collapseMenu,
+.mobile-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown > span.collapseMenu {
+  border-bottom: 1px solid #264a71;
+  background: #032f5d;
+  padding: 25px 25px 22px 25px;
+}
+
+.desktop-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown > a,
+.mobile-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown > a {
+  border-bottom: 1px solid #264a71;
+  padding: 14px 20px 13px 20px;
+  border-right: 0;
+  background: #032f5d;
+  color: #fff;
+  font-weight: 800;
+  min-height: 47px;
+  height: auto;
+  text-transform: none;
+}
+
+.desktop-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown > a:hover,
+.mobile-uclmenu_header-intranet li.myucl-menu ul.dropdown-menu > li.dropdown > ul > li.dropdown > a:hover {
+  background: #fff;
+  color: #032f5d;
+}
+
+.thumbnail {
+
+  border: 0;
+}
+
+/**
+ * Moving the second sidebar over content only for mobile design
+ */
+@media screen and (min-width: 769px) {
+  #mobile_menu {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  #block-uclcore-menu-intranet-secondary {
+    display: none;
+  }
+  #block-uclcore-current-page-submenu-level-1 {
+    display: none;
+  }
+  #block-uclcore-current-page-menu-level-2 {
+    display: none;
+  }
+
+}
+#mobile_menu { width: 100% }
+
+div.intranet-container aside .uclblock-col_menu { margin-top: 20px }
+div.page-body > div.image { margin-top: 20px }
+div.region-sidebar-second h2.block-title { margin-top: 20px }
+div.uclblock-links-intranet { margin-top: 20px }
+div.testimonial-image-lettrine {
+  padding-right: 10px;
+  margin-top: 8px !important;
+}
+
+.aside-back ul li span:after {
+  content: '';
+  font-family: initial;
+}
+.aside-back ul li span.hasChildren:after {
+  content: "\f0d7";
+  font-family:  FontAwesome;
+}
+.aside-back ul li span { padding-bottom: 19px !important }
+.aside-back ul li span.parent { padding-left: 90px !important }
+.aside-back ul li span.no_parent { padding-left: 30px !important }
+
+.uclblock-profile .personal-data .profile-tabs {
+  margin-bottom: inherit;
+}
+
+.uclblock-profile .link {
+  background-color: #ff5252 !important;
+}
+
+.uclloader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-myucl li.myucl-menu {
+  border-right: 1px solid #264a71;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-myucl li.myucl-menu a.myucl-toggle {
+  padding-left: 0
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu li.myucl-menu a {
+  height: 50px;
+  line-height: 50px;
+  margin-left: -15px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-myucl li.myucl-menu a.myucl-toggle {
+  padding-top: 14px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-myucl li.myucl-menu a.myucl-toggle span {
+  top: 24px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown {
+  padding-top: 12px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown a.dropdown-toggle {
+  color: #FFF;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu {
+  max-height: 40px;
+  background-color: #032f5d;
+  border-radius: 0;
+  right: 10px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu li {
+  background-color: #032f5d;
+  color: #FFF;
+  max-height: 25px;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu li:hover {
+  background-color: #FFF;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu li:hover a {
+  color: #032f5d;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu li a:hover {
+  background-color: transparent !important;
+  color: #032f5d;
+}
+div.mobile-uclmenu_header-intranet div.second-menu ul.menu-right li.dropdown ul.dropdown-menu li a {
+  color: #FFF;
+}
+@media screen and (min-width: 768px) {
+  /*#navbar:not(.intranet) { margin-bottom: -1px }
+  div.navbar-collapse ul.navbar-nav { margin-bottom: 0 }
+  #navbar.intranet { max-height: 45px }*/
+  ul.menu-intranet li.search-item { max-height: 45px }
+}
+
+h1.page-header::after {
+  bottom: 0 !important;
+}
+
+/* webform - fix grid display */
+.webform-grid .radio, .webform-grid .checkbox {
+  display: table-cell;
+  text-align: center;
+  width: 142px;
+}
+.webform-grid .radio input[type="radio"],
+.webform-grid .radio-inline input[type="radio"],
+.webform-grid .checkbox input[type="checkbox"],
+.webform-grid .checkbox-inline input[type="checkbox"] {
+  float: none;
+  margin: 0 ;
+}
+
+/* fix social links */
+@media (min-width: 768px) {
+  #social-links {
+    margin-bottom: 10px;
+  }
+}
+
+div.desktop-uclmenu_header div.second-menu ul li:first-child { border-left: none }
+
+div.unique #block-uclwapi-widgets-highlighted div.uclblock-slide  {
+  margin-top: -80px;
+}
+
+p.publish_date {
+  font-size: 13px;
+  color: #767b81;
+  margin-bottom: 50px;
+  font-style: italic;
+  line-height: 25px;
+  background-color: #F7F8FA;
+}
+
+aside#intranet_no_mobile_menu { margin-top: -20px }
+
+a.no-href:hover { cursor: default }
+
+/* Ajoute une icône "lien externe" pour les liens externes ou qui ont un target = "blank" */
+a.link_external:after,
+div.widget-uclwidget_rss a[target="_blank"]:after,
+div.widget-uclwidget_sap a[target="_blank"]:after,
+div.widget-uclwidget_links a[target="_blank"]:after {
+  content: "\f08e" !important;
+  font-family: FontAwesome !important;
+  font-size: 14px !important;
+}
+
+div.media-left.image > a > img { max-width: none }
+
+.webform-client-form {
+    clear: both;
+    padding: 1em 0;
+}

@@ -1,0 +1,12 @@
+.titre-citation {font-weight: bold; font-style: italic; margin-left: 20px;}
+.texte-citation {font-style: italic; margin-left: 20px;}
+.texte-petit {font-size: 85%;}
+.encadre {border: 1px solid #5C9EBE; padding: 3px;}
+.fond-couleur-b {background-color: #7CB6D2;}
+.fond-couleur-c {background-color: #9AC7DC;}
+.fond-couleur-d {background-color: #BDDEE9;}
+p.couleur-contraste-beige {background-color: #eddcaa; 	padding: 3px;}
+p.couleur-contraste-bleu {background-color: #afd1df; padding: 3px;}
+p.couleur-contraste-jaune {background-color: #f9cc7b; padding: 3px;}
+p.couleur-contraste-rose {background-color: #f2c9c5; padding: 3px;}
+p.couleur-contraste-vert{background-color: #d4df96; padding: 3px;}
