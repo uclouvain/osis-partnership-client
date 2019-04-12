@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import Partner from 'src/app/interfaces/partners.js';
-import * as partners from '../../__mocks__/partners.json';
+import { ResultPartners } from 'src/app/interfaces/partners';
+
+import { ActivatedRoute } from '@angular/router';
+import { PartnershipsService } from 'src/app/services/partnerships.service.js';
+
 @Component({
   selector: 'app-list-partners',
   templateUrl: './list-partners.component.html',
@@ -12,16 +16,18 @@ export class ListPartnersComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
-  public rows: Partner[] = partners.results.map(partner => ({
-    ...partner,
-    cellTemplate: this.partnershipSummaryCell
-  }));
+  public rows: Partner[];
 
   loadingIndicator = true;
   reorderable = true;
 
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  constructor(
+    private modalService: BsModalService,
+    private route: ActivatedRoute,
+    private partnershipsService: PartnershipsService
+  ) {
+  }
 
   openModal(template: TemplateRef<any>, e: any) {
     e.preventDefault();
@@ -29,5 +35,18 @@ export class ListPartnersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((queryParams: any): any => {
+      this.fetchPartners(queryParams);
+    });
+  }
+
+  fetchPartners(queryParams): void {
+    this.partnershipsService.partners(queryParams)
+      .subscribe((response: ResultPartners) => {
+        this.rows = response.results.map((partner: Partner) => ({
+          ...partner,
+          cellTemplate: this.partnershipSummaryCell
+        }));
+      });
   }
 }

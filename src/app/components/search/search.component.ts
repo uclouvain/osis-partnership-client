@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 
+import { PartnershipsService } from '../../services/partnerships.service';
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import * as config from '../../__mocks__/configuration.json';
 
@@ -42,6 +43,7 @@ export class SearchComponent implements OnInit {
     new CheckboxItem('Belgica', 'Belgica'),
     new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
   ];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute
@@ -80,20 +82,20 @@ export class SearchComponent implements OnInit {
   }
 
   searchPartners(event: any): void {
+    event.preventDefault();
     this.model.type = 'partners';
     this.router.navigate(['/'], { queryParams: this.model });
   }
 
-  searchPartnerships(event: any): void {
+  searchPartnerships(event: any)  {
+    event.preventDefault();
     this.model.type = 'partnerships';
     this.router.navigate(['/'], { queryParams: this.model });
-  }
-
-  onMobilityTypesChange(value) {
-    this.model.mobility_types = value;
   }
 
   onFundingChange(value) {
     this.model.funding = value;
   }
+
+
 }
