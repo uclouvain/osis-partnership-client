@@ -1,0 +1,68 @@
+h1.header-profile {
+	margin-top: 0px !important;
+}
+.profile-description .infos:not(:last-child) {
+	margin-bottom: 1em;
+}
+.user-profile .profile-tabs .tab-pane .content {
+	padding-top: 1em !important;
+	padding-bottom: 14px !important;
+	padding-right: 30px !important;
+	padding-left: 30px !important;
+}
+.uclblock-profile .profile-tabs .tab-pane .publication-item:not(:last-child) .description {
+	margin-bottom: 1em;
+}
+.uclblock-profile .profile-tabs .tab-pane .item {
+	clear:both;
+}
+
+.uclblock-profile .profile-tabs .tab-pane .item label {
+    font-size: 18px;
+    font-family: "Crimson Text",serif;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 0px;
+}
+.uclblock-profile .profile-tabs .tab-pane {
+	padding: 1em !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+
+}
+.profile-tabs .row {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+.uclblock-profile .profile-description .infos .white-anchor {
+  color: inherit !important;
+}
+
+.uclblock-profile .uclentity .profile-tabs #contact.tab-pane .item {
+  /*border:red 1px solid;*/
+  padding-bottom : 1em;
+}
+
+li.zebra_mptt_item {
+  padding-bottom: 0.2em;
+}
+
+.department-infos {
+  padding: 0px !important;
+  background-color: #F7F8FA;
+}
+
+.uclblock-profile .preview .profile-description {
+  margin-bottom: 0px;
+}
+.uclblock-profile .preview .profile-description .infos {
+  margin-bottom: 0px;
+}
+
+.preview .personal-data-img {
+	margin-bottom:1em;
+}
+
+.preview .department-infos .coord-label {
+	margin-top:15px;
+}

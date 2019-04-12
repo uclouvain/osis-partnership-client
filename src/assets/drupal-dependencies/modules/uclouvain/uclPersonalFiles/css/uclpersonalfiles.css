@@ -1,0 +1,51 @@
+.user-profile .breadcrumb{
+  background:#032f5d;
+}
+
+.user-profile {
+  background-color: #edf1f3;
+  padding : 0 !important;
+}
+
+.user-profile-breadcrumb {
+  background-color : #032f5d;
+}
+
+.user-profile-content {
+  padding-top: 1em;
+}
+
+.user-profile .breadcrumb>li+li:before{
+  display:inline-block;
+  width:20px;
+  height:1px;
+  background-color:#e1e4e9;
+  content:"";
+  padding:0;
+  margin:0 7px 2px
+}
+
+.user-profile .breadcrumb li{
+  color: rgba(255, 255, 255, 0.8);
+  font-family:"Crimson Text",serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:15px
+}
+
+.user-profile .breadcrumb li a{
+  color:rgba(255, 255, 255, 0.8);
+  font-weight:600;
+  font-size:15px
+}
+
+.expanded-row td:first-of-type{
+  padding: 0px;
+  border-top: 0px none #FFF;
+}
+
+.table-hover > tbody > .expandable-row:hover {
+  background-color: #032f5d;
+  color: white;
+  cursor:zoom-in;
+}
