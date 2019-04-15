@@ -53,6 +53,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
       .pipe(
+        // mobility_types and funding need to be arrays
         map(params => ({
           ...this.model,
           ...params,
@@ -66,7 +67,9 @@ export class SearchComponent implements OnInit {
         )
       )
       .subscribe(params => {
-        console.log(params);
+        if (params.continent) {
+          this.onContinentChanged({ value: params.continent });
+        }
         this.model = params;
       });
   }

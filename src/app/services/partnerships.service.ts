@@ -20,8 +20,7 @@ export class PartnershipsService {
   }
 
   partnerships(query: object) {
-    console.log('httpOptions', httpOptions);
-    return this.http.get(`${environment.api.url}partnerships/`, httpOptions);
+    return this.http.get(`${environment.api.url}partnerships/?${queryString.stringify(query)}`, httpOptions);
   }
 
   partners(query: object) {
