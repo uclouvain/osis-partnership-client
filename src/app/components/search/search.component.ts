@@ -67,7 +67,9 @@ export class SearchComponent implements OnInit {
         )
       )
       .subscribe(params => {
-        console.log(params);
+        if (params.continent) {
+          this.onContinentChanged({ value: params.continent });
+        }
         this.model = params;
       });
   }
