@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { PartnershipsService } from '../../services/partnerships.service';
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
-import { Configuration, Continent, Country } from '../../interfaces/configuration';
 import { ValueLabel } from 'src/app/interfaces/common';
-import Partner from 'src/app/interfaces/partners';
-import University from 'src/app/interfaces/university';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 
 @Component({
@@ -43,7 +38,6 @@ export class SearchComponent implements OnInit {
   public supervisors$: Observable<ValueLabel[]>;
   public uclUniversities$: Observable<ValueLabel[]>;
 
-  public countries;
   public noContinent = false;
   public mobilityTypesOptions = [
     new CheckboxItem('Student', 'Student'),
@@ -99,9 +93,9 @@ export class SearchComponent implements OnInit {
   }
 
   onContinentChanged(event: any): void {
-    // if (event.value) {
-    //   this.countries = getValueLabelList(config.continents, { name: 'countries', value: event.value });
-    // }
+    if (event.value) {
+      this.countries$ = this.configurationService.getCoutries(event.value);
+    }
   }
 
   searchPartners(event: any): void {

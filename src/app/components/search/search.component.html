@@ -1,4 +1,3 @@
-{{educationField$ | async}}
 <form #f="ngForm">
   <div class="form-group">
     <label for="continent">{{ 'Continent' | translate }}</label>
@@ -15,7 +14,7 @@
     <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
   </div>
 
-  <div class="form-group" *ngIf="countries">
+  <div class="form-group" *ngIf="countries$ | async">
     <label for="country">{{ 'Country' | translate }}</label>
     <input  [(ngModel)]="model.country"
             name="country"

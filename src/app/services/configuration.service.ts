@@ -35,6 +35,14 @@ export class ConfigurationService {
     return this.cache$;
   }
 
+  public getCoutries(continent: string) {
+    return this.all().pipe(
+      map((config: Configuration) =>
+        getValueLabelList(config.continents, { name: 'countries', value: continent })
+      )
+    );
+  }
+
   get continents() {
     return this.all().pipe(
       map((config: Configuration) => getValueLabelList(config.continents))

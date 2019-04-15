@@ -57,8 +57,7 @@ export const getValueLabelList = (items: any[], level1?: Level, level2?: Level) 
       ? getFormattedCountryList(items[level1Index][level1.name][level2Index][level2.name])
       : [];
     }
-
-    return items[level1Index][level1.name]
+    return items[level1Index] && items[level1Index][level1.name]
     ? getFormattedCountryList(items[level1Index][level1.name])
     : [];
   }
