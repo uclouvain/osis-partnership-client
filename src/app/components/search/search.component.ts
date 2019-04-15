@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
   public partners$: Observable<ValueLabel[]>;
   public supervisors$: Observable<ValueLabel[]>;
   public uclUniversities$: Observable<ValueLabel[]>;
+  public uclUniversitiesLabo$: Observable<ValueLabel[]>;
 
   public noContinent = false;
   public mobilityTypesOptions = [
@@ -95,6 +96,12 @@ export class SearchComponent implements OnInit {
   onContinentChanged(event: any): void {
     if (event.value) {
       this.countries$ = this.configurationService.getCoutries(event.value);
+    }
+  }
+
+  getUclUniversitiesLabo(event: any): void {
+    if (event.value) {
+      this.uclUniversitiesLabo$ = this.configurationService.getUclUniversitiesLabo(event.value);
     }
   }
 
