@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   api: {
-    url: 'http://127.0.0.1:8000/api/v1/',
-    token: ''
+    url: 'http://localhost:8000/api/v1/',
+    token: 'your_token'
   }
 };
 
