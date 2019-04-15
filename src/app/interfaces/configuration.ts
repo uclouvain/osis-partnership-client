@@ -10,7 +10,7 @@ export interface Continent {
   countries: Country[];
 }
 
-export default interface Configuration {
+export interface Configuration {
   continents: Continent[];
   partners: ValueLabel[];
   ucl_universities: ValueLabel[];

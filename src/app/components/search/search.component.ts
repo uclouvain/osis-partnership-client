@@ -3,10 +3,15 @@ import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { PartnershipsService } from '../../services/partnerships.service';
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
-import * as config from '../../__mocks__/configuration.json';
+import { Configuration, Continent, Country } from '../../interfaces/configuration';
+import { ValueLabel } from 'src/app/interfaces/common';
+import Partner from 'src/app/interfaces/partners';
+import University from 'src/app/interfaces/university';
+import { ConfigurationService } from 'src/app/services/configuration.service';
 
 @Component({
   selector: 'app-search',
@@ -30,8 +35,14 @@ export class SearchComponent implements OnInit {
   };
   public partnershipId: number;
 
-  public config = config;
-  public continents = getValueLabelList(config.continents);
+  // Fields from configuration
+  public continents$: Observable<ValueLabel[]>;
+  public countries$: Observable<ValueLabel[]>;
+  public educationFields$: Observable<ValueLabel[]>;
+  public partners$: Observable<ValueLabel[]>;
+  public supervisors$: Observable<ValueLabel[]>;
+  public uclUniversities$: Observable<ValueLabel[]>;
+
   public countries;
   public noContinent = false;
   public mobilityTypesOptions = [
@@ -46,11 +57,20 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private configurationService: ConfigurationService
   ) {
   }
 
   ngOnInit() {
+    // Fetch configuration data from server
+    this.continents$ = this.configurationService.continents;
+    this.educationFields$ = this.configurationService.educationFields;
+    this.partners$ = this.configurationService.partners;
+    this.supervisors$ = this.configurationService.supervisors;
+    this.uclUniversities$ = this.configurationService.uclUniversities;
+
+    // Init form with url params
     this.route.queryParams
       .pipe(
         // mobility_types and funding need to be arrays
@@ -79,9 +99,9 @@ export class SearchComponent implements OnInit {
   }
 
   onContinentChanged(event: any): void {
-    if (event.value) {
-      this.countries = getValueLabelList(config.continents, { name: 'countries', value: event.value });
-    }
+    // if (event.value) {
+    //   this.countries = getValueLabelList(config.continents, { name: 'countries', value: event.value });
+    // }
   }
 
   searchPartners(event: any): void {
@@ -99,6 +119,4 @@ export class SearchComponent implements OnInit {
   onFundingChange(value) {
     this.model.funding = value;
   }
-
-
 }

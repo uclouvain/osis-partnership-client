@@ -1,9 +1,11 @@
+{{educationField$ | async}}
 <form #f="ngForm">
   <div class="form-group">
     <label for="continent">{{ 'Continent' | translate }}</label>
     <input [(ngModel)]="model.continent"
             name="continent"
-           [typeahead]="continents"
+           [typeahead]="continents$"
+           [typeaheadAsync]="true"
            typeaheadOptionField="label"
            class="form-control"
            (typeaheadNoResults)="typeaheadNoContinent($event)"
@@ -17,7 +19,8 @@
     <label for="country">{{ 'Country' | translate }}</label>
     <input  [(ngModel)]="model.country"
             name="country"
-            [typeahead]="countries"
+            [typeahead]="countries$"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             class="form-control"
             id="country"
@@ -38,7 +41,8 @@
             name="partner"
             class="form-control"
             id="partner"
-            [typeahead]="config.partners"
+            [typeahead]="partners$"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             autocomplete="off">
   </div>
@@ -48,22 +52,24 @@
     <input  [(ngModel)]="model.ucl_university"
             name="ucl_university"
             class="form-control"
-            id="ucl_university"
-            [typeahead]="config.ucl_universities"
+            id="uclUniversity$"
+            [typeahead]="uclUniversities$"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             autocomplete="off">
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
     <input  [(ngModel)]="model.ucl_university_labo"
             name="ucl_university_labo"
             class="form-control"
             id="ucl_university_labo"
-            [typeahead]="config.ucl_university_labo"
+            [typeahead]="testObs"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             autocomplete="off">
-  </div>
+  </div> -->
 
   <div class="form-group">
     <label for="campus">{{ 'Campus' | translate }}</label>
@@ -80,7 +86,8 @@
             name="supervisor"
             class="form-control"
             id="supervisor"
-            [typeahead]="config.supervisors"
+            [typeahead]="supervisors$"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             autocomplete="off">
   </div>
@@ -91,7 +98,8 @@
             name="education_field"
             class="form-control"
             id="education_field"
-            [typeahead]="config.education_fields"
+            [typeahead]="educationFields$"
+            [typeaheadAsync]="true"
             typeaheadOptionField="label"
             autocomplete="off">
   </div>
