@@ -27,3 +27,10 @@ export default interface Partnership {
   staff_partner_contact: Contact;
   staff_funding: Funding;
 }
+
+export interface ResultPartnerships {
+  count: number;
+  next: string;
+  previous: string;
+  results: Partnership[];
+}

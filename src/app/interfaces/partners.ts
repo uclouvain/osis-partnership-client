@@ -5,3 +5,10 @@ export default interface Partner {
   city: string;
   country: string;
 }
+
+export interface ResultPartners {
+  count: number;
+  next: string;
+  previous: string;
+  results: Partner[];
+}

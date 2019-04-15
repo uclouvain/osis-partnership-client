@@ -33,12 +33,9 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'Type' | translate" prop="getType">
+  <ngx-datatable-column [name]="'Type' | translate" prop="mobility_type">
     <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
-      Student
-      <!-- <span *ngIf="value.is_sms || value.is_smp">Student</span>
-      <span *ngIf="value.is_sta || value.is_stt">Staff</span>
-      <span *ngIf="value.is_smst">Student / Staff</span> -->
+      {{value | translate}}
     </ng-template>
   </ngx-datatable-column>
 
@@ -50,7 +47,7 @@
 
   <ngx-datatable-column prop="">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <a href="#">Voir le détail</a>
+      <a href="#">{{ 'See details' | translate }}</a>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
