@@ -43,10 +43,12 @@ export class ListPartnershipsComponent implements OnInit {
   fetchPartnerships(queryParams): void {
     this.partnershipsService.partnerships(queryParams)
       .subscribe((response: ResultPartnerships) => {
-        this.rows = response.results.map((partner: Partnership) => ({
-          ...partner,
-          cellTemplate: this.partnershipSummaryCell
-        }));
+        if (response && response.results) {
+          this.rows = response.results.map((partner: Partnership) => ({
+            ...partner,
+            cellTemplate: this.partnershipSummaryCell
+          }));
+        }
       });
   }
 }
