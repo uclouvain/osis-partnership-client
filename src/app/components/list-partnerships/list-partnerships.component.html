@@ -39,9 +39,11 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'Subject area' | translate" prop="education_field">
+  <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      {{value}}
+      <ul *ngFor="let field of value" class="partnership__list">
+        <li>{{field}}</li>
+      </ul>
     </ng-template>
   </ngx-datatable-column>
 

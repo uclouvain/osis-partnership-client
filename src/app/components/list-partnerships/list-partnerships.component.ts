@@ -46,6 +46,7 @@ export class ListPartnershipsComponent implements OnInit {
         if (response && response.results) {
           this.rows = response.results.map((partner: Partnership) => ({
             ...partner,
+            mobility_type: getMobilityType(partner),
             cellTemplate: this.partnershipSummaryCell
           }));
         }
