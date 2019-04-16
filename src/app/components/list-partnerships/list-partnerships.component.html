@@ -6,7 +6,11 @@
   [columnMode]="'force'"
   [headerHeight]="40"
   [footerHeight]="40"
-  [limit]="10"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.pageNumber"
+  [limit]="page.size"
+  (page)='setPage($event)'
   [rowHeight]="'auto'"
   [reorderable]="reorderable">
   <ngx-datatable-column [name]="'Partner' | translate" prop="partner.name">

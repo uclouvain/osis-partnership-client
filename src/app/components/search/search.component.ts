@@ -26,7 +26,9 @@ export class SearchComponent implements OnInit {
     supervisor: '',
     education_field: '',
     mobility_types: ['student'],
-    funding: []
+    funding: [],
+    limit: 25,
+    offset: 0
   };
   public partnershipId: number;
 
