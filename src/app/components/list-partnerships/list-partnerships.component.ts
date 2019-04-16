@@ -4,7 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
 import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 
-import * as partnerships from '../../__mocks__/partnerships.json';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 

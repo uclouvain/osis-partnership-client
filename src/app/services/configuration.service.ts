@@ -45,11 +45,8 @@ export class ConfigurationService {
 
   public getUclUniversitiesLabo(uclUniversity: string) {
     return this.all().pipe(
-      map((config: Configuration) => {
-        const t = getValueLabelList(config.ucl_universities, { name: 'ucl_university_labos', value: uclUniversity });
-        console.log(t);
-        return t;
-      }
+      map((config: Configuration) =>
+        getValueLabelList(config.ucl_universities, { name: 'ucl_university_labos', value: uclUniversity })
       )
     );
   }

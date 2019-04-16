@@ -16,11 +16,12 @@
 
   <div class="form-group" *ngIf="countries$ | async">
     <label for="country">{{ 'Country' | translate }}</label>
-    <input  [(ngModel)]="model.country"
+    <input  [(ngModel)]="continentLabel"
             name="country"
             [typeahead]="countries$"
             [typeaheadAsync]="true"
             typeaheadOptionField="label"
+            (typeaheadOnSelect)="onCountryChanged($event)"
             class="form-control"
             id="country"
             autocomplete="off">

@@ -41,6 +41,7 @@ export class SearchComponent implements OnInit {
   public uclUniversities$: Observable<ValueLabel[]>;
   public uclUniversitiesLabo$: Observable<ValueLabel[]>;
 
+  public continentLabel = '';
   public noContinent = false;
   public mobilityTypesOptions = [
     new CheckboxItem('Student', 'Student'),
@@ -98,6 +99,13 @@ export class SearchComponent implements OnInit {
   onContinentChanged(event: any): void {
     if (event.value) {
       this.countries$ = this.configurationService.getCoutries(event.value);
+    }
+  }
+
+  onCountryChanged(event: any): void {
+    if (event.item) {
+      this.model.country = event.item.id;
+      this.continentLabel = event.value;
     }
   }
 
