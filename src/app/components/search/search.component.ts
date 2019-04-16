@@ -110,12 +110,16 @@ export class SearchComponent implements OnInit {
   searchPartners(event: any): void {
     event.preventDefault();
     this.model.type = 'partners';
+    // Reset current page to 1
+    this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
   }
 
   searchPartnerships(event: any)  {
     event.preventDefault();
     this.model.type = 'partnerships';
+    // Reset current page to 1
+    this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
   }
 
