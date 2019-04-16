@@ -12,7 +12,8 @@
   [limit]="page.size"
   (page)='setPage($event)'
   [rowHeight]="'auto'"
-  [reorderable]="reorderable">
+  [reorderable]="reorderable"
+  >
   <ngx-datatable-column [name]="'Partner' | translate" prop="partner.name">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
@@ -44,7 +45,7 @@
   </ngx-datatable-column>
 
   <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields">
-    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+    <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
       <ul *ngFor="let field of value" class="partnership__list">
         <li>{{field}}</li>
       </ul>

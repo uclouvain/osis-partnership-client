@@ -56,11 +56,14 @@ export class ListPartnershipsComponent implements OnInit {
           this.page.totalElements = response.count;
           this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
           this.page.pageNumber = Math.floor(queryParams.offset / +this.page.size);
-          this.rows = response.results.map((partner: Partnership) => ({
-            ...partner,
-            mobility_type: getMobilityType(partner),
-            cellTemplate: this.partnershipSummaryCell
-          }));
+
+          if (response.results) {
+            this.rows = response.results.map((partner: Partnership) => ({
+              ...partner,
+              mobility_type: partner && getMobilityType(partner),
+              cellTemplate: this.partnershipSummaryCell
+            }));
+          }
         }
       });
   }
