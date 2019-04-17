@@ -1,0 +1,13 @@
+.detail-partnership {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 1em;
+}
+
+.detail-partnership__title {
+  text-align: right;
+}
+
+.detail-partnership__description {
+
+}

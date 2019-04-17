@@ -14,6 +14,7 @@ import { ListPartnersComponent } from './components/list-partners/list-partners.
 import { ListPartnershipsComponent } from './components/list-partnerships/list-partnerships.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { DetailPartnershipComponent } from './components/detail-partnership/detail-partnership.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,7 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchComponent,
     CheckboxGroupComponent,
     ListPartnersComponent,
-    ListPartnershipsComponent
+    ListPartnershipsComponent,
+    DetailPartnershipComponent
   ],
   exports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+<dl class="detail-partnership">
+  <dt class="detail-partnership__title">Partner</dt>
+  <dd class="detail-partnership__description">
+    <span *ngIf="data.partner.name">{{data.partner.name}}<br /></span>
+    <span *ngIf="data.partner.type">{{data.partner.type}}</span>
+    <!-- city AND country -->
+    <span *ngIf="data.partner.city && data.partner.country">{{data.partner.city}}, {{data.partner.country}}</span>
+    <!-- city ONLY -->
+    <span *ngIf="data.partner.city && !data.partner.country">{{data.partner.city}}</span>
+    <!-- country ONLY -->
+    <span *ngIf="!data.partner.city && data.partner.country">{{data.partner.country}}</span>
+  </dd>
+  <!-- D'autres termes et leurs descriptions -->
+
+  <dt class="detail-partnership__title">UCLouvain:</dt>
+  <dd class="detail-partnership__description">
+
+  </dd>
+
+  <dt class="detail-partnership__title">UCLouvain acad. coord…</dt>
+  <dd class="detail-partnership__description">{{data.supervisor}}</dd>
+
+  <dt class="detail-partnership__title">Subject area</dt>
+  <dd class="detail-partnership__description">
+    <ul *ngFor="let field of data.education_fields" class="partnership__list">
+      <li>{{field}}</li>
+    </ul>
+  </dd>
+
+  <dt class="detail-partnership__title">Type of mobility</dt>
+  <dd class="detail-partnership__description"></dd>
+
+  <dt class="detail-partnership__title">Status</dt>
+  <dd class="detail-partnership__description"></dd>
+</dl>
