@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
 import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
@@ -32,7 +32,6 @@ export class ListPartnershipsComponent implements OnInit {
 
   modalRef: BsModalRef;
   constructor(
-    private modalService: BsModalService,
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
