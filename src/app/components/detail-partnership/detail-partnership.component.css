@@ -1,0 +1,17 @@
+.detail-partnership {
+  display: grid;
+  grid-template-columns: minmax(auto, 200px) 1fr;
+  grid-gap: 1em;
+}
+
+.detail-partnership dt {
+  text-align: right;
+}
+
+.detail-partnership dd {
+
+}
+
+.detail-partnership__tab {
+  padding: 1em 0;
+}

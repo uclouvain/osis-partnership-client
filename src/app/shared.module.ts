@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SearchComponent } from './components/search/search.component';
@@ -14,6 +15,7 @@ import { ListPartnersComponent } from './components/list-partners/list-partners.
 import { ListPartnershipsComponent } from './components/list-partnerships/list-partnerships.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { DetailPartnershipComponent } from './components/detail-partnership/detail-partnership.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     TypeaheadModule.forRoot(),
+    TabsModule.forRoot(),
     ModalModule.forRoot(),
     HttpClientModule,
     NgxDatatableModule,
@@ -40,7 +43,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchComponent,
     CheckboxGroupComponent,
     ListPartnersComponent,
-    ListPartnershipsComponent
+    ListPartnershipsComponent,
+    DetailPartnershipComponent
   ],
   exports: [
     BrowserModule,

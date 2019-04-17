@@ -25,6 +25,8 @@ export class ListPartnershipsComponent implements OnInit {
     size: 25
   };
 
+  public partnershipDetail: Partnership;
+
   loadingIndicator = true;
   reorderable = true;
 
@@ -36,9 +38,14 @@ export class ListPartnershipsComponent implements OnInit {
     private partnershipsService: PartnershipsService
   ) {}
 
-  openModal(template: TemplateRef<any>, e: any) {
+  openModal(modal: any, e: any, value) {
     e.preventDefault();
-    this.modalRef = this.modalService.show(template);
+    this.partnershipDetail = value;
+    // this.router.navigate(['/partnership'], {
+    //   queryParams: this.queryParams
+    // });
+    console.log(this.partnershipDetail);
+    this.modalRef = modal.show();
   }
 
   ngOnInit() {

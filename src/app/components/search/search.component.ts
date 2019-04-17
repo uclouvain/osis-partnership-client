@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
     limit: 25,
     offset: 0
   };
-  public partnershipId: number;
 
   // Fields from configuration
   public continents$: Observable<ValueLabel[]>;
