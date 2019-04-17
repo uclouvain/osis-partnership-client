@@ -27,24 +27,31 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column props="partner_type" [name]="'Partner type' | translate">
+  <ngx-datatable-column prop="" [name]="'Partnerships' | translate">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <a href="#" (click)="openModal(template, $event)">Voir les partenariats</a>
+      <span *ngIf="value.partnerships_count === 0">Aucun partenariat</span>
+      <a *ngIf="value.partnerships_count === 1" href="#" (click)="openModal(modalDetail, $event, value)">Voir le partenariat</a>
+      <a *ngIf="value.partnerships_count > 1" href="#" (click)="openModal(modalDetail, $event, value)">Voir les {{value.partnerships_count}} partenariat</a>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
 
-
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div #modalDetail="bs-modal" bsModal class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-sizes-name1"
+  >
+  <div class="modal-dialog modal-lg" *ngIf="partnerDetail">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{partnerDetail.name}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-list-partnerships></app-list-partnerships>
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-    <app-list-partnerships
-
-    ></app-list-partnerships>
-  </div>
-</ng-template>
+</div>

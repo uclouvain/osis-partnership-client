@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
@@ -14,6 +14,8 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
+  @Input() modalDetail: TemplateRef<any>;
+
   partnershipSummaryCell: TemplateRef<any>;
 
   public queryParams = {};
@@ -40,9 +42,9 @@ export class ListPartnershipsComponent implements OnInit {
   openModal(modal: any, e: any, value) {
     e.preventDefault();
     this.partnershipDetail = value;
-    // this.router.navigate(['/partnership'], {
-    //   queryParams: this.queryParams
-    // });
+    this.router.navigate(['/partnership/test'], {
+      queryParams: this.queryParams
+    });
     console.log(this.partnershipDetail);
     this.modalRef = modal.show();
   }

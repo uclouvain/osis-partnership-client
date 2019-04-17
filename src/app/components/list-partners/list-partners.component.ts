@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
@@ -14,6 +14,8 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnersComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
+  @Input() modalDetail: TemplateRef<any>;
+
   partnershipSummaryCell: TemplateRef<any>;
 
   public queryParams = {};
@@ -29,17 +31,20 @@ export class ListPartnersComponent implements OnInit {
   reorderable = true;
 
   modalRef: BsModalRef;
+  partnerDetail: Partner;
+
   constructor(
-    private modalService: BsModalService,
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
   ) {
   }
 
-  openModal(template: TemplateRef<any>, e: any) {
+  openModal(modal: any, e: any, value) {
     e.preventDefault();
-    this.modalRef = this.modalService.show(template);
+    this.partnerDetail = value;
+    console.log(this.partnerDetail);
+    this.modalRef = modal.show();
   }
 
   ngOnInit() {

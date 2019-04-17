@@ -128,5 +128,15 @@
   <input type="button" class="btn btn-primary" value="{{ 'Search partnerships' | translate }}" (click)="searchPartnerships($event)" />
 </form>
 
-<app-list-partners *ngIf="model.type === 'partners'"></app-list-partners>
-<app-list-partnerships *ngIf="model.type === 'partnerships'"></app-list-partnerships>
+<app-list-partners *ngIf="model.type === 'partners'" [modalDetail]="modalDetail"></app-list-partners>
+<app-list-partnerships *ngIf="model.type === 'partnerships'" [modalDetail]="modalDetail"></app-list-partnerships>
+
+<div #modalDetail="bs-modal" bsModal class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-sizes-name1"
+  >
+  <div class="modal-dialog modal-lg" *ngIf="partnershipDetail">
+    <router-outlet></router-outlet>
+  </div>
+</div>
