@@ -26,7 +26,9 @@ export class SearchComponent implements OnInit {
     supervisor: '',
     education_field: '',
     mobility_types: ['student'],
-    funding: []
+    funding: [],
+    limit: 25,
+    offset: 0
   };
   public partnershipId: number;
 
@@ -39,6 +41,7 @@ export class SearchComponent implements OnInit {
   public uclUniversities$: Observable<ValueLabel[]>;
   public uclUniversitiesLabo$: Observable<ValueLabel[]>;
 
+  public continentLabel = '';
   public noContinent = false;
   public mobilityTypesOptions = [
     new CheckboxItem('Student', 'Student'),
@@ -99,6 +102,13 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  onCountryChanged(event: any): void {
+    if (event.item) {
+      this.model.country = event.item.id;
+      this.continentLabel = event.value;
+    }
+  }
+
   getUclUniversitiesLabo(event: any): void {
     if (event.value) {
       this.uclUniversitiesLabo$ = this.configurationService.getUclUniversitiesLabo(event.value);
@@ -108,12 +118,16 @@ export class SearchComponent implements OnInit {
   searchPartners(event: any): void {
     event.preventDefault();
     this.model.type = 'partners';
+    // Reset current page to 1
+    this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
   }
 
   searchPartnerships(event: any)  {
     event.preventDefault();
     this.model.type = 'partnerships';
+    // Reset current page to 1
+    this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
   }
 

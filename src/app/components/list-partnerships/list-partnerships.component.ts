@@ -4,8 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
 import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 
-import * as partnerships from '../../__mocks__/partnerships.json';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 
 @Component({
@@ -17,7 +16,14 @@ export class ListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
+  public queryParams = {};
   public rows: any[];
+  public page = {
+    totalElements: 0,
+    totalPages: 0,
+    pageNumber: 0,
+    size: 25
+  };
 
   loadingIndicator = true;
   reorderable = true;
@@ -26,6 +32,7 @@ export class ListPartnershipsComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private route: ActivatedRoute,
+    private router: Router,
     private partnershipsService: PartnershipsService
   ) {}
 
@@ -36,6 +43,7 @@ export class ListPartnershipsComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: any): any => {
+      this.queryParams = queryParams;
       this.fetchPartnerships(queryParams);
     });
   }
@@ -44,12 +52,33 @@ export class ListPartnershipsComponent implements OnInit {
     this.partnershipsService.partnerships(queryParams)
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
-          this.rows = response.results.map((partner: Partnership) => ({
-            ...partner,
-            mobility_type: getMobilityType(partner),
-            cellTemplate: this.partnershipSummaryCell
-          }));
+          this.page.totalElements = response.count;
+          this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
+          this.page.pageNumber = Math.floor(queryParams.offset / +this.page.size);
+
+          if (response.results) {
+            this.rows = response.results.map((partner: Partnership) => ({
+              ...partner,
+              mobility_type: partner && getMobilityType(partner),
+              cellTemplate: this.partnershipSummaryCell
+            }));
+          }
         }
       });
+  }
+
+  /**
+   * Populate the table with new data based on the page number
+   * @param page The page to select
+   */
+  setPage(pageInfo) {
+    this.page.pageNumber = +pageInfo.offset;
+    const offset = +pageInfo.offset * this.page.size;
+    this.router.navigate(['/'], {
+      queryParams: {
+        ...this.queryParams,
+        offset
+      }
+    });
   }
 }

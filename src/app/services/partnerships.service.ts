@@ -14,7 +14,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PartnershipsService {
-
   constructor(
     private http: HttpClient
   ) {
@@ -25,6 +24,6 @@ export class PartnershipsService {
   }
 
   partners(query: object) {
-    return this.http.get(`${environment.api.url}partnerships/partners/?${queryString.stringify(query)}`, httpOptions);
+    return this.http.get(`${environment.api.url}partners/?${queryString.stringify(query)}`, httpOptions);
   }
 }

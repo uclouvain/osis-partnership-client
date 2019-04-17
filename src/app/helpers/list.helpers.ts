@@ -10,7 +10,7 @@ export const getFormattedItemsList = (items: any[]) => items.map(
     label: item
   } : {
     label: item.label || item.name,
-    id: item.id || item.name
+    id: item.id || item.iso_code || item.name
   }));
 
 /**
