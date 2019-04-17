@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Partnership from 'src/app/interfaces/partnership';
+import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 
 @Component({
   selector: 'app-detail-partnership',
@@ -13,6 +14,10 @@ export class DetailPartnershipComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  get mobilityType() {
+    return getMobilityType(this.data);
   }
 
 }

@@ -38,14 +38,14 @@ export class ListPartnershipsComponent implements OnInit {
     private partnershipsService: PartnershipsService
   ) {}
 
-  openModal(template: TemplateRef<any>, e: any, value) {
+  openModal(modal: any, e: any, value) {
     e.preventDefault();
     this.partnershipDetail = value;
     // this.router.navigate(['/partnership'], {
     //   queryParams: this.queryParams
     // });
     console.log(this.partnershipDetail);
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = modal.show();
   }
 
   ngOnInit() {
