@@ -25,6 +25,7 @@ export class ModalPartnershipComponent implements OnInit {
       this.partnershipsService.getPartnership(id)
         .subscribe(partnership => {
           this.data = partnership;
+          console.log(partnership);
         });
     });
 
@@ -33,8 +34,10 @@ export class ModalPartnershipComponent implements OnInit {
     });
   }
 
+  /**
+   * Go back to partnerships list of current partner
+   */
   goToList(partnerId: string) {
-    // If multiple partnerships, go to partnership list modal
     this.router.navigate(['partner', partnerId], { queryParamsHandling: 'merge' });
   }
 

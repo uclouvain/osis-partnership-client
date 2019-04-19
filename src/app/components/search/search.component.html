@@ -128,6 +128,8 @@
   <input type="button" class="btn btn-primary" value="{{ 'Search partnerships' | translate }}" (click)="searchPartnerships($event)" />
 </form>
 
+<app-error-message></app-error-message>
+
 <app-list-partners *ngIf="model.type === 'partners'"></app-list-partners>
 <app-list-partnerships *ngIf="model.type === 'partnerships'"></app-list-partnerships>
 
