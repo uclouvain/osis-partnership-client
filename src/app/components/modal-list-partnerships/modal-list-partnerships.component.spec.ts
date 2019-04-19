@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalListPartnershipsComponent } from './modal-list-partnerships.component';
+import { SharedModule } from 'src/app/shared.module';
 
 describe('ModalListPartnershipsComponent', () => {
   let component: ModalListPartnershipsComponent;
@@ -8,7 +9,7 @@ describe('ModalListPartnershipsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalListPartnershipsComponent ]
+      imports: [ SharedModule ]
     })
     .compileComponents();
   }));

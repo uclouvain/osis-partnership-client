@@ -1,4 +1,4 @@
-<div #modalDetail="bs-modal" bsModal class="modal fade"
+<div #modal="bs-modal" bsModal class="modal fade"
   tabindex="-1"
   role="dialog"
   aria-labelledby="dialog-sizes-name1"
@@ -9,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left" *ngIf="partner">{{partner.name}}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
