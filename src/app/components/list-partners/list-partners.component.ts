@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { PartnershipsService } from 'src/app/services/partnerships.service.js';
+import { PartnershipsService } from 'src/app/services/partnerships.service';
+import { getPartnershipParams, getPartnerParams } from 'src/app/helpers/partnerships.helpers';
 
 @Component({
   selector: 'app-list-partners',
@@ -14,6 +14,7 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnersComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
+
   partnershipSummaryCell: TemplateRef<any>;
 
   public queryParams = {};
@@ -27,19 +28,34 @@ export class ListPartnersComponent implements OnInit {
 
   loadingIndicator = true;
   reorderable = true;
+  partnerDetail: Partner;
 
-  modalRef: BsModalRef;
   constructor(
-    private modalService: BsModalService,
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
   ) {
   }
 
-  openModal(template: TemplateRef<any>, e: any) {
+  goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
-    this.modalRef = this.modalService.show(template);
+    this.partnershipsService.searchPartnerships(getPartnershipParams({ partner: value }))
+      .subscribe(response => {
+        if (response.results.length === 1) {
+          // If single partnership, go to detail of this partnership
+          const partnership = response.results[0];
+          const uuid = partnership.url.split('/').reverse()[1];
+          this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
+        } else if (response.results.length > 1) {
+          // If multiple partnerships, go to partnership list modal
+          this.router.navigate(['partner', value], {
+            queryParamsHandling: 'merge',
+            queryParams: {
+              partnerFilter: value
+            }
+          });
+        }
+      });
   }
 
   ngOnInit() {
@@ -50,7 +66,7 @@ export class ListPartnersComponent implements OnInit {
   }
 
   fetchPartners(queryParams): void {
-    this.partnershipsService.partners(queryParams)
+    this.partnershipsService.searchPartners(getPartnerParams(queryParams))
       .subscribe((response: ResultPartners) => {
         if (response.results) {
           this.page.totalElements = response.count;

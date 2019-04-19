@@ -13,9 +13,9 @@ export default interface Partnership {
     valid: boolean
     last_valid: boolean
   };
-  out_education_level: string;
-  out_entity: string;
-  out_university_offer: string;
+  out_education_level: string[];
+  out_entities: string[];
+  out_university_offer: string[];
   out_contact: Contact;
   out_portal: string;
   out_funding: Funding;
@@ -23,9 +23,9 @@ export default interface Partnership {
   in_contact: Contact;
   in_portal: string;
   staff_contact_name: string;
-  UCL: Contact;
   staff_partner_contact: Contact;
   staff_funding: Funding;
+  url: string;
 }
 
 export interface ResultPartnerships {

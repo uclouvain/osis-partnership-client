@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-
-import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
-import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
+import Partner from 'src/app/interfaces/partners';
+import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership';
+import { getMobilityType, getPartnershipParams } from 'src/app/helpers/partnerships.helpers';
 
 @Component({
-  selector: 'app-list-partnerships',
-  templateUrl: './list-partnerships.component.html',
-  styleUrls: ['./list-partnerships.component.css']
+  selector: 'app-modal-list-partnerships',
+  templateUrl: './modal-list-partnerships.component.html',
+  styleUrls: ['./modal-list-partnerships.component.css']
 })
-export class ListPartnershipsComponent implements OnInit {
+export class ModalListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
@@ -23,29 +22,33 @@ export class ListPartnershipsComponent implements OnInit {
     size: 25
   };
 
-  loadingIndicator = true;
-  reorderable = true;
+  public partner: Partner;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
-  ) {}
-
-  goToPartnershipDetail(e: any, partnership: Partnership) {
-    e.preventDefault();
-    const uuid = partnership.url.split('/').reverse()[1];
-    this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
-  }
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(({ id }): any => {
+      this.partnershipsService.getPartner(id)
+        .subscribe((partner) => {
+          this.partner = partner;
+        });
+    });
+
     this.route.queryParams.subscribe((queryParams: any): any => {
       this.fetchPartnerships(queryParams);
     });
   }
 
-  fetchPartnerships(queryParams): void {
-    this.partnershipsService.searchPartnerships(queryParams)
+  goToSearch() {
+    this.router.navigate([''], { preserveQueryParams: true });
+  }
+
+  fetchPartnerships({ partnerFilter, ...queryParams}): void {
+    this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
           this.page.totalElements = response.count;
@@ -63,18 +66,9 @@ export class ListPartnershipsComponent implements OnInit {
       });
   }
 
-  /**
-   * Populate the table with new data based on the page number
-   * @param page The page to select
-   */
-  setPage(pageInfo) {
-    this.page.pageNumber = +pageInfo.offset;
-    const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['/'], {
-      queryParamsHandling: 'merge',
-      queryParams: {
-        offset
-      }
-    });
+  goToPartnershipDetail(e: any, partnership: Partnership) {
+    e.preventDefault();
+    const uuid = partnership.url.split('/').reverse()[1];
+    this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
   }
 }

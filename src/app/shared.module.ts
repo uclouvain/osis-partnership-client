@@ -15,7 +15,8 @@ import { ListPartnersComponent } from './components/list-partners/list-partners.
 import { ListPartnershipsComponent } from './components/list-partnerships/list-partnerships.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { DetailPartnershipComponent } from './components/detail-partnership/detail-partnership.component';
+import { ModalPartnershipComponent } from './components/modal-partnership/modal-partnership.component';
+import { ModalListPartnershipsComponent } from './components/modal-list-partnerships/modal-list-partnerships.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,7 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
     CheckboxGroupComponent,
     ListPartnersComponent,
     ListPartnershipsComponent,
-    DetailPartnershipComponent
+    ModalPartnershipComponent,
+    ModalListPartnershipsComponent
   ],
   exports: [
     BrowserModule,
@@ -56,7 +58,9 @@ export function createTranslateLoader(http: HttpClient) {
     NgxDatatableModule,
     AppRoutingModule
   ],
-  providers: [TranslateService]
+  providers: [
+    TranslateService
+  ]
 })
 export class SharedModule {
   constructor(translate: TranslateService) {
