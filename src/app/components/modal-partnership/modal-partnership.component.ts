@@ -12,6 +12,7 @@ import { PartnershipsService } from 'src/app/services/partnerships.service';
 export class ModalPartnershipComponent implements OnInit {
 
   public data: Partnership;
+  public showBackButton = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,15 @@ export class ModalPartnershipComponent implements OnInit {
           this.data = partnership;
         });
     });
+
+    this.route.queryParams.subscribe(({ type }) => {
+      this.showBackButton = type === 'partners';
+    });
+  }
+
+  goToList(partnerId: string) {
+    // If multiple partnerships, go to partnership list modal
+    this.router.navigate(['partner', partnerId], { queryParamsHandling: 'merge' });
   }
 
   goToSearch() {
