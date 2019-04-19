@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
 import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { PartnershipsService } from 'src/app/services/partnerships.service.js';
+import { PartnershipsService } from 'src/app/services/partnerships.service';
 
 @Component({
   selector: 'app-list-partnerships',
@@ -14,7 +13,6 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
-
   partnershipSummaryCell: TemplateRef<any>;
 
   public rows: any[];
@@ -24,8 +22,6 @@ export class ListPartnershipsComponent implements OnInit {
     pageNumber: 0,
     size: 25
   };
-
-  public partnershipDetail: Partnership;
 
   loadingIndicator = true;
   reorderable = true;

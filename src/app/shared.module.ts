@@ -58,7 +58,9 @@ export function createTranslateLoader(http: HttpClient) {
     NgxDatatableModule,
     AppRoutingModule
   ],
-  providers: [TranslateService]
+  providers: [
+    TranslateService
+  ]
 })
 export class SharedModule {
   constructor(translate: TranslateService) {

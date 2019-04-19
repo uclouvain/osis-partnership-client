@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { tap, map, find, filter } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
-import { tap } from 'rxjs/operators';
 import Partnership, { ResultPartnerships } from '../interfaces/partnership';
-import { Observable, of } from 'rxjs';
 import Partner, { ResultPartners } from '../interfaces/partners';
 
 const httpOptions = {
@@ -14,16 +14,42 @@ const httpOptions = {
   })
 };
 
-interface CachePartnerships { [x: string]: Partnership; }
-interface CachePartners { [x: string]: Partner; }
+export interface PartnershipParams {
+  campus: string;
+  city: string;
+  continent: string;
+  country: string;
+  education_field: string;
+  limit: number;
+  offset: number;
+  partner: string;
+  supervisor: string;
+  type: string;
+  ucl_university: string;
+  ucl_university_labo: string;
+}
+
+export interface PartnerParams {
+  campus: string;
+  city: string;
+  continent: string;
+  country: string;
+  education_field: string;
+  limit: number;
+  offset: number;
+  supervisor: string;
+  type: string;
+  ucl_university: string;
+  ucl_university_labo: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartnershipsService {
-  private cachePartnerships: CachePartnerships = {};
+  private cachePartnerships: BehaviorSubject<Partnership[]> = new BehaviorSubject([]);
+  private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
   private cachePartners$: Observable<ResultPartners>;
-
   constructor(
     private http: HttpClient
   ) {
@@ -32,13 +58,10 @@ export class PartnershipsService {
   /**
    * Returns partnerships results and keep results in cache
    */
-  public searchPartnerships(query?: object): Observable<ResultPartnerships> {
+  public searchPartnerships(query?: PartnershipParams): Observable<ResultPartnerships> {
     return this.requestPartnerships(query).pipe(
       tap(partnerships => {
-        partnerships.results.map(partnership => {
-          const id = partnership.url.split('/').reverse()[1];
-          this.cachePartnerships[id] = partnership;
-        });
+        this.cachePartnerships.next(partnerships.results);
       })
     );
   }
@@ -48,18 +71,37 @@ export class PartnershipsService {
    * or fetched
    */
   public getPartnership(id: string) {
-    if (this.cachePartnerships && this.cachePartnerships[id]) {
-      return of(this.cachePartnerships[id]);
+    if (this.cachePartners$) {
+      return this.cachePartnerships.pipe(
+        map(partnerships => partnerships.find(partnership => {
+          const partnershipId = partnership.url.split('/').reverse()[1];
+          return partnershipId === id;
+        }))
+      );
     }
 
     return this.requestPartnership(id);
   }
 
-  public searchPartners(query: object): Observable<ResultPartners> {
+  public searchPartners(query: PartnerParams): Observable<ResultPartners> {
     if (!this.cachePartners$) {
-      this.cachePartners$ = this.requestPartners(query);
+      this.cachePartners$ = this.requestPartners(query).pipe(
+        tap((partners) => {
+          this.cachePartners.next(partners.results);
+        })
+      );
     }
     return this.cachePartners$;
+  }
+
+  /**
+   * Returns a single partner, from cache if any
+   * or fetched
+   */
+  public getPartner(id: string) {
+    return this.cachePartners.pipe(
+      map(partners => partners.find(partner => partner.uuid === id))
+    );
   }
 
   private requestPartnerships(query: object) {

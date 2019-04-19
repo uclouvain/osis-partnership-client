@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { PartnershipsService } from 'src/app/services/partnerships.service.js';
-import Partnership from 'src/app/interfaces/partnership';
+import { PartnershipsService } from 'src/app/services/partnerships.service';
+import { getPartnershipParams, getPartnerParams } from 'src/app/helpers/partnerships.helpers';
 
 @Component({
   selector: 'app-list-partners',
@@ -39,7 +39,7 @@ export class ListPartnersComponent implements OnInit {
 
   goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
-    this.partnershipsService.searchPartnerships({ partner: value })
+    this.partnershipsService.searchPartnerships(getPartnershipParams({ partner: value }))
       .subscribe(response => {
         if (response.results.length === 1) {
           // If single partnership, go to detail of this partnership
@@ -47,10 +47,14 @@ export class ListPartnersComponent implements OnInit {
           const uuid = partnership.url.split('/').reverse()[1];
           this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
         } else if (response.results.length > 1) {
-          // If multiple partnerships, go to
-          this.router.navigate(['partner', value], { queryParamsHandling: 'merge' });
+          // If multiple partnerships, go to partnership list modal
+          this.router.navigate(['partner', value], {
+            queryParamsHandling: 'merge',
+            queryParams: {
+              partnerFilter: value
+            }
+          });
         }
-        console.log(response);
       });
   }
 
@@ -62,7 +66,7 @@ export class ListPartnersComponent implements OnInit {
   }
 
   fetchPartners(queryParams): void {
-    this.partnershipsService.searchPartners(queryParams)
+    this.partnershipsService.searchPartners(getPartnerParams(queryParams))
       .subscribe((response: ResultPartners) => {
         if (response.results) {
           this.page.totalElements = response.count;
