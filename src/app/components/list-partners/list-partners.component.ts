@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service.js';
+import Partnership from 'src/app/interfaces/partnership';
 
 @Component({
   selector: 'app-list-partners',
@@ -14,7 +14,6 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnersComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
-  @Input() modalDetail: TemplateRef<any>;
 
   partnershipSummaryCell: TemplateRef<any>;
 
@@ -29,8 +28,6 @@ export class ListPartnersComponent implements OnInit {
 
   loadingIndicator = true;
   reorderable = true;
-
-  modalRef: BsModalRef;
   partnerDetail: Partner;
 
   constructor(
@@ -40,11 +37,21 @@ export class ListPartnersComponent implements OnInit {
   ) {
   }
 
-  openModal(modal: any, e: any, value) {
+  goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
-    this.partnerDetail = value;
-    console.log(this.partnerDetail);
-    this.modalRef = modal.show();
+    this.partnershipsService.searchPartnerships({ partner: value })
+      .subscribe(response => {
+        if (response.results.length === 1) {
+          // If single partnership, go to detail of this partnership
+          const partnership = response.results[0];
+          const uuid = partnership.url.split('/').reverse()[1];
+          this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
+        } else if (response.results.length > 1) {
+          // If multiple partnerships, go to
+          this.router.navigate(['partner', value], { queryParamsHandling: 'merge' });
+        }
+        console.log(response);
+      });
   }
 
   ngOnInit() {
@@ -55,7 +62,7 @@ export class ListPartnersComponent implements OnInit {
   }
 
   fetchPartners(queryParams): void {
-    this.partnershipsService.partners(queryParams)
+    this.partnershipsService.searchPartners(queryParams)
       .subscribe((response: ResultPartners) => {
         if (response.results) {
           this.page.totalElements = response.count;

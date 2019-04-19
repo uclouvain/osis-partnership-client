@@ -14,11 +14,9 @@ import { PartnershipsService } from 'src/app/services/partnerships.service.js';
 })
 export class ListPartnershipsComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
-  @Input() modalDetail: TemplateRef<any>;
 
   partnershipSummaryCell: TemplateRef<any>;
 
-  public queryParams = {};
   public rows: any[];
   public page = {
     totalElements: 0,
@@ -32,32 +30,26 @@ export class ListPartnershipsComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
 
-  modalRef: BsModalRef;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
   ) {}
 
-  openModal(modal: any, e: any, value) {
+  goToPartnershipDetail(e: any, partnership: Partnership) {
     e.preventDefault();
-    this.partnershipDetail = value;
-    this.router.navigate(['/partnership/test'], {
-      queryParams: this.queryParams
-    });
-    console.log(this.partnershipDetail);
-    this.modalRef = modal.show();
+    const uuid = partnership.url.split('/').reverse()[1];
+    this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: any): any => {
-      this.queryParams = queryParams;
       this.fetchPartnerships(queryParams);
     });
   }
 
   fetchPartnerships(queryParams): void {
-    this.partnershipsService.partnerships(queryParams)
+    this.partnershipsService.searchPartnerships(queryParams)
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
           this.page.totalElements = response.count;
@@ -83,8 +75,8 @@ export class ListPartnershipsComponent implements OnInit {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
     this.router.navigate(['/'], {
+      queryParamsHandling: 'merge',
       queryParams: {
-        ...this.queryParams,
         offset
       }
     });

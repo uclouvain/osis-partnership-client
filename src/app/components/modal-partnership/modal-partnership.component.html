@@ -1,0 +1,174 @@
+<div #modalDetail="bs-modal" bsModal class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-sizes-name1"
+  (onHide)="goToSearch($event)"
+  [config]="{ show: true }"
+  >
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="data">
+        <h4 class="modal-title pull-left">Partnership with {{data.partner.name}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="data">
+        <div>
+            <dl class="detail-partnership" *ngIf="data">
+              <dt *ngIf="data.partner.name">{{ 'Partner' | translate }}</dt>
+              <dd *ngIf="data.partner.name">
+                {{data.partner.name}} <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span>
+              </dd>
+
+              <dt>{{ 'Faculty/Department' | translate }}</dt>
+              <dd></dd>
+
+              <dt *ngIf="data.partner.city">{{ 'City' | translate }}</dt>
+              <dd *ngIf="data.partner.city">{{data.partner.city}}</dd>
+
+
+              <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
+              <dd *ngIf="data.education_fields">
+                <ul *ngFor="let field of data.education_fields" class="partnership__list">
+                  <li>{{field}}</li>
+                </ul>
+              </dd>
+
+              <dt>{{ 'Faculty' | translate }}</dt>
+              <dd></dd>
+
+              <dt>{{ 'Department' | translate }}</dt>
+              <dd></dd>
+
+              <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
+              <dd *ngIf="data.supervisor">Prof. {{data.supervisor}}</dd>
+
+              <dt>{{ 'Type of mobility' | translate }}</dt>
+              <dd>{{mobilityType}}</dd>
+
+              <dt *ngIf="data.status">{{ 'Status' | translate }}</dt>
+              <dd *ngIf="data.status">{{data.status.status}} ({{data.status.valid_years}})</dd>
+            </dl>
+
+            <tabset *ngIf="data">
+              <tab id="tab1">
+                <ng-template tabHeading>
+                  {{ 'Information for outgoing students' }}
+                </ng-template>
+
+                <div class="detail-partnership__tab">
+                  <dl class="detail-partnership">
+                    <dt *ngIf="data.out_education_levels">{{ 'Level of study' | translate }}</dt>
+                    <dd *ngIf="data.out_education_levels">
+                      <ul *ngFor="let level of data.out_education_levels">
+                        <li>{{level}}</li>
+                      </ul>
+                    </dd>
+
+                    <dt>{{ 'Entity' | translate }}</dt>
+                    <dd>{{out_entities}}</dd>
+
+                    <dt>{{ 'Program' | translate }}</dt>
+                    <dd>{{out_university_offers}}</dd>
+
+                    <dt *ngIf="data.out_contact.name">{{ 'Contact person' | translate }}</dt>
+                    <dd *ngIf="data.out_contact.name">{{data.out_contact.name}}</dd>
+
+                    <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
+                    <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
+
+                    <dt *ngIf="data.out_portal">{{ 'Portal (sigle FAC) Outgoing' | translate }}</dt>
+                    <dd *ngIf="data.out_portal">{{data.out_portal}}</dd>
+
+                    <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
+                    <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
+
+                    <dt>{{ 'Contact person in partner institution' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>{{ 'Fact sheet' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>{{ 'Bilateral agreement' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>{{ 'Individual évaluation reports' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>{{ 'Summary table' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>Medias</dt>
+                    <dd></dd>
+                  </dl>
+                </div>
+              </tab>
+              <tab>
+                <ng-template tabHeading>
+                  Information for incoming students
+                </ng-template>
+                <div class="detail-partnership__tab">
+                  <dl class="detail-partnership">
+                    <dt *ngIf="data.in_contact.name">{{ 'Contact person' | translate }}</dt>
+                    <dd *ngIf="data.in_contact.name">{{data.in_contact.name}}</dd>
+
+                    <dt *ngIf="data.in_contact.email">{{ 'E-mail' | translate }}</dt>
+                    <dd *ngIf="data.in_contact.email">{{data.in_contact.email}}</dd>
+
+                    <dt *ngIf="data.in_portal">{{ 'Portal (sigle FAC) incoming exchange students' | translate }}</dt>
+                    <dd *ngIf="data.in_portal">{{data.in_portal}}</dd>
+
+                    <dt>Admission</dt>
+                    <dd></dd>
+
+                    <dt>Course catalogue</dt>
+                    <dd></dd>
+
+                    <dt>Useful links</dt>
+                    <dd>
+                      <a target="blank" ref="noopener" href="https://uclouvain.be/fr/etudier/etudiant-echange.html">https://uclouvain.be/fr/etudier/etudiant-echange.html</a>
+                    </dd>
+                  </dl>
+                </div>
+              </tab>
+              <tab>
+                <ng-template tabHeading>
+                  Information for outgoing teaching staff
+                </ng-template>
+                <div class="detail-partnership__tab">
+                  <dl class="detail-partnership">
+                    <dt *ngIf="data.staff_contact_name">Contact person</dt>
+                    <dd *ngIf="data.staff_contact_name">{{data.staff_contact_name}}</dd>
+
+                    <dt>{{ 'Contact person in partner institution' | translate }}</dt>
+                    <dd>
+                      <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}} {{data.in_contact.last_name}}<br></span>
+                      <span *ngIf="data.in_contact.phone">{{data.in_contact.phone}}<br></span>
+                      <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
+                    </dd>
+
+                    <dt>{{ 'Fact sheet' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt>{{ 'Bilateral agreement' | translate }}</dt>
+                    <dd></dd>
+
+                    <dt *ngIf="data.out_funding">Funding</dt>
+                    <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
+
+                    <dt *ngIf="data.out_contact.email">E-mail</dt>
+                    <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
+
+                    <dt>Medias</dt>
+                    <dd></dd>
+                  </dl>
+                </div>
+              </tab>
+            </tabset>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

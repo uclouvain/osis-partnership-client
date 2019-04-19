@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailPartnershipComponent } from './detail-partnership.component';
+import { ModalPartnershipComponent } from './modal-partnership.component';
 
-describe('DetailPartnershipComponent', () => {
-  let component: DetailPartnershipComponent;
-  let fixture: ComponentFixture<DetailPartnershipComponent>;
+describe('ModalPartnershipComponent', () => {
+  let component: ModalPartnershipComponent;
+  let fixture: ComponentFixture<ModalPartnershipComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailPartnershipComponent ]
+      declarations: [ ModalPartnershipComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailPartnershipComponent);
+    fixture = TestBed.createComponent(ModalPartnershipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
