@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     campus: '',
     supervisor: '',
     education_field: '',
-    mobility_types: ['student'],
+    mobility_types: ['Student'],
     funding: [],
     limit: 25,
     offset: 0
@@ -87,10 +87,10 @@ export class SearchComponent implements OnInit, OnDestroy {
           ...params,
           mobility_types: params.mobility_types
             ? typeof params.mobility_types === 'string' ? [params.mobility_types] : [...params.mobility_types]
-            : [],
+            : this.model.mobility_types,
           funding: params.funding
             ? typeof params.funding === 'string' ? [params.funding] : [...params.funding]
-            : []
+            : this.model.funding
           })
         )
       )
