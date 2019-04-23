@@ -25,7 +25,6 @@ export class ModalPartnershipComponent implements OnInit {
       this.partnershipsService.getPartnership(id)
         .subscribe(partnership => {
           this.data = partnership;
-          console.log(partnership);
         });
     });
 

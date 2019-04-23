@@ -3,11 +3,10 @@ import {
  HttpInterceptor,
  HttpHandler,
  HttpRequest,
- HttpErrorResponse,
  HttpResponse
 } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
-import { retry, catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable({

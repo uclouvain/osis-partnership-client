@@ -1,4 +1,4 @@
-<form #f="ngForm">
+<form #f="ngForm" class="partnership__form">
   <div class="form-group">
     <label for="continent">{{ 'Continent' | translate }}</label>
     <input [(ngModel)]="model.continent"
@@ -123,9 +123,8 @@
       (toggle)="onFundingChange($event)"
     ></app-checkbox-group>
   </div>
-
-  <input type="button" class="btn btn-primary" value="{{ 'Search partners' | translate }}" (click)="searchPartners($event)" />
-  <input type="button" class="btn btn-primary" value="{{ 'Search partnerships' | translate }}" (click)="searchPartnerships($event)" />
+  <button [disabled]="loaderStatus" type="button" class="btn btn-primary" (click)="searchPartners($event)">{{ 'Search partners' | translate }}</button>
+  <button [disabled]="loaderStatus" type="button" class="btn btn-primary" (click)="searchPartnerships($event)">{{ 'Search partnerships' | translate }}</button>
 </form>
 
 <app-error-message></app-error-message>

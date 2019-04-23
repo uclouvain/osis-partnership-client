@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import { ValueLabel } from 'src/app/interfaces/common';
 import { ConfigurationService } from 'src/app/services/configuration.service';
+import { LoadingService } from 'src/app/services/loading.service.js';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   public model = {
     type: 'partner',
     continent: '',
@@ -52,11 +53,21 @@ export class SearchComponent implements OnInit {
     new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
   ];
 
+  public loaderStatus: boolean;
+  private loaderStatus$: Subscription;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private loading: LoadingService
   ) {
+    // add delay to prevent expression has changed after it was checked
+    this.loaderStatus$ = this.loading.status.pipe(delay(0)).subscribe(status => (this.loaderStatus = status));
+  }
+
+  ngOnDestroy(): void {
+    this.loaderStatus$.unsubscribe();
   }
 
   ngOnInit() {

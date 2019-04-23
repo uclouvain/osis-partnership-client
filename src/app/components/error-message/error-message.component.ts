@@ -16,7 +16,6 @@ export class ErrorMessageComponent implements OnInit {
 
   ngOnInit() {
     this.loadingService.errorMessage.subscribe(message => {
-      console.log('message', message);
       this.message = message;
     });
   }

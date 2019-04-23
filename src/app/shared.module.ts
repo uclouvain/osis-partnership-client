@@ -8,6 +8,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SearchComponent } from './components/search/search.component';
@@ -20,6 +22,7 @@ import { ModalPartnershipComponent } from './components/modal-partnership/modal-
 import { ModalListPartnershipsComponent } from './components/modal-list-partnerships/modal-list-partnerships.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { LoadingService, LoadingInterceptor } from './services/loading.service';
+import { LoaderComponent } from './components/loader/loader.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -41,6 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TooltipModule.forRoot(),
     HttpClientModule,
     NgxDatatableModule,
     AppRoutingModule
@@ -52,7 +57,8 @@ export function createTranslateLoader(http: HttpClient) {
     ListPartnershipsComponent,
     ModalPartnershipComponent,
     ModalListPartnershipsComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    LoaderComponent
   ],
   exports: [
     HttpClientModule,
@@ -62,6 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
     TypeaheadModule,
     ModalModule,
     AlertModule,
+    ButtonsModule,
+    TooltipModule,
     HttpClientModule,
     NgxDatatableModule,
     AppRoutingModule

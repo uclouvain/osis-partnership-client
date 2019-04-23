@@ -1,4 +1,5 @@
 <h2>Partnerships</h2>
+
 <ngx-datatable
   class="bootstrap"
   [rows]="rows"
@@ -58,3 +59,5 @@
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
+
+<app-loader *ngIf="!rows"></app-loader>

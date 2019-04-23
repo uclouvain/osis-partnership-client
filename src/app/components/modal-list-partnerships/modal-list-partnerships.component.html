@@ -1,10 +1,5 @@
-<div #modal="bs-modal" bsModal class="modal fade"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="dialog-sizes-name1"
-  [config]="{ show: true }"
-  (onHide)="goToSearch($event)"
-  >
+<div #modal="bs-modal" bsModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1"
+  [config]="{ show: true }" (onHide)="goToSearch($event)">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,37 +8,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" *ngIf="rows">
-        <ngx-datatable
-          class="bootstrap"
-          [rows]="rows"
-          [loadingIndicator]="loadingIndicator"
-          [columnMode]="'force'"
-          [headerHeight]="40"
-          [footerHeight]="40"
-          [externalPaging]="true"
-          [count]="page.totalElements"
-          [offset]="page.pageNumber"
-          [limit]="page.size"
-          (page)='setPage($event)'
-          [rowHeight]="'auto'"
-          [reorderable]="reorderable"
-        >
-          <ngx-datatable-column [name]="'Partner' | translate" prop="partner.name">
+      <div class="modal-body">
+        <app-loader *ngIf="!rows"></app-loader>
+        <ngx-datatable *ngIf="rows" class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+          [headerHeight]="40" [footerHeight]="40" [externalPaging]="true" [count]="page.totalElements"
+          [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)' [rowHeight]="'auto'"
+          [reorderable]="reorderable">
+          <ngx-datatable-column [name]="'Faculty' | translate" prop="ucl_university">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{value}}
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column [name]="'Country' | translate" prop="partner.country">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{value}}
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column [name]="'City' | translate" prop="partner.city">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{value}}
+              <button [tooltip]="value.title" class="btn btn-link" placement="bottom">{{value.acronym}}</button>
             </ng-template>
           </ngx-datatable-column>
 
