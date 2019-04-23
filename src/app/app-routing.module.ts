@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './components/search/search.component';
-import { ModalPartnershipComponent } from './components/modal-partnership/modal-partnership.component';
-import { ModalListPartnershipsComponent } from './components/modal-list-partnerships/modal-list-partnerships.component';
+import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
+import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
+import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
 
 const routes: Routes = [
   { path: '', component: SearchComponent, children: [
-    { path: 'partnership/:id', component: ModalPartnershipComponent },
-    { path: 'partner/:id', component: ModalListPartnershipsComponent }
+    { path: 'partner/:id', component: ModalPartnerComponent, children: [
+      { path: '', pathMatch: 'full', component: PartnershipListComponent },
+      { path: 'partnership/:id', component: PartnershipDetailComponent },
+    ]}
   ] },
 ];
 

@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 
 @Component({
-  selector: 'app-modal-partnership',
-  templateUrl: './modal-partnership.component.html',
-  styleUrls: ['./modal-partnership.component.css']
+  selector: 'app-partnership-detail',
+  templateUrl: './partnership-detail.component.html',
+  styleUrls: ['./partnership-detail.component.css']
 })
-export class ModalPartnershipComponent implements OnInit {
+export class PartnershipDetailComponent implements OnInit {
 
   public data: Partnership;
   public showBackButton = false;
@@ -38,10 +38,6 @@ export class ModalPartnershipComponent implements OnInit {
    */
   goToList(partnerId: string) {
     this.router.navigate(['partner', partnerId], { queryParamsHandling: 'merge' });
-  }
-
-  goToSearch() {
-    this.router.navigate([''], { preserveQueryParams: true });
   }
 
   get mobilityType() {

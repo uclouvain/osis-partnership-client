@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public fundingOptions = [
     new CheckboxItem('Erasmus', 'Erasmus'),
     new CheckboxItem('Belgica', 'Belgica'),
-    new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
+    new CheckboxItem('Fame-Mercator', 'Fame-Mercator')
   ];
 
   public loaderStatus: boolean;

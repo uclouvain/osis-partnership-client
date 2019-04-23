@@ -1,21 +1,24 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
-import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership.js';
-import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
+import Partner from 'src/app/interfaces/partners.js';
+import { ResultPartners } from 'src/app/interfaces/partners';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
+import { getPartnerParams } from 'src/app/helpers/partnerships.helpers';
 
 @Component({
-  selector: 'app-list-partnerships',
-  templateUrl: './list-partnerships.component.html',
-  styleUrls: ['./list-partnerships.component.css']
+  selector: 'app-partners-list',
+  templateUrl: './partners-list.component.html',
+  styleUrls: ['./partners-list.component.css']
 })
-export class ListPartnershipsComponent implements OnInit {
+export class PartnersListComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
+
   partnershipSummaryCell: TemplateRef<any>;
 
-  public rows: any[];
+  public queryParams = {};
+  public rows: Partner[];
   public page = {
     totalElements: 0,
     totalPages: 0,
@@ -25,40 +28,45 @@ export class ListPartnershipsComponent implements OnInit {
 
   loadingIndicator = true;
   reorderable = true;
+  partnerDetail: Partner;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService
-  ) {}
+  ) {
+  }
 
-  goToPartnershipDetail(e: any, partnership: Partnership) {
+  goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
-    const uuid = partnership.url.split('/').reverse()[1];
-    this.router.navigate(['partnership', uuid], { queryParamsHandling: 'merge' });
+    // If multiple partnerships, go to partnership list modal
+    this.router.navigate(['partner', value], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        partnerFilter: value
+      }
+    });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: any): any => {
-      this.fetchPartnerships(queryParams);
+      this.queryParams = queryParams;
+      this.fetchPartners(queryParams);
     });
   }
 
-  fetchPartnerships(queryParams): void {
-    this.partnershipsService.searchPartnerships(queryParams)
-      .subscribe((response: ResultPartnerships) => {
-        if (response && response.results) {
+  fetchPartners(queryParams): void {
+    this.partnershipsService.searchPartners(getPartnerParams(queryParams))
+      .subscribe((response: ResultPartners) => {
+        if (response.results) {
           this.page.totalElements = response.count;
           this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
           this.page.pageNumber = Math.floor(queryParams.offset / +this.page.size);
 
-          if (response.results) {
-            this.rows = response.results.map((partner: Partnership) => ({
-              ...partner,
-              mobility_type: partner && getMobilityType(partner),
-              cellTemplate: this.partnershipSummaryCell
-            }));
-          }
+          this.rows = response.results.map((partner: Partner) => ({
+            ...partner,
+            cellTemplate: this.partnershipSummaryCell
+          }));
         }
       });
   }
@@ -71,8 +79,8 @@ export class ListPartnershipsComponent implements OnInit {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
     this.router.navigate(['/'], {
-      queryParamsHandling: 'merge',
       queryParams: {
+        ...this.queryParams,
         offset
       }
     });

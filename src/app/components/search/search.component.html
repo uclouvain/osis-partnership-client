@@ -1,135 +1,85 @@
 <form #f="ngForm" class="partnership__form">
-  <div class="form-group">
-    <label for="continent">{{ 'Continent' | translate }}</label>
-    <input [(ngModel)]="model.continent"
-            name="continent"
-           [typeahead]="continents$"
-           [typeaheadAsync]="true"
-           typeaheadOptionField="label"
-           class="form-control"
-           (typeaheadNoResults)="typeaheadNoContinent($event)"
-           (typeaheadOnSelect)="onContinentChanged($event)"
-           id="continent"
-           autocomplete="off">
-    <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
-  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="ucl_university">{{ 'Faculty' | translate }}</label>
+        <input [(ngModel)]="model.ucl_university" name="ucl_university" class="form-control" id="uclUniversity$"
+          [typeahead]="uclUniversities$" [typeaheadAsync]="true" (typeaheadOnSelect)="getUclUniversitiesLabo($event)"
+          typeaheadOptionField="label" autocomplete="off">
+      </div>
 
-  <div class="form-group" *ngIf="countries$ | async">
-    <label for="country">{{ 'Country' | translate }}</label>
-    <input  [(ngModel)]="continentLabel"
-            name="country"
-            [typeahead]="countries$"
-            [typeaheadAsync]="true"
-            typeaheadOptionField="label"
-            (typeaheadOnSelect)="onCountryChanged($event)"
-            class="form-control"
-            id="country"
-            autocomplete="off">
-  </div>
+      <div class="form-group" *ngIf="uclUniversitiesLabo$ | async">
+        <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
+        <input [(ngModel)]="model.ucl_university_labo" name="ucl_university_labo" class="form-control"
+          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo$" [typeaheadAsync]="true"
+          typeaheadOptionField="label" autocomplete="off">
+      </div>
 
-  <div class="form-group">
-    <label for="city">{{ 'City' | translate }}</label>
-    <input  [(ngModel)]="model.city"
-            name="city"
-            class="form-control"
-            id="city">
-  </div>
+      <div class="form-group">
+        <label for="campus">{{ 'Campus' | translate }}</label>
+        <input [(ngModel)]="model.campus" name="campus" class="form-control" id="campus" autocomplete="off">
+      </div>
 
-  <div class="form-group">
-    <label for="partner">{{ 'Partner institution' | translate }}</label>
-    <input  [(ngModel)]="model.partner"
-            name="partner"
-            class="form-control"
-            id="partner"
-            [typeahead]="partners$"
-            [typeaheadAsync]="true"
-            typeaheadOptionField="label"
-            autocomplete="off">
-  </div>
+      <div class="form-group">
+        <label for="supervisor">{{ 'UCLouvain' | translate }}</label>
+        <input [(ngModel)]="model.supervisor" name="supervisor" class="form-control" id="supervisor"
+          [typeahead]="supervisors$" [typeaheadAsync]="true" typeaheadOptionField="label" autocomplete="off">
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="ucl_university">{{ 'Faculty' | translate }}</label>
-    <input  [(ngModel)]="model.ucl_university"
-            name="ucl_university"
-            class="form-control"
-            id="uclUniversity$"
-            [typeahead]="uclUniversities$"
-            [typeaheadAsync]="true"
-            (typeaheadOnSelect)="getUclUniversitiesLabo($event)"
-            typeaheadOptionField="label"
-            autocomplete="off">
-  </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="continent">{{ 'Continent' | translate }}</label>
+        <input [(ngModel)]="model.continent" name="continent" [typeahead]="continents$" [typeaheadAsync]="true"
+          typeaheadOptionField="label" class="form-control" (typeaheadNoResults)="typeaheadNoContinent($event)"
+          (typeaheadOnSelect)="onContinentChanged($event)" id="continent" autocomplete="off">
+        <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
+      </div>
 
-  <div class="form-group" *ngIf="uclUniversitiesLabo$ | async">
-    <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
-    <input  [(ngModel)]="model.ucl_university_labo"
-            name="ucl_university_labo"
-            class="form-control"
-            id="ucl_university_labo"
-            [typeahead]="uclUniversitiesLabo$"
-            [typeaheadAsync]="true"
-            typeaheadOptionField="label"
-            autocomplete="off">
-  </div>
+      <div class="form-group" *ngIf="countries$ | async">
+        <label for="country">{{ 'Country' | translate }}</label>
+        <input [(ngModel)]="continentLabel" name="country" [typeahead]="countries$" [typeaheadAsync]="true"
+          typeaheadOptionField="label" (typeaheadOnSelect)="onCountryChanged($event)" class="form-control" id="country"
+          autocomplete="off">
+      </div>
 
-  <div class="form-group">
-    <label for="campus">{{ 'Campus' | translate }}</label>
-    <input  [(ngModel)]="model.campus"
-            name="campus"
-            class="form-control"
-            id="campus"
-            autocomplete="off">
-  </div>
+      <div class="form-group">
+        <label for="city">{{ 'City' | translate }}</label>
+        <input [(ngModel)]="model.city" name="city" class="form-control" id="city">
+      </div>
 
-  <div class="form-group">
-    <label for="supervisor">{{ 'UCLouvain' | translate }}</label>
-    <input  [(ngModel)]="model.supervisor"
-            name="supervisor"
-            class="form-control"
-            id="supervisor"
-            [typeahead]="supervisors$"
-            [typeaheadAsync]="true"
-            typeaheadOptionField="label"
-            autocomplete="off">
-  </div>
+      <div class="form-group">
+        <label for="partner">{{ 'Partner institution' | translate }}</label>
+        <input [(ngModel)]="model.partner" name="partner" class="form-control" id="partner" [typeahead]="partners$"
+          [typeaheadAsync]="true" typeaheadOptionField="label" autocomplete="off">
+      </div>
 
-  <div class="form-group">
-    <label for="education_field">{{ 'Subject Area' | translate }}</label>
-    <input  [(ngModel)]="model.education_field"
-            name="education_field"
-            class="form-control"
-            id="education_field"
-            [typeahead]="educationFields$"
-            [typeaheadAsync]="true"
-            typeaheadOptionField="label"
-            autocomplete="off">
+      <div class="form-group">
+        <label for="education_field">{{ 'Subject Area' | translate }}</label>
+        <input [(ngModel)]="model.education_field" name="education_field" class="form-control" id="education_field"
+          [typeahead]="educationFields$" [typeaheadAsync]="true" typeaheadOptionField="label" autocomplete="off">
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <label>{{ 'Mobility Type' | translate }}</label>
-    <app-checkbox-group
-      [options]="mobilityTypesOptions"
-      (toggle)="onMobilityTypesChange($event)"
-      [selectedValues]="model.mobility_types"
-      >
+    <app-checkbox-group [options]="mobilityTypesOptions" (toggle)="onMobilityTypesChange($event)"
+      [selectedValues]="model.mobility_types">
     </app-checkbox-group>
   </div>
 
   <div class="form-group">
     <label>{{ 'Funding' | translate }}</label>
-    <app-checkbox-group
-      [options]="fundingOptions"
-      [selectedValues]="model.funding"
-      (toggle)="onFundingChange($event)"
-    ></app-checkbox-group>
+    <app-checkbox-group [options]="fundingOptions" [selectedValues]="model.funding" (toggle)="onFundingChange($event)">
+    </app-checkbox-group>
   </div>
-  <button [disabled]="loaderStatus" type="button" class="btn btn-primary" (click)="searchPartners($event)">{{ 'Search partners' | translate }}</button>
-  <button [disabled]="loaderStatus" type="button" class="btn btn-primary" (click)="searchPartnerships($event)">{{ 'Search partnerships' | translate }}</button>
+  <button [disabled]="loaderStatus" type="button" class="btn btn-primary"
+    (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
 </form>
 
 <app-error-message></app-error-message>
 
-<app-list-partners *ngIf="model.type === 'partners'"></app-list-partners>
-<app-list-partnerships *ngIf="model.type === 'partnerships'"></app-list-partnerships>
+<app-partners-list *ngIf="model.type === 'partners'"></app-partners-list>
 
 <router-outlet></router-outlet>
