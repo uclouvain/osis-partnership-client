@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalListPartnershipsComponent } from './modal-list-partnerships.component';
+import { PartnersListComponent } from './partners-list.component';
 import { SharedModule } from 'src/app/shared.module';
 
-describe('ModalListPartnershipsComponent', () => {
-  let component: ModalListPartnershipsComponent;
-  let fixture: ComponentFixture<ModalListPartnershipsComponent>;
+describe('PartnersListComponent', () => {
+  let component: PartnersListComponent;
+  let fixture: ComponentFixture<PartnersListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('ModalListPartnershipsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalListPartnershipsComponent);
+    fixture = TestBed.createComponent(PartnersListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

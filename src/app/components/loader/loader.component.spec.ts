@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListPartnersComponent } from './list-partners.component';
-import { SharedModule } from 'src/app/shared.module';
+import { LoaderComponent } from './loader.component';
 
-describe('ListPartnersComponent', () => {
-  let component: ListPartnersComponent;
-  let fixture: ComponentFixture<ListPartnersComponent>;
+describe('LoaderComponent', () => {
+  let component: LoaderComponent;
+  let fixture: ComponentFixture<LoaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ SharedModule ]
+      declarations: [ LoaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListPartnersComponent);
+    fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

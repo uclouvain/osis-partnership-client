@@ -50,6 +50,7 @@ export class PartnershipsService {
   private cachePartnerships: BehaviorSubject<Partnership[]> = new BehaviorSubject([]);
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
   private cachePartners$: Observable<ResultPartners>;
+
   constructor(
     private http: HttpClient
   ) {

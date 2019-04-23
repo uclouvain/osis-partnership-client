@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared.module';
@@ -9,7 +8,6 @@ import { SharedModule } from './shared.module';
     AppComponent
   ],
   imports: [
-    HttpClientModule,
     SharedModule,
   ],
   bootstrap: [AppComponent]

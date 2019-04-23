@@ -1,3 +1,7 @@
-.btn {
+.partnership__form .btn {
   margin-right: .5em;
+}
+
+.partnership__form {
+  margin-bottom: 1em;
 }

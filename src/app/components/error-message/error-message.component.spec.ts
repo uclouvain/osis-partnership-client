@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalPartnershipComponent } from './modal-partnership.component';
+import { ErrorMessageComponent } from './error-message.component';
 import { SharedModule } from 'src/app/shared.module';
 
-describe('ModalPartnershipComponent', () => {
-  let component: ModalPartnershipComponent;
-  let fixture: ComponentFixture<ModalPartnershipComponent>;
+describe('ErrorMessageComponent', () => {
+  let component: ErrorMessageComponent;
+  let fixture: ComponentFixture<ErrorMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('ModalPartnershipComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalPartnershipComponent);
+    fixture = TestBed.createComponent(ErrorMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

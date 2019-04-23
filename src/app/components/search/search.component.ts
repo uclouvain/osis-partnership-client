@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import { ValueLabel } from 'src/app/interfaces/common';
 import { ConfigurationService } from 'src/app/services/configuration.service';
+import { LoadingService } from 'src/app/services/loading.service.js';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   public model = {
     type: 'partner',
     continent: '',
@@ -25,7 +26,7 @@ export class SearchComponent implements OnInit {
     campus: '',
     supervisor: '',
     education_field: '',
-    mobility_types: ['student'],
+    mobility_types: ['Student'],
     funding: [],
     limit: 25,
     offset: 0
@@ -49,14 +50,24 @@ export class SearchComponent implements OnInit {
   public fundingOptions = [
     new CheckboxItem('Erasmus', 'Erasmus'),
     new CheckboxItem('Belgica', 'Belgica'),
-    new CheckboxItem('Frame-Mercator', 'Frame-Mercator')
+    new CheckboxItem('Fame-Mercator', 'Fame-Mercator')
   ];
+
+  public loaderStatus: boolean;
+  private loaderStatus$: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private loading: LoadingService
   ) {
+    // add delay to prevent expression has changed after it was checked
+    this.loaderStatus$ = this.loading.status.pipe(delay(0)).subscribe(status => (this.loaderStatus = status));
+  }
+
+  ngOnDestroy(): void {
+    this.loaderStatus$.unsubscribe();
   }
 
   ngOnInit() {
@@ -76,10 +87,10 @@ export class SearchComponent implements OnInit {
           ...params,
           mobility_types: params.mobility_types
             ? typeof params.mobility_types === 'string' ? [params.mobility_types] : [...params.mobility_types]
-            : [],
+            : this.model.mobility_types,
           funding: params.funding
             ? typeof params.funding === 'string' ? [params.funding] : [...params.funding]
-            : []
+            : this.model.funding
           })
         )
       )
