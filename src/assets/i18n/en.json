@@ -18,11 +18,13 @@
   "Staff": "Staff",
   "See details": "See details",
   "Partner": "Partner",
+  "Partners": "Partners",
   "Faculty/Department": "Faculty/Department",
   "Subject area": "Subject area",
   "Department": "Department",
   "UCLouvain academic coordinator": "UCLouvain academic coordinator",
   "Type of mobility": "Type of mobility",
+  "Mobility Type": "Mobility Type",
   "Status": "Status",
   "Information for outgoing students": "Information for outgoing students",
   "Information for incoming students": "Information for incoming students",
@@ -44,5 +46,8 @@
   "Medias": "Medias",
   "Useful links": "Useful links",
   "Course catalogue": "Course catalogue",
-  "Admission": "Admission"
+  "Admission": "Admission",
+  "No partnership": "No partnership",
+  "See partnership": "Voir le partenariat",
+  "See {value} partnerships": "Voir les {{value}} partenariats"
 }

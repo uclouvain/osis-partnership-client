@@ -17,12 +17,14 @@
   "Student (short term) / Staff": "Étudiant (short term) / Staff",
   "Staff": "Staff",
   "See details": "Voir le détail",
-  "Partner": "Partner",
+  "Partner": "Partenaire",
+  "Partners": "Partenaires",
   "Faculty/Department": "Entité partenaire",
   "Subject area": "Domaine d'étude",
   "Department": "Entité",
   "UCLouvain academic coordinator": "Responsable académique UCLouvain",
   "Type of mobility": "Type de mobilité",
+  "Mobility Type": "Type de mobilité",
   "Status": "Etat du partenariat",
   "Information for outgoing students": "Étudiants UCLouvain OUT",
   "Information for incoming students": "Étudiants d'échange IN",
@@ -44,5 +46,8 @@
   "Medias": "Medias",
   "Useful links": "Liens utiles",
   "Course catalogue": "Catalogue des cours",
-  "Admission": "Admission"
+  "Admission": "Admission",
+  "No partnership": "Aucun partenariat",
+  "See partnership": "Voir le partenariat",
+  "See {value} partnerships": "Voir les {{value}} partenariats"
 }
