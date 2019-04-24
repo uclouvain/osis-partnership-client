@@ -81,6 +81,12 @@ export class ConfigurationService {
     );
   }
 
+  get fundings() {
+    return this.all().pipe(
+      map((config: Configuration) => config.fundings)
+    );
+  }
+
   private requestConfiguration() {
     return this.http.get<Configuration>(`${environment.api.url}configuration/`, httpOptions);
   }

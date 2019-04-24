@@ -47,11 +47,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     new CheckboxItem('student', 'Student'),
     new CheckboxItem('staff', 'Staff'),
   ];
-  public fundingOptions = [
-    new CheckboxItem('Erasmus', 'Erasmus'),
-    new CheckboxItem('Belgica', 'Belgica'),
-    new CheckboxItem('Fame-Mercator', 'Fame-Mercator')
-  ];
+  public fundingOptions: CheckboxItem[] = [];
 
   public loaderStatus: boolean;
   private loaderStatus$: Subscription;
@@ -77,6 +73,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.partners$ = this.configurationService.partners;
     this.supervisors$ = this.configurationService.supervisors;
     this.uclUniversities$ = this.configurationService.uclUniversities;
+
+    // Fetch fundings options
+    this.configurationService.fundings.subscribe(fundings => {
+      fundings.map(funding => {
+        this.fundingOptions.push(new CheckboxItem(funding, funding));
+      });
+    });
 
     // Init form with url params
     this.route.queryParams

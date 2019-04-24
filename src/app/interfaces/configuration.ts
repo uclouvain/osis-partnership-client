@@ -17,4 +17,5 @@ export interface Configuration {
   ucl_university_labo: ValueLabel[];
   supervisors: ValueLabel[];
   education_fields: ValueLabel[];
+  fundings: string[];
 }
