@@ -87,4 +87,22 @@ export class PartnersListComponent implements OnInit {
       }
     });
   }
+
+  onSort(event) {
+    const order = event.newValue;
+    let orderColumn = event.column.prop;
+    if (orderColumn === 'name') {
+      orderColumn = 'partner';
+    }
+
+    if (orderColumn === 'country') {
+      orderColumn = 'country_en';
+    }
+
+    const ordering = (order === 'asc' ? '' : '-') + orderColumn;
+    this.router.navigate(['/'], {
+      queryParamsHandling: 'merge',
+      queryParams: { ordering }
+    });
+  }
 }

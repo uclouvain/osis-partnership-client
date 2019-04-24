@@ -60,4 +60,22 @@ export class PartnershipListComponent implements OnInit {
   getDetailLink(value: Partnership) {
     return [`/partner/${value.partner.uuid}/partnership/${value.url.split('/').reverse()[1]}`];
   }
+
+  onSort(event) {
+    const order = event.newValue;
+    let orderColumn = event.column.prop;
+    if (orderColumn === 'name') {
+      orderColumn = 'partner';
+    }
+
+    if (orderColumn === 'country') {
+      orderColumn = 'country_en';
+    }
+
+    const ordering = (order === 'asc' ? '' : '-') + orderColumn;
+    this.router.navigate(['/'], {
+      queryParamsHandling: 'merge',
+      queryParams: { ordering }
+    });
+  }
 }
