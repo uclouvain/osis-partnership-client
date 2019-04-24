@@ -2,7 +2,7 @@
 <ngx-datatable *ngIf="rows" class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
   [headerHeight]="40" [footerHeight]="40" [externalPaging]="true" [count]="page.totalElements"
   [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)' [rowHeight]="'auto'"
-  [reorderable]="reorderable">
+  [reorderable]="reorderable" (sort)="onSort($event)" [externalSorting]="true">
   <ngx-datatable-column [name]="'Faculty' | translate" prop="ucl_university">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       <button [tooltip]="value.title" class="btn btn-link" placement="bottom">{{value.acronym}}</button>
@@ -29,7 +29,7 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column prop="">
+  <ngx-datatable-column prop="" [sortable]="false">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       <a
         class="btn btn-link"
