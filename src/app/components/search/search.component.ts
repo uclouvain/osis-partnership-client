@@ -44,8 +44,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   public continentLabel = '';
   public noContinent = false;
   public mobilityTypesOptions = [
-    new CheckboxItem('Student', 'Student'),
-    new CheckboxItem('Staff', 'Staff'),
+    new CheckboxItem('student', 'Student'),
+    new CheckboxItem('staff', 'Staff'),
   ];
   public fundingOptions = [
     new CheckboxItem('Erasmus', 'Erasmus'),
@@ -139,6 +139,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Reset current page to 1
     this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
+  }
+
+  onMobilityTypesChange(value) {
+    console.log(value);
+    this.model.mobility_types = value;
   }
 
   onFundingChange(value) {

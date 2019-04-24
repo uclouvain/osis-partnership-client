@@ -34,3 +34,20 @@ export interface ResultPartnerships {
   previous: string;
   results: Partnership[];
 }
+
+export interface PartnershipParams {
+  campus: string;
+  city: string;
+  continent: string;
+  country: string;
+  education_field: string;
+  limit: number;
+  offset: number;
+  partner: string;
+  supervisor: string;
+  type: string;
+  ucl_university: string;
+  ucl_university_labo: string;
+  mobility_type: string[];
+  funding: string[];
+}
