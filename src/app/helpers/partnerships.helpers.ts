@@ -1,4 +1,5 @@
-import { PartnershipParams, PartnerParams } from '../services/partnerships.service';
+import { PartnerParams } from '../interfaces/partners';
+import { PartnershipParams } from '../interfaces/partnership';
 
 const STUDENT_TYPES = [
   'is_sms',
@@ -87,6 +88,8 @@ export function getPartnershipParams(query: any): PartnershipParams {
     type: query.type || '',
     ucl_university: query.ucl_university || '',
     ucl_university_labo: query.ucl_university_labo || '',
+    mobility_type: query.mobility_types || [],
+    funding: query.funding || []
   };
 }
 
@@ -103,5 +106,7 @@ export function getPartnerParams(query: any): PartnerParams {
     type: query.type || '',
     ucl_university: query.ucl_university || '',
     ucl_university_labo: query.ucl_university_labo || '',
+    mobility_type: query.mobility_types || [],
+    funding: query.funding || []
   };
 }

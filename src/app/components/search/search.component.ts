@@ -16,7 +16,6 @@ import { LoadingService } from 'src/app/services/loading.service.js';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   public model = {
-    type: 'partner',
     continent: '',
     country: '',
     city: '',
@@ -47,11 +46,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     new CheckboxItem('Student', 'Student'),
     new CheckboxItem('Staff', 'Staff'),
   ];
-  public fundingOptions = [
-    new CheckboxItem('Erasmus', 'Erasmus'),
-    new CheckboxItem('Belgica', 'Belgica'),
-    new CheckboxItem('Fame-Mercator', 'Fame-Mercator')
-  ];
+  public fundingOptions: CheckboxItem[] = [];
 
   public loaderStatus: boolean;
   private loaderStatus$: Subscription;
@@ -77,6 +72,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.partners$ = this.configurationService.partners;
     this.supervisors$ = this.configurationService.supervisors;
     this.uclUniversities$ = this.configurationService.uclUniversities;
+
+    // Fetch fundings options
+    this.configurationService.fundings.subscribe(fundings => {
+      fundings.map(funding => {
+        this.fundingOptions.push(new CheckboxItem(funding, funding));
+      });
+    });
 
     // Init form with url params
     this.route.queryParams
@@ -127,18 +129,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   searchPartners(event: any): void {
     event.preventDefault();
-    this.model.type = 'partners';
     // Reset current page to 1
     this.model.offset = 0;
     this.router.navigate(['/'], { queryParams: this.model });
   }
 
-  searchPartnerships(event: any)  {
-    event.preventDefault();
-    this.model.type = 'partnerships';
-    // Reset current page to 1
-    this.model.offset = 0;
-    this.router.navigate(['/'], { queryParams: this.model });
+  onMobilityTypesChange(value) {
+    this.model.mobility_types = value;
   }
 
   onFundingChange(value) {

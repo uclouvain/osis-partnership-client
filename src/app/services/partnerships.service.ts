@@ -5,8 +5,8 @@ import { tap, map, find, filter } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
-import Partnership, { ResultPartnerships } from '../interfaces/partnership';
-import Partner, { ResultPartners } from '../interfaces/partners';
+import Partnership, { ResultPartnerships, PartnershipParams } from '../interfaces/partnership';
+import Partner, { ResultPartners, PartnerParams } from '../interfaces/partners';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,42 +14,12 @@ const httpOptions = {
   })
 };
 
-export interface PartnershipParams {
-  campus: string;
-  city: string;
-  continent: string;
-  country: string;
-  education_field: string;
-  limit: number;
-  offset: number;
-  partner: string;
-  supervisor: string;
-  type: string;
-  ucl_university: string;
-  ucl_university_labo: string;
-}
-
-export interface PartnerParams {
-  campus: string;
-  city: string;
-  continent: string;
-  country: string;
-  education_field: string;
-  limit: number;
-  offset: number;
-  supervisor: string;
-  type: string;
-  ucl_university: string;
-  ucl_university_labo: string;
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class PartnershipsService {
   private cachePartnerships: BehaviorSubject<Partnership[]> = new BehaviorSubject([]);
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
-  private cachePartners$: Observable<ResultPartners>;
 
   constructor(
     private http: HttpClient
@@ -72,7 +42,7 @@ export class PartnershipsService {
    * or fetched
    */
   public getPartnership(id: string) {
-    if (this.cachePartners$) {
+    if (this.cachePartners.value.length > 0) {
       return this.cachePartnerships.pipe(
         map(partnerships => partnerships.find(partnership => {
           const partnershipId = partnership.url.split('/').reverse()[1];
@@ -85,14 +55,11 @@ export class PartnershipsService {
   }
 
   public searchPartners(query: PartnerParams): Observable<ResultPartners> {
-    if (!this.cachePartners$) {
-      this.cachePartners$ = this.requestPartners(query).pipe(
-        tap((partners) => {
-          this.cachePartners.next(partners.results);
-        })
-      );
-    }
-    return this.cachePartners$;
+    return this.requestPartners(query).pipe(
+      tap((partners) => {
+        this.cachePartners.next(partners.results);
+      })
+    );
   }
 
   /**
