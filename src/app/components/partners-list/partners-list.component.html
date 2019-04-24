@@ -10,29 +10,31 @@
   [rowHeight]="'auto'"
   [reorderable]="reorderable"
   [externalPaging]="true"
+  [externalSorting]="true"
   [count]="page.totalElements"
   [offset]="page.pageNumber"
   [limit]="page.size"
-  (page)='setPage($event)'>
-  <ngx-datatable-column [name]="'Name' | translate" props="name">
+  (page)='setPage($event)'
+  (sort)="onSort($event)">
+  <ngx-datatable-column [name]="'Name' | translate" prop="name">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'Country' | translate" props="country">
+  <ngx-datatable-column [name]="'Country' | translate" prop="country">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'City' | translate" props="city">
+  <ngx-datatable-column [name]="'City' | translate" prop="city">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column prop="" [name]="'Partnerships' | translate">
+  <ngx-datatable-column prop="" [name]="'Partnerships' | translate" [sortable]="false">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       <span *ngIf="value.partnerships_count === 0">{{ 'No partnership' | translate }}</span>
       <a *ngIf="value.partnerships_count === 1" href="#" (click)="goToPartnerships($event, value.uuid)">{{ 'See partnership' | translate }}</a>

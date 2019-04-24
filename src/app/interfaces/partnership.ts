@@ -50,4 +50,5 @@ export interface PartnershipParams {
   ucl_university_labo: string;
   mobility_type: string[];
   funding: string[];
+  ordering: string;
 }
