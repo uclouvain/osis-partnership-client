@@ -36,6 +36,15 @@ export class PartnersListComponent implements OnInit {
   ) {
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe((queryParams: any): any => {
+      this.fetchPartners(queryParams);
+    });
+  }
+
+  /**
+   * Back button, come back to partner
+   */
   goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
     // If multiple partnerships, go to partnership list modal
@@ -47,12 +56,9 @@ export class PartnersListComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe((queryParams: any): any => {
-      this.fetchPartners(queryParams);
-    });
-  }
-
+  /**
+   * Fetch partner's list with url filters params
+   */
   fetchPartners(queryParams): void {
     this.partnershipsService.searchPartners(getPartnerParams(queryParams))
       .subscribe((response: ResultPartners) => {
@@ -70,7 +76,6 @@ export class PartnersListComponent implements OnInit {
 
   /**
    * Populate the table with new data based on the page number
-   * @param page The page to select
    */
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
