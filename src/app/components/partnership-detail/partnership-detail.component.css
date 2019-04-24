@@ -11,3 +11,18 @@
 .detail-partnership__tab {
   padding: 1em 0;
 }
+
+.detail-partnership__name {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.detail-partnership__city {
+  font-style: italic;
+}
+
+.partnership__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

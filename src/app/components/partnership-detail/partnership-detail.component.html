@@ -7,15 +7,14 @@
   <dl class="detail-partnership">
     <dt *ngIf="data.partner.name">{{ 'Partner' | translate }}</dt>
     <dd *ngIf="data.partner.name">
-      {{data.partner.name}} <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span>
+      <a class="detail-partnership__name" [href]="data.partner.website" rel="noopener" target="blank">{{data.partner.name}}</a> <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span><br/>
+      <span class="detail-partnership__type" *ngIf="data.partner.partner_type">{{data.partner.partner_type}}<br/></span>
+      <span class="detail-partnership__city">{{data.partner.city}}, </span>
+      <span>{{data.partner.country}}</span>
     </dd>
 
-    <dt>{{ 'Faculty/Department' | translate }}</dt>
-    <dd></dd>
-
-    <dt *ngIf="data.partner.city">{{ 'City' | translate }}</dt>
-    <dd *ngIf="data.partner.city">{{data.partner.city}}</dd>
-
+    <dt *ngIf="data.partner_entity">{{ 'Faculty/Department' | translate }}</dt>
+    <dd *ngIf="data.partner_entity">{{data.partner_entity}}</dd>
 
     <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
     <dd *ngIf="data.education_fields">
@@ -24,11 +23,11 @@
       </ul>
     </dd>
 
-    <dt>{{ 'Faculty' | translate }}</dt>
-    <dd></dd>
-
-    <dt>{{ 'Department' | translate }}</dt>
-    <dd></dd>
+    <dt>{{ 'UCLouvain' | translate }}</dt>
+    <dd>
+        <span *ngIf="data.ucl_university.title">{{data.ucl_university.title}} ({{data.ucl_university.acronym}})<br/></span>
+        <span *ngIf="data.ucl_university_labo.title">{{data.ucl_university_labo.title}} ({{data.ucl_university_labo.acronym}})</span>
+    </dd>
 
     <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
     <dd *ngIf="data.supervisor">Prof. {{data.supervisor}}</dd>
@@ -55,11 +54,15 @@
             </ul>
           </dd>
 
-          <dt>{{ 'Entity' | translate }}</dt>
-          <dd>{{out_entities}}</dd>
+          <dt *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
+          <dd *ngIf="data.out_entities">{{data.out_entities}}</dd>
 
-          <dt>{{ 'Program' | translate }}</dt>
-          <dd>{{out_university_offers}}</dd>
+          <dt *ngIf="data.out_university_offers">{{ 'Program' | translate }}</dt>
+          <dd *ngIf="data.out_university_offers">
+            <ul *ngFor="let level of data.out_university_offers">
+              <li>{{level}}</li>
+            </ul>
+          </dd>
 
           <dt *ngIf="data.out_contact.name">{{ 'Contact person' | translate }}</dt>
           <dd *ngIf="data.out_contact.name">{{data.out_contact.name}}</dd>
@@ -71,21 +74,14 @@
           <dd *ngIf="data.out_portal">{{data.out_portal}}</dd>
 
           <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
-          <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
+          <dd *ngIf="data.out_funding">
+            <a [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
+          </dd>
 
           <dt>{{ 'Contact person in partner institution' | translate }}</dt>
           <dd></dd>
 
-          <dt>{{ 'Fact sheet' | translate }}</dt>
-          <dd></dd>
-
-          <dt>{{ 'Bilateral agreement' | translate }}</dt>
-          <dd></dd>
-
           <dt>{{ 'Individual évaluation reports' | translate }}</dt>
-          <dd></dd>
-
-          <dt>{{ 'Summary table' | translate }}</dt>
           <dd></dd>
 
           <dt>Medias</dt>
@@ -138,12 +134,6 @@
             <span *ngIf="data.in_contact.phone">{{data.in_contact.phone}}<br></span>
             <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
           </dd>
-
-          <dt>{{ 'Fact sheet' | translate }}</dt>
-          <dd></dd>
-
-          <dt>{{ 'Bilateral agreement' | translate }}</dt>
-          <dd></dd>
 
           <dt *ngIf="data.out_funding">Funding</dt>
           <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
