@@ -40,8 +40,7 @@ export class PartnershipListComponent implements OnInit {
         if (response && response.results) {
           this.page.totalElements = response.count;
           this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
-          this.page.pageNumber = Math.floor(queryParams.offset / +this.page.size);
-
+          this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
           this.rows = response.results.map((partner: Partnership) => ({
             ...partner,
             mobility_type: partner && getMobilityType(partner),

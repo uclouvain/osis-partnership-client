@@ -34,10 +34,17 @@ export class ModalPartnerComponent implements OnInit {
     });
   }
 
+  /**
+   * Close modal, come back to partners list
+   */
   goToSearch() {
     this.router.navigate([''], { preserveQueryParams: true });
   }
 
+  /**
+   * Fetch partnrships for this partner, if there's only a single partnership,
+   * redirect to this partnership's detail view
+   */
   fetchPartnerships({ partnerFilter, ...queryParams}, { id }): void {
     this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {

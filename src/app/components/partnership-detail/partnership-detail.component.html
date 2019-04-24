@@ -81,17 +81,17 @@
           <dt>{{ 'Contact person in partner institution' | translate }}</dt>
           <dd></dd>
 
-          <dt>{{ 'Individual évaluation reports' | translate }}</dt>
+          <dt>{{ 'Individual evaluation reports' | translate }}</dt>
           <dd></dd>
 
-          <dt>Medias</dt>
+          <dt>{{ 'Medias' | translate }}</dt>
           <dd></dd>
         </dl>
       </div>
     </tab>
     <tab>
       <ng-template tabHeading>
-        Information for incoming students
+        {{ 'Information for incoming students' | translate }}
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
@@ -104,13 +104,13 @@
           <dt *ngIf="data.in_portal">{{ 'Portal (sigle FAC) incoming exchange students' | translate }}</dt>
           <dd *ngIf="data.in_portal">{{data.in_portal}}</dd>
 
-          <dt>Admission</dt>
+          <dt>{{ 'Admission' | translate }}</dt>
           <dd></dd>
 
-          <dt>Course catalogue</dt>
+          <dt>{{ 'Course catalogue' | translate }}</dt>
           <dd></dd>
 
-          <dt>Useful links</dt>
+          <dt>{{ 'Useful links' | translate }}</dt>
           <dd>
             <a target="blank" ref="noopener"
               href="https://uclouvain.be/fr/etudier/etudiant-echange.html">https://uclouvain.be/fr/etudier/etudiant-echange.html</a>
@@ -120,11 +120,11 @@
     </tab>
     <tab>
       <ng-template tabHeading>
-        Information for outgoing teaching staff
+        {{ 'Information for outgoing teaching staff' | translate }}
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.staff_contact_name">Contact person</dt>
+          <dt *ngIf="data.staff_contact_name">{{ 'Contact person' | translate }}</dt>
           <dd *ngIf="data.staff_contact_name">{{data.staff_contact_name}}</dd>
 
           <dt>{{ 'Contact person in partner institution' | translate }}</dt>
@@ -135,13 +135,13 @@
             <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
           </dd>
 
-          <dt *ngIf="data.out_funding">Funding</dt>
+          <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
           <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
 
-          <dt *ngIf="data.out_contact.email">E-mail</dt>
+          <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
           <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
 
-          <dt>Medias</dt>
+          <dt>{{ 'Medias' | translate }}</dt>
           <dd></dd>
         </dl>
       </div>

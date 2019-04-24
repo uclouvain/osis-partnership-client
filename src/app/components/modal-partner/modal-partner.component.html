@@ -1,11 +1,9 @@
 <div #modal="bs-modal" bsModal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1"
-  (onHide)="goToSearch($event)" [config]="{ show: true }">
+  (onHide)="goToSearch()" [config]="{ show: true }">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left" *ngIf="partner">
-          <!-- <button class="btn btn-link" (click)="goToList(data.partner.uuid)"><i class="fa fa-chevron-left"
-              aria-hidden="true"></i> Back to list</button> -->
           Partnership with {{partner.name}}
         </h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">

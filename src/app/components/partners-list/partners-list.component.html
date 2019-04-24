@@ -1,4 +1,4 @@
-<h2>Partners</h2>
+<h2>{{ 'Partners' | translate }}</h2>
 
 <ngx-datatable
   class="bootstrap"
@@ -7,9 +7,13 @@
   [columnMode]="'force'"
   [headerHeight]="40"
   [footerHeight]="40"
-  [limit]="10"
   [rowHeight]="'auto'"
-  [reorderable]="reorderable">
+  [reorderable]="reorderable"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.pageNumber"
+  [limit]="page.size"
+  (page)='setPage($event)'>
   <ngx-datatable-column [name]="'Name' | translate" props="name">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
@@ -30,9 +34,9 @@
 
   <ngx-datatable-column prop="" [name]="'Partnerships' | translate">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <span *ngIf="value.partnerships_count === 0">Aucun partenariat</span>
-      <a *ngIf="value.partnerships_count === 1" href="#" (click)="goToPartnerships($event, value.uuid)">Voir le partenariat</a>
-      <a *ngIf="value.partnerships_count > 1" href="#" (click)="goToPartnerships($event, value.uuid)">Voir les {{value.partnerships_count}} partenariats</a>
+      <span *ngIf="value.partnerships_count === 0">{{ 'No partnership' | translate }}</span>
+      <a *ngIf="value.partnerships_count === 1" href="#" (click)="goToPartnerships($event, value.uuid)">{{ 'See partnership' | translate }}</a>
+      <a *ngIf="value.partnerships_count > 1" href="#" (click)="goToPartnerships($event, value.uuid)">{{ 'See {value} partnerships' | translate: { value: value.partnerships_count } }}</a>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>

@@ -25,10 +25,6 @@ describe('workspace-project App', () => {
     expect(page.erasmus.isSelected()).toBe(false);
   });
 
-  it('should display 25 total', () => {
-    expect(page.getTotalCount()).toEqual('25 total');
-  });
-
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
