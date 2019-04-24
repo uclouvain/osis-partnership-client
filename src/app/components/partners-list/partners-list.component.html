@@ -7,9 +7,13 @@
   [columnMode]="'force'"
   [headerHeight]="40"
   [footerHeight]="40"
-  [limit]="10"
   [rowHeight]="'auto'"
-  [reorderable]="reorderable">
+  [reorderable]="reorderable"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.pageNumber"
+  [limit]="page.size"
+  (page)='setPage($event)'>
   <ngx-datatable-column [name]="'Name' | translate" props="name">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
