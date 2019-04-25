@@ -50,14 +50,14 @@
 
       <div class="form-group">
         <label for="partner">{{ 'Partner institution' | translate }}</label>
-        <input [(ngModel)]="model.partner" name="partner" class="form-control" id="partner" [typeahead]="partners$"
-          typeaheadOptionField="label" autocomplete="off">
+        <input [(ngModel)]="model.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
+          typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true">
       </div>
 
       <div class="form-group">
         <label for="education_field">{{ 'Subject Area' | translate }}</label>
-        <input [(ngModel)]="model.education_field" name="education_field" class="form-control" id="education_field"
-          [typeahead]="educationFields" typeaheadOptionField="label" autocomplete="off">
+        <input [(ngModel)]="model.education_field" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
+          [typeahead]="educationFields" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
       </div>
     </div>
   </div>

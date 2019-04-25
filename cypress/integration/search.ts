@@ -30,7 +30,54 @@ describe('Search form', () => {
     cy.get('input#Test').should('exist');
   });
 
-  it('should open a list of ', () => {
-    cy.get('[name=continent]').type('Eur');
+  it('ucl_university field open typeahead', () => {
+    cy.wait('@getConfiguration');
+    cy.get('[name=ucl_university]')
+      .type('A')
+      .siblings('typeahead-container')
+      .should('exist');
+  });
+
+  it('supervisor field open typeahead', () => {
+    cy.wait('@getConfiguration');
+    cy.get('[name=supervisor]')
+      .type('A')
+      .siblings('typeahead-container')
+      .should('exist');
+  });
+
+  it('continent field open typeahead, then show country field', () => {
+    cy.wait('@getConfiguration');
+    cy.get('[name=continent]')
+      .type('Eur')
+      .siblings('typeahead-container')
+      .should('exist');
+
+    cy.get('[name=continent]')
+      .type('{enter}')
+      .should('have.value', 'Europe')
+      .get('[name=country]')
+      .should('exist');
+
+    cy.get('[name=country]')
+      .type('Belg')
+      .type('{enter}')
+      .should('have.value', 'Belgique');
+  });
+
+  it('partner field open typeahead', () => {
+    cy.wait('@getConfiguration');
+    cy.get('[name=partner]')
+      .type('A')
+      .siblings('typeahead-container')
+      .should('exist');
+  });
+
+  it('education_field field open typeahead', () => {
+    cy.wait('@getConfiguration');
+    cy.get('[name=education_field]')
+      .type('A')
+      .siblings('typeahead-container')
+      .should('exist');
   });
 });
