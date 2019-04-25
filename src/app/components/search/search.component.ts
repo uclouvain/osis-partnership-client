@@ -22,7 +22,7 @@ const defaultModel = {
   campus: '',
   supervisor: '',
   education_field: '',
-  mobility_type: ['student'],
+  mobility_type: ['student', 'staff'],
   funding: [],
   limit: 25,
   offset: 0
@@ -108,7 +108,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.config = config;
       // Fundings options
       config.fundings.map(funding => {
-        this.fundingOptions.push(new CheckboxItem(funding, funding));
+        this.fundingOptions.push(new CheckboxItem(funding, funding, true));
       });
       // Typeahead list options
       this.continents = getValueLabelList(config.continents);
