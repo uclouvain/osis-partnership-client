@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { map, delay } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { map, delay, first } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import { ValueLabel } from 'src/app/interfaces/common';
@@ -12,27 +12,38 @@ import { getValueLabelList, getFormattedItemsList, getLabel } from 'src/app/help
 import { Configuration } from 'src/app/interfaces/configuration.js';
 import { getCleanParams } from 'src/app/helpers/partnerships.helpers.js';
 
+const defaultModel = {
+  continent: '',
+  country: '',
+  city: '',
+  partner: '',
+  ucl_university: '',
+  ucl_university_labo: '',
+  campus: '',
+  supervisor: '',
+  education_field: '',
+  mobility_type: ['student'],
+  funding: [],
+  limit: 25,
+  offset: 0
+};
+
+const defaultFields = {
+  country: '',
+  uclUniversity: '',
+  uclUniversityLabo: '',
+  supervisor: '',
+  educationField: '',
+};
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  public model = {
-    continent: '',
-    country: '',
-    city: '',
-    partner: '',
-    ucl_university: '',
-    ucl_university_labo: '',
-    campus: '',
-    supervisor: '',
-    education_field: '',
-    mobility_type: ['student'],
-    funding: [],
-    limit: 25,
-    offset: 0
-  };
+  public model = {...defaultModel};
+  public fields = {...defaultFields};
 
   public config: Configuration;
   public continents: ValueLabel[];
@@ -42,12 +53,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public supervisors: ValueLabel[];
   public uclUniversities: ValueLabel[];
   public uclUniversitiesLabo: ValueLabel[];
-
-  public countryInput = '';
-  public uclUniversityInput = '';
-  public uclUniversityLaboInput = '';
-  public supervisorInput = '';
-  public educationFieldInput = '';
 
   public noContinent = false;
   public mobilityTypesOptions = [
@@ -77,6 +82,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     // Init form with url params
     this.route.queryParams
       .pipe(
+        first(),
         // mobility_type and funding need to be arrays
         map(params => ({
           ...this.model,
@@ -91,48 +97,50 @@ export class SearchComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe(params => {
-        // Fetch configuration data from server
-        this.configurationService.all().subscribe(config => {
-          this.config = config;
-          // Fundings options
-          config.fundings.map(funding => {
-            this.fundingOptions.push(new CheckboxItem(funding, funding));
-          });
-          // Typeahead list options
-          this.continents = getValueLabelList(config.continents);
-          this.educationFields = getFormattedItemsList(config.education_fields);
-          this.partners = getFormattedItemsList(config.partners);
-          this.supervisors = getFormattedItemsList(config.supervisors);
-          this.uclUniversities = getFormattedItemsList(config.ucl_universities);
-
-          // Init default input values from url params
-          if (params.continent) {
-            this.onContinentChanged({ value: params.continent });
-            if (params.country) {
-              this.countryInput = getLabel(this.countries, params.country);
-            }
-          }
-
-
-          if (params.ucl_university) {
-            this.uclUniversityInput = getLabel(this.uclUniversities, params.ucl_university);
-            this.onUclUniversityChanged({ value: this.uclUniversityInput });
-            if (params.ucl_university_labo) {
-              this.uclUniversityLaboInput = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
-            }
-          }
-
-          if (params.supervisor) {
-            this.supervisorInput = getLabel(this.supervisors, params.supervisor);
-          }
-
-          if (params.education_field) {
-            this.educationFieldInput = getLabel(this.educationFields, params.education_field);
-          }
-        });
-
+        this.initFormFields(params);
         this.model = params;
       });
+  }
+
+  initFormFields(params) {
+    // Fetch configuration data from server
+    this.configurationService.all().subscribe(config => {
+      this.config = config;
+      // Fundings options
+      config.fundings.map(funding => {
+        this.fundingOptions.push(new CheckboxItem(funding, funding));
+      });
+      // Typeahead list options
+      this.continents = getValueLabelList(config.continents);
+      this.educationFields = getFormattedItemsList(config.education_fields);
+      this.partners = getFormattedItemsList(config.partners);
+      this.supervisors = getFormattedItemsList(config.supervisors);
+      this.uclUniversities = getFormattedItemsList(config.ucl_universities);
+
+      // Init default  values from url params
+      if (params.continent) {
+        this.onContinentChanged({ value: params.continent });
+        if (params.country) {
+          this.fields.country = getLabel(this.countries, params.country);
+        }
+      }
+
+      if (params.ucl_university) {
+        this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
+        this.onUclUniversityChanged({ value: this.fields.uclUniversity });
+        if (params.ucl_university_labo) {
+          this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
+        }
+      }
+
+      if (params.supervisor) {
+        this.fields.supervisor = getLabel(this.supervisors, params.supervisor);
+      }
+
+      if (params.education_field) {
+        this.fields.educationField = getLabel(this.educationFields, params.education_field);
+      }
+    });
   }
 
   /**
@@ -155,9 +163,7 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set country code in model for request
    */
   onCountryChanged = (event: any): void => {
-    if (event.item) {
-      this.model.country = event.item.id;
-    }
+    this.model.country = event.item ? event.item.id : '';
   }
 
   /**
@@ -165,40 +171,41 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set uclUniversitiesLabo for this ucl_university
    */
   onUclUniversityChanged = (event: any): void => {
+    console.log('onUclUniversityChanged');
     if (event.value && this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
     }
 
-    if (event.item) {
-      this.model.ucl_university = event.item.id;
-    }
+    this.model.ucl_university = event.item ? event.item.id : '';
   }
 
   /**
    * Set ucl_university_labo uuid in model for request
    */
   onUclUniversityLaboChanged = (event: any): void => {
-    if (event.item) {
-      this.model.ucl_university_labo = event.item.id;
-    }
+    this.model.ucl_university_labo = event.item ? event.item.id : '';
   }
 
   /**
    * Set supervisor uuid in model for request
    */
   onSupervisorChanged = (event: any): void => {
-    if (event.item) {
-      this.model.supervisor = event.item.id;
-    }
+    this.model.supervisor = event.item ? event.item.id : '';
   }
 
   /**
    * Set education_field uuid in model for request
    */
   onEducationFieldChanged = (event: any): void => {
-    if (event.item) {
-      this.model.education_field = event.item.id;
-    }
+    this.model.education_field = event.item ? event.item.id : '';
+  }
+
+  onMobilityTypesChange(value) {
+    this.model.mobility_type = value;
+  }
+
+  onFundingChange(value) {
+    this.model.funding = value;
   }
 
   searchPartners(event: any): void {
@@ -208,11 +215,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
   }
 
-  onMobilityTypesChange(value) {
-    this.model.mobility_type = value;
-  }
-
-  onFundingChange(value) {
-    this.model.funding = value;
+  resetForm() {
+    this.fields = defaultFields;
+    this.model = defaultModel;
+    this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
   }
 }
