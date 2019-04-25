@@ -89,14 +89,13 @@ export class SharedModule {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('fr');
 
-    if (window.location.href.includes('/fr/')) {
-      // the lang to use, if the lang isn't available, it will use the current loader to get them
-     translate.use('fr');
+    if (window.location.pathname.startsWith('/fr/')) {
+      translate.use('fr');
     }
 
-    if (window.location.href.includes('/en/')) {
+    if (window.location.pathname.startsWith('/en/')) {
       // the lang to use, if the lang isn't available, it will use the current loader to get them
-     translate.use('en');
+      translate.use('en');
     }
   }
 }
