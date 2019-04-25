@@ -1,34 +1,34 @@
 <form #f="ngForm" class="partnership__form">
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group" *ngIf="uclUniversities">
         <label for="ucl_university">{{ 'Faculty' | translate }}</label>
-        <input [(ngModel)]="model.ucl_university" name="ucl_university" class="form-control" id="uclUniversity"
-          [typeahead]="uclUniversities" (typeaheadOnSelect)="getUclUniversitiesLabo($event)"
+        <input [(ngModel)]="uclUniversityInput" name="ucl_university" class="form-control" id="uclUniversity"
+          [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversityChanged($event)"
           typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
       </div>
 
       <div class="form-group" *ngIf="uclUniversitiesLabo && uclUniversitiesLabo.length > 0">
         <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
-        <input [(ngModel)]="model.ucl_university_labo" name="ucl_university_labo" class="form-control"
-          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo"
+        <input [(ngModel)]="uclUniversityLaboInput" name="ucl_university_labo" class="form-control"
+          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboChanged($event)"
           typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
       </div>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="campus">{{ 'Campus' | translate }}</label>
         <input [(ngModel)]="model.campus" name="campus" class="form-control" id="campus" autocomplete="off">
-      </div>
+      </div> -->
 
       <div class="form-group" *ngIf="supervisors">
         <label for="supervisor">{{ 'UCLouvain coordinator' | translate }}</label>
-        <input [(ngModel)]="model.supervisor" name="supervisor" class="form-control" id="supervisor" [typeaheadScrollable]="true"
-          [typeahead]="supervisors" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
+        <input [(ngModel)]="supervisorInput" name="supervisor" class="form-control" id="supervisor" [typeaheadScrollable]="true"
+          [typeahead]="supervisors" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" (typeaheadOnSelect)="onSupervisorChanged($event)">
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group" *ngIf="continents">
         <label for="continent">{{ 'Continent' | translate }}</label>
         <input [(ngModel)]="model.continent" name="continent" [typeahead]="continents"
           typeaheadOptionField="label" class="form-control" (typeaheadNoResults)="typeaheadNoContinent($event)" typeaheadOptionsLimit="2000"
@@ -38,7 +38,7 @@
 
       <div class="form-group" *ngIf="countries">
         <label for="country">{{ 'Country' | translate }}</label>
-        <input [(ngModel)]="continentLabel" name="country" [typeahead]="countries" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
+        <input [(ngModel)]="countryInput" name="country" [typeahead]="countries" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
           typeaheadOptionField="label" (typeaheadOnSelect)="onCountryChanged($event)" class="form-control" id="country"
           autocomplete="off">
       </div>
@@ -48,16 +48,16 @@
         <input [(ngModel)]="model.city" name="city" class="form-control" id="city">
       </div>
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="partners">
         <label for="partner">{{ 'Partner institution' | translate }}</label>
         <input [(ngModel)]="model.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
           typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true">
       </div>
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="educationFields">
         <label for="education_field">{{ 'Subject Area' | translate }}</label>
-        <input [(ngModel)]="model.education_field" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
-          [typeahead]="educationFields" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
+        <input [(ngModel)]="educationFieldInput" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
+          [typeahead]="educationFields" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" (typeaheadOnSelect)="onEducationFieldChanged($event)">
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
   <div class="form-group">
     <label>{{ 'Mobility Type' | translate }}</label>
     <app-checkbox-group [options]="mobilityTypesOptions" (toggle)="onMobilityTypesChange($event)"
-      [selectedValues]="model.mobility_types">
+      [selectedValues]="model.mobility_type">
     </app-checkbox-group>
   </div>
 
@@ -74,7 +74,7 @@
     <app-checkbox-group [options]="fundingOptions" [selectedValues]="model.funding" (toggle)="onFundingChange($event)">
     </app-checkbox-group>
   </div>
-  <button [disabled]="loaderStatus" type="button" class="btn btn-primary"
+  <button [disabled]="loaderStatus" type="button" class="btn btn-primary" id="search-partners"
     (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
 </form>
 

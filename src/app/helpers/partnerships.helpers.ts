@@ -74,8 +74,22 @@ export function getMobilityType(partnership) {
   return mobilityType;
 }
 
+/**
+ * Remove empty element from params object
+ */
+export function getCleanParams(params) {
+  const cleanParams = {};
+  Object.keys(params).map(key => {
+    if (params[key] && params[key].length > 0) {
+      cleanParams[key] = params[key];
+    }
+  });
+  return cleanParams;
+}
+
+
 export function getPartnershipParams(query: any): PartnershipParams {
-  return {
+  return getCleanParams({
     campus: query.campus || '',
     city: query.city || '',
     continent: query.continent || '',
@@ -88,14 +102,14 @@ export function getPartnershipParams(query: any): PartnershipParams {
     type: query.type || '',
     ucl_university: query.ucl_university || '',
     ucl_university_labo: query.ucl_university_labo || '',
-    mobility_type: query.mobility_types || [],
+    mobility_type: query.mobility_type || [],
     funding: query.funding || [],
     ordering: query.orderingPartnership || ''
-  };
+  });
 }
 
 export function getPartnerParams(query: any): PartnerParams {
-  return {
+  return getCleanParams({
     campus: query.campus || '',
     city: query.city || '',
     continent: query.continent || '',
@@ -107,8 +121,8 @@ export function getPartnerParams(query: any): PartnerParams {
     type: query.type || '',
     ucl_university: query.ucl_university || '',
     ucl_university_labo: query.ucl_university_labo || '',
-    mobility_type: query.mobility_types || [],
+    mobility_type: query.mobility_type || [],
     funding: query.funding || [],
     ordering: query.ordering || ''
-  };
+  });
 }
