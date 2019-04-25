@@ -81,8 +81,8 @@ export function getPartnershipParams(query: any): PartnershipParams {
     continent: query.continent || '',
     country: query.country || '',
     education_field: query.education_field || '',
-    limit: query.limit || '',
-    offset: query.offset || '',
+    limit: query.limitPartnership || '',
+    offset: query.offsetPartnership || '',
     partner: query.partner || '',
     supervisor: query.supervisor || '',
     type: query.type || '',
@@ -90,7 +90,7 @@ export function getPartnershipParams(query: any): PartnershipParams {
     ucl_university_labo: query.ucl_university_labo || '',
     mobility_type: query.mobility_types || [],
     funding: query.funding || [],
-    ordering: query.ordering || ''
+    ordering: query.orderingPartnership || ''
   };
 }
 

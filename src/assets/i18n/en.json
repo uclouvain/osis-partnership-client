@@ -48,6 +48,7 @@
   "Course catalogue": "Course catalogue",
   "Admission": "Admission",
   "No partnership": "No partnership",
-  "See partnership": "Voir le partenariat",
-  "See {value} partnerships": "Voir les {{value}} partenariats"
+  "See partnership": "See partnership",
+  "See {value} partnerships": "See {{value}} partnerships",
+  "Go to partners website": "Go to partner's website"
 }

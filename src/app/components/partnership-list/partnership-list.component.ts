@@ -61,6 +61,23 @@ export class PartnershipListComponent implements OnInit {
     return [`/partner/${value.partner.uuid}/partnership/${value.url.split('/').reverse()[1]}`];
   }
 
+  /**
+   * Populate the table with new data based on the page number
+   */
+  setPage(pageInfo) {
+    this.page.pageNumber = +pageInfo.offset;
+    const offset = +pageInfo.offset * this.page.size;
+    this.router.navigate(['/'], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        offsetPartnership: offset
+      }
+    });
+  }
+
+  /**
+   * Add ordering filter
+   */
   onSort(event) {
     const order = event.newValue;
     let orderColumn = event.column.prop;
@@ -75,7 +92,7 @@ export class PartnershipListComponent implements OnInit {
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
     this.router.navigate(['/'], {
       queryParamsHandling: 'merge',
-      queryParams: { ordering }
+      queryParams: { orderingPartnership: ordering }
     });
   }
 }

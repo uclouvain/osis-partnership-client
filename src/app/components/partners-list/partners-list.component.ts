@@ -88,6 +88,9 @@ export class PartnersListComponent implements OnInit {
     });
   }
 
+  /**
+   * Add ordering filter
+   */
   onSort(event) {
     const order = event.newValue;
     let orderColumn = event.column.prop;
