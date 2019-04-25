@@ -1,4 +1,4 @@
-import { navigateTo, getH1, getInputStudent, getInputStaff, search } from '../support/po';
+import { navigateTo, getH1, getInputStudent, getInputStaff, search, resetForm } from '../support/po';
 
 describe('Search fields', () => {
   beforeEach(() => {
@@ -97,6 +97,28 @@ describe('Search url params', () => {
     cy.wait('@getConfiguration');
 
     search();
+    cy.url().should('include', '?mobility_type=student');
+  });
+
+  it('should add url params and clear it if removed', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+
+    // Country text and clear
+    cy.get('[name=continent]')
+      .type('Asia')
+      .type('{enter}')
+      .should('have.value', 'Asia');
+
+    cy.get('[name=country]')
+      .type('Japo')
+      .type('{enter}')
+      .should('have.value', 'Japon');
+
+    search();
+    cy.url().should('include', '?continent=Asia&country=JP&mobility_type=student');
+
+    resetForm();
     cy.url().should('include', '?mobility_type=student');
   });
 
