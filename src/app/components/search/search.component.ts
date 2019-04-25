@@ -8,6 +8,8 @@ import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
 import { ValueLabel } from 'src/app/interfaces/common';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { LoadingService } from 'src/app/services/loading.service.js';
+import { getValueLabelList } from 'src/app/helpers/list.helpers.js';
+import { Configuration } from 'src/app/interfaces/configuration.js';
 
 @Component({
   selector: 'app-search',
@@ -31,14 +33,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     offset: 0
   };
 
-  // Fields from configuration
-  public continents$: Observable<ValueLabel[]>;
-  public countries$: Observable<ValueLabel[]>;
-  public educationFields$: Observable<ValueLabel[]>;
-  public partners$: Observable<ValueLabel[]>;
-  public supervisors$: Observable<ValueLabel[]>;
-  public uclUniversities$: Observable<ValueLabel[]>;
-  public uclUniversitiesLabo$: Observable<ValueLabel[]>;
+  public config: Configuration;
+  public continents: ValueLabel[];
+  public countries: ValueLabel[];
+  public educationFields: ValueLabel[];
+  public partners: ValueLabel[];
+  public supervisors: ValueLabel[];
+  public uclUniversities: ValueLabel[];
+  public uclUniversitiesLabo: ValueLabel[];
 
   public continentLabel = '';
   public noContinent = false;
@@ -59,6 +61,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(delay(0)).subscribe(status => (this.loaderStatus = status));
+
+    // Fetch configuration data from server
+    this.configurationService.all().subscribe(config => {
+      this.config = config;
+      // Fundings options
+      config.fundings.map(funding => {
+        this.fundingOptions.push(new CheckboxItem(funding, funding));
+      });
+      this.continents = getValueLabelList(config.continents);
+      this.educationFields = config.education_fields;
+      this.partners = config.partners;
+      this.supervisors = config.supervisors;
+      this.uclUniversities = config.ucl_universities;
+    });
   }
 
   ngOnDestroy(): void {
@@ -66,20 +82,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Fetch configuration data from server
-    this.continents$ = this.configurationService.continents;
-    this.educationFields$ = this.configurationService.educationFields;
-    this.partners$ = this.configurationService.partners;
-    this.supervisors$ = this.configurationService.supervisors;
-    this.uclUniversities$ = this.configurationService.uclUniversities;
-
-    // Fetch fundings options
-    this.configurationService.fundings.subscribe(fundings => {
-      fundings.map(funding => {
-        this.fundingOptions.push(new CheckboxItem(funding, funding));
-      });
-    });
-
     // Init form with url params
     this.route.queryParams
       .pipe(
@@ -110,7 +112,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   onContinentChanged(event: any): void {
     if (event.value) {
-      this.countries$ = this.configurationService.getCoutries(event.value);
+      this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
+      console.log(this.countries)
     }
   }
 
@@ -123,7 +126,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   getUclUniversitiesLabo(event: any): void {
     if (event.value) {
-      this.uclUniversitiesLabo$ = this.configurationService.getUclUniversitiesLabo(event.value);
+      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
     }
   }
 

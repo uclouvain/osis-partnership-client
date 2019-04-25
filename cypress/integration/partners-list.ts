@@ -1,6 +1,6 @@
-import { navigateTo, getH1 } from '../support/po';
+import { navigateTo, getH1, getInputStudent, getInputStaff } from '../support/po';
 
-describe('Hello Angular', () => {
+describe('Partners list', () => {
   beforeEach(navigateTo);
 
   it('should display welcome message', () => {
