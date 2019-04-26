@@ -39,6 +39,8 @@
   "Entity": "Commissions de programme",
   "Program": "Programme",
   "Contact person": "Personne de contact",
+  "Contact person IN": "Personne de contact IN",
+  "Contact person OUT": "Personne de contact OUT",
   "E-mail": "Adresse de courriel",
   "Portal (sigle FAC) Outgoing": "Portal (sigle FAC) étudiants partants",
   "Funding": "Financement",
@@ -56,5 +58,8 @@
   "No partnership": "Aucun partenariat",
   "See partnership": "Voir le partenariat",
   "See {value} partnerships": "Voir les {{value}} partenariats",
-  "Go to partners website": "Voir le site du partenaire"
+  "Go to partners website": "Voir le site du partenaire",
+  "Failed to load configuration": "Une erreur s'est produite lors du chargement de la configuration",
+  "Failed to load partners list": "Une erreur s'est produite lors du chargement des partenaires",
+  "Failed to load partner detail": "Une erreur s'est produite lors du chargement du détail du partenaire"
 }

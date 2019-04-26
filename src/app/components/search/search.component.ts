@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { map, delay, first } from 'rxjs/operators';
+import { map, delay, first, catchError } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
@@ -44,6 +44,8 @@ const defaultFields = {
 export class SearchComponent implements OnInit, OnDestroy {
   public model = {...defaultModel};
   public fields = {...defaultFields};
+
+  public configError = false;
 
   public config: Configuration;
   public continents: ValueLabel[];
@@ -104,7 +106,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   initFormFields(params) {
     // Fetch configuration data from server
-    this.configurationService.all().subscribe(config => {
+    this.configurationService.all()
+    .pipe(
+      catchError((): any => {
+        this.configError = true;
+      })
+    )
+    .subscribe((config: Configuration) => {
+      this.configError = false;
       this.config = config;
       // Fundings options
       config.fundings.map(funding => {

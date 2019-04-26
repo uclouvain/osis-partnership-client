@@ -82,7 +82,7 @@
     (click)="resetForm($event)">{{ 'Reset form' | translate }}</button>
 </form>
 
-<app-error-message></app-error-message>
+<app-error-message [title]="'Failed to load configuration' | translate" *ngIf="configError"></app-error-message>
 
 <app-partners-list></app-partners-list>
 

@@ -12,7 +12,7 @@ import { PartnershipsService } from 'src/app/services/partnerships.service';
 })
 export class ModalPartnerComponent implements OnInit {
   public partner: Partner;
-
+  public partnerDetail: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -49,6 +49,7 @@ export class ModalPartnerComponent implements OnInit {
     this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results && response.results.length === 1) {
+          this.partnerDetail = response.results;
           // If single partnership, go to detail of this partnership
           const partnership = response.results[0];
           const partnershipId = partnership.url.split('/').reverse()[1];

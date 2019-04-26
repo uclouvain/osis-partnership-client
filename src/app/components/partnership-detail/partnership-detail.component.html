@@ -1,4 +1,5 @@
 <app-loader *ngIf="!data"></app-loader>
+
 <div *ngIf="data">
   <a class="btn btn-link" [routerLink]="['/partner', data.partner.uuid]" queryParamsHandling="merge">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -64,8 +65,10 @@
             </ul>
           </dd>
 
-          <dt *ngIf="data.out_contact.name">{{ 'Contact person' | translate }}</dt>
-          <dd *ngIf="data.out_contact.name">{{data.out_contact.name}}</dd>
+          <dt *ngIf="data.out_contact.first_name">{{ 'Contact person OUT' | translate }}</dt>
+          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+            {{data.out_contact.first_name}} {{data.out_contact.last_name}}
+          </dd>
 
           <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
           <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
@@ -79,13 +82,22 @@
           </dd>
 
           <dt>{{ 'Contact person in partner institution' | translate }}</dt>
-          <dd></dd>
+          <dd>
+            <span *ngIf="data.out_partner_contact.first_name || data.out_partner_contact.last_name">
+              {{data.out_partner_contact.first_name}} {{data.out_partner_contact.last_name}}<br></span>
+            <span *ngIf="data.out_partner_contact.phone">{{data.out_partner_contact.phone}}<br></span>
+            <a href="mailto:{{data.out_partner_contact.email}}" *ngIf="data.out_partner_contact.email">{{data.staff_partner_contact.email}}</a>
+          </dd>
 
           <dt>{{ 'Individual evaluation reports' | translate }}</dt>
           <dd></dd>
 
-          <dt>{{ 'Medias' | translate }}</dt>
-          <dd></dd>
+          <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
+          <dd *ngIf="data.medias && data.medias.length > 0">
+            <ul *ngFor="let level of data.medias">
+              <li>{{level}}</li>
+            </ul>
+          </dd>
         </dl>
       </div>
     </tab>
@@ -95,7 +107,7 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.in_contact.name">{{ 'Contact person' | translate }}</dt>
+          <dt *ngIf="data.in_contact.name">{{ 'Contact person IN' | translate }}</dt>
           <dd *ngIf="data.in_contact.name">{{data.in_contact.name}}</dd>
 
           <dt *ngIf="data.in_contact.email">{{ 'E-mail' | translate }}</dt>
@@ -129,10 +141,10 @@
 
           <dt>{{ 'Contact person in partner institution' | translate }}</dt>
           <dd>
-            <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}}
-              {{data.in_contact.last_name}}<br></span>
-            <span *ngIf="data.in_contact.phone">{{data.in_contact.phone}}<br></span>
-            <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
+            <span *ngIf="data.staff_partner_contact.first_name || data.staff_partner_contact.last_name">
+              {{data.staff_partner_contact.first_name}} {{data.staff_partner_contact.last_name}}<br></span>
+            <span *ngIf="data.staff_partner_contact.phone">{{data.staff_partner_contact.phone}}<br></span>
+            <a href="mailto:{{data.staff_partner_contact.email}}" *ngIf="data.staff_partner_contact.email">{{data.staff_partner_contact.email}}</a>
           </dd>
 
           <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
@@ -141,8 +153,12 @@
           <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
           <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
 
-          <dt>{{ 'Medias' | translate }}</dt>
-          <dd></dd>
+          <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
+          <dd *ngIf="data.medias && data.medias.length > 0">
+            <ul *ngFor="let level of data.medias">
+              <li>{{level}}</li>
+            </ul>
+          </dd>
         </dl>
       </div>
     </tab>

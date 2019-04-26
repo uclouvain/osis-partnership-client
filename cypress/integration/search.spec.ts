@@ -21,13 +21,16 @@ describe('Search fields', () => {
   });
 
   it('should display Staff not selected checkbox', () => {
-    getInputStaff().should('not.be.checked');
+    getInputStaff().should('be.checked');
   });
 
   it('should have Erasmus and Test as checkbox options for funding', () => {
     cy.wait('@getConfiguration');
     cy.get('input#Erasmus').should('exist');
     cy.get('input#Test').should('exist');
+
+    cy.get('input#Erasmus').should('be.checked');
+    cy.get('input#Test').should('be.checked');
   });
 
   it('ucl_university field open typeahead', () => {

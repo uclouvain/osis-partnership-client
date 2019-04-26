@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./error-message.component.css']
 })
 export class ErrorMessageComponent implements OnInit {
+
+  @Input() title: string;
 
   public message: string;
 
