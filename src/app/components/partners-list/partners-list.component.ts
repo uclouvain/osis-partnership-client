@@ -95,6 +95,7 @@ export class PartnersListComponent implements OnInit {
 
   /**
    * Add ordering filter
+   * Reset offset to 0 to redirect to page 1
    */
   onSort(event) {
     const order = event.newValue;
@@ -110,7 +111,10 @@ export class PartnersListComponent implements OnInit {
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
     this.router.navigate(['/'], {
       queryParamsHandling: 'merge',
-      queryParams: { ordering }
+      queryParams: {
+        ordering,
+        offset: undefined
+      }
     });
   }
 }

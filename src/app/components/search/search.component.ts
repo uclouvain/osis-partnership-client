@@ -104,6 +104,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Init input fields with params from url
+   * Load full labels of params with configuration service
+   */
   initFormFields(params) {
     // Fetch configuration data from server
     this.configurationService.all()
@@ -209,14 +213,24 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model.education_field = event.item ? event.item.id : '';
   }
 
+  /**
+   * Set mobility_type value
+   */
   onMobilityTypesChange(value) {
     this.model.mobility_type = value;
   }
 
+  /**
+   * Set funding value
+   */
   onFundingChange(value) {
     this.model.funding = value;
   }
 
+  /**
+   * Change route to add choosen options in url params
+   * Then modal-partner component will fetch data with these new params
+   */
   searchPartners(event: any): void {
     event.preventDefault();
     // Reset current page to 1
@@ -224,6 +238,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
   }
 
+  /**
+   * Reset all form fields
+   * Usefull because ngx-typeahead components (autocomplete) will not clear data
+   * when we remove text of inputs and keep last selected item.
+   */
   resetForm() {
     this.fields = defaultFields;
     this.model = defaultModel;

@@ -16,7 +16,7 @@ describe('Error messages', () => {
     navigateTo();
     cy.wait('@getConfiguration');
     cy.get('.partnership__error').should('exist');
-    cy.get('.partnership__error__title').should('have.text', 'Failed to load configuration');
+    cy.get('.partnership__error__title').first().should('have.text', 'Failed to load configuration');
   });
 
   it('should display error message for partners failed', () => {
