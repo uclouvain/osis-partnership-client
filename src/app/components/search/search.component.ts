@@ -184,7 +184,6 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set uclUniversitiesLabo for this ucl_university
    */
   onUclUniversityChanged = (event: any): void => {
-    console.log('onUclUniversityChanged');
     if (event.value && this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
     }
