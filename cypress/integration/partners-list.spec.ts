@@ -1,4 +1,4 @@
-import { navigateTo } from '../support/po';
+import { navigateTo, search } from '../support/po';
 
 describe('Partner list', () => {
   beforeEach(() => {
@@ -56,6 +56,28 @@ describe('Partner list', () => {
     cy.get('.modal-title').should('have.text', ' Partnership with Middle East Technical University ');
   });
 
+  it('should returns to page 1 on filters changed', () => {
+    // Go to page 2
+    cy.get('[aria-label="page 2"]').first().click();
+    cy.wait('@getPartners2');
+
+    // Check if first item changed
+    cy.get('.partners-list__name').first()
+      .should('have.text', 'Georg-August-Universität Göttingen');
+
+    // Set continent filter
+    cy.get('[name=continent]')
+      .type('Eur')
+      .type('{enter}');
+
+    // Click on search to set params in url
+    search();
+
+    // Check if url dosn't contain offset
+    cy.url().should('contain', '/#/?continent=Europe');
+    cy.url().should('not.contain', 'offset');
+  });
+
   it('should returns to page 1 on sort changed', () => {
     // Go to page 2
     cy.get('[aria-label="page 2"]').first().click();
@@ -74,6 +96,7 @@ describe('Partner list', () => {
 
     // Check if url dosn't contain offset
     cy.url().should('contain', '/#/?ordering=city');
+    cy.url().should('not.contain', 'offset');
   });
 
   it('should reset partners params on close modal', () => {
