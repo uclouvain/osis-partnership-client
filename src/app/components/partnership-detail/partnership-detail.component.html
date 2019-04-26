@@ -19,8 +19,8 @@
 
     <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
     <dd *ngIf="data.education_fields">
-      <ul *ngFor="let field of data.education_fields" class="partnership__list">
-        <li>{{field}}</li>
+      <ul class="partnership__list">
+        <li *ngFor="let field of data.education_fields">{{field}}</li>
       </ul>
     </dd>
 
@@ -50,7 +50,7 @@
         <dl class="detail-partnership">
           <dt *ngIf="data.out_education_levels">{{ 'Level of study' | translate }}</dt>
           <dd *ngIf="data.out_education_levels">
-            <ul *ngFor="let level of data.out_education_levels">
+            <ul *ngFor="let level of data.out_education_levels" class="partnership__list">
               <li>{{level}}</li>
             </ul>
           </dd>
@@ -60,33 +60,37 @@
 
           <dt *ngIf="data.out_university_offers">{{ 'Program' | translate }}</dt>
           <dd *ngIf="data.out_university_offers">
-            <ul *ngFor="let level of data.out_university_offers">
+            <ul *ngFor="let level of data.out_university_offers" class="partnership__list">
               <li>{{level}}</li>
             </ul>
           </dd>
 
-          <dt *ngIf="data.out_contact.first_name">{{ 'Contact person OUT' | translate }}</dt>
+          <dt *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
           <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
-            {{data.out_contact.first_name}} {{data.out_contact.last_name}}
+            <span *ngIf="data.out_contact.first_name || data.out_contact.last_name">{{data.out_contact.first_name}} {{data.out_contact.last_name}}<br/></span>
+            <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
-          <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
-
           <dt *ngIf="data.out_portal">{{ 'Portal (sigle FAC) Outgoing' | translate }}</dt>
-          <dd *ngIf="data.out_portal">{{data.out_portal}}</dd>
+          <dd *ngIf="data.out_portal">
+            <a [href]="data.out_portal" target="blank" rel="noopener">{{data.out_portal}}</a>
+          </dd>
 
           <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
           <dd *ngIf="data.out_funding">
             <a [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
           </dd>
 
-          <dt>{{ 'Contact person in partner institution' | translate }}</dt>
-          <dd>
-            <span *ngIf="data.out_partner_contact.first_name || data.out_partner_contact.last_name">
-              {{data.out_partner_contact.first_name}} {{data.out_partner_contact.last_name}}<br></span>
-            <span *ngIf="data.out_partner_contact.phone">{{data.out_partner_contact.phone}}<br></span>
-            <a href="mailto:{{data.out_partner_contact.email}}" *ngIf="data.out_partner_contact.email">{{data.staff_partner_contact.email}}</a>
+          <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
+          <dd *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
+            <ul class="partnership__list">
+              <li *ngFor="let contact of data.out_partner_contacts">
+                <span *ngIf="contact.title || contact.first_name || contact.last_name">
+                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br></span>
+                <span *ngIf="contact.phone">{{contact.phone}}<br></span>
+                <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
+              </li>
+            </ul>
           </dd>
 
           <dt>{{ 'Individual evaluation reports' | translate }}</dt>
@@ -94,8 +98,10 @@
 
           <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
           <dd *ngIf="data.medias && data.medias.length > 0">
-            <ul *ngFor="let level of data.medias">
-              <li>{{level}}</li>
+            <ul class="partnership__list">
+              <li *ngFor="let media of data.medias">
+                <a [href]="media.url">{{media.name}}</a>
+              </li>
             </ul>
           </dd>
         </dl>
@@ -111,7 +117,9 @@
           <dd *ngIf="data.in_contact.name">{{data.in_contact.name}}</dd>
 
           <dt *ngIf="data.in_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.in_contact.email">{{data.in_contact.email}}</dd>
+          <dd *ngIf="data.in_contact.email">
+            <a href="mailto:{{data.in_contact.email}}">{{data.in_contact.email}}</a>
+          </dd>
 
           <dt *ngIf="data.in_portal">{{ 'Portal (sigle FAC) incoming exchange students' | translate }}</dt>
           <dd *ngIf="data.in_portal">{{data.in_portal}}</dd>
@@ -139,24 +147,32 @@
           <dt *ngIf="data.staff_contact_name">{{ 'Contact person' | translate }}</dt>
           <dd *ngIf="data.staff_contact_name">{{data.staff_contact_name}}</dd>
 
-          <dt>{{ 'Contact person in partner institution' | translate }}</dt>
-          <dd>
-            <span *ngIf="data.staff_partner_contact.first_name || data.staff_partner_contact.last_name">
-              {{data.staff_partner_contact.first_name}} {{data.staff_partner_contact.last_name}}<br></span>
-            <span *ngIf="data.staff_partner_contact.phone">{{data.staff_partner_contact.phone}}<br></span>
-            <a href="mailto:{{data.staff_partner_contact.email}}" *ngIf="data.staff_partner_contact.email">{{data.staff_partner_contact.email}}</a>
+          <dt *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
+          <dd *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">
+            <ul class="partnership__list">
+              <li *ngFor="let contact of data.out_partner_contacts">
+                <span *ngIf="contact.title || contact.first_name || contact.last_name">
+                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br></span>
+                <span *ngIf="contact.phone">{{contact.phone}}<br></span>
+                <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
+              </li>
+            </ul>
           </dd>
 
           <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
           <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
 
           <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.out_contact.email">{{data.out_contact.email}}</dd>
+          <dd *ngIf="data.out_contact.email">
+            <a href="mailto:{{data.out_contact.email}}">{{data.out_contact.email}}</a>
+          </dd>
 
           <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
           <dd *ngIf="data.medias && data.medias.length > 0">
-            <ul *ngFor="let level of data.medias">
-              <li>{{level}}</li>
+            <ul class="partnership__list">
+              <li *ngFor="let media of data.medias">
+                <a [href]="media.url">{{media.name}}</a>
+              </li>
             </ul>
           </dd>
         </dl>

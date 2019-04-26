@@ -1,0 +1,89 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [{
+    "url": "http://127.0.0.1:8000/api/v1/partnerships/partnerships/0c560346-5820-4226-862a-ab2fe8f38d78/",
+    "partner": {
+      "uuid": "32c48e52-229e-485a-aa3a-9e9904971af5",
+      "name": "Middle East Technical University",
+      "website": "http://www.metu.edu.tr",
+      "erasmus_code": "TR ANKARA04",
+      "partner_type": "Université ou IES",
+      "city": "Ankara",
+      "country": "Turquie",
+      "country_iso": "TR",
+      "partnerships_count": 1
+    },
+    "supervisor": "VAN DEN BROUCKE, Stephan",
+    "ucl_university": {
+      "acronym": "PSP",
+      "title": "Faculté de psychologie et des sciences de l'éducation"
+    },
+    "ucl_university_labo": null,
+    "ucl_sector": "SSH",
+    "is_sms": true,
+    "is_smp": false,
+    "is_smst": false,
+    "is_sta": false,
+    "is_stt": false,
+    "education_fields": ["Psychology (0313)"],
+    "status": {
+      "valid_years": "2020-2022",
+      "status": "validated"
+    },
+    "partner_entity": null,
+    "medias": [{
+      "name": "Whitney Bolton",
+      "url": "https://www.zigomuvymoxyf.me"
+    }],
+    "out_education_levels": ["First cycle / Bachelor’s or equivalent level (EQF-6)", "Second cycle / Master’s or equivalent level (EQF-7)"],
+    "out_entities": ["EPSY"],
+    "out_university_offers": ["PSP1BA - Bachelier en sciences psychologiques et de l'éducation, orientation générale", "CPI2MC - Master de spécialisation en cliniques psycho-thérapeutiques intégrées (horaire décalé)"],
+    "out_contact": {
+      "phone": null,
+      "first_name": "Bernard",
+      "title": null,
+      "email": "bernard.masuy@gmail.com",
+      "last_name": "Masuy"
+    },
+    "out_portal": "http://127.0.0.1:8000/partnerships/ucl_management_entities/18/edit/",
+    "out_funding": null,
+    "out_partner_contacts": [{
+      "title": "mr",
+      "first_name": "Michel",
+      "last_name": "Bonjardin",
+      "phone": "012345678",
+      "email": "michel.bonjardin@gmail.com"
+    }, {
+      "title": "mr",
+      "first_name": "Chloe",
+      "last_name": "Cruz",
+      "phone": "+1 (212) 522-6265",
+      "email": "rokecopus@mailinator.com"
+    }],
+    "in_contact": {
+      "phone": null,
+      "first_name": "Maria",
+      "title": null,
+      "email": "maria.rodrigues@gmail.com",
+      "last_name": "Rodrigues Leal Moitinho De Almeida"
+    },
+    "in_portal": "http://127.0.0.1:8000/partnerships/ucl_management_entities/18/edit/",
+    "staff_contact_name": "VAN DEN BROUCKE, Stephan",
+    "staff_funding": null,
+    "staff_partner_contacts": [{
+      "title": "mr",
+      "first_name": "Michel",
+      "last_name": "Bonjardin",
+      "phone": "012345678",
+      "email": "michel.bonjardin@gmail.com"
+    }, {
+      "title": "mr",
+      "first_name": "Chloe",
+      "last_name": "Cruz",
+      "phone": "+1 (212) 522-6265",
+      "email": "rokecopus@mailinator.com"
+    }]
+  }]
+}
