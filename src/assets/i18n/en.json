@@ -36,6 +36,8 @@
   "Entity": "Entity",
   "Program": "Program",
   "Contact person": "Contact person",
+  "Contact person OUT": "Contact person OUT",
+  "Contact person IN": "Contact person IN",
   "E-mail": "E-mail",
   "Portal (sigle FAC) Outgoing": "Portal (sigle FAC) Outgoing",
   "Funding": "Funding",
@@ -53,5 +55,8 @@
   "No partnership": "No partnership",
   "See partnership": "See partnership",
   "See {value} partnerships": "See {{value}} partnerships",
-  "Go to partners website": "Go to partner's website"
+  "Go to partners website": "Go to partner's website",
+  "Failed to load configuration": "Failed to load configuration",
+  "Failed to load partners list": "Failed to load partners list",
+  "Failed to load partner detail": "Failed to load partner detail"
 }

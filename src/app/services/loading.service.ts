@@ -75,7 +75,6 @@ export class LoadingInterceptor implements HttpInterceptor {
       .pipe(
         tap((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            this.loading.setError('');
             this.loading.finish(loadingId);
           }
         }),
@@ -91,6 +90,7 @@ export class LoadingInterceptor implements HttpInterceptor {
           }
           this.loading.setError(errorMessage);
           return throwError(error);
-        }));
+        })
+      );
   }
 }

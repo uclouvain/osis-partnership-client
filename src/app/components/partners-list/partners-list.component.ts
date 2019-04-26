@@ -6,6 +6,7 @@ import { ResultPartners } from 'src/app/interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 import { getPartnerParams } from 'src/app/helpers/partnerships.helpers';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-partners-list',
@@ -18,16 +19,13 @@ export class PartnersListComponent implements OnInit {
   partnershipSummaryCell: TemplateRef<any>;
 
   public rows: Partner[];
+  public partnersError = false;
   public page = {
     totalElements: 0,
     totalPages: 0,
     pageNumber: 0,
     size: 25
   };
-
-  loadingIndicator = true;
-  reorderable = true;
-  partnerDetail: Partner;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +59,14 @@ export class PartnersListComponent implements OnInit {
    */
   fetchPartners(queryParams): void {
     this.partnershipsService.searchPartners(getPartnerParams(queryParams))
+      .pipe(
+        catchError((): any => {
+          this.partnersError = true;
+          document.getElementById('partners-list').scrollIntoView();
+        })
+      )
       .subscribe((response: ResultPartners) => {
+        this.partnersError = false;
         if (response.results) {
           this.page.totalElements = response.count;
           this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);

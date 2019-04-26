@@ -25,6 +25,19 @@
         <input [(ngModel)]="fields.supervisor" name="supervisor" class="form-control" id="supervisor" [typeaheadScrollable]="true"
           [typeahead]="supervisors" typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" (typeaheadOnSelect)="onSupervisorChanged($event)">
       </div>
+
+      <div class="form-group">
+        <label>{{ 'Mobility Type' | translate }}</label>
+        <app-checkbox-group [options]="mobilityTypesOptions" (toggle)="onMobilityTypesChange($event)"
+          [selectedValues]="model.mobility_type">
+        </app-checkbox-group>
+      </div>
+
+      <div class="form-group">
+        <label>{{ 'Funding' | translate }}</label>
+        <app-checkbox-group [options]="fundingOptions" [selectedValues]="model.funding" (toggle)="onFundingChange($event)">
+        </app-checkbox-group>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -62,18 +75,6 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label>{{ 'Mobility Type' | translate }}</label>
-    <app-checkbox-group [options]="mobilityTypesOptions" (toggle)="onMobilityTypesChange($event)"
-      [selectedValues]="model.mobility_type">
-    </app-checkbox-group>
-  </div>
-
-  <div class="form-group">
-    <label>{{ 'Funding' | translate }}</label>
-    <app-checkbox-group [options]="fundingOptions" [selectedValues]="model.funding" (toggle)="onFundingChange($event)">
-    </app-checkbox-group>
-  </div>
   <button [disabled]="loaderStatus" type="submit" class="btn btn-primary" id="search-partners"
     (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
 
@@ -81,7 +82,7 @@
     (click)="resetForm($event)">{{ 'Reset form' | translate }}</button>
 </form>
 
-<app-error-message></app-error-message>
+<app-error-message [title]="'Failed to load configuration' | translate" *ngIf="configError"></app-error-message>
 
 <app-partners-list></app-partners-list>
 

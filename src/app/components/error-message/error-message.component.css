@@ -1,3 +1,11 @@
 .partnership__error {
   overflow-wrap: break-word;
 }
+
+.partnership__error__title {
+  font-weight: bold;
+}
+
+.partnership__error__message {
+  font-weight: .75em;
+}

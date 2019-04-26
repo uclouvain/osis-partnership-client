@@ -26,3 +26,7 @@
   margin: 0;
   padding: 0;
 }
+
+.partnership__list li {
+  margin-bottom: .5em;
+}

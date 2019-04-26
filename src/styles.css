@@ -10,6 +10,16 @@
   font-size: 1em;
 }
 
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager {
+  margin: 0 !important;
+}
+
 .modal-header {
   overflow: hidden;
+}
+
+/* Overwrite ngx-database style to center verticaly */
+.datatable-body-cell {
+  display: flex !important;
+  align-items: center;
 }
