@@ -13,3 +13,9 @@
 .modal-header {
   overflow: hidden;
 }
+
+/* Overwrite ngx-database style to center verticaly */
+.datatable-body-cell {
+  display: flex !important;
+  align-items: center;
+}

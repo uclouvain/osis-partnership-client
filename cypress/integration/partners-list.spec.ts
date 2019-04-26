@@ -41,19 +41,4 @@ describe('Partner list', () => {
     cy.get('.modal-dialog').should('exist');
     cy.get('.modal-title').should('have.text', ' Partnership with Middle East Technical University ');
   });
-
-  // it('should display a total of 516 results', () => {
-  //   cy.get('[title="See partnership"]').first().click();
-  //   cy.wait('@getPartners');
-
-  //   cy.get('.page-count').should('have.text', '516 total');
-  // });
-
-  // it('should display error message for configuration load failed', () => {
-  //   cy.get('[title="See partnership"]').first().click();
-  //   cy.wait('@getPartnerships');
-
-  //   cy.get('.partnership__error').should('exist');
-  //   cy.get('.partnership__error__title').should('have.text', 'Failed to load configuration');
-  // });
 });
