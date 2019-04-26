@@ -19,10 +19,10 @@
   [columnMode]="'flex'">
   <ngx-datatable-column [name]="'Partner institution' | translate" prop="name" [flexGrow]="4">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <button type="button" class="btn btn-link" [tooltip]="'See partnership' | translate" [title]="'See partnership' | translate" *ngIf="row.partnerships_count === 1" (click)="goToPartnerships($event, row.uuid)">
+      <button type="button" class="btn btn-link btn-partner" [tooltip]="'See partnership' | translate" [title]="'See partnership' | translate" *ngIf="row.partnerships_count === 1" (click)="goToPartnerships($event, row.uuid)">
         <span class="partners-list__name">{{value}}</span>
       </button>
-      <button type="button" class="btn btn-link" [tooltip]="'See {value} partnerships' | translate: { value: row.partnerships_count }" [title]="'See {value} partnerships' | translate: { value: row.partnerships_count }" *ngIf="row.partnerships_count > 1" (click)="goToPartnerships($event, row.uuid)">
+      <button type="button" class="btn btn-link btn-partner" [tooltip]="'See {value} partnerships' | translate: { value: row.partnerships_count }" [title]="'See {value} partnerships' | translate: { value: row.partnerships_count }" *ngIf="row.partnerships_count > 1" (click)="goToPartnerships($event, row.uuid)">
         <span class="partners-list__name">{{value}}</span>
       </button>
     </ng-template>

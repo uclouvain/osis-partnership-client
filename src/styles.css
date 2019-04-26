@@ -10,6 +10,10 @@
   font-size: 1em;
 }
 
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager {
+  margin: 0 !important;
+}
+
 .modal-header {
   overflow: hidden;
 }
