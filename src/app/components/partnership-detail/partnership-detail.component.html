@@ -71,7 +71,7 @@
             <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
-          <dt *ngIf="data.out_portal">{{ 'Portal (sigle FAC) Outgoing' | translate }}</dt>
+          <dt *ngIf="data.out_portal">{{ 'Portal OUT ESPO/PSAD' | translate }}</dt>
           <dd *ngIf="data.out_portal">
             <a [href]="data.out_portal" target="blank" rel="noopener">{{data.out_portal}}</a>
           </dd>
@@ -113,16 +113,16 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.in_contact.name">{{ 'Contact person IN' | translate }}</dt>
-          <dd *ngIf="data.in_contact.name">{{data.in_contact.name}}</dd>
-
-          <dt *ngIf="data.in_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.in_contact.email">
-            <a href="mailto:{{data.in_contact.email}}">{{data.in_contact.email}}</a>
+          <dt *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
+          <dd *ngIf="data.in_contact.first_name || data.in_contact.last_name">
+            <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}} {{data.in_contact.last_name}}<br/></span>
+            <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
           </dd>
 
-          <dt *ngIf="data.in_portal">{{ 'Portal (sigle FAC) incoming exchange students' | translate }}</dt>
-          <dd *ngIf="data.in_portal">{{data.in_portal}}</dd>
+          <dt *ngIf="data.in_portal">{{ 'Portal IN ESPO/PSAD' | translate }}</dt>
+          <dd *ngIf="data.in_portal">
+            <a [href]="data.in_portal" target="blank" rel="noopener">{{data.in_portal}}</a>
+          </dd>
 
           <dt>{{ 'Admission' | translate }}</dt>
           <dd></dd>

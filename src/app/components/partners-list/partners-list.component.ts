@@ -110,7 +110,10 @@ export class PartnersListComponent implements OnInit {
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
     this.router.navigate(['/'], {
       queryParamsHandling: 'merge',
-      queryParams: { ordering }
+      queryParams: {
+        ordering,
+        offset: undefined
+      }
     });
   }
 }

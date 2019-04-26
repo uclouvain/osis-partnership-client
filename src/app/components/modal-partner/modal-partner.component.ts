@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { getPartnershipParams } from 'src/app/helpers/partnerships.helpers';
 import { ResultPartnerships } from 'src/app/interfaces/partnership';
 import Partner from 'src/app/interfaces/partners';
@@ -38,7 +38,14 @@ export class ModalPartnerComponent implements OnInit {
    * Close modal, come back to partners list
    */
   goToSearch() {
-    this.router.navigate([''], { preserveQueryParams: true });
+    this.router.navigate([''], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        partnerFilter: undefined,
+        offsetPartnership: undefined,
+        orderingPartnership: undefined
+      }
+    });
   }
 
   /**
