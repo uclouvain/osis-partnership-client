@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group" *ngIf="uclUniversities">
-        <label for="ucl_university">{{ 'Faculty' | translate }}</label>
+        <label for="uclUniversity">{{ 'Faculty' | translate }}</label>
         <input [(ngModel)]="fields.uclUniversity" name="ucl_university" class="form-control" id="uclUniversity"
           [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversityChanged($event)"
           typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000">
@@ -79,7 +79,7 @@
     (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
 
     <button [disabled]="loaderStatus" type="button" class="btn btn-danger" id="reset-search-partners"
-    (click)="resetForm($event)">{{ 'Reset form' | translate }}</button>
+    (click)="resetForm()">{{ 'Reset form' | translate }}</button>
 </form>
 
 <app-error-message [title]="'Failed to load configuration' | translate" *ngIf="configError"></app-error-message>
