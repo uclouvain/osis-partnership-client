@@ -5,13 +5,13 @@ import Funding from './funding';
 export default interface Partnership {
   partner: Partner;
   education_field:	string;
-  ucl_university: string;
-  ucl_university_labo: string;
+  ucl_university: AcronymEntity;
+  ucl_university_labo: AcronymEntity;
   supervisor: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';
-  status: {
-    valid: boolean
-    last_valid: boolean
+  status?: {
+    status: boolean
+    valid_years: string
   };
   out_education_level: string[];
   out_entities: string[];
@@ -26,6 +26,14 @@ export default interface Partnership {
   staff_partner_contacts: Contact[];
   staff_funding: Funding;
   url: string;
+  partner_entity: string;
+  education_fields: string[];
+  out_education_levels: string[];
+  out_university_offers: string[];
+  medias: {
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface ResultPartnerships {
@@ -51,4 +59,9 @@ export interface PartnershipParams {
   mobility_type?: string[];
   funding?: string[];
   ordering?: string;
+}
+
+export interface AcronymEntity {
+  title: string;
+  acronym: string;
 }
