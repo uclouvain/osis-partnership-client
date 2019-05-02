@@ -19,11 +19,11 @@ export default interface Partnership {
   out_contact: Contact;
   out_portal: string;
   out_funding: Funding;
-  out_partner_contact: Contact;
+  out_partner_contacts: Contact[];
   in_contact: Contact;
   in_portal: string;
   staff_contact_name: string;
-  staff_partner_contact: Contact;
+  staff_partner_contacts: Contact[];
   staff_funding: Funding;
   url: string;
 }
