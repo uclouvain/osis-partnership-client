@@ -242,9 +242,10 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Usefull because ngx-typeahead components (autocomplete) will not clear data
    * when we remove text of inputs and keep last selected item.
    */
-  resetForm() {
-    this.fields = defaultFields;
-    this.model = defaultModel;
+  resetForm(event: any): void {
+    event.preventDefault();
+    this.fields = {...defaultFields};
+    this.model = {...defaultModel};
     this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
   }
 }
