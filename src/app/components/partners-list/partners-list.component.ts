@@ -20,6 +20,7 @@ export class PartnersListComponent implements OnInit {
 
   public rows: Partner[];
   public partnersError = false;
+  public loading = true;
   public page = {
     totalElements: 0,
     totalPages: 0,
@@ -58,16 +59,18 @@ export class PartnersListComponent implements OnInit {
    * Fetch partner's list with url filters params
    */
   fetchPartners(queryParams): void {
-    this.rows = undefined;
+    this.loading = true;
     this.partnershipsService.searchPartners(getPartnerParams(queryParams))
       .pipe(
         catchError((): any => {
           this.partnersError = true;
+          this.loading = false;
           document.getElementById('partners-list').scrollIntoView();
         })
       )
       .subscribe((response: ResultPartners) => {
         this.partnersError = false;
+        this.loading = false;
         if (response.results) {
           this.page.totalElements = response.count;
           this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
