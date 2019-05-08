@@ -2,6 +2,8 @@
 
 <app-error-message [title]="'Failed to load partners list' | translate" *ngIf="partnersError"></app-error-message>
 
+<app-loader *ngIf="loading"></app-loader>
+
 <ngx-datatable
   class="bootstrap"
   [rows]="rows"
@@ -52,5 +54,3 @@
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
-
-<app-loader *ngIf="!rows"></app-loader>

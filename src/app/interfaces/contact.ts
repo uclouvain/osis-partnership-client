@@ -1,4 +1,7 @@
 export default interface Contact {
-  name: string;
+  title?: string;
+  phone?: string;
+  first_name: string;
+  last_name: string;
   email: string;
 }

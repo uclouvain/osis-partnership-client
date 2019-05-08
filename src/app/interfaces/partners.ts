@@ -5,6 +5,7 @@ export default interface Partner {
   city: string;
   country: string;
   uuid: string;
+  website: string;
 }
 
 export interface ResultPartners {
