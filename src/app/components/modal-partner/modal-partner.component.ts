@@ -42,6 +42,7 @@ export class ModalPartnerComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: undefined,
+        uniquePartnership: undefined,
         offsetPartnership: undefined,
         orderingPartnership: undefined
       }
@@ -60,7 +61,12 @@ export class ModalPartnerComponent implements OnInit {
           // If single partnership, go to detail of this partnership
           const partnership = response.results[0];
           const partnershipId = partnership.url.split('/').reverse()[1];
-          this.router.navigate([`partner/${id}/partnership/${partnershipId}`], { queryParamsHandling: 'merge' });
+          this.router.navigate([`partner/${id}/partnership/${partnershipId}`], {
+            queryParamsHandling: 'merge',
+            queryParams: {
+              uniquePartnership: true,
+            }
+          });
         }
       });
   }

@@ -28,8 +28,8 @@ export class PartnershipDetailComponent implements OnInit {
         });
     });
 
-    this.route.queryParams.subscribe(({ type }) => {
-      this.showBackButton = type === 'partners';
+    this.route.queryParams.subscribe(({uniquePartnership}) => {
+      this.showBackButton = !uniquePartnership;
     });
   }
 
