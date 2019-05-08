@@ -78,8 +78,8 @@
   <button [disabled]="loaderStatus" type="submit" class="btn btn-primary" id="search-partners"
     (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
 
-    <button [disabled]="loaderStatus" type="button" class="btn btn-danger" id="reset-search-partners"
-    (click)="resetForm()">{{ 'Reset form' | translate }}</button>
+    <button [disabled]="loaderStatus" type="reset" class="btn btn-danger" id="reset-search-partners"
+    (click)="resetForm($event)">{{ 'Reset form' | translate }}</button>
 </form>
 
 <app-error-message [title]="'Failed to load configuration' | translate" *ngIf="configError"></app-error-message>
