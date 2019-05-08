@@ -58,6 +58,7 @@ export class PartnersListComponent implements OnInit {
    * Fetch partner's list with url filters params
    */
   fetchPartners(queryParams): void {
+    this.rows = undefined;
     this.partnershipsService.searchPartners(getPartnerParams(queryParams))
       .pipe(
         catchError((): any => {
