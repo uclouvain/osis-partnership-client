@@ -60,27 +60,32 @@ export class PartnersListComponent implements OnInit {
    */
   fetchPartners(queryParams): void {
     this.loading = true;
-    this.partnershipsService.searchPartners(getPartnerParams(queryParams))
-      .pipe(
-        catchError((): any => {
-          this.partnersError = true;
+    // Only search if there are filters sent through queryParams
+    if (Object.keys(queryParams).length) {
+      this.partnershipsService.searchPartners(getPartnerParams(queryParams))
+        .pipe(
+          catchError((): any => {
+            this.partnersError = true;
+            this.loading = false;
+            document.getElementById('partners-list').scrollIntoView();
+          })
+        )
+        .subscribe((response: ResultPartners) => {
+          this.partnersError = false;
           this.loading = false;
-          document.getElementById('partners-list').scrollIntoView();
-        })
-      )
-      .subscribe((response: ResultPartners) => {
-        this.partnersError = false;
-        this.loading = false;
-        if (response.results) {
-          this.page.totalElements = response.count;
-          this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
-          this.page.pageNumber = Math.ceil((+queryParams.offset || 0) / +this.page.size);
-          this.rows = response.results.map((partner: Partner) => ({
-            ...partner,
-            cellTemplate: this.partnershipSummaryCell
-          }));
-        }
-      });
+          if (response.results) {
+            this.page.totalElements = response.count;
+            this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
+            this.page.pageNumber = Math.ceil((+queryParams.offset || 0) / +this.page.size);
+            this.rows = response.results.map((partner: Partner) => ({
+              ...partner,
+              cellTemplate: this.partnershipSummaryCell
+            }));
+          }
+        });
+    } else {
+      this.rows = [];
+    }
   }
 
   /**

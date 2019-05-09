@@ -304,6 +304,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.fields = {...defaultFields};
     this.model = {...defaultModel};
-    this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
+    this.router.navigate(['/']);
   }
 }
