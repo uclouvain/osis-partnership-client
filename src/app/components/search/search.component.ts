@@ -132,7 +132,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.config = config;
       // Fundings options
       config.fundings.map(funding => {
-        this.fundingOptions.push(new CheckboxItem(funding, funding));
+        this.fundingOptions.push(new CheckboxItem(funding, funding, params.funding && params.funding.includes(funding)));
       });
       // Typeahead list options
       this.continents = getValueLabelList(config.continents);
