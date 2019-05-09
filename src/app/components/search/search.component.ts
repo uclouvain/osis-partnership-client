@@ -34,6 +34,7 @@ const defaultFields = {
   uclUniversityLabo: '',
   supervisor: '',
   educationField: '',
+  partner: '',
 };
 
 @Component({
@@ -158,6 +159,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.fields.supervisor = getLabel(this.supervisors, params.supervisor);
       }
 
+      if (params.partner) {
+        this.fields.partner = getLabel(this.partners, params.partner);
+      }
+
       if (params.education_field) {
         this.fields.educationField = getLabel(this.educationFields, params.education_field);
       }
@@ -250,6 +255,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   onSupervisorChange(value) {
     if (value === '') {
       this.model.supervisor = '';
+    }
+  }
+
+  /**
+   * Set partner uuid in model for request
+   */
+  onPartnerSelect = (event: any): void => {
+    this.model.partner = event.item ? event.item.id : '';
+  }
+
+
+  onPartnerChange(value) {
+    if (value === '') {
+      this.model.partner = '';
     }
   }
 

@@ -66,7 +66,8 @@
 
       <div class="form-group" *ngIf="partners">
         <label for="partner">{{ 'Partner institution' | translate }}</label>
-        <input #partner [(ngModel)]="model.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
+        <input #partner [(ngModel)]="fields.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
+          (typeaheadOnSelect)="onPartnerSelect($event)" (ngModelChange)="onPartnerChange($event)"
           typeaheadOptionField="label" autocomplete="off" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true">
       </div>
 

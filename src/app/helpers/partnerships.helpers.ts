@@ -117,6 +117,7 @@ export function getPartnerParams(query: any): PartnerParams {
     education_field: query.education_field || '',
     limit: query.limit || '',
     offset: query.offset || '',
+    partner: query.partner || '',
     supervisor: query.supervisor || '',
     type: query.type || '',
     ucl_university: query.ucl_university || '',
