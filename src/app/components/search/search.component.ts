@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { map, delay, first, catchError } from 'rxjs/operators';
@@ -65,6 +65,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public loaderStatus: boolean;
   private loaderStatus$: Subscription;
+
+  @ViewChild('continent') continentElement: ElementRef;
+  @ViewChild('country') countryElement: ElementRef;
+  @ViewChild('partner') partnerElement: ElementRef;
+  @ViewChild('supervisor') supervisorElement: ElementRef;
+  @ViewChild('educationField') educationFieldElement: ElementRef;
+  @ViewChild('uclUniversity') uclUniversityElement: ElementRef;
+  @ViewChild('uclUniversityLabo') uclUniversityLaboElement: ElementRef;
 
   constructor(
     private router: Router,
@@ -170,6 +178,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (event.value && this.config) {
       this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
     }
+    if (this.continentElement) {
+      this.continentElement.nativeElement.focus();
+    }
   }
 
   /**
@@ -177,6 +188,9 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   onCountrySelect = (event: any): void => {
     this.model.country = event.item ? event.item.id : '';
+    if (this.countryElement) {
+      this.countryElement.nativeElement.focus();
+    }
   }
 
   onCountryChange(value) {
@@ -195,6 +209,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     this.model.ucl_university = event.item ? event.item.id : '';
+    if (this.uclUniversityElement) {
+      this.uclUniversityElement.nativeElement.focus();
+    }
   }
 
   onUclUniversityChange(value) {
@@ -208,6 +225,9 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   onUclUniversityLaboSelect = (event: any): void => {
     this.model.ucl_university_labo = event.item ? event.item.id : '';
+    if (this.uclUniversityLaboElement) {
+      this.uclUniversityLaboElement.nativeElement.focus();
+    }
   }
 
 
@@ -222,6 +242,9 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   onSupervisorSelect = (event: any): void => {
     this.model.supervisor = event.item ? event.item.id : '';
+    if (this.supervisorElement) {
+      this.supervisorElement.nativeElement.focus();
+    }
   }
 
   onSupervisorChange(value) {
@@ -235,6 +258,9 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   onEducationFieldSelect = (event: any): void => {
     this.model.education_field = event.item ? event.item.id : '';
+    if (this.educationFieldElement) {
+      this.educationFieldElement.nativeElement.focus();
+    }
   }
 
 
