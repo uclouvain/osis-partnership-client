@@ -9,7 +9,7 @@ import { ValueLabel } from 'src/app/interfaces/common';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { LoadingService } from 'src/app/services/loading.service.js';
 import { getValueLabelList, getFormattedItemsList, getLabel } from 'src/app/helpers/list.helpers.js';
-import { Configuration } from 'src/app/interfaces/configuration.js';
+import { Configuration, Country } from 'src/app/interfaces/configuration.js';
 import { getCleanParams } from 'src/app/helpers/partnerships.helpers.js';
 
 const defaultModel = {
@@ -56,6 +56,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   public supervisors: ValueLabel[];
   public uclUniversities: ValueLabel[];
   public uclUniversitiesLabo: ValueLabel[];
+
+  private allCountries: Country[];
 
   public noContinent = false;
   public mobilityTypesOptions = [
@@ -134,6 +136,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
       // Typeahead list options
       this.continents = getValueLabelList(config.continents);
+      this.allCountries = [].concat.apply([], config.continents.map(continent => continent.countries));
+      this.countries = getFormattedItemsList(this.allCountries);
       this.educationFields = getFormattedItemsList(config.education_fields);
       this.partners = getFormattedItemsList(config.partners);
       this.supervisors = getFormattedItemsList(config.supervisors);
@@ -142,9 +146,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       // Init default  values from url params
       if (params.continent) {
         this.onContinentSelect({ value: params.continent });
-        if (params.country) {
-          this.fields.country = getLabel(this.countries, params.country);
-        }
+      }
+
+      if (params.country) {
+        this.fields.country = getLabel(this.countries, params.country);
       }
 
       if (params.ucl_university) {
@@ -180,11 +185,22 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set country list for selected continent
    */
   onContinentSelect = (event: any): void => {
-    if (event.value && this.config) {
-      this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
+    if (this.config) {
+      if (event.value) {
+        this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
+      } else {
+        this.countries = getFormattedItemsList(this.allCountries);
+      }
     }
     if (this.continentElement) {
       this.continentElement.nativeElement.focus();
+    }
+  }
+
+  onContinentChange(value) {
+    if (value === '') {
+      this.model.continent = '';
+      this.countries = getFormattedItemsList(this.allCountries);
     }
   }
 

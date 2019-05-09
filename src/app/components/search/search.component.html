@@ -46,7 +46,7 @@
     <div class="col-md-6">
       <div class="form-group" *ngIf="continents">
         <label for="continent">{{ 'Continent' | translate }}</label>
-        <input #continent [(ngModel)]="model.continent" name="continent" [typeahead]="continents"
+        <input #continent [(ngModel)]="model.continent" name="continent" [typeahead]="continents" (ngModelChange)="onContinentChange($event)"
           typeaheadOptionField="label" class="form-control" (typeaheadNoResults)="typeaheadNoContinent($event)" typeaheadOptionsLimit="2000"
           (typeaheadOnSelect)="onContinentSelect($event)" id="continent" autocomplete="off">
         <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
