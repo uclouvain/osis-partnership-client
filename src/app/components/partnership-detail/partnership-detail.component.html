@@ -8,20 +8,12 @@
   <dl class="detail-partnership">
     <dt *ngIf="data.partner.name">{{ 'Partner' | translate }}</dt>
     <dd *ngIf="data.partner.name">
-      <a class="detail-partnership__name" [href]="data.partner.website" rel="noopener" target="blank" [title]="'Go to partners website' | translate">{{data.partner.name}}</a> <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span><br/>
-      <span class="detail-partnership__type" *ngIf="data.partner.partner_type">{{data.partner.partner_type}}<br/></span>
+      <a class="detail-partnership__name" [href]="data.partner.website" rel="noopener" target="blank" [title]="'Go to partners website' | translate">
+        {{data.partner.name}}
+      </a> <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span><br/>
+      <span *ngIf="data.partner_entity">{{data.partner_entity}}</span><br *ngIf="data.partner_entity" />
       <span class="detail-partnership__city">{{data.partner.city}}, </span>
       <span>{{data.partner.country}}</span>
-    </dd>
-
-    <dt *ngIf="data.partner_entity">{{ 'Faculty/Department' | translate }}</dt>
-    <dd *ngIf="data.partner_entity">{{data.partner_entity}}</dd>
-
-    <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
-    <dd *ngIf="data.education_fields">
-      <ul class="partnership__list">
-        <li *ngFor="let field of data.education_fields">{{field}}</li>
-      </ul>
     </dd>
 
     <dt>{{ 'UCLouvain' | translate }}</dt>
@@ -30,8 +22,15 @@
         <span *ngIf="data.ucl_university_labo">{{data.ucl_university_labo.title}} ({{data.ucl_university_labo.acronym}})</span>
     </dd>
 
-    <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
-    <dd *ngIf="data.supervisor">Prof. {{data.supervisor}}</dd>
+    <dt *ngIf="data.staff_contact_name">{{ 'UCLouvain academic coordinator' | translate }}</dt>
+    <dd *ngIf="data.staff_contact_name">Prof. {{data.staff_contact_name}}</dd>
+
+    <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
+    <dd *ngIf="data.education_fields">
+      <ul class="partnership__list">
+        <li *ngFor="let field of data.education_fields">{{field}}</li>
+      </ul>
+    </dd>
 
     <dt>{{ 'Type of mobility' | translate }}</dt>
     <dd>{{mobilityType}}</dd>
