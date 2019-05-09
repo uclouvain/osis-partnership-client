@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, delay, first, catchError } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import { CheckboxItem } from '../checkbox-group/checkbox-group.component.js';
+import { CheckboxItem } from '../checkbox-group/checkbox-group.component';
 import { ValueLabel } from 'src/app/interfaces/common';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { LoadingService } from 'src/app/services/loading.service.js';
@@ -132,7 +132,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       // Init default  values from url params
       if (params.continent) {
-        this.onContinentChanged({ value: params.continent });
+        this.onContinentSelect({ value: params.continent });
         if (params.country) {
           this.fields.country = getLabel(this.countries, params.country);
         }
@@ -140,7 +140,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       if (params.ucl_university) {
         this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
-        this.onUclUniversityChanged({ value: this.fields.uclUniversity });
+        this.onUclUniversitySelect({ value: this.fields.uclUniversity });
         if (params.ucl_university_labo) {
           this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
         }
@@ -166,7 +166,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set country list for selected continent
    */
-  onContinentChanged = (event: any): void => {
+  onContinentSelect = (event: any): void => {
     if (event.value && this.config) {
       this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
     }
@@ -175,15 +175,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set country code in model for request
    */
-  onCountryChanged = (event: any): void => {
+  onCountrySelect = (event: any): void => {
     this.model.country = event.item ? event.item.id : '';
+  }
+
+  onCountryChange(value) {
+    if (value === '') {
+      this.model.country = '';
+    }
   }
 
   /**
    * Set ucl_university uuid in model for request
    * Set uclUniversitiesLabo for this ucl_university
    */
-  onUclUniversityChanged = (event: any): void => {
+  onUclUniversitySelect = (event: any): void => {
     if (event.value && this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
     }
@@ -191,25 +197,51 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model.ucl_university = event.item ? event.item.id : '';
   }
 
+  onUclUniversityChange(value) {
+    if (value === '') {
+      this.model.ucl_university = '';
+    }
+  }
+
   /**
    * Set ucl_university_labo uuid in model for request
    */
-  onUclUniversityLaboChanged = (event: any): void => {
+  onUclUniversityLaboSelect = (event: any): void => {
     this.model.ucl_university_labo = event.item ? event.item.id : '';
+  }
+
+
+  onUclUniversityLaboChange(value) {
+    if (value === '') {
+      this.model.ucl_university_labo = '';
+    }
   }
 
   /**
    * Set supervisor uuid in model for request
    */
-  onSupervisorChanged = (event: any): void => {
+  onSupervisorSelect = (event: any): void => {
     this.model.supervisor = event.item ? event.item.id : '';
+  }
+
+  onSupervisorChange(value) {
+    if (value === '') {
+      this.model.supervisor = '';
+    }
   }
 
   /**
    * Set education_field uuid in model for request
    */
-  onEducationFieldChanged = (event: any): void => {
+  onEducationFieldSelect = (event: any): void => {
     this.model.education_field = event.item ? event.item.id : '';
+  }
+
+
+  onEducationFieldChange(value) {
+    if (value === '') {
+      this.model.education_field = '';
+    }
   }
 
   /**
