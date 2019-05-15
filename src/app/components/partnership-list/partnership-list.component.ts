@@ -38,14 +38,25 @@ export class PartnershipListComponent implements OnInit {
     this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
-          this.page.totalElements = response.count;
-          this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
-          this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
-          this.rows = response.results.map((partner: Partnership) => ({
-            ...partner,
-            mobility_type: partner && getMobilityType(partner),
-            cellTemplate: this.partnershipSummaryCell
-          }));
+          if (response.results.length === 1) {
+            const partnership = response.results[0];
+            const partnershipId = partnership.url.split('/').reverse()[1];
+            this.router.navigate([`partner/${partnership.partner.uuid}/partnership/${partnershipId}`], {
+              queryParamsHandling: 'merge',
+              queryParams: {
+                uniquePartnership: true,
+              }
+            });
+          } else {
+            this.page.totalElements = response.count;
+            this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
+            this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
+            this.rows = response.results.map((partner: Partnership) => ({
+              ...partner,
+              mobility_type: partner && getMobilityType(partner),
+              cellTemplate: this.partnershipSummaryCell
+            }));
+          }
         }
       });
   }
