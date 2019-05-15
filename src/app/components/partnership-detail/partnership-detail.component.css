@@ -1,11 +1,21 @@
 .detail-partnership {
   display: grid;
   grid-template-columns: minmax(auto, 200px) 1fr;
-  grid-gap: 1em;
+  grid-column-gap: 1em;
 }
 
 .detail-partnership dt {
   text-align: right;
+}
+
+.detail-partnership dt.nomargin,
+.detail-partnership dd.nomargin {
+  margin-bottom: 0;
+}
+
+.detail-partnership dt,
+.detail-partnership dd {
+  margin-bottom: 1em;
 }
 
 .detail-partnership__tab {
