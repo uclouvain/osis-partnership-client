@@ -184,7 +184,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set country list for selected continent
    */
-  onContinentSelect = (event: any): void => {
+  onContinentSelect(event: any): void {
     if (this.config) {
       if (event.value) {
         this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
@@ -207,7 +207,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set country code in model for request
    */
-  onCountrySelect = (event: any): void => {
+  onCountrySelect(event: any): void {
     this.model.country = event.item ? event.item.id : '';
     if (this.countryElement) {
       this.countryElement.nativeElement.focus();
@@ -224,7 +224,7 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set ucl_university uuid in model for request
    * Set uclUniversitiesLabo for this ucl_university
    */
-  onUclUniversitySelect = (event: any): void => {
+  onUclUniversitySelect(event: any): void {
     if (event.value && this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
     }
@@ -244,7 +244,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set ucl_university_labo uuid in model for request
    */
-  onUclUniversityLaboSelect = (event: any): void => {
+  onUclUniversityLaboSelect(event: any): void {
     this.model.ucl_university_labo = event.item ? event.item.id : '';
     if (this.uclUniversityLaboElement) {
       this.uclUniversityLaboElement.nativeElement.focus();
@@ -261,7 +261,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set supervisor uuid in model for request
    */
-  onSupervisorSelect = (event: any): void => {
+  onSupervisorSelect(event: any): void {
     this.model.supervisor = event.item ? event.item.id : '';
     if (this.supervisorElement) {
       this.supervisorElement.nativeElement.focus();
@@ -277,7 +277,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set partner uuid in model for request
    */
-  onPartnerSelect = (event: any): void => {
+  onPartnerSelect(event: any): void {
     this.model.partner = event.item ? event.item.id : '';
   }
 
@@ -291,7 +291,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set education_field uuid in model for request
    */
-  onEducationFieldSelect = (event: any): void => {
+  onEducationFieldSelect(event: any): void {
     this.model.education_field = event.item ? event.item.id : '';
     if (this.educationFieldElement) {
       this.educationFieldElement.nativeElement.focus();
