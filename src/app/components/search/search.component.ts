@@ -254,7 +254,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
-
   onUclUniversityLaboChange(value) {
     if (value === '') {
       this.model.ucl_university_labo = '';
@@ -300,7 +299,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.educationFieldElement.nativeElement.focus();
     }
   }
-
 
   onEducationFieldChange(value) {
     if (value === '') {

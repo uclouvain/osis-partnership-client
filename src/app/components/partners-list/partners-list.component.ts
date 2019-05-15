@@ -21,6 +21,7 @@ export class PartnersListComponent implements OnInit {
   public rows: Partner[];
   public partnersError = false;
   public loading = true;
+  public empty = true;
   public page = {
     totalElements: 0,
     totalPages: 0,
@@ -62,6 +63,7 @@ export class PartnersListComponent implements OnInit {
     this.loading = true;
     // Only search if there are filters sent through queryParams
     if (Object.keys(queryParams).length) {
+      this.empty = false;
       this.partnershipsService.searchPartners(getPartnerParams(queryParams))
         .pipe(
           catchError((): any => {
@@ -84,7 +86,14 @@ export class PartnersListComponent implements OnInit {
           }
         });
     } else {
+      this.empty = true;
       this.rows = [];
+      this.page = {
+        totalElements: 0,
+        totalPages: 0,
+        pageNumber: 0,
+        size: 25
+      };
     }
   }
 

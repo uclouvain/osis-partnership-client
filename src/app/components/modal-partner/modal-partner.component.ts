@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { getPartnershipParams } from 'src/app/helpers/partnerships.helpers';
 import { ResultPartnerships } from 'src/app/interfaces/partnership';
 import Partner from 'src/app/interfaces/partners';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
+import { combineLatest } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal-partner',
@@ -20,17 +22,14 @@ export class ModalPartnerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(({ id }): any => {
-      this.partnershipsService.getPartner(id)
-        .subscribe((partner) => {
-          this.partner = partner;
-        });
+    this.route.params.pipe(
+      mergeMap((params) => this.partnershipsService.getPartner(params.id))
+    ).subscribe((partner) => {
+      this.partner = partner;
     });
 
-    this.route.params.subscribe((params: any): any => {
-      this.route.queryParams.subscribe((queryParams: any): any => {
-        this.fetchPartnerships(queryParams, params);
-      });
+    combineLatest(this.route.params, this.route.queryParams).subscribe(([params, queryParams]: [Params, Params]) => {
+      this.fetchPartnerships(queryParams, params);
     });
   }
 
@@ -53,7 +52,11 @@ export class ModalPartnerComponent implements OnInit {
    * Fetch partnrships for this partner, if there's only a single partnership,
    * redirect to this partnership's detail view
    */
-  fetchPartnerships({ partnerFilter, ...queryParams}, { id }): void {
+  fetchPartnerships(queryParams: Params, params: Params): void {
+    const partnerFilter = queryParams.partnerFilter;
+    delete queryParams.partnerFilter;
+    const id = params.id;
+
     this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results && response.results.length === 1) {
