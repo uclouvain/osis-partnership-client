@@ -51,6 +51,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public config: Configuration;
   public continents: ValueLabel[];
   public countries: ValueLabel[];
+  public cities: ValueLabel[];
   public educationFields: ValueLabel[];
   public partners: ValueLabel[];
   public supervisors: ValueLabel[];
@@ -154,7 +155,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       if (params.ucl_university) {
         this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
-        this.onUclUniversitySelect({ value: this.fields.uclUniversity });
+        this.onUclUniversityChange(this.fields.uclUniversity);
         if (params.ucl_university_labo) {
           this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
         }
@@ -225,10 +226,6 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set uclUniversitiesLabo for this ucl_university
    */
   onUclUniversitySelect(event: any): void {
-    if (event.value && this.config) {
-      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
-    }
-
     this.model.ucl_university = event.item ? event.item.id : '';
     if (this.uclUniversityElement) {
       this.uclUniversityElement.nativeElement.focus();
@@ -239,6 +236,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (value === '') {
       this.model.ucl_university = '';
     }
+    console.log(value);
+    if (this.config) {
+      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value });
+    }
+    this.model.ucl_university_labo = '';
+    this.fields.uclUniversityLabo = '';
   }
 
   /**
@@ -339,6 +342,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.fields = {...defaultFields};
     this.model = {...defaultModel};
+    this.uclUniversitiesLabo = [];
     this.router.navigate(['/']);
   }
 }
