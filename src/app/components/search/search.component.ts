@@ -203,6 +203,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.model.continent = '';
       this.countries = getFormattedItemsList(this.allCountries);
     }
+    this.model.country = '';
+    this.fields.country = '';
   }
 
   /**
@@ -236,7 +238,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (value === '') {
       this.model.ucl_university = '';
     }
-    console.log(value);
     if (this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value });
     }
@@ -341,6 +342,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.fields = {...defaultFields};
     this.model = {...defaultModel};
     this.uclUniversitiesLabo = [];
+    this.countries = getFormattedItemsList(this.allCountries);
     this.router.navigate(['/']);
   }
 }

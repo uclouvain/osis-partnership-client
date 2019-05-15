@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 import { getPartnerParams } from 'src/app/helpers/partnerships.helpers';
 import { catchError } from 'rxjs/operators';
@@ -37,7 +37,7 @@ export class PartnersListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((queryParams: any): any => {
+    this.route.queryParams.subscribe((queryParams: Params): any => {
       this.fetchPartners(queryParams);
     });
   }
