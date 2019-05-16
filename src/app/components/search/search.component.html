@@ -4,7 +4,7 @@
       <div class="form-group" *ngIf="uclUniversities">
         <label for="uclUniversity">{{ 'Faculty' | translate }}</label>
         <input #uclUniversity [(ngModel)]="fields.uclUniversity" name="ucl_university" class="form-control" id="uclUniversity"
-          [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversitySelect($event)"
+          [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversitySelect($event)" (typeaheadOnBlur)="onUclUniversitySelect($event)"
           (ngModelChange)="onUclUniversityChange($event)"
           typeaheadOptionField="label" typeaheadOptionsLimit="2000">
       </div>
@@ -12,7 +12,7 @@
       <div class="form-group" *ngIf="uclUniversitiesLabo && uclUniversitiesLabo.length > 0">
         <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
         <input #uclUniversityLabo [(ngModel)]="fields.uclUniversityLabo" name="ucl_university_labo" class="form-control"
-          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboSelect($event)"
+          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboSelect($event)" (typeaheadOnBlur)="onUclUniversityLaboSelect($event)"
           (ngModelChange)="onUclUniversityLaboChange($event)"
           typeaheadOptionField="label" typeaheadOptionsLimit="2000">
       </div>
@@ -20,7 +20,7 @@
       <div class="form-group" *ngIf="supervisors">
         <label for="supervisor">{{ 'UCLouvain coordinator' | translate }}</label>
         <input #supervisor [(ngModel)]="fields.supervisor" name="supervisor" class="form-control" id="supervisor" [typeaheadScrollable]="true"
-          (typeaheadOnSelect)="onSupervisorSelect($event)" (ngModelChange)="onSupervisorChange($event)"
+          (typeaheadOnSelect)="onSupervisorSelect($event)" (typeaheadOnBlur)="onSupervisorSelect($event)" (ngModelChange)="onSupervisorChange($event)"
           [typeahead]="supervisors" typeaheadOptionField="label" typeaheadOptionsLimit="2000">
       </div>
 
@@ -43,14 +43,14 @@
         <label for="continent">{{ 'Continent' | translate }}</label>
         <input #continent [(ngModel)]="model.continent" name="continent" [typeahead]="continents" (ngModelChange)="onContinentChange($event)"
           typeaheadOptionField="label" class="form-control" (typeaheadNoResults)="typeaheadNoContinent($event)" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onContinentSelect($event)" id="continent">
+          (typeaheadOnSelect)="onContinentSelect($event)" (typeaheadOnBlur)="onContinentSelect($event)" id="continent">
         <div class="alert alert-danger" *ngIf="noContinent">Please select a continent in list</div>
       </div>
 
       <div class="form-group" *ngIf="countries">
         <label for="country">{{ 'Country' | translate }}</label>
         <input #country [(ngModel)]="fields.country" name="country" [typeahead]="countries" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
-          typeaheadOptionField="label" (typeaheadOnSelect)="onCountrySelect($event)" class="form-control" id="country"
+          typeaheadOptionField="label" (typeaheadOnSelect)="onCountrySelect($event)" (typeaheadOnBlur)="onCountrySelect($event)" class="form-control" id="country"
           (ngModelChange)="onCountryChange($event)">
       </div>
 
@@ -62,7 +62,7 @@
       <div class="form-group" *ngIf="partners">
         <label for="partner">{{ 'Partner institution' | translate }}</label>
         <input #partner [(ngModel)]="fields.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
-          (typeaheadOnSelect)="onPartnerSelect($event)" (ngModelChange)="onPartnerChange($event)"
+          (typeaheadOnSelect)="onPartnerSelect($event)" (typeaheadOnBlur)="onPartnerSelect($event)" (ngModelChange)="onPartnerChange($event)"
           typeaheadOptionField="label" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true">
       </div>
 
@@ -70,7 +70,7 @@
         <label for="education_field">{{ 'Subject Area' | translate }}</label>
         <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
           [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onEducationFieldSelect($event)" (ngModelChange)="onEducationFieldChange($event)">
+          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)" (ngModelChange)="onEducationFieldChange($event)">
       </div>
     </div>
   </div>
