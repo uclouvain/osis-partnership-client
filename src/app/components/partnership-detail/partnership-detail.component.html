@@ -1,7 +1,7 @@
 <app-loader *ngIf="!data"></app-loader>
 
 <div *ngIf="data">
-  <a class="btn btn-link" [routerLink]="['/partner', data.partner.uuid]" queryParamsHandling="merge" *ngIf="showBackButton">
+  <a class="btn btn-link" [routerLink]="['/partners', data.partner.uuid]" queryParamsHandling="merge" *ngIf="showBackButton">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
     {{'Back to partnership list' | translate}}
   </a>

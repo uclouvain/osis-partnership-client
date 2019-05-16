@@ -155,7 +155,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       if (params.ucl_university) {
         this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
-        this.onUclUniversityChange(this.fields.uclUniversity);
+        this.onUclUniversityChange(this.fields.uclUniversity, false);
         if (params.ucl_university_labo) {
           this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
         }
@@ -234,15 +234,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  onUclUniversityChange(value) {
+  onUclUniversityChange(value, reset = true) {
     if (value === '') {
       this.model.ucl_university = '';
     }
     if (this.config) {
       this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value });
     }
-    this.model.ucl_university_labo = '';
-    this.fields.uclUniversityLabo = '';
+
+    if (reset) {
+      this.model.ucl_university_labo = '';
+      this.fields.uclUniversityLabo = '';
+    }
   }
 
   /**
@@ -329,7 +332,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     // Reset current page to 1
     this.model.offset = 0;
-    this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
+    this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
   }
 
   /**

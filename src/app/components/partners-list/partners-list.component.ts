@@ -43,12 +43,12 @@ export class PartnersListComponent implements OnInit {
   }
 
   /**
-   * Back button, come back to partner
+   * See partner's partnerships list
    */
   goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
     // If multiple partnerships, go to partnership list modal
-    this.router.navigate(['partner', value], {
+    this.router.navigate(['partners', value], {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: value
@@ -103,7 +103,7 @@ export class PartnersListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['/'], {
+    this.router.navigate(['partners'], {
       queryParamsHandling: 'merge',
       queryParams: {
         offset
@@ -127,7 +127,7 @@ export class PartnersListComponent implements OnInit {
     }
 
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
-    this.router.navigate(['/'], {
+    this.router.navigate(['partners'], {
       queryParamsHandling: 'merge',
       queryParams: {
         ordering,

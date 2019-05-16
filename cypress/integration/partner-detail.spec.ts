@@ -1,4 +1,4 @@
-import { navigateTo } from '../support/po';
+import { navigateTo, search } from '../support/po';
 
 describe('Partner detail', () => {
   beforeEach(() => {
@@ -12,18 +12,26 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners/?',
+      url: '/api/v1/partnerships/partners/?continent=Europe',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partnerships/?partner=32c48e52-229e-485a-aa3a-9e9904971af5',
+      url: '/api/v1/partnerships/partnerships/?continent=Europe&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
     navigateTo();
     cy.wait('@getConfiguration');
+
+    // Set continent filter
+    cy.get('[name=continent]')
+      .type('Eur')
+      .type('{enter}');
+
+    // Click on search to set params in url
+    search();
     cy.wait('@getPartners');
   });
 
@@ -34,14 +42,14 @@ describe('Partner detail', () => {
 
     // Check if modal is open
     cy.get('.modal-dialog').should('exist');
-    cy.get('.modal-title').should('have.text', ' Partnership with Middle East Technical University ');
+    cy.get('.modal-title').should('have.text', ' Partnership with Johann Wolfgang Goethe-Universität Frankfurt am Main ');
 
     // Check level of study
     cy.contains('Level of study').next('dd')
-      .should('have.text', 'First cycle / Bachelor’s or equivalent level (EQF-6)Second cycle / Master’s or equivalent level (EQF-7)');
+      .should('have.text', ' Bachelor, Master ');
 
     cy.contains('Faculty/School').next('dd')
-      .should('have.text', 'EPSY');
+      .should('have.text', 'PSAD');
   });
 
   it('should show right data IN', () => {
@@ -51,7 +59,7 @@ describe('Partner detail', () => {
 
     // Check if modal is open
     cy.get('.modal-dialog').should('exist');
-    cy.get('.modal-title').should('have.text', ' Partnership with Middle East Technical University ');
+    cy.get('.modal-title').should('have.text', ' Partnership with Johann Wolfgang Goethe-Universität Frankfurt am Main ');
 
     cy.contains(' Information for incoming students ').click();
     cy.contains(' Information for incoming students ').should('have.have.class', 'active');

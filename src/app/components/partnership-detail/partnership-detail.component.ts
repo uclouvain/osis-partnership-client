@@ -33,13 +33,6 @@ export class PartnershipDetailComponent implements OnInit {
     });
   }
 
-  /**
-   * Go back to partnerships list of current partner
-   */
-  goToList(partnerId: string) {
-    this.router.navigate(['partner', partnerId], { queryParamsHandling: 'merge' });
-  }
-
   get mobilityType() {
     return getMobilityType(this.data);
   }

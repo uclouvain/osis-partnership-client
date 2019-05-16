@@ -1,3 +1,7 @@
+<alert type="warning" *ngIf="empty" class="partnership__warning">
+  <p class="partnership__warning__message">{{ 'You must select at least one filter' | translate }}</p>
+</alert>
+
 <div *ngIf="!empty">
   <h2 id="partners-list">{{ 'Partners' | translate }}</h2>
 
@@ -56,3 +60,5 @@
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
+
+<router-outlet></router-outlet>

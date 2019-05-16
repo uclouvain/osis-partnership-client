@@ -61,5 +61,6 @@
   "Go to partners website": "Go to partner's website",
   "Failed to load configuration": "Failed to load configuration",
   "Failed to load partners list": "Failed to load partners list",
-  "Failed to load partner detail": "Failed to load partner detail"
+  "Failed to load partner detail": "Failed to load partner detail",
+  "You must select at least one filter": "You must select at least one filter"
 }
