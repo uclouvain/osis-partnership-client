@@ -2,6 +2,7 @@ import { ValueLabel } from './common';
 
 export interface Country {
   name: string;
+  iso_code: string;
   cities: string[];
 }
 
