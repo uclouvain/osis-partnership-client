@@ -56,7 +56,8 @@
 
       <div class="form-group">
         <label for="city">{{ 'City' | translate }}</label>
-        <input [(ngModel)]="model.city" name="city" class="form-control" id="city">
+        <input #city [(ngModel)]="model.city" name="city" [typeahead]="cities" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
+          typeaheadOptionField="label" class="form-control" id="city">
       </div>
 
       <div class="form-group" *ngIf="partners">

@@ -51,13 +51,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   public config: Configuration;
   public continents: ValueLabel[];
   public countries: ValueLabel[];
-  public cities: ValueLabel[];
+  public cities: string[];
   public educationFields: ValueLabel[];
   public partners: ValueLabel[];
   public supervisors: ValueLabel[];
   public uclUniversities: ValueLabel[];
   public uclUniversitiesLabo: ValueLabel[];
 
+  private allCities: string[];
   private allCountries: Country[];
 
   public noContinent = false;
@@ -72,6 +73,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   @ViewChild('continent') continentElement: ElementRef;
   @ViewChild('country') countryElement: ElementRef;
+  @ViewChild('cities') cityElement: ElementRef;
   @ViewChild('partner') partnerElement: ElementRef;
   @ViewChild('supervisor') supervisorElement: ElementRef;
   @ViewChild('educationField') educationFieldElement: ElementRef;
@@ -139,6 +141,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.continents = getValueLabelList(config.continents);
       this.allCountries = [].concat.apply([], config.continents.map(continent => continent.countries));
       this.countries = getFormattedItemsList(this.allCountries);
+      this.allCities = [].concat.apply([], this.allCountries.map(country => country.cities));
+      // Remove duplicates
+      this.allCities = this.allCities.filter((city, index, self) => self.indexOf(city) === index);
+      this.cities = this.allCities;
       this.educationFields = getFormattedItemsList(config.education_fields);
       this.partners = getFormattedItemsList(config.partners);
       this.supervisors = getFormattedItemsList(config.supervisors);
@@ -214,6 +220,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   onCountrySelect(event: any): void {
     this.model.country = event.item ? event.item.id : '';
     this.fields.country = event.item ? event.item.label : '';
+    if (this.config) {
+      if (event.item) {
+        this.cities = this.allCountries.find((country: Country) => country.iso_code === event.item.id).cities;
+      } else {
+        this.cities = this.allCities;
+      }
+    }
     if (this.countryElement) {
       this.countryElement.nativeElement.focus();
     }
@@ -222,6 +235,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   onCountryChange(value) {
     if (value === '') {
       this.model.country = '';
+      this.cities = this.allCities;
     }
   }
 
@@ -353,6 +367,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {...defaultModel};
     this.uclUniversitiesLabo = [];
     this.countries = getFormattedItemsList(this.allCountries);
+    this.cities = this.allCities;
     this.router.navigate(['/']);
   }
 }
