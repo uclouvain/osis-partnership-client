@@ -181,7 +181,7 @@ describe('getMobilityType', () => {
     expect(getMobilityType(input)).toEqual('Student (short term)');
   });
 
-  it('should returns "Student (studies) / Staff" if is_sms and is_sta are true', () => {
+  it('should returns "Student (studies), Staff" if is_sms and is_sta are true', () => {
     const input = {
       is_sms: true,
       is_smp: false,
@@ -190,10 +190,10 @@ describe('getMobilityType', () => {
       is_stt: false,
     };
 
-    expect(getMobilityType(input)).toEqual('Student (studies) / Staff');
+    expect(getMobilityType(input)).toEqual('Student (studies), Staff');
   });
 
-  it('should returns "Student (studies) / Staff" if is_sms and is_stt are true', () => {
+  it('should returns "Student (studies), Staff" if is_sms and is_stt are true', () => {
     const input = {
       is_sms: true,
       is_smp: false,
@@ -202,10 +202,10 @@ describe('getMobilityType', () => {
       is_stt: true,
     };
 
-    expect(getMobilityType(input)).toEqual('Student (studies) / Staff');
+    expect(getMobilityType(input)).toEqual('Student (studies), Staff');
   });
 
-  it('should returns "Student (studies) / Staff" if is_sms, is_sta and is_stt are true', () => {
+  it('should returns "Student (studies), Staff" if is_sms, is_sta and is_stt are true', () => {
     const input = {
       is_sms: true,
       is_smp: false,
@@ -214,10 +214,10 @@ describe('getMobilityType', () => {
       is_stt: true,
     };
 
-    expect(getMobilityType(input)).toEqual('Student (studies) / Staff');
+    expect(getMobilityType(input)).toEqual('Student (studies), Staff');
   });
 
-  it('should returns "Student (training) / Staff" if is_smp, is_sta are true', () => {
+  it('should returns "Student (training), Staff" if is_smp, is_sta are true', () => {
     const input = {
       is_sms: false,
       is_smp: true,
@@ -226,10 +226,10 @@ describe('getMobilityType', () => {
       is_stt: false,
     };
 
-    expect(getMobilityType(input)).toEqual('Student (training) / Staff');
+    expect(getMobilityType(input)).toEqual('Student (training), Staff');
   });
 
-  it('should returns "Student (short term) / Staff" if is_smst, is_sta are true', () => {
+  it('should returns "Student (short term), Staff" if is_smst, is_sta are true', () => {
     const input = {
       is_sms: false,
       is_smp: false,
@@ -238,7 +238,19 @@ describe('getMobilityType', () => {
       is_stt: false,
     };
 
-    expect(getMobilityType(input)).toEqual('Student (short term) / Staff');
+    expect(getMobilityType(input)).toEqual('Student (short term), Staff');
+  });
+
+  it('should returns "Student (training, short term), Staff" if is_smst, is_smp, is_sta are true', () => {
+    const input = {
+      is_sms: false,
+      is_smp: true,
+      is_smst: true,
+      is_sta: true,
+      is_stt: false,
+    };
+
+    expect(getMobilityType(input)).toEqual('Student (training, short term), Staff');
   });
 
   it('should returns "Staff" if is_sta is true', () => {

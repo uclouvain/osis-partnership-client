@@ -42,30 +42,26 @@ export function getMobilityType(partnership) {
   let mobilityType = '';
   const student = isStudent(partnership);
   const staff = isStaff(partnership);
+  if (student) {
+    const studentTypes = [];
 
-  if (student && !staff) {
     if (partnership.is_sms) {
-      mobilityType = 'Student (studies)';
+      studentTypes.push('studies');
     }
     if (partnership.is_smp) {
-      mobilityType = 'Student (training)';
+      studentTypes.push('training');
     }
     if (partnership.is_smst) {
-      mobilityType = 'Student (short term)';
+      studentTypes.push('short term');
+    }
+
+    mobilityType = `Student (${studentTypes.join(', ')})`;
+
+    if (staff) {
+      mobilityType += ', Staff';
     }
   }
 
-  if (student && staff) {
-    if (partnership.is_sms) {
-      mobilityType = 'Student (studies), Staff';
-    }
-    if (partnership.is_smp) {
-      mobilityType = 'Student (training), Staff';
-    }
-    if (partnership.is_smst) {
-      mobilityType = 'Student (short term), Staff';
-    }
-  }
 
   if (!student && staff) {
     mobilityType = 'Staff';
