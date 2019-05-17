@@ -88,6 +88,6 @@ export class ConfigurationService {
   }
 
   private requestConfiguration() {
-    return this.http.get<Configuration>(`${environment.api.url}configuration/`, httpOptions);
+    return this.http.get<Configuration>(`${environment.api.url}configuration`, httpOptions);
   }
 }
