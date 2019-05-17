@@ -57,13 +57,13 @@ export function getMobilityType(partnership) {
 
   if (student && staff) {
     if (partnership.is_sms) {
-      mobilityType = 'Student (studies) / Staff';
+      mobilityType = 'Student (studies), Staff';
     }
     if (partnership.is_smp) {
-      mobilityType = 'Student (training) / Staff';
+      mobilityType = 'Student (training), Staff';
     }
     if (partnership.is_smst) {
-      mobilityType = 'Student (short term) / Staff';
+      mobilityType = 'Student (short term), Staff';
     }
   }
 
