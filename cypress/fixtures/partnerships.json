@@ -3,7 +3,7 @@
   "next": null,
   "previous": null,
   "results": [{
-    "url": "http://127.0.0.1:8000/api/v1/partnership/partnerships/c864eae4-509d-47bf-a598-cf095ae5279f/",
+    "url": "http://127.0.0.1:8000/api/v1/partnership/partnerships/c864eae4-509d-47bf-a598-cf095ae5279f",
     "partner": {
       "uuid": "bc203071-e421-4a7c-94c1-b1794b4906f4",
       "name": "Johann Wolfgang Goethe-Universität Frankfurt am Main",

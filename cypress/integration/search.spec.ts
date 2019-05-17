@@ -5,7 +5,7 @@ describe('Search fields', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration/',
+      url: '/api/v1/partnerships/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
@@ -90,7 +90,7 @@ describe('Search url params', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration/',
+      url: '/api/v1/partnerships/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
   });

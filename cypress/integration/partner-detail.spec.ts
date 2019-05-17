@@ -6,19 +6,19 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration/',
+      url: '/api/v1/partnerships/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners/?continent=Europe',
+      url: '/api/v1/partnerships/partners?continent=Europe',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partnerships/?continent=Europe&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/api/v1/partnerships/partnerships?continent=Europe&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
