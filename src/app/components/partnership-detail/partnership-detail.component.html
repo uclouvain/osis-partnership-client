@@ -58,9 +58,9 @@
             </ul>
           </dd>
 
-          <dt class="nomargin" *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
-          <dd class="nomargin" *ngIf="data.out_entities">{{data.out_entities}}</dd>
-          <dd class="nomargin" *ngIf="!data.out_entities">{{ 'All' | translate }}</dd>
+          <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">{{data.out_entities}}</dd>
+          <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">{{ 'All' | translate }}</dd>
 
           <dt>{{ 'Program' | translate }}</dt>
           <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
