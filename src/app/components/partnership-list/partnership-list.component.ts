@@ -40,11 +40,7 @@ export class PartnershipListComponent implements OnInit {
         if (response && response.results) {
           if (response.results.length === 1) {
             const partnership = response.results[0];
-<<<<<<< HEAD
             const partnershipId = partnership.uuid;
-=======
-            const partnershipId = partnership.url.split('/').reverse()[0];
->>>>>>> Fix partnership detail url
             this.router.navigate([`partners/${partnership.partner.uuid}/partnership/${partnershipId}`], {
               queryParamsHandling: 'merge',
               queryParams: {
