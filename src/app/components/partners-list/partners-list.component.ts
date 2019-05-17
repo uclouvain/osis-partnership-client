@@ -61,6 +61,7 @@ export class PartnersListComponent implements OnInit {
    */
   fetchPartners(queryParams): void {
     this.loading = true;
+    this.rows = [];
     // Only search if there are filters sent through queryParams
     if (Object.keys(queryParams).length) {
       this.empty = false;

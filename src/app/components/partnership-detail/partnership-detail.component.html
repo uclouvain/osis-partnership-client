@@ -11,7 +11,7 @@
       <a class="detail-partnership__name" [href]="data.partner.website" rel="noopener" target="blank" [title]="'Go to partners website' | translate">
         {{data.partner.name}}
       </a> <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span><br/>
-      <span *ngIf="data.partner_entity">{{data.partner_entity}}</span><br *ngIf="data.partner_entity" />
+      <span *ngIf="data.partner_entity">{{data.partner_entity}}<br /></span>
       <span class="detail-partnership__city">{{data.partner.city}}, </span>
       <span>{{data.partner.country}}</span>
     </dd>
@@ -60,6 +60,7 @@
 
           <dt class="nomargin" *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
           <dd class="nomargin" *ngIf="data.out_entities">{{data.out_entities}}</dd>
+          <dd class="nomargin" *ngIf="!data.out_entities">{{ 'All' | translate }}</dd>
 
           <dt>{{ 'Program' | translate }}</dt>
           <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
@@ -87,9 +88,10 @@
             <a [href]="data.out_portal" target="blank" rel="noopener">{{data.out_portal}}</a>
           </dd>
 
-          <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
-          <dd *ngIf="data.out_funding">
-            <a [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
+          <dt>{{ 'Funding' | translate }}</dt>
+          <dd>
+            <span *ngIf="!data.out_funding">-</span>
+            <a *ngIf="data.out_funding" [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
           </dd>
 
           <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
