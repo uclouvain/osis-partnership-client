@@ -1,12 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map, find, filter } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
-import Partnership, { ResultPartnerships, PartnershipParams } from '../interfaces/partnership';
-import Partner, { ResultPartners, PartnerParams } from '../interfaces/partners';
+import Partnership, { PartnershipParams, ResultPartnerships } from '../interfaces/partnership';
+import Partner, { PartnerParams, ResultPartners } from '../interfaces/partners';
+import { CacheService } from './cache.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,7 +23,7 @@ export class PartnershipsService {
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
 
   constructor(
-    private http: HttpClient
+    private cache: CacheService
   ) {
   }
 
@@ -73,14 +74,14 @@ export class PartnershipsService {
   }
 
   private requestPartnerships(query: object) {
-    return this.http.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`, httpOptions);
+    return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships?${queryString.stringify(query)}`, httpOptions);
   }
 
   private requestPartnership(id: string) {
-    return this.http.get<Partnership>(`${environment.api.url}partnerships/${id}/`, httpOptions);
+    return this.cache.get<Partnership>(`${environment.api.url}partnerships/${id}`, httpOptions);
   }
 
   private requestPartners(query: object) {
-    return this.http.get<ResultPartners>(`${environment.api.url}partners/?${queryString.stringify(query)}`, httpOptions);
+    return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`, httpOptions);
   }
 }

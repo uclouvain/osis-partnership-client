@@ -35,6 +35,7 @@
   "Level of study": "Level of study",
   "Entity": "Entity",
   "Program": "Program",
+  "All programs": "All programs",
   "Contact person": "Contact person",
   "Contact person OUT": "Contact person OUT",
   "Contact person IN": "Contact person IN",
@@ -60,5 +61,6 @@
   "Go to partners website": "Go to partner's website",
   "Failed to load configuration": "Failed to load configuration",
   "Failed to load partners list": "Failed to load partners list",
-  "Failed to load partner detail": "Failed to load partner detail"
+  "Failed to load partner detail": "Failed to load partner detail",
+  "You must select at least one filter": "You must select at least one filter"
 }

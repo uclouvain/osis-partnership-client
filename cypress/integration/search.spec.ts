@@ -5,7 +5,7 @@ describe('Search fields', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration/',
+      url: '/api/v1/partnerships/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
@@ -17,11 +17,11 @@ describe('Search fields', () => {
   });
 
   it('should display Student selected checkbox', () => {
-    getInputStudent().should('be.checked');
+    getInputStudent().should('be.not.checked');
   });
 
   it('should display Staff not selected checkbox', () => {
-    getInputStaff().should('be.checked');
+    getInputStaff().should('be.not.checked');
   });
 
   it('should have Erasmus and Test as checkbox options for funding', () => {
@@ -29,8 +29,8 @@ describe('Search fields', () => {
     cy.get('input#Erasmus').should('exist');
     cy.get('input#Test').should('exist');
 
-    cy.get('input#Erasmus').should('be.checked');
-    cy.get('input#Test').should('be.checked');
+    cy.get('input#Erasmus').should('be.not.checked');
+    cy.get('input#Test').should('be.not.checked');
   });
 
   it('ucl_university field open typeahead', () => {
@@ -90,17 +90,9 @@ describe('Search url params', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration/',
+      url: '/api/v1/partnerships/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
-  });
-
-  it('should add default filters in url', () => {
-    navigateTo();
-    cy.wait('@getConfiguration');
-
-    search();
-    cy.url().should('include', '?mobility_type=student');
   });
 
   it('should add url params and clear it if removed', () => {
@@ -119,10 +111,10 @@ describe('Search url params', () => {
       .should('have.value', 'Japon');
 
     search();
-    cy.url().should('include', '?continent=Asia&country=JP&mobility_type=student');
+    cy.url().should('include', '?continent=Asia&country=JP');
 
     resetForm();
-    cy.url().should('include', '?mobility_type=student');
+    cy.url().should('include', '');
   });
 
   it('should add custom filters in url', () => {
@@ -132,12 +124,12 @@ describe('Search url params', () => {
     cy.get('[name=ucl_university]')
       .type('FIA')
       .type('{enter}')
-      .should('have.value', 'FIAL');
+      .should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
 
     cy.get('[name=ucl_university_labo]')
-      .type('A')
+      .type('AR')
       .type('{enter}')
-      .should('have.value', 'ARKE');
+      .should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
 
     cy.get('[name=supervisor]')
       .type('BRAGA')
@@ -146,7 +138,7 @@ describe('Search url params', () => {
 
     search();
 // tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&mobility_type=student');
+    cy.url().should('include', '?ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a');
 
     cy.get('[name=continent]')
       .type('Asia')
@@ -162,9 +154,9 @@ describe('Search url params', () => {
       .type('Tokyo');
 
     cy.get('[name=partner]')
-      .type('Middle')
+      .type('Toulouse')
       .type('{enter}')
-      .should('have.value', 'Middle East Technical University');
+      .should('have.value', 'Université Paul Sabatier Toulouse III');
 
     cy.get('[name=education_field]')
       .type('science')
@@ -173,22 +165,21 @@ describe('Search url params', () => {
 
     search();
 // tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=Middle%20East%20Technical%20University&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27&mobility_type=student');
+    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
   });
 
   it('should retrieve url params in form', () => {
     // tslint:disable-next-line: max-line-length
-    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=Middle%20East%20Technical%20University&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27&mobility_type=student');
+    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
     cy.wait('@getConfiguration');
 
-    cy.get('[name=ucl_university]').should('have.value', 'FIAL');
-    cy.get('[name=ucl_university_labo]').should('have.value', 'ARKE');
+    cy.get('[name=ucl_university]').should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
+    cy.get('[name=ucl_university_labo]').should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
     cy.get('[name=supervisor]').should('have.value', 'BRAGARD, Véronique');
     cy.get('[name=continent]').should('have.value', 'Asia');
     cy.get('[name=country]').should('have.value', 'Japon');
     cy.get('[name=city]').should('have.value', 'Tokyo');
-    cy.get('[name=partner]').should('have.value', 'Middle East Technical University');
+    cy.get('[name=partner]').should('have.value', 'Université Paul Sabatier Toulouse III');
     cy.get('[name=education_field]').should('have.value', 'Education science');
   });
-
 });

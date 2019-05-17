@@ -1,7 +1,7 @@
 <app-loader *ngIf="!data"></app-loader>
 
 <div *ngIf="data">
-  <a class="btn btn-link" [routerLink]="['/partner', data.partner.uuid]" queryParamsHandling="merge" *ngIf="showBackButton">
+  <a class="btn btn-link" [routerLink]="['/partners', data.partner.uuid]" queryParamsHandling="merge" *ngIf="showBackButton">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
     {{'Back to partnership list' | translate}}
   </a>
@@ -47,26 +47,38 @@
 
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.out_education_levels">{{ 'Level of study' | translate }}</dt>
-          <dd *ngIf="data.out_education_levels">
+          <dt class="nomargin">{{ 'Level of study' | translate }}</dt>
+          <dd class="nomargin" *ngIf="!data.out_education_levels || !data.out_education_levels.length">
+            Bachelor, Master
+          </dd>
+
+          <dd class="nomargin" *ngIf="data.out_education_levels && data.out_education_levels.length">
             <ul *ngFor="let level of data.out_education_levels" class="partnership__list">
               <li>{{level}}</li>
             </ul>
           </dd>
 
-          <dt *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
-          <dd *ngIf="data.out_entities">{{data.out_entities}}</dd>
+          <dt class="nomargin" *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.out_entities">{{data.out_entities}}</dd>
 
-          <dt *ngIf="data.out_university_offers">{{ 'Program' | translate }}</dt>
-          <dd *ngIf="data.out_university_offers">
+          <dt>{{ 'Program' | translate }}</dt>
+          <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
+            {{ 'All programs' | translate }}
+          </dd>
+
+          <dd *ngIf="data.out_university_offers && data.out_university_offers.length">
             <ul *ngFor="let level of data.out_university_offers" class="partnership__list">
               <li>{{level}}</li>
             </ul>
           </dd>
 
-          <dt *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
+          <dt class="nomargin" *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
           <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <span *ngIf="data.out_contact.first_name || data.out_contact.last_name">{{data.out_contact.first_name}} {{data.out_contact.last_name}}<br/></span>
+          </dd>
+
+          <dt class="nomargin" *ngIf="data.out_contact && data.out_contact.email">{{ 'E-mail' | translate }}</dt>
+          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
@@ -159,7 +171,9 @@
           </dd>
 
           <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
-          <dd *ngIf="data.out_funding">{{data.out_funding}}</dd>
+          <dd *ngIf="data.out_funding">
+            <a [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
+          </dd>
 
           <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
           <dd *ngIf="data.out_contact.email">

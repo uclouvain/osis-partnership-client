@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import Partner from 'src/app/interfaces/partners.js';
 import { ResultPartners } from 'src/app/interfaces/partners';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 import { getPartnerParams } from 'src/app/helpers/partnerships.helpers';
 import { catchError } from 'rxjs/operators';
@@ -21,6 +21,7 @@ export class PartnersListComponent implements OnInit {
   public rows: Partner[];
   public partnersError = false;
   public loading = true;
+  public empty = true;
   public page = {
     totalElements: 0,
     totalPages: 0,
@@ -36,18 +37,18 @@ export class PartnersListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((queryParams: any): any => {
+    this.route.queryParams.subscribe((queryParams: Params): any => {
       this.fetchPartners(queryParams);
     });
   }
 
   /**
-   * Back button, come back to partner
+   * See partner's partnerships list
    */
   goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
     // If multiple partnerships, go to partnership list modal
-    this.router.navigate(['partner', value], {
+    this.router.navigate(['partners', value], {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: value
@@ -62,6 +63,7 @@ export class PartnersListComponent implements OnInit {
     this.loading = true;
     // Only search if there are filters sent through queryParams
     if (Object.keys(queryParams).length) {
+      this.empty = false;
       this.partnershipsService.searchPartners(getPartnerParams(queryParams))
         .pipe(
           catchError((): any => {
@@ -84,7 +86,14 @@ export class PartnersListComponent implements OnInit {
           }
         });
     } else {
+      this.empty = true;
       this.rows = [];
+      this.page = {
+        totalElements: 0,
+        totalPages: 0,
+        pageNumber: 0,
+        size: 25
+      };
     }
   }
 
@@ -94,7 +103,7 @@ export class PartnersListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['/'], {
+    this.router.navigate(['partners'], {
       queryParamsHandling: 'merge',
       queryParams: {
         offset
@@ -118,7 +127,7 @@ export class PartnersListComponent implements OnInit {
     }
 
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
-    this.router.navigate(['/'], {
+    this.router.navigate(['partners'], {
       queryParamsHandling: 'merge',
       queryParams: {
         ordering,

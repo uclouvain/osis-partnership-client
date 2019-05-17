@@ -38,14 +38,25 @@ export class PartnershipListComponent implements OnInit {
     this.partnershipsService.searchPartnerships(getPartnershipParams({ ...queryParams, partner: partnerFilter}))
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
-          this.page.totalElements = response.count;
-          this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
-          this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
-          this.rows = response.results.map((partner: Partnership) => ({
-            ...partner,
-            mobility_type: partner && getMobilityType(partner),
-            cellTemplate: this.partnershipSummaryCell
-          }));
+          if (response.results.length === 1) {
+            const partnership = response.results[0];
+            const partnershipId = partnership.url.split('/').reverse()[1];
+            this.router.navigate([`partners/${partnership.partner.uuid}/partnership/${partnershipId}`], {
+              queryParamsHandling: 'merge',
+              queryParams: {
+                uniquePartnership: true,
+              }
+            });
+          } else {
+            this.page.totalElements = response.count;
+            this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
+            this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
+            this.rows = response.results.map((partner: Partnership) => ({
+              ...partner,
+              mobility_type: partner && getMobilityType(partner),
+              cellTemplate: this.partnershipSummaryCell
+            }));
+          }
         }
       });
   }
@@ -54,11 +65,11 @@ export class PartnershipListComponent implements OnInit {
     e.preventDefault();
     const partnerId = partnership.partner.uuid;
     const partnershipId = partnership.url.split('/').reverse()[1];
-    this.router.navigate([`partner/${partnerId}/partnership/${partnershipId}`], { queryParamsHandling: 'merge' });
+    this.router.navigate([`partners/${partnerId}/partnership/${partnershipId}`], { queryParamsHandling: 'merge' });
   }
 
   getDetailLink(value: Partnership) {
-    return [`/partner/${value.partner.uuid}/partnership/${value.url.split('/').reverse()[1]}`];
+    return [`/partners/${value.partner.uuid}/partnership/${value.url.split('/').reverse()[1]}`];
   }
 
   /**
@@ -67,7 +78,7 @@ export class PartnershipListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['/'], {
+    this.router.navigate(['partners'], {
       queryParamsHandling: 'merge',
       queryParams: {
         offsetPartnership: offset

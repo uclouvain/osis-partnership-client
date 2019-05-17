@@ -51,6 +51,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public config: Configuration;
   public continents: ValueLabel[];
   public countries: ValueLabel[];
+  public cities: ValueLabel[];
   public educationFields: ValueLabel[];
   public partners: ValueLabel[];
   public supervisors: ValueLabel[];
@@ -154,7 +155,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       if (params.ucl_university) {
         this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
-        this.onUclUniversitySelect({ value: this.fields.uclUniversity });
+        this.onUclUniversityChange(this.fields.uclUniversity, false);
         if (params.ucl_university_labo) {
           this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
         }
@@ -184,7 +185,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set country list for selected continent
    */
-  onContinentSelect = (event: any): void => {
+  onContinentSelect(event: any): void {
+    this.model.continent = event.item ? event.item.id : '';
     if (this.config) {
       if (event.value) {
         this.countries = getValueLabelList(this.config.continents, { name: 'countries', value: event.value });
@@ -202,13 +204,16 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.model.continent = '';
       this.countries = getFormattedItemsList(this.allCountries);
     }
+    this.model.country = '';
+    this.fields.country = '';
   }
 
   /**
    * Set country code in model for request
    */
-  onCountrySelect = (event: any): void => {
+  onCountrySelect(event: any): void {
     this.model.country = event.item ? event.item.id : '';
+    this.fields.country = event.item ? event.item.label : '';
     if (this.countryElement) {
       this.countryElement.nativeElement.focus();
     }
@@ -224,33 +229,38 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Set ucl_university uuid in model for request
    * Set uclUniversitiesLabo for this ucl_university
    */
-  onUclUniversitySelect = (event: any): void => {
-    if (event.value && this.config) {
-      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value: event.value });
-    }
-
-    this.model.ucl_university = event.item ? event.item.id : '';
+  onUclUniversitySelect(value: any): void {
+    this.model.ucl_university = value.item ? value.item.id : '';
+    this.fields.uclUniversity = value.item ? value.item.label : '';
     if (this.uclUniversityElement) {
       this.uclUniversityElement.nativeElement.focus();
     }
   }
 
-  onUclUniversityChange(value) {
+  onUclUniversityChange(value, reset = true) {
     if (value === '') {
       this.model.ucl_university = '';
+    }
+    if (this.config) {
+      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value });
+    }
+
+    if (reset) {
+      this.model.ucl_university_labo = '';
+      this.fields.uclUniversityLabo = '';
     }
   }
 
   /**
    * Set ucl_university_labo uuid in model for request
    */
-  onUclUniversityLaboSelect = (event: any): void => {
+  onUclUniversityLaboSelect(event: any): void {
     this.model.ucl_university_labo = event.item ? event.item.id : '';
+    this.fields.uclUniversityLabo = event.item ? event.item.label : '';
     if (this.uclUniversityLaboElement) {
       this.uclUniversityLaboElement.nativeElement.focus();
     }
   }
-
 
   onUclUniversityLaboChange(value) {
     if (value === '') {
@@ -261,8 +271,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set supervisor uuid in model for request
    */
-  onSupervisorSelect = (event: any): void => {
+  onSupervisorSelect(event: any): void {
     this.model.supervisor = event.item ? event.item.id : '';
+    this.fields.supervisor = event.item ? event.item.label : '';
     if (this.supervisorElement) {
       this.supervisorElement.nativeElement.focus();
     }
@@ -277,8 +288,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set partner uuid in model for request
    */
-  onPartnerSelect = (event: any): void => {
+  onPartnerSelect(event: any): void {
     this.model.partner = event.item ? event.item.id : '';
+    this.fields.partner = event.item ? event.item.label : '';
   }
 
 
@@ -291,13 +303,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   /**
    * Set education_field uuid in model for request
    */
-  onEducationFieldSelect = (event: any): void => {
+  onEducationFieldSelect(event: any): void {
     this.model.education_field = event.item ? event.item.id : '';
+    this.fields.educationField = event.item ? event.item.label : '';
     if (this.educationFieldElement) {
       this.educationFieldElement.nativeElement.focus();
     }
   }
-
 
   onEducationFieldChange(value) {
     if (value === '') {
@@ -327,7 +339,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     // Reset current page to 1
     this.model.offset = 0;
-    this.router.navigate(['/'], { queryParams: getCleanParams(this.model) });
+    this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
   }
 
   /**
@@ -339,6 +351,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.fields = {...defaultFields};
     this.model = {...defaultModel};
+    this.uclUniversitiesLabo = [];
+    this.countries = getFormattedItemsList(this.allCountries);
     this.router.navigate(['/']);
   }
 }
