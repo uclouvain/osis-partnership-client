@@ -3,6 +3,7 @@ import Contact from './contact';
 import Funding from './funding';
 
 export default interface Partnership {
+  uuid: string;
   partner: Partner;
   education_field:	string;
   ucl_university: AcronymEntity;

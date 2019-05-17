@@ -46,8 +46,7 @@ export class PartnershipsService {
     if (this.cachePartnerships.value.length > 0) {
       return this.cachePartnerships.pipe(
         map(partnerships => partnerships.find(partnership => {
-          const partnershipId = partnership.url.split('/').reverse()[1];
-          return partnershipId === id;
+          return partnership.uuid === id;
         }))
       );
     }
