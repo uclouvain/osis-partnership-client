@@ -50,7 +50,6 @@ export class PartnershipsService {
         }))
       );
     }
-
     return this.requestPartnership(id);
   }
 
