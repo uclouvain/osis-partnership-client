@@ -74,12 +74,12 @@
           </dd>
 
           <dt class="nomargin" *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
-          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <span *ngIf="data.out_contact.first_name || data.out_contact.last_name">{{data.out_contact.first_name}} {{data.out_contact.last_name}}<br/></span>
           </dd>
 
           <dt class="nomargin" *ngIf="data.out_contact && data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
@@ -126,9 +126,13 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
-          <dd *ngIf="data.in_contact.first_name || data.in_contact.last_name">
+          <dt class="nomargin" *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.in_contact.first_name || data.in_contact.last_name">
             <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}} {{data.in_contact.last_name}}<br/></span>
+          </dd>
+
+          <dt class="nomargin" *ngIf="data.in_contact && data.in_contact.email">{{ 'E-mail' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.in_contact && data.in_contact.email">
             <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
           </dd>
 
