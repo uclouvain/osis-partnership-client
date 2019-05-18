@@ -59,7 +59,11 @@
           </dd>
 
           <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
-          <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">{{data.out_entities}}</dd>
+          <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">
+            <button *ngIf="data.ucl_university" class="btn btn-link btn-text" [tooltip]="data.ucl_university.title">{{data.ucl_university.acronym}}</button>
+            <span *ngIf="data.ucl_university && data.ucl_university_labo"> / </span>
+            <button *ngIf="data.ucl_university_labo" class="btn btn-link btn-text" [tooltip]="data.ucl_university_labo.acronym">{{data.ucl_university_labo.acronym}}</button>
+          </dd>
           <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">{{ 'All' | translate }}</dd>
 
           <dt>{{ 'Program' | translate }}</dt>
