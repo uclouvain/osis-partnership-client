@@ -38,9 +38,6 @@ export class PartnershipDetailComponent implements OnInit {
   }
 
   isValidated(status) {
-    if (status.status === 'Validated' || status.status === 'validated') {
-      return true;
-    }
-    return false;
+    return status.status === 'Validated' || status.status === 'validated';
   }
 }
