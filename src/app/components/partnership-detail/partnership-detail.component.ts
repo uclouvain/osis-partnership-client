@@ -37,4 +37,7 @@ export class PartnershipDetailComponent implements OnInit {
     return getMobilityType(this.data);
   }
 
+  isValidated(status) {
+    return status.status === 'Validated' || status.status === 'validated';
+  }
 }

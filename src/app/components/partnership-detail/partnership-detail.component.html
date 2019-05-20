@@ -36,7 +36,7 @@
     <dd>{{mobilityType}}</dd>
 
     <dt *ngIf="data.status">{{ 'Status' | translate }}</dt>
-    <dd *ngIf="data.status">{{data.status.status}} ({{data.status.valid_years}})</dd>
+    <dd *ngIf="data.status">{{data.status.status}} <span *ngIf="isValidated(data.status)">({{data.status.valid_years}})</span></dd>
   </dl>
 
   <tabset *ngIf="data">
@@ -58,9 +58,13 @@
             </ul>
           </dd>
 
-          <dt class="nomargin" *ngIf="data.out_entities">{{ 'Faculty/School' | translate }}</dt>
-          <dd class="nomargin" *ngIf="data.out_entities">{{data.out_entities}}</dd>
-          <dd class="nomargin" *ngIf="!data.out_entities">{{ 'All' | translate }}</dd>
+          <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">
+            <button *ngIf="data.ucl_university" class="btn btn-link btn-text" [tooltip]="data.ucl_university.title">{{data.ucl_university.acronym}}</button>
+            <span *ngIf="data.ucl_university && data.ucl_university_labo"> / </span>
+            <button *ngIf="data.ucl_university_labo" class="btn btn-link btn-text" [tooltip]="data.ucl_university_labo.acronym">{{data.ucl_university_labo.acronym}}</button>
+          </dd>
+          <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">{{ 'All' | translate }}</dd>
 
           <dt>{{ 'Program' | translate }}</dt>
           <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
@@ -74,12 +78,12 @@
           </dd>
 
           <dt class="nomargin" *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
-          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <span *ngIf="data.out_contact.first_name || data.out_contact.last_name">{{data.out_contact.first_name}} {{data.out_contact.last_name}}<br/></span>
           </dd>
 
           <dt class="nomargin" *ngIf="data.out_contact && data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
             <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
@@ -126,9 +130,13 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
-          <dd *ngIf="data.in_contact.first_name || data.in_contact.last_name">
+          <dt class="nomargin" *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.in_contact.first_name || data.in_contact.last_name">
             <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}} {{data.in_contact.last_name}}<br/></span>
+          </dd>
+
+          <dt class="nomargin" *ngIf="data.in_contact && data.in_contact.email">{{ 'E-mail' | translate }}</dt>
+          <dd class="nomargin" *ngIf="data.in_contact && data.in_contact.email">
             <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
           </dd>
 

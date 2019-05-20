@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+/* button as text (for tooltips) */
+.btn-text {
+  padding: 0;
+}
+
 /* Overwrite ngx-database style to center verticaly */
 .datatable-body-cell {
   display: flex !important;
