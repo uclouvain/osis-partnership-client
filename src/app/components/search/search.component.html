@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group" *ngIf="uclUniversities">
-        <label for="uclUniversity">{{ 'Faculty' | translate }}</label>
+        <label for="uclUniversity">{{ 'UCLouvain Faculty' | translate }}</label>
         <input #uclUniversity [(ngModel)]="fields.uclUniversity" name="ucl_university" class="form-control" id="uclUniversity"
           [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversitySelect($event)" (typeaheadOnBlur)="onUclUniversitySelect($event)"
           (ngModelChange)="onUclUniversityChange($event)"
@@ -17,11 +17,11 @@
           typeaheadOptionField="label" typeaheadOptionsLimit="2000">
       </div>
 
-      <div class="form-group" *ngIf="supervisors">
-        <label for="supervisor">{{ 'UCLouvain coordinator' | translate }}</label>
-        <input #supervisor [(ngModel)]="fields.supervisor" name="supervisor" class="form-control" id="supervisor" [typeaheadScrollable]="true"
-          (typeaheadOnSelect)="onSupervisorSelect($event)" (typeaheadOnBlur)="onSupervisorSelect($event)" (ngModelChange)="onSupervisorChange($event)"
-          [typeahead]="supervisors" typeaheadOptionField="label" typeaheadOptionsLimit="2000">
+      <div class="form-group" *ngIf="educationFields">
+        <label for="education_field">{{ 'Subject Area' | translate }}</label>
+        <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
+          [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
+          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)" (ngModelChange)="onEducationFieldChange($event)">
       </div>
 
       <div class="form-group">
@@ -31,11 +31,6 @@
         </app-checkbox-group>
       </div>
 
-      <div class="form-group">
-        <label>{{ 'Funding' | translate }}</label>
-        <app-checkbox-group [options]="fundingOptions" [selectedValues]="model.funding" (toggle)="onFundingChange($event)">
-        </app-checkbox-group>
-      </div>
     </div>
 
     <div class="col-md-6">
@@ -65,13 +60,6 @@
         <input #partner [(ngModel)]="fields.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
           (typeaheadOnSelect)="onPartnerSelect($event)" (typeaheadOnBlur)="onPartnerSelect($event)" (ngModelChange)="onPartnerChange($event)"
           typeaheadOptionField="label" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true">
-      </div>
-
-      <div class="form-group" *ngIf="educationFields">
-        <label for="education_field">{{ 'Subject Area' | translate }}</label>
-        <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
-          [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)" (ngModelChange)="onEducationFieldChange($event)">
       </div>
     </div>
   </div>
