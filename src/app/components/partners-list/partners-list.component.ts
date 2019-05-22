@@ -38,7 +38,15 @@ export class PartnersListComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: Params): any => {
-      this.fetchPartners(queryParams);
+      if (Object.keys(queryParams).length && queryParams.ordering === undefined) {
+        queryParams = {...queryParams, ordering: 'country_en,city'};
+        this.router.navigate(['partners'], {
+          queryParamsHandling: 'merge',
+          queryParams
+        });
+      } else {
+        this.fetchPartners(queryParams);
+      }
     });
   }
 
@@ -124,7 +132,7 @@ export class PartnersListComponent implements OnInit {
     }
 
     if (orderColumn === 'country') {
-      orderColumn = 'country_en';
+      orderColumn = 'country_en,city';
     }
 
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
