@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api: {
-    url: '/api/v1/partnership/',
+    url: '/partnerships/v1/',
     token: ''
   }
 };
