@@ -2,26 +2,30 @@
 <ngx-datatable *ngIf="rows" class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
   [headerHeight]="40" [footerHeight]="40" [externalPaging]="true" [count]="page.totalElements"
   [offset]="page.pageNumber" [limit]="page.size" (page)='setPage($event)' [rowHeight]="'auto'"
-  [reorderable]="true" (sort)="onSort($event)" [externalSorting]="true">
-  <ngx-datatable-column [name]="'Faculty' | translate" prop="ucl_university">
-    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <button [tooltip]="value.title" class="btn btn-link" placement="bottom">{{value.acronym}}</button>
+  [reorderable]="true" [externalSorting]="true">
+
+  <ngx-datatable-column [name]="'Faculty' | translate" [sortable]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <span [tooltip]="row.ucl_university.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_university.acronym}}</span>
+      <ng-container *ngIf="row.ucl_university_labo"> / <span [tooltip]="row.ucl_university_labo.title"
+                                          [placement]="'top'"
+                                          [container]="'body'" class="has-tooltip">{{row.ucl_university_labo.acronym}}</span></ng-container>
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'UCLouvain' | translate" prop="staff_contact_name">
+  <ngx-datatable-column [name]="'UCLouvain' | translate" prop="staff_contact_name" [sortable]="false">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value}}
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'Type' | translate" prop="mobility_type">
+  <ngx-datatable-column [name]="'Type' | translate" prop="mobility_type" [sortable]="false">
     <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
       {{value | translate}}
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields">
+  <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields" [sortable]="false">
     <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
       <ul *ngFor="let field of value" class="partnership__list">
         <li>{{field}}</li>
@@ -40,4 +44,5 @@
       </a>
     </ng-template>
   </ngx-datatable-column>
+
 </ngx-datatable>

@@ -1,0 +1,7 @@
+.has-tooltip {
+  text-decoration: underline dotted;
+}
+
+.has-tooltip:hover {
+  cursor: pointer;
+}
