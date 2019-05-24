@@ -31,10 +31,8 @@ export default interface Partnership {
   education_fields: string[];
   out_education_levels: string[];
   out_university_offers: string[];
-  medias: {
-    name: string;
-    url: string;
-  }[];
+  medias: Media[];
+  out_summary_tables: Media[];
 }
 
 export interface ResultPartnerships {
@@ -65,4 +63,9 @@ export interface PartnershipParams {
 export interface AcronymEntity {
   title: string;
   acronym: string;
+}
+
+export interface Media {
+  name: string;
+  url: string;
 }

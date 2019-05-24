@@ -110,14 +110,14 @@
             </ul>
           </dd>
 
-          <dt>{{ 'Individual evaluation reports' | translate }}</dt>
-          <dd></dd>
+          <dt>{{ 'Individual Student Evaluations' | translate }}</dt>
+          <dd>{{ 'Address coming soon' | translate }}</dd>
 
-          <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
-          <dd *ngIf="data.medias && data.medias.length > 0">
+          <dt *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">{{ 'Summary Tables' | translate }}</dt>
+          <dd *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
             <ul class="partnership__list">
-              <li *ngFor="let media of data.medias">
-                <a [href]="media.url">{{media.name}}</a>
+              <li *ngFor="let summary_table of data.out_summary_tables">
+                <a [href]="summary_table.url">{{summary_table.name}}</a>
               </li>
             </ul>
           </dd>
