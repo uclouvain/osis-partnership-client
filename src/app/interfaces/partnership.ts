@@ -21,6 +21,16 @@ export default interface Partnership {
   out_portal: string;
   out_funding: Funding;
   out_partner_contacts: Contact[];
+  out_course_catalogue: {
+    fr: {
+      text: string,
+      url: string,
+    },
+    en: {
+      text: string,
+      url: string,
+    },
+  };
   in_contact: Contact;
   in_portal: string;
   staff_contact_name: string;

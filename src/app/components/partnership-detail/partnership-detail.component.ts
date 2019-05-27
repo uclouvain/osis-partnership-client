@@ -3,6 +3,7 @@ import Partnership from 'src/app/interfaces/partnership';
 import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-partnership-detail',
@@ -17,7 +18,8 @@ export class PartnershipDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private partnershipsService: PartnershipsService
+    private partnershipsService: PartnershipsService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,24 @@ export class PartnershipDetailComponent implements OnInit {
 
   get mobilityType() {
     return getMobilityType(this.data);
+  }
+
+  getCourseCatalogueUrl() {
+    const lang = this.translate.currentLang || this.translate.defaultLang;
+    const courseCatalogue = this.data.out_course_catalogue[lang];
+    if (courseCatalogue === undefined) {
+      return null;
+    }
+    return courseCatalogue.url;
+  }
+
+  getCourseCatalogueText() {
+    const lang = this.translate.currentLang || this.translate.defaultLang;
+    const courseCatalogue = this.data.out_course_catalogue[lang];
+    if (courseCatalogue === undefined) {
+      return null;
+    }
+    return courseCatalogue.text;
   }
 
   isValidated(status) {
