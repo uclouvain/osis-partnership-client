@@ -22,8 +22,8 @@
         <span *ngIf="data.ucl_university_labo">{{data.ucl_university_labo.title}} ({{data.ucl_university_labo.acronym}})</span>
     </dd>
 
-    <dt *ngIf="data.staff_contact_name">{{ 'UCLouvain academic coordinator' | translate }}</dt>
-    <dd *ngIf="data.staff_contact_name">Prof. {{data.staff_contact_name}}</dd>
+    <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
+    <dd *ngIf="data.supervisor">Prof. {{data.supervisor}}</dd>
 
     <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
     <dd *ngIf="data.education_fields">
