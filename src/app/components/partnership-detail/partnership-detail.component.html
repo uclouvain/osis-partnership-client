@@ -61,9 +61,7 @@
 
           <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
           <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">
-            <button *ngIf="data.ucl_university" class="btn btn-link btn-text" [tooltip]="data.ucl_university.title">{{data.ucl_university.acronym}}</button>
-            <span *ngIf="data.ucl_university && data.ucl_university_labo"> / </span>
-            <button *ngIf="data.ucl_university_labo" class="btn btn-link btn-text" [tooltip]="data.ucl_university_labo.acronym">{{data.ucl_university_labo.acronym}}</button>
+            <ng-container *ngFor="let entity of data.out_entities; index as index"><ng-container *ngIf="index !== 0">, </ng-container><span class="has-tooltip" [tooltip]="entity.title">{{entity.acronym}}</span></ng-container>
           </dd>
           <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">{{ 'All' | translate }}</dd>
 
@@ -88,7 +86,7 @@
             <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
           </dd>
 
-          <dt *ngIf="data.out_portal">{{ 'Portal OUT ESPO/PSAD' | translate }}</dt>
+          <dt *ngIf="data.out_portal">{{ 'Portal OUT' | translate }}</dt>
           <dd *ngIf="data.out_portal">
             <a [href]="data.out_portal" target="blank" rel="noopener">{{data.out_portal}}</a>
           </dd>

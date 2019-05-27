@@ -15,7 +15,7 @@ export default interface Partnership {
     valid_years: string
   };
   out_education_level: string[];
-  out_entities: string[];
+  out_entities: AcronymEntity[];
   out_university_offer: string[];
   out_contact: Contact;
   out_portal: string;

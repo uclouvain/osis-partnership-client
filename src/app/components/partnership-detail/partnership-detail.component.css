@@ -40,3 +40,11 @@
 .partnership__list li {
   margin-bottom: .5em;
 }
+
+.has-tooltip {
+  text-decoration: underline dotted;
+}
+
+.has-tooltip:hover {
+  cursor: pointer;
+}
