@@ -11,7 +11,7 @@ export default interface Partnership {
   supervisor: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';
   status?: {
-    status: boolean
+    status: string,
     valid_years: string
   };
   out_education_level: string[];
