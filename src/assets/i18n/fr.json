@@ -82,5 +82,6 @@
   "Failed to load configuration": "Une erreur s'est produite lors du chargement de la configuration",
   "Failed to load partners list": "Une erreur s'est produite lors du chargement des partenaires",
   "Failed to load partner detail": "Une erreur s'est produite lors du chargement du détail du partenaire",
-  "You must select at least one filter": "Veuillez sélectionner au moins un critère de recherche."
+  "You must select at least one filter": "Veuillez sélectionner au moins un critère de recherche.",
+  "Please select a value from the list.": "Veuillez sélectionner une valeur de la liste."
 }

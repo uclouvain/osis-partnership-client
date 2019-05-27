@@ -62,6 +62,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   private allCountries: Country[];
 
   public noContinent = false;
+  public noUniversity = false;
+  public noUniversityLabo = false;
+  public noSupervisor = false;
+  public noCountry = false;
+  public noCity = false;
+  public noPartner = false;
+  public noEducationField = false;
+
   public mobilityTypesOptions = [
     new CheckboxItem('student', 'Student'),
     new CheckboxItem('staff', 'Staff'),
@@ -182,13 +190,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Show a warning message if selected continent is not valid
-   */
-  typeaheadNoContinent(event: boolean): void {
-    this.noContinent = event;
-  }
-
-  /**
    * Set country list for selected continent
    */
   onContinentSelect(event: any): void {
@@ -199,9 +200,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       } else {
         this.countries = getFormattedItemsList(this.allCountries);
       }
-    }
-    if (this.continentElement) {
-      this.continentElement.nativeElement.focus();
     }
   }
 
@@ -227,9 +225,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.cities = this.allCities;
       }
     }
-    if (this.countryElement) {
-      this.countryElement.nativeElement.focus();
-    }
   }
 
   onCountryChange(value) {
@@ -246,9 +241,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   onUclUniversitySelect(value: any): void {
     this.model.ucl_university = value.item ? value.item.id : '';
     this.fields.uclUniversity = value.item ? value.item.label : '';
-    if (this.uclUniversityElement) {
-      this.uclUniversityElement.nativeElement.focus();
-    }
   }
 
   onUclUniversityChange(value, reset = true) {
@@ -271,9 +263,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   onUclUniversityLaboSelect(event: any): void {
     this.model.ucl_university_labo = event.item ? event.item.id : '';
     this.fields.uclUniversityLabo = event.item ? event.item.label : '';
-    if (this.uclUniversityLaboElement) {
-      this.uclUniversityLaboElement.nativeElement.focus();
-    }
   }
 
   onUclUniversityLaboChange(value) {
@@ -288,9 +277,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   onSupervisorSelect(event: any): void {
     this.model.supervisor = event.item ? event.item.id : '';
     this.fields.supervisor = event.item ? event.item.label : '';
-    if (this.supervisorElement) {
-      this.supervisorElement.nativeElement.focus();
-    }
   }
 
   onSupervisorChange(value) {
@@ -320,9 +306,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   onEducationFieldSelect(event: any): void {
     this.model.education_field = event.item ? event.item.id : '';
     this.fields.educationField = event.item ? event.item.label : '';
-    if (this.educationFieldElement) {
-      this.educationFieldElement.nativeElement.focus();
-    }
   }
 
   onEducationFieldChange(value) {
