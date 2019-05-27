@@ -170,8 +170,8 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt *ngIf="data.staff_contact_name">{{ 'Contact person' | translate }}</dt>
-          <dd *ngIf="data.staff_contact_name">{{data.staff_contact_name}}</dd>
+          <dt *ngIf="data.staff_contact">{{ 'Contact person' | translate }}</dt>
+          <dd *ngIf="data.staff_contact"><a [href]="'mailto:' + data.staff_contact.email">{{data.staff_contact.first_name}} {{data.staff_contact.last_name}}</a></dd>
 
           <dt *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
           <dd *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">
@@ -185,9 +185,9 @@
             </ul>
           </dd>
 
-          <dt *ngIf="data.out_funding">{{ 'Funding' | translate }}</dt>
-          <dd *ngIf="data.out_funding">
-            <a [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
+          <dt>{{ 'Funding' | translate }}</dt>
+          <dd>
+            <a [href]="'funding_staff_url' | translate" rel="noopener" target="blank">{{ 'Open call for staff mobility' | translate }}</a>
           </dd>
 
           <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>

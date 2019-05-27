@@ -33,7 +33,7 @@ export default interface Partnership {
   };
   in_contact: Contact;
   in_portal: string;
-  staff_contact_name: string;
+  staff_contact: Contact;
   staff_partner_contacts: Contact[];
   staff_funding: Funding;
   url: string;
