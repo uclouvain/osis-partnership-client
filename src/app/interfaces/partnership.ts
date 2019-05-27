@@ -43,6 +43,7 @@ export default interface Partnership {
   out_university_offers: string[];
   medias: Media[];
   out_summary_tables: Media[];
+  bilateral_agreements: Media[];
 }
 
 export interface ResultPartnerships {
