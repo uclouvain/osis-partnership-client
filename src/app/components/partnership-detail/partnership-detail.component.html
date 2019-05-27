@@ -58,13 +58,11 @@
         <dl class="detail-partnership">
           <dt class="nomargin">{{ 'Level of study' | translate }}</dt>
           <dd class="nomargin" *ngIf="!data.out_education_levels || !data.out_education_levels.length">
-            Bachelor, Master
+            {{ 'Bachelor' | translate }}, {{ 'Master' | translate }}
           </dd>
 
           <dd class="nomargin" *ngIf="data.out_education_levels && data.out_education_levels.length">
-            <ul *ngFor="let level of data.out_education_levels" class="partnership__list">
-              <li>{{level}}</li>
-            </ul>
+            {{ getEducationLevels() }}
           </dd>
 
           <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>

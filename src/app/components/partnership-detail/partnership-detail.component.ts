@@ -57,6 +57,21 @@ export class PartnershipDetailComponent implements OnInit {
     return courseCatalogue.text;
   }
 
+  getEducationLevels() {
+    const levels = {
+      'ISCED-6': this.translate.instant('Bachelor'),
+      'ISCED-7': this.translate.instant('Master'),
+      'ISCED-8': this.translate.instant('Doctorat'),
+    };
+
+    return this.data.out_education_levels.map((level: string) => {
+      if (levels[level] !== undefined) {
+        return levels[level];
+      }
+      return level;
+    }).join(', ');
+  }
+
   isValidated(status) {
     return status.status === 'Validated' || status.status === 'validated';
   }
