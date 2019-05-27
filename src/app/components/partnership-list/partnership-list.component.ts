@@ -30,6 +30,7 @@ export class PartnershipListComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: any): any => {
+      queryParams = {...queryParams, ordering: 'ucl_university,ucl_university_labo'};
       this.fetchPartnerships(queryParams);
     });
   }
@@ -82,30 +83,6 @@ export class PartnershipListComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: {
         offsetPartnership: offset
-      }
-    });
-  }
-
-  /**
-   * Add ordering filter
-   */
-  onSort(event) {
-    const order = event.newValue;
-    let orderColumn = event.column.prop;
-    if (orderColumn === 'name') {
-      orderColumn = 'partner';
-    }
-
-    if (orderColumn === 'country') {
-      orderColumn = 'country_en';
-    }
-
-    const ordering = (order === 'asc' ? '' : '-') + orderColumn;
-    this.router.navigate(['/'], {
-      queryParamsHandling: 'merge',
-      queryParams: {
-        orderingPartnership: ordering,
-        offsetPartnership: undefined
       }
     });
   }
