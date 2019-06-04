@@ -156,7 +156,7 @@
 
           <dt>{{ 'Course catalogue' | translate }}</dt>
           <dd>
-            <a [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()">{{ 'Link to course catalogue' | translate }}</a>
+            <a [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()" target="_blank">{{ 'Link to course catalogue' | translate }}</a>
             <br><span *ngIf="getCourseCatalogueText()">{{ getCourseCatalogueText() }}</span>
           </dd>
 
