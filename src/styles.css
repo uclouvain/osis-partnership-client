@@ -61,6 +61,13 @@
   width: 100%;
   height: 5px;
 }
+
+/* Add style to sortable column */
+
+datatable-header-cell.sortable span.datatable-header-cell-label {
+  text-decoration: underline dotted;
+}
+
 /**
  * Progress bar animations
  */
