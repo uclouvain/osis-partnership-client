@@ -13,7 +13,7 @@
     [headerHeight]="40"
     [footerHeight]="40"
     [rowHeight]="'auto'"
-    [reorderable]="true"
+    [reorderable]="false"
     [externalPaging]="true"
     [externalSorting]="true"
     [count]="page.totalElements"
@@ -21,6 +21,7 @@
     [limit]="page.size"
     (page)='setPage($event)'
     (sort)="onSort($event)"
+    [sorts]="sorts"
     [columnMode]="'flex'"
     [loadingIndicator]="loading">
     <ngx-datatable-column [name]="'Partner institution' | translate" prop="name" [flexGrow]="4">
