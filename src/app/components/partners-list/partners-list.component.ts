@@ -55,11 +55,10 @@ export class PartnersListComponent implements OnInit {
 
   private setSorts(ordering: string) {
     this.sorts = ordering.split(',').map((prop) => {
+      let dir = 'asc';
       if (prop[0] === '-') {
-        const dir = 'desc';
+        dir = 'desc';
         prop = prop.substr(1);
-      } else {
-        const dir = 'asc';
       }
       if (prop === 'partner') {
         prop = 'name';
