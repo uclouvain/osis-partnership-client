@@ -28,6 +28,7 @@ export class PartnersListComponent implements OnInit {
     pageNumber: 0,
     size: 25
   };
+  public sorts = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,9 +45,31 @@ export class PartnersListComponent implements OnInit {
           queryParamsHandling: 'merge',
           queryParams
         });
-      } else {
+      }
+      if (queryParams.ordering !== undefined) {
+        this.setSorts(queryParams.ordering);
         this.fetchPartners(queryParams);
       }
+    });
+  }
+
+  private setSorts(ordering: string) {
+    this.sorts = ordering.split(',').map((prop) => {
+      if (prop[0] === '-') {
+        const dir = 'desc';
+        prop = prop.substr(1);
+      } else {
+        const dir = 'asc';
+      }
+      if (prop === 'partner') {
+        prop = 'name';
+      } else if (prop === 'country_en') {
+        prop = 'country';
+      }
+      return {
+        prop: prop,
+        dir: dir
+      };
     });
   }
 

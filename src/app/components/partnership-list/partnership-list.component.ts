@@ -30,7 +30,6 @@ export class PartnershipListComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: any): any => {
-      queryParams = {...queryParams, ordering: 'ucl_university,ucl_university_labo'};
       this.fetchPartnerships(queryParams);
     });
   }

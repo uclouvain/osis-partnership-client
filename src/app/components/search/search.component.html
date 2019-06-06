@@ -23,7 +23,9 @@
         <label for="education_field">{{ 'Subject Area' | translate }}</label>
         <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
           [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)" (ngModelChange)="onEducationFieldChange($event)">
+          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)"
+               (ngModelChange)="onEducationFieldChange($event)" (typeaheadNoResults)="noEducationField = $event">
+        <div class="alert alert-danger" *ngIf="noEducationField">{{ 'Please select a value from the list.' | translate }}</div>
       </div>
 
       <div class="form-group">

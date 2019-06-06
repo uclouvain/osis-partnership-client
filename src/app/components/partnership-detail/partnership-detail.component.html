@@ -35,8 +35,9 @@
     <dt>{{ 'Type of mobility' | translate }}</dt>
     <dd>{{mobilityType}}</dd>
 
-    <dt *ngIf="data.status">{{ 'Status' | translate }}</dt>
-    <dd *ngIf="data.status">{{data.status.status}} <span *ngIf="isValidated(data.status)">({{data.status.valid_years}})</span></dd>
+    <dt>{{ 'Status' | translate }}</dt>
+    <dd *ngIf="!!data.status">{{ data.status.status | translate }} <span *ngIf="isValidated(data.status)">({{data.status.valid_years}})</span></dd>
+    <dd *ngIf="!data.status">{{ 'waiting' | translate }}</dd>
 
     <dt *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">{{ 'Bilateral Agreements' | translate }}</dt>
     <dd *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">
@@ -147,15 +148,15 @@
 
           <dt *ngIf="data.in_portal"></dt>
           <dd *ngIf="data.in_portal">
-            <a [href]="data.in_portal" target="blank" rel="noopener">{{ 'Portal IN' | translate }} {{ data.ucl_university.acronym }}<span *ngIf="data.ucl_university_labo">/{{data.ucl_university_labo.acronym}}</span></a>
+            <a [href]="data.in_portal" target="blank" rel="noopener">{{ 'Web portal incoming' | translate }} {{ data.ucl_university.acronym }}<span *ngIf="data.ucl_university_labo">/{{data.ucl_university_labo.acronym}}</span></a>
           </dd>
 
           <dt>{{ 'Admission' | translate }}</dt>
-          <dd><a href="http://www.uclouvain.be/en‐exchange‐application" target="_blank"><span [innerHTML]="'Admission Text 1' | translate"></span></a><br><span [innerHTML]="'Admission Text 2' | translate"></span></dd>
+          <dd><a href="http://www.uclouvain.be/en-exchange-application" target="_blank"><span [innerHTML]="'Admission Text 1' | translate"></span></a><br><span [innerHTML]="'Admission Text 2' | translate"></span></dd>
 
           <dt>{{ 'Course catalogue' | translate }}</dt>
           <dd>
-            <a [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()">{{ 'Link to course catalogue' | translate }}</a>
+            <a [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()" target="_blank">{{ 'Link to course catalogue' | translate }}</a>
             <br><span *ngIf="getCourseCatalogueText()">{{ getCourseCatalogueText() }}</span>
           </dd>
 
