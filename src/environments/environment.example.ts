@@ -7,7 +7,8 @@ export const environment = {
   api: {
     url: '<OSIS-API-URL>/partnership/v1/',
     token: 'your_token'
-  }
+  },
+  i18nPath: './assets/i18n/'
 };
 
 /*

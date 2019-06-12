@@ -7,7 +7,8 @@ export const environment = {
     api: {
       url: 'https://api.sgsi.ucl.ac.be:8243/partnerships/v1/',
       token: ''
-    }
+    },
+    i18nPath: 'https://partnership-test.osis.uclouvain.be/osis-partnership-client-drupal/assets/i18n/'
   };
 
   /*

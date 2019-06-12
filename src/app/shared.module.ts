@@ -12,6 +12,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from 'src/environments/environment';
 import { SearchComponent } from './components/search/search.component';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +26,8 @@ import { PartnershipDetailComponent } from './components/partnership-detail/part
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
+  return new TranslateHttpLoader(http, i18nPath, '.json');
 }
 
 @NgModule({
