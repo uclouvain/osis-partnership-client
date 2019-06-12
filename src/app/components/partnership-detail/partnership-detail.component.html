@@ -39,7 +39,7 @@
     <dd *ngIf="!!data.status">{{ data.status.status | translate }} <span *ngIf="isValidated(data.status)">({{data.status.valid_years}})</span></dd>
     <dd *ngIf="!data.status">{{ 'waiting' | translate }}</dd>
 
-    <dt *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">{{ 'Bilateral Agreements' | translate }}</dt>
+    <dt *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">{{ 'Bilateral agreements' | translate }}</dt>
     <dd *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">
       <ul class="partnership__list">
         <li *ngFor="let bilateral_agreement of data.bilateral_agreements">
