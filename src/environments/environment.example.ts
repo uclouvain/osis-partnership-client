@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   api: {
     url: '<OSIS-API-URL>/partnership/v1/',
-    token: 'your_token'
+    authorizationHeader: 'your_authorization_header'
   },
   i18nPath: './assets/i18n/'
 };

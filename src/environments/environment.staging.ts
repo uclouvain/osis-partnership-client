@@ -6,7 +6,7 @@ export const environment = {
     production: false,
     api: {
       url: 'https://api.sgsi.ucl.ac.be:8243/partnerships/v1/',
-      token: ''
+      authorizationHeader: ''
     },
     i18nPath: 'https://partnership-test.osis.uclouvain.be/osis-partnership-client-drupal/assets/i18n/'
   };

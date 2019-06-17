@@ -9,7 +9,7 @@ import { getValueLabelList, getFormattedItemsList } from '../helpers/list.helper
 
 const httpOptions = {
   headers: new HttpHeaders({
-    Authorization: `Token ${environment.api.token}`
+    Authorization: `${environment.api.authorizationHeader}`
   })
 };
 
