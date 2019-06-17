@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   api: {
     url: '/partnerships/v1/',
-    token: ''
+    authorizationHeader: ''
   },
   i18nPath: './assets/i18n/'
 };

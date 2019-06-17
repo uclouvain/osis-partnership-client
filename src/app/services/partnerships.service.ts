@@ -11,7 +11,7 @@ import { CacheService } from './cache.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    Authorization: `Token ${environment.api.token}`
+    Authorization: `${environment.api.authorizationHeader}`
   })
 };
 
