@@ -30,6 +30,10 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, i18nPath, '.json');
 }
 
+export function getBaseUrl() {
+  return document.getElementsByTagName('base')[0].href;
+}
+
 @NgModule({
  imports: [
     HttpClientModule,
@@ -77,6 +81,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule
   ],
   providers: [
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
     TranslateService,
     LoadingService,
     {

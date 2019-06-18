@@ -13,8 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/osis-partnership-client/",
-            "deployUrl": "https://partnership-test.osis.uclouvain.be/osis-partnership-client/",
             "outputPath": "dist/osis-partnership-client",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -243,8 +241,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/osis-partnership-client-drupal/",
-            "deployUrl": "https://partnership-test.osis.uclouvain.be/osis-partnership-client-drupal/",
             "outputPath": "dist/osis-partnership-client-drupal",
             "index": "src/index.html",
             "main": "src/main.ts",
