@@ -84,5 +84,6 @@
   "Failed to load partners list": "Failed to load partners list",
   "Failed to load partner detail": "Failed to load partner detail",
   "You must select at least one filter": "You must select at least one filter",
-  "Please select a value from the list.": "Please select a value from the list."
+  "Please select a value from the list.": "Please select a value from the list.",
+  "Bilateral agreements": "Bilateral agreements"
 }
