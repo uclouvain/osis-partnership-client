@@ -196,11 +196,6 @@
             <a [href]="'funding_staff_url' | translate" rel="noopener" target="blank">{{ 'Open call for staff mobility' | translate }}</a>
           </dd>
 
-          <dt *ngIf="data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd *ngIf="data.out_contact.email">
-            <a href="mailto:{{data.out_contact.email}}">{{data.out_contact.email}}</a>
-          </dd>
-
           <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
           <dd *ngIf="data.medias && data.medias.length > 0">
             <ul class="partnership__list">
