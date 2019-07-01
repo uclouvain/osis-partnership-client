@@ -11,7 +11,7 @@
       </div>
 
       <div class="form-group" *ngIf="uclUniversitiesLabo && uclUniversitiesLabo.length > 0">
-        <label for="ucl_university_labo">{{ 'Schools' | translate }}</label>
+        <label for="ucl_university_labo">{{ 'School' | translate }}</label>
         <input #uclUniversityLabo [(ngModel)]="fields.uclUniversityLabo" name="ucl_university_labo" class="form-control"
           id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboSelect($event)" (typeaheadOnBlur)="onUclUniversityLaboSelect($event)"
           (ngModelChange)="onUclUniversityLaboChange($event)" (typeaheadNoResults)="noUniversityLabo = $event"
