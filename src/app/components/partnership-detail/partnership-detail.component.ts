@@ -4,6 +4,7 @@ import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 import { TranslateService } from '@ngx-translate/core';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-partnership-detail',
@@ -23,11 +24,10 @@ export class PartnershipDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(({ id }): any => {
-      this.partnershipsService.getPartnership(id)
-        .subscribe(partnership => {
-          this.data = partnership;
-        });
+    combineLatest(this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
+      this.partnershipsService.getPartnership(parentParam.id, id).subscribe(partnership => {
+        this.data = partnership;
+      });
     });
 
     this.route.queryParams.subscribe(({uniquePartnership}) => {

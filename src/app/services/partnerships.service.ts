@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
@@ -42,15 +42,25 @@ export class PartnershipsService {
    * Returns a single partnership, from cache if any
    * or fetched
    */
-  public getPartnership(id: string) {
-    if (this.cachePartnerships.value.length > 0) {
-      return this.cachePartnerships.pipe(
-        map(partnerships => partnerships.find(partnership => {
-          return partnership.uuid === id;
-        }))
+  public getPartnership(partnerId: string, id: string): Observable<Partnership> {
+    let partnerships$: Observable<Partnership[]>;
+
+    if (this.cachePartnerships.getValue().find(partnership => {
+      return partnership.uuid === id;
+    }) !== undefined) {
+      partnerships$ = this.cachePartnerships;
+    } else {
+      partnerships$ = this.searchPartnerships({partner: partnerId}).pipe(
+        map(results => results.results)
       );
     }
-    return this.requestPartnership(id);
+
+    return partnerships$.pipe(
+        map(partnerships => partnerships.find(partnership => {
+          return partnership.uuid === id;
+        }),
+      )
+    );
   }
 
   public searchPartners(query: PartnerParams): Observable<ResultPartners> {
