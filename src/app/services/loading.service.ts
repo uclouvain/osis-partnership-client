@@ -68,6 +68,9 @@ export class LoadingInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // Ensure that all requests
+    req = req.clone({withCredentials: true});
+
     const loadingId = `${req.method}-${req.urlWithParams}`;
     this.loading.begin(loadingId);
     return next
