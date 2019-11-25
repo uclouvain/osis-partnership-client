@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -24,6 +24,7 @@ import { PartnersListComponent } from './components/partners-list/partners-list.
 import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
 import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
+import { AuthentificationService } from './services/authentification.service';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -33,6 +34,13 @@ export function createTranslateLoader(http: HttpClient) {
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
+
+export function authenticateUser(authentificationService: AuthentificationService) {
+  return (): Promise<any> => {
+    return authentificationService.authenticate().toPromise();
+  };
+}
+
 
 @NgModule({
  imports: [
@@ -88,6 +96,12 @@ export function getBaseUrl() {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: authenticateUser,
+      deps: [AuthentificationService],
+      multi: true,
     }
   ]
 })
