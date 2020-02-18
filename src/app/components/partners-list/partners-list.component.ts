@@ -14,7 +14,7 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./partners-list.component.css']
 })
 export class PartnersListComponent implements OnInit {
-  @ViewChild('partnershipSummaryCell')
+  @ViewChild('partnershipSummaryCell', { static: false })
 
   partnershipSummaryCell: TemplateRef<any>;
 
