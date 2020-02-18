@@ -79,14 +79,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   public loaderStatus: boolean;
   private loaderStatus$: Subscription;
 
-  @ViewChild('continent', { static: false }) continentElement: ElementRef;
-  @ViewChild('country', { static: false }) countryElement: ElementRef;
-  @ViewChild('cities', { static: false }) cityElement: ElementRef;
-  @ViewChild('partner', { static: false }) partnerElement: ElementRef;
-  @ViewChild('supervisor', { static: false }) supervisorElement: ElementRef;
-  @ViewChild('educationField', { static: false }) educationFieldElement: ElementRef;
-  @ViewChild('uclUniversity', { static: false }) uclUniversityElement: ElementRef;
-  @ViewChild('uclUniversityLabo', { static: false }) uclUniversityLaboElement: ElementRef;
+  @ViewChild('continent') continentElement: ElementRef;
+  @ViewChild('country') countryElement: ElementRef;
+  @ViewChild('cities') cityElement: ElementRef;
+  @ViewChild('partner') partnerElement: ElementRef;
+  @ViewChild('supervisor') supervisorElement: ElementRef;
+  @ViewChild('educationField') educationFieldElement: ElementRef;
+  @ViewChild('uclUniversity') uclUniversityElement: ElementRef;
+  @ViewChild('uclUniversityLabo') uclUniversityLaboElement: ElementRef;
 
   constructor(
     private router: Router,

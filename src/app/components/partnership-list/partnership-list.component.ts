@@ -11,7 +11,7 @@ import { getMobilityType, getPartnershipParams } from 'src/app/helpers/partnersh
   styleUrls: ['./partnership-list.component.css']
 })
 export class PartnershipListComponent implements OnInit {
-  @ViewChild('partnershipSummaryCell', { static: false })
+  @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
   public rows: any[];
