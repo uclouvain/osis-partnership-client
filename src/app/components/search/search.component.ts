@@ -64,7 +64,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public noContinent = false;
   public noUniversity = false;
   public noUniversityLabo = false;
-  public noSupervisor = false;
   public noCountry = false;
   public noCity = false;
   public noPartner = false;
@@ -352,5 +351,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.countries = getFormattedItemsList(this.allCountries);
     this.cities = this.allCities;
     this.router.navigate(['/']);
+    this.noContinent = false;
+    this.noUniversity = false;
+    this.noUniversityLabo = false;
+    this.noCountry = false;
+    this.noCity = false;
+    this.noPartner = false;
+    this.noEducationField = false;
   }
 }
