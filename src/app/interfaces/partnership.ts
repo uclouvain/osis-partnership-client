@@ -54,6 +54,7 @@ export interface ResultPartnerships {
 }
 
 export interface PartnershipParams {
+  [key: string]: unknown;
   campus?: string;
   city?: string;
   continent?: string;

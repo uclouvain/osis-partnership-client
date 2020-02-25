@@ -81,7 +81,7 @@ export class PartnershipsService {
     );
   }
 
-  private requestPartnerships(query: object) {
+  private requestPartnerships(query: PartnershipParams) {
     return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships?${queryString.stringify(query)}`, httpOptions);
   }
 
@@ -89,7 +89,7 @@ export class PartnershipsService {
     return this.cache.get<Partnership>(`${environment.api.url}partnerships/${id}`, httpOptions);
   }
 
-  private requestPartners(query: object) {
+  private requestPartners(query: PartnerParams) {
     return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`, httpOptions);
   }
 }
