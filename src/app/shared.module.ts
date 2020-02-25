@@ -97,12 +97,13 @@ export function authenticateUser(authentificationService: AuthentificationServic
       useClass: LoadingInterceptor,
       multi: true
     },
+    /* USE WHEN AUTHENTICATION PROBLEM IS SOLVED
     {
       provide: APP_INITIALIZER,
       useFactory: authenticateUser,
       deps: [AuthentificationService],
       multi: true,
-    }
+    }*/
   ]
 })
 export class SharedModule {
