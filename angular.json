@@ -53,7 +53,6 @@
               "src/assets/drupal-dependencies/ucltheme/css/_ff5252.css",
               "src/assets/drupal-dependencies/ucltheme/css/_ff5252_suite.css",
               "src/assets/drupal-dependencies/ucltheme/css/ucl_override.css",
-
               "src/styles.css"
             ],
             "scripts": [
@@ -268,14 +267,14 @@
           },
           "configurations": {
             "staging": {
+              "index": {
+                "input": "src/index.drupal.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.staging.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index.drupal.html"
                 }
               ],
               "optimization": true,
@@ -300,14 +299,14 @@
               ]
             },
             "production": {
+              "index": {
+                "input": "src/index.drupal.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index.drupal.html"
                 }
               ],
               "optimization": true,
@@ -336,5 +335,8 @@
       }
     }
   },
-  "defaultProject": "osis-partnership-client"
+  "defaultProject": "osis-partnership-client",
+  "cli": {
+    "analytics": false
+  }
 }
