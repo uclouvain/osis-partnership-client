@@ -116,8 +116,12 @@
             </ul>
           </dd>
 
-          <dt>{{ 'Individual Student Evaluations' | translate }}</dt>
-          <dd>{{ 'Address coming soon' | translate }}</dd>
+          <dt>{{ 'evaluations_label' | translate }}</dt>
+          <dd>
+            <a href="{{ 'evaluations_url' | translate }}" target="_blank">
+              {{ 'evaluations_value' | translate }}
+            </a>
+          </dd>
 
           <dt *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">{{ 'Summary Tables' | translate }}</dt>
           <dd *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
