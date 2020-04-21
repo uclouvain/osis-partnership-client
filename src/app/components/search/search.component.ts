@@ -17,8 +17,7 @@ const defaultModel = {
   country: '',
   city: '',
   partner: '',
-  ucl_university: '',
-  ucl_university_labo: '',
+  ucl_entity: '',
   campus: '',
   supervisor: '',
   education_field: '',
@@ -30,8 +29,7 @@ const defaultModel = {
 
 const defaultFields = {
   country: '',
-  uclUniversity: '',
-  uclUniversityLabo: '',
+  uclEntity: '',
   supervisor: '',
   educationField: '',
   partner: '',
@@ -54,16 +52,15 @@ export class SearchComponent implements OnInit, OnDestroy {
   public cities: string[];
   public educationFields: ValueLabel[];
   public partners: ValueLabel[];
-  public supervisors: ValueLabel[];
-  public uclUniversities: ValueLabel[];
-  public uclUniversitiesLabo: ValueLabel[];
+  // public supervisors: ValueLabel[];
+  public uclEntities: ValueLabel[];
 
   private allCities: string[];
   private allCountries: Country[];
 
   public noContinent = false;
   public noUniversity = false;
-  public noUniversityLabo = false;
+  // public noSupervisor = false;
   public noCountry = false;
   public noCity = false;
   public noPartner = false;
@@ -84,8 +81,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('partner') partnerElement: ElementRef;
   @ViewChild('supervisor') supervisorElement: ElementRef;
   @ViewChild('educationField') educationFieldElement: ElementRef;
-  @ViewChild('uclUniversity') uclUniversityElement: ElementRef;
-  @ViewChild('uclUniversityLabo') uclUniversityLaboElement: ElementRef;
+  @ViewChild('uclEntity') uclEntity: ElementRef;
 
   constructor(
     private router: Router,
@@ -154,29 +150,28 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.cities = this.allCities;
       this.educationFields = getFormattedItemsList(config.education_fields);
       this.partners = getFormattedItemsList(config.partners);
-      this.supervisors = getFormattedItemsList(config.supervisors);
-      this.uclUniversities = getFormattedItemsList(config.ucl_universities);
+      // this.supervisors = getFormattedItemsList(config.supervisors);
+      this.uclEntities = getFormattedItemsList(config.ucl_universities);
 
       // Init default  values from url params
       if (params.continent) {
-        this.onContinentSelect({ value: params.continent });
+        this.onContinentSelect({
+          value: params.continent,
+          item: {id: params.continent}
+        });
       }
 
       if (params.country) {
         this.fields.country = getLabel(this.countries, params.country);
       }
 
-      if (params.ucl_university) {
-        this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
-        this.onUclUniversityChange(this.fields.uclUniversity, false);
-        if (params.ucl_university_labo) {
-          this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
-        }
+      if (params.ucl_entity) {
+        this.fields.uclEntity = getLabel(this.uclEntities, params.ucl_entity);
       }
 
-      if (params.supervisor) {
-        this.fields.supervisor = getLabel(this.supervisors, params.supervisor);
-      }
+      // if (params.supervisor) {
+      //   this.fields.supervisor = getLabel(this.supervisors, params.supervisor);
+      // }
 
       if (params.partner) {
         this.fields.partner = getLabel(this.partners, params.partner);
@@ -234,55 +229,32 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Set ucl_university uuid in model for request
-   * Set uclUniversitiesLabo for this ucl_university
+   * Set ucl_entity uuid in model for request
    */
   onUclUniversitySelect(value: any): void {
-    this.model.ucl_university = value.item ? value.item.id : '';
-    this.fields.uclUniversity = value.item ? value.item.label : '';
+    this.model.ucl_entity = value.item ? value.item.id : '';
+    this.fields.uclEntity = value.item ? value.item.label : '';
   }
 
   onUclUniversityChange(value, reset = true) {
     if (value === '') {
-      this.model.ucl_university = '';
-    }
-    if (this.config) {
-      this.uclUniversitiesLabo = getValueLabelList(this.config.ucl_universities, { name: 'ucl_university_labos', value });
-    }
-
-    if (reset) {
-      this.model.ucl_university_labo = '';
-      this.fields.uclUniversityLabo = '';
+      this.model.ucl_entity = '';
     }
   }
 
-  /**
-   * Set ucl_university_labo uuid in model for request
-   */
-  onUclUniversityLaboSelect(event: any): void {
-    this.model.ucl_university_labo = event.item ? event.item.id : '';
-    this.fields.uclUniversityLabo = event.item ? event.item.label : '';
-  }
-
-  onUclUniversityLaboChange(value) {
-    if (value === '') {
-      this.model.ucl_university_labo = '';
-    }
-  }
-
-  /**
-   * Set supervisor uuid in model for request
-   */
-  onSupervisorSelect(event: any): void {
-    this.model.supervisor = event.item ? event.item.id : '';
-    this.fields.supervisor = event.item ? event.item.label : '';
-  }
-
-  onSupervisorChange(value) {
-    if (value === '') {
-      this.model.supervisor = '';
-    }
-  }
+  // /**
+  //  * Set supervisor uuid in model for request
+  //  */
+  // onSupervisorSelect(event: any): void {
+  //   this.model.supervisor = event.item ? event.item.id : '';
+  //   this.fields.supervisor = event.item ? event.item.label : '';
+  // }
+  //
+  // onSupervisorChange(value) {
+  //   if (value === '') {
+  //     this.model.supervisor = '';
+  //   }
+  // }
 
   /**
    * Set partner uuid in model for request
@@ -319,13 +291,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   onMobilityTypesChange(value) {
     this.model.mobility_type = value;
   }
-
-  /**
-   * Set funding value
-   */
-  onFundingChange(value) {
-    this.model.funding = value;
-  }
+  //
+  // /**
+  //  * Set funding value
+  //  */
+  // onFundingChange(value) {
+  //   this.model.funding = value;
+  // }
 
   /**
    * Change route to add choosen options in url params
@@ -347,13 +319,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.fields = {...defaultFields};
     this.model = {...defaultModel};
-    this.uclUniversitiesLabo = [];
+    this.uclEntities = [];
     this.countries = getFormattedItemsList(this.allCountries);
     this.cities = this.allCities;
     this.router.navigate(['/']);
     this.noContinent = false;
     this.noUniversity = false;
-    this.noUniversityLabo = false;
     this.noCountry = false;
     this.noCity = false;
     this.noPartner = false;

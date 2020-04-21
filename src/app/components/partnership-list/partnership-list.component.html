@@ -6,10 +6,10 @@
 
   <ngx-datatable-column [name]="'Faculty' | translate" [sortable]="false">
     <ng-template let-row="row" ngx-datatable-cell-template>
-      <span [tooltip]="row.ucl_university.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_university.acronym}}</span>
-      <ng-container *ngIf="row.ucl_university_labo"> / <span [tooltip]="row.ucl_university_labo.title"
-                                          [placement]="'top'"
-                                          [container]="'body'" class="has-tooltip">{{row.ucl_university_labo.acronym}}</span></ng-container>
+      <ng-container *ngIf="row.ucl_faculty.acronym != row.ucl_entity.acronym">
+        <span [tooltip]="row.ucl_faculty.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_faculty.acronym}} / </span>
+        </ng-container>
+       <span [tooltip]="row.ucl_entity.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_entity.acronym}}</span>
     </ng-template>
   </ngx-datatable-column>
 

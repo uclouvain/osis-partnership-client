@@ -26,8 +26,7 @@ export interface PartnerParams {
   offset?: number;
   supervisor?: string;
   type?: string;
-  ucl_university?: string;
-  ucl_university_labo?: string;
+  ucl_entity?: string;
   mobility_type?: string[];
   funding?: string[];
   ordering?: string;

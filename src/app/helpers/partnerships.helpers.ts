@@ -96,11 +96,10 @@ export function getPartnershipParams(query: any): PartnershipParams {
     partner: query.partner || '',
     supervisor: query.supervisor || '',
     type: query.type || '',
-    ucl_university: query.ucl_university || '',
-    ucl_university_labo: query.ucl_university_labo || '',
+    ucl_entity: query.ucl_entity || '',
     mobility_type: query.mobility_type || [],
     funding: query.funding || [],
-    ordering: 'ucl_university,ucl_university_labo'
+    ordering: 'ucl_entity'
   });
 }
 
@@ -116,8 +115,7 @@ export function getPartnerParams(query: any): PartnerParams {
     partner: query.partner || '',
     supervisor: query.supervisor || '',
     type: query.type || '',
-    ucl_university: query.ucl_university || '',
-    ucl_university_labo: query.ucl_university_labo || '',
+    ucl_entity: query.ucl_entity || '',
     mobility_type: query.mobility_type || [],
     funding: query.funding || [],
     ordering: query.ordering || ''
