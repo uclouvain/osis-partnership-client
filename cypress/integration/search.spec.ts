@@ -5,7 +5,7 @@ describe('Search fields', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
@@ -24,26 +24,9 @@ describe('Search fields', () => {
     getInputStaff().should('be.not.checked');
   });
 
-  it('should have Erasmus and Test as checkbox options for funding', () => {
+  it('ucl_entity field open typeahead', () => {
     cy.wait('@getConfiguration');
-    cy.get('input#Erasmus').should('exist');
-    cy.get('input#Test').should('exist');
-
-    cy.get('input#Erasmus').should('be.not.checked');
-    cy.get('input#Test').should('be.not.checked');
-  });
-
-  it('ucl_university field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=ucl_university]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-
-  it('supervisor field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=supervisor]')
+    cy.get('[name=ucl_entity]')
       .type('A')
       .siblings('typeahead-container')
       .should('exist');
@@ -90,7 +73,7 @@ describe('Search url params', () => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
   });
@@ -121,24 +104,13 @@ describe('Search url params', () => {
     navigateTo();
     cy.wait('@getConfiguration');
 
-    cy.get('[name=ucl_university]')
-      .type('FIA')
-      .type('{enter}')
-      .should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
-
-    cy.get('[name=ucl_university_labo]')
+    cy.get('[name=ucl_entity]')
       .type('AR')
       .type('{enter}')
       .should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
 
-    cy.get('[name=supervisor]')
-      .type('BRAGA')
-      .type('{enter}')
-      .should('have.value', 'BRAGARD, Véronique');
-
     search();
-// tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a');
+    cy.url().should('include', '?ucl_entity=75799811-6f67-46f7-9143-1e3da672f473');
 
     cy.get('[name=continent]')
       .type('Asia')
@@ -165,17 +137,15 @@ describe('Search url params', () => {
 
     search();
 // tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_entity=75799811-6f67-46f7-9143-1e3da672f473&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
   });
 
   it('should retrieve url params in form', () => {
     // tslint:disable-next-line: max-line-length
-    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_entity=75799811-6f67-46f7-9143-1e3da672f473&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
     cy.wait('@getConfiguration');
 
-    cy.get('[name=ucl_university]').should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
-    cy.get('[name=ucl_university_labo]').should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
-    cy.get('[name=supervisor]').should('have.value', 'BRAGARD, Véronique');
+    cy.get('[name=ucl_entity]').should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
     cy.get('[name=continent]').should('have.value', 'Asia');
     cy.get('[name=country]').should('have.value', 'Japon');
     cy.get('[name=city]').should('have.value', 'Tokyo');
