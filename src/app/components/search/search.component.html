@@ -1,22 +1,13 @@
 <form #f="ngForm" class="partnership__form" autocomplete="off">
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group" *ngIf="uclUniversities">
-        <label for="uclUniversity">{{ 'UCLouvain Faculty' | translate }}</label>
-        <input #uclUniversity [(ngModel)]="fields.uclUniversity" name="ucl_university" class="form-control" id="uclUniversity"
-          [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversitySelect($event)" (typeaheadOnBlur)="onUclUniversitySelect($event)"
+      <div class="form-group" *ngIf="uclEntities">
+        <label for="uclEntity">{{ 'UCLouvain Entity' | translate }}</label>
+        <input #uclEntity [(ngModel)]="fields.uclEntity" name="ucl_entity" class="form-control" id="uclEntity"
+          [typeahead]="uclEntities" (typeaheadOnSelect)="onUclUniversitySelect($event)" (typeaheadOnBlur)="onUclUniversitySelect($event)"
           (ngModelChange)="onUclUniversityChange($event)" (typeaheadNoResults)="noUniversity = $event"
           typeaheadOptionField="label" typeaheadOptionsLimit="2000">
         <div class="alert alert-danger" *ngIf="noUniversity">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>
-
-      <div class="form-group" *ngIf="uclUniversitiesLabo && uclUniversitiesLabo.length > 0">
-        <label for="ucl_university_labo">{{ 'School' | translate }}</label>
-        <input #uclUniversityLabo [(ngModel)]="fields.uclUniversityLabo" name="ucl_university_labo" class="form-control"
-          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboSelect($event)" (typeaheadOnBlur)="onUclUniversityLaboSelect($event)"
-          (ngModelChange)="onUclUniversityLaboChange($event)" (typeaheadNoResults)="noUniversityLabo = $event"
-          typeaheadOptionField="label" typeaheadOptionsLimit="2000">
-        <div class="alert alert-danger" *ngIf="noUniversityLabo">{{ 'Please select a value from the list.' | translate }}</div>
       </div>
 
       <div class="form-group" *ngIf="educationFields">
