@@ -60,12 +60,6 @@ export class ConfigurationService {
       map((config: Configuration) => config.partners)
     );
   }
-  //
-  // get supervisors() {
-  //   return this.all().pipe(
-  //     map((config: Configuration) => config.supervisors)
-  //   );
-  // }
 
   get uclUniversities() {
     return this.all().pipe(
