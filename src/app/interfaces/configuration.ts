@@ -15,7 +15,6 @@ export interface Configuration {
   continents: Continent[];
   partners: ValueLabel[];
   ucl_universities: ValueLabel[];
-  // supervisors: ValueLabel[];
   education_fields: ValueLabel[];
   fundings: string[];
 }

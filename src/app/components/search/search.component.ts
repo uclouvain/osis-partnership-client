@@ -19,7 +19,6 @@ const defaultModel = {
   partner: '',
   ucl_entity: '',
   campus: '',
-  supervisor: '',
   education_field: '',
   mobility_type: [],
   funding: [],
@@ -30,7 +29,6 @@ const defaultModel = {
 const defaultFields = {
   country: '',
   uclEntity: '',
-  supervisor: '',
   educationField: '',
   partner: '',
 };
@@ -52,7 +50,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public cities: string[];
   public educationFields: ValueLabel[];
   public partners: ValueLabel[];
-  // public supervisors: ValueLabel[];
   public uclEntities: ValueLabel[];
 
   private allCities: string[];
@@ -60,7 +57,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public noContinent = false;
   public noUniversity = false;
-  // public noSupervisor = false;
   public noCountry = false;
   public noCity = false;
   public noPartner = false;
@@ -79,7 +75,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('country') countryElement: ElementRef;
   @ViewChild('cities') cityElement: ElementRef;
   @ViewChild('partner') partnerElement: ElementRef;
-  @ViewChild('supervisor') supervisorElement: ElementRef;
   @ViewChild('educationField') educationFieldElement: ElementRef;
   @ViewChild('uclEntity') uclEntity: ElementRef;
 
@@ -150,7 +145,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.cities = this.allCities;
       this.educationFields = getFormattedItemsList(config.education_fields);
       this.partners = getFormattedItemsList(config.partners);
-      // this.supervisors = getFormattedItemsList(config.supervisors);
       this.uclEntities = getFormattedItemsList(config.ucl_universities);
 
       // Init default  values from url params
@@ -168,10 +162,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (params.ucl_entity) {
         this.fields.uclEntity = getLabel(this.uclEntities, params.ucl_entity);
       }
-
-      // if (params.supervisor) {
-      //   this.fields.supervisor = getLabel(this.supervisors, params.supervisor);
-      // }
 
       if (params.partner) {
         this.fields.partner = getLabel(this.partners, params.partner);
@@ -242,20 +232,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  // /**
-  //  * Set supervisor uuid in model for request
-  //  */
-  // onSupervisorSelect(event: any): void {
-  //   this.model.supervisor = event.item ? event.item.id : '';
-  //   this.fields.supervisor = event.item ? event.item.label : '';
-  // }
-  //
-  // onSupervisorChange(value) {
-  //   if (value === '') {
-  //     this.model.supervisor = '';
-  //   }
-  // }
-
   /**
    * Set partner uuid in model for request
    */
@@ -291,13 +267,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   onMobilityTypesChange(value) {
     this.model.mobility_type = value;
   }
-  //
-  // /**
-  //  * Set funding value
-  //  */
-  // onFundingChange(value) {
-  //   this.model.funding = value;
-  // }
+
+  /**
+   * Set funding value
+   */
+  onFundingChange(value) {
+    this.model.funding = value;
+  }
 
   /**
    * Change route to add choosen options in url params
