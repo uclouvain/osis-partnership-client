@@ -42,7 +42,7 @@
     "@types/node": "^12.11.1",
     "@types/query-string": "^6.3.0",
     "codelyzer": "^5.1.2",
-    "cypress": "^3.2.0",
+    "cypress": "^4.4.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",

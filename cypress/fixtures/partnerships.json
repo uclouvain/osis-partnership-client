@@ -3,6 +3,7 @@
   "next": null,
   "previous": null,
   "results": [{
+    "uuid": "c864eae4-509d-47bf-a598-cf095ae5279f",
     "url": "http://127.0.0.1:8000/api/v1/partnership/partnerships/c864eae4-509d-47bf-a598-cf095ae5279f",
     "partner": {
       "uuid": "bc203071-e421-4a7c-94c1-b1794b4906f4",
@@ -16,11 +17,11 @@
       "partnerships_count": 1
     },
     "supervisor": "SERVAIS, Olivier",
-    "ucl_university": {
+    "ucl_faculty": {
       "acronym": "ESPO",
       "title": "Faculté des sciences économiques, sociales, politiques et de communication"
     },
-    "ucl_university_labo": {
+    "ucl_entity": {
       "acronym": "PSAD",
       "title": "Ecole des Sciences politiques et sociales / Louvain School of Political and Social Sciences"
     },
@@ -50,6 +51,16 @@
     "out_portal": null,
     "out_funding": null,
     "out_partner_contacts": [],
+    "out_course_catalogue": {
+      "fr": {
+        "text": "",
+        "url": "https://uclouvain.be/fr/catalogue-formations/faculte-2019-fial.html"
+      },
+      "en": {
+        "text": "",
+        "url": "https://uclouvain.be/en/study-programme/faculty-2019-fial.html"
+      }
+    },
     "in_contact": {
       "title": null,
       "first_name": "Maria Rodrigues",

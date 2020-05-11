@@ -6,19 +6,19 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners?continent=Europe',
+      url: '/partnerships/v1/partners?continent=Europe&ordering=country_en,city',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partnerships?continent=Europe&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/partnerships/v1/partnerships/?continent=Europe&ordering=ucl_entity&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
@@ -48,8 +48,8 @@ describe('Partner detail', () => {
     cy.contains('Level of study').next('dd')
       .should('have.text', ' Bachelor, Master ');
 
-    cy.contains('Faculty/School').next('dd')
-      .should('have.text', 'PSAD');
+    cy.get('dl').contains('UCLouvain').next('dd')
+      .should('contain.text', 'PSAD');
   });
 
   it('should show right data IN', () => {
@@ -65,6 +65,6 @@ describe('Partner detail', () => {
     cy.contains(' Information for incoming students ').should('have.have.class', 'active');
 
     cy.contains('Contact person IN').next('dd')
-      .should('have.text', 'Maria Rodrigues Leal Moitinho De Almeidamaria.rodrigues@gmail.com');
+      .should('have.text', 'Maria Rodrigues Leal Moitinho De Almeida');
   });
 });

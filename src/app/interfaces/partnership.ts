@@ -6,8 +6,8 @@ export default interface Partnership {
   uuid: string;
   partner: Partner;
   education_field:	string;
-  ucl_university: AcronymEntity;
-  ucl_university_labo: AcronymEntity;
+  ucl_faculty: AcronymEntity;
+  ucl_entity: AcronymEntity;
   supervisor: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';
   status?: {
@@ -65,8 +65,7 @@ export interface PartnershipParams {
   partner?: string;
   supervisor?: string;
   type?: string;
-  ucl_university?: string;
-  ucl_university_labo?: string;
+  ucl_entity?: string;
   mobility_type?: string[];
   funding?: string[];
   ordering?: string;

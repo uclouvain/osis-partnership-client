@@ -8,8 +8,7 @@ export interface SearchParams {
   country: string;
   city: string;
   partner: string;
-  ucl_university: string;
-  ucl_university_labo: string;
+  ucl_entity: string;
   supervisor: string;
   education_field: string;
   mobility_type: string[];

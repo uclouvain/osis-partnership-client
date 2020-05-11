@@ -43,14 +43,6 @@ export class ConfigurationService {
     );
   }
 
-  public getUclUniversitiesLabo(uclUniversity: string) {
-    return this.all().pipe(
-      map((config: Configuration) =>
-        getValueLabelList(config.ucl_universities, { name: 'ucl_university_labos', value: uclUniversity })
-      )
-    );
-  }
-
   get continents() {
     return this.all().pipe(
       map((config: Configuration) => getValueLabelList(config.continents))
@@ -66,12 +58,6 @@ export class ConfigurationService {
   get partners() {
     return this.all().pipe(
       map((config: Configuration) => config.partners)
-    );
-  }
-
-  get supervisors() {
-    return this.all().pipe(
-      map((config: Configuration) => config.supervisors)
     );
   }
 
