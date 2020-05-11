@@ -18,7 +18,7 @@
 
     <dt>{{ 'UCLouvain' | translate }}</dt>
     <dd>
-        <span *ngIf="data.ucl_faculty && data.ucl_faculty.acronym != data.ucl_entity.acronym">
+        <span *ngIf="data.ucl_faculty.acronym">
           {{data.ucl_faculty.title}} ({{data.ucl_faculty.acronym}})<br/>
         </span>
         {{data.ucl_entity.title}} ({{data.ucl_entity.acronym}})
