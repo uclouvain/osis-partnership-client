@@ -1,17 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, shareReplay, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { shareReplay, map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Configuration } from '../interfaces/configuration';
 import { getValueLabelList, getFormattedItemsList } from '../helpers/list.helpers';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: `${environment.api.authorizationHeader}`
-  })
-};
 
 const CACHE_SIZE = 1;
 
@@ -74,6 +68,6 @@ export class ConfigurationService {
   }
 
   private requestConfiguration() {
-    return this.http.get<Configuration>(`${environment.api.url}configuration`, httpOptions);
+    return this.http.get<Configuration>(`${environment.api.url}configuration`);
   }
 }

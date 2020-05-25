@@ -6,7 +6,7 @@
 
   <ngx-datatable-column [name]="'Faculty' | translate" [sortable]="false">
     <ng-template let-row="row" ngx-datatable-cell-template>
-      <ng-container *ngIf="row.ucl_faculty.acronym != row.ucl_entity.acronym">
+      <ng-container *ngIf="row.ucl_faculty.acronym">
         <span [tooltip]="row.ucl_faculty.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_faculty.acronym}} / </span>
         </ng-container>
        <span [tooltip]="row.ucl_entity.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_entity.acronym}}</span>

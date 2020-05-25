@@ -35,7 +35,7 @@ export class CacheService {
    * which emits the response of a get request
    * during this.refreshDelay ms without sending a new http request
    */
-  public get<T>(url: string, options: any): Observable<T> {
+  public get<T>(url: string, options?: any): Observable<T> {
     if (!this.cache.hasOwnProperty(url)) {
       if (Object.keys(this.cache).length >= this.maxSize) {
         // TODO: do not revoke everything

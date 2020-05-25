@@ -25,6 +25,7 @@ import { PartnershipListComponent } from './components/partnership-list/partners
 import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
 import { AuthentificationService } from './services/authentification.service';
+import { ApiInterceptor } from './services/api-interecptor.service';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -95,6 +96,11 @@ export function authenticateUser(authentificationService: AuthentificationServic
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
       multi: true
     },
     /* USE WHEN AUTHENTICATION PROBLEM IS SOLVED

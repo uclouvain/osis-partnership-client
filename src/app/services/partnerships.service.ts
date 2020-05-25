@@ -1,19 +1,12 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
 import Partnership, { PartnershipParams, ResultPartnerships } from '../interfaces/partnership';
 import Partner, { PartnerParams, ResultPartners } from '../interfaces/partners';
 import { CacheService } from './cache.service';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: `${environment.api.authorizationHeader}`
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -82,14 +75,14 @@ export class PartnershipsService {
   }
 
   private requestPartnerships(query: PartnershipParams) {
-    return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`, httpOptions);
+    return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`);
   }
 
   private requestPartnership(id: string) {
-    return this.cache.get<Partnership>(`${environment.api.url}partnerships/${id}`, httpOptions);
+    return this.cache.get<Partnership>(`${environment.api.url}partnerships/${id}`);
   }
 
   private requestPartners(query: PartnerParams) {
-    return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`, httpOptions);
+    return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`);
   }
 }
