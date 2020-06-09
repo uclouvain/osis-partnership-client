@@ -24,7 +24,7 @@ export class PartnershipDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    combineLatest(this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
+    combineLatest(this.route.parent && this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
       this.partnershipsService.getPartnership(parentParam.id, id).subscribe(partnership => {
         this.data = partnership;
       });
