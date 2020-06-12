@@ -4,8 +4,15 @@ import { map, tap } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
-import Partnership, { PartnershipParams, ResultPartnerships } from '../interfaces/partnership';
-import Partner, { PartnerParams, ResultPartners } from '../interfaces/partners';
+import Partnership, {
+  PartnershipParams,
+  ResultPartnerships
+} from '../interfaces/partnership';
+import Partner, {
+  PartnerParams,
+  ResultPartners
+} from '../interfaces/partners';
+import Marker from '../interfaces/marker';
 import { CacheService } from './cache.service';
 
 @Injectable({
@@ -14,6 +21,7 @@ import { CacheService } from './cache.service';
 export class PartnershipsService {
   private cachePartnerships: BehaviorSubject<Partnership[]> = new BehaviorSubject([]);
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
+  private cacheMarkers: BehaviorSubject<Marker[]> = new BehaviorSubject([]);
 
   constructor(
     private cache: CacheService
@@ -64,6 +72,14 @@ export class PartnershipsService {
     );
   }
 
+  public searchMarkers(query: PartnerParams): Observable<Marker[]> {
+    return this.requestMarkers(query).pipe(
+      tap((markers) => {
+        this.cacheMarkers.next(markers);
+      })
+    );
+  }
+
   /**
    * Returns a single partner, from cache if any
    * or fetched
@@ -84,5 +100,9 @@ export class PartnershipsService {
 
   private requestPartners(query: PartnerParams) {
     return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`);
+  }
+
+  private requestMarkers(query: PartnerParams) {
+    return this.cache.get<Marker[]>(`${environment.api.url}partners-map?${queryString.stringify(query)}`);
   }
 }

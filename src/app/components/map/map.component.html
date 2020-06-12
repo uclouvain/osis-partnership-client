@@ -1,0 +1,34 @@
+<div class="map" id="map" style="height: 600px">
+  <div id="list-controls">
+    <span class="btn btn-default active" id="map-button">
+      <span class="glyphicon glyphicon-map-marker"></span>
+      Carte
+    </span>
+    <a class="btn btn-default" (click)="goToList()">
+      <span class="glyphicon glyphicon-list"></span>
+      {{ partnersDisplayed }} partenaires - {{ partnershipsDisplayed }} partenariats
+    </a>
+  </div>
+
+  <div id="map-legend">
+    <strong>Légende</strong>
+    <div class="legend-row">
+      <svg width="150" height="100">
+        <circle r="20" cx="25" cy="25" fill="#fff" stroke="#5eb3e4" stroke-width="3"></circle>
+        <text x="18" y="20">10</text>
+        <line x1="15" x2="35" y1="25" y2="25" stroke="#000"></line>
+        <text x="18" y="38">50</text>
+
+        <text x="50" y="20">10 partenaires</text>
+        <line x1="50" x2="130" y1="25" y2="25" stroke="#000"></line>
+        <text x="50" y="40">
+          50 partenariats
+        </text>
+
+        <circle r="13" cx="25" cy="63" fill="#5eb3e4" stroke="#fff" stroke-width="3"></circle>
+        <text x="22" y="68" fill="#fff">7</text>
+        <text x="50" y="67">7 partenariats</text>
+      </svg>
+    </div>
+  </div>
+</div>
