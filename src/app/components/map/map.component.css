@@ -2,17 +2,9 @@
   position: relative;
 }
 
-#map-legend, #list-controls {
+#map-legend {
   position: absolute;
   z-index: 1;
-}
-
-#list-controls {
-  padding: .5em;
-}
-
-#list-controls #map-button {
-  margin-right: .5em
 }
 
 #map-legend {

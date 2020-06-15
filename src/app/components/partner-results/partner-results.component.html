@@ -1,0 +1,41 @@
+<div id="list-controls">
+  <a
+    class="btn btn-default"
+    [ngClass]="{active: mapVisible}"
+    id="map-button"
+    (click)="switchVisibleComponent(); map.repaint()"
+  >
+    <span class="glyphicon glyphicon-map-marker"></span>
+    Carte
+  </a>
+  <a
+    class="btn btn-default"
+    [ngClass]="{active: !mapVisible}"
+    (click)="switchVisibleComponent(); table.repaint()"
+    [ngPlural]="totalPartners"
+  >
+    <span class="glyphicon glyphicon-list"></span> &nbsp;
+    <ng-template ngPluralCase="=0">Aucun résultat</ng-template>
+    <ng-template ngPluralCase="=1">1 partenaire</ng-template>
+    <ng-template ngPluralCase="other">{{ totalPartners }} partenaires - {{ totalPartnerships }} partenariats
+    </ng-template>
+  </a>
+</div>
+
+<app-error-message [title]="'Failed to load partners list' | translate" *ngIf="partnersError"></app-error-message>
+
+<app-map
+  [ngClass]="{hidden: !mapVisible}"
+  [visible]="mapVisible"
+  [markers]="results"
+  (visibleMarkersChanged)="onVisibleMarkersUpdated($event)"
+  #map
+></app-map>
+
+<app-partners-list
+  [ngClass]="{hidden: mapVisible}"
+  [loading]="loading"
+  [rows]="visibleMarkers"
+  [totalPartnerships]="totalPartnerships"
+  #table
+></app-partners-list>

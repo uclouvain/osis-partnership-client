@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PartnershipsService } from '../../services/partnerships.service';
-import { getPartnerParams } from '../../helpers/partnerships.helpers';
-import { catchError } from 'rxjs/operators';
-import Marker from '../../interfaces/marker';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange
+} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as GeoJSON from 'geojson';
 import { environment } from '../../../environments/environment';
+import Partner from '../../interfaces/partners';
 
 
 /**
@@ -31,14 +35,11 @@ const createLineImage = (width) => {
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 
-  public loading = true;
-  public mapError = false;
-  public markers: Marker[];
-
-  public partnershipsDisplayed = 0;
-  public partnersDisplayed = 0;
+  @Input() markers: Partner[] = [];
+  @Input() visible = false;
+  @Output() visibleMarkersChanged = new EventEmitter<Partner[]>();
 
   private map: mapboxgl.Map;
   private source: mapboxgl.GeoJSONSource;
@@ -48,39 +49,15 @@ export class MapComponent implements OnInit {
 
   private maxZoom = 7;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private partnershipsService: PartnershipsService
-  ) {
-  }
-
   ngOnInit(): void {
     this.initializeMap();
-    this.route.queryParams.subscribe((queryParams: Params): any => {
-      this.fetchMarkers(queryParams);
-    });
   }
 
-  fetchMarkers(queryParams: Params): void {
-    this.loading = true;
-    this.markers = [];
-    this.partnershipsService.searchMarkers(getPartnerParams(queryParams))
-      .pipe(
-        catchError((): any => {
-          this.mapError = true;
-          this.loading = false;
-        })
-      )
-      .subscribe((markers: Marker[]) => {
-        this.mapError = false;
-        this.loading = false;
-        this.markers = markers;
-        this.partnersDisplayed = markers.length;
-        this.partnershipsDisplayed = 0;
-        markers.map((marker => this.partnershipsDisplayed += marker.partnerships_count));
-        this.updateSource();
-      });
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+    if (changes.markers && changes.markers.previousValue !== changes.markers.currentValue) {
+      this.markers = changes.markers.currentValue;
+      this.updateSource();
+    }
   }
 
   /**
@@ -90,12 +67,10 @@ export class MapComponent implements OnInit {
     if (this.source) {
       this.source.setData({
         type: 'FeatureCollection',
-        features: this.markers.map(m => ({
+        features: this.markers.map(({ location, ...properties }) => ({
           type: 'Feature',
-          geometry: m.location,
-          properties: {
-            ...m
-          }
+          geometry: location,
+          properties
         })),
       });
     }
@@ -194,6 +169,9 @@ export class MapComponent implements OnInit {
         const features = this.map.queryRenderedFeatures(e.point, {
           layers: ['clusters']
         }) as GeoJSON.Feature<GeoJSON.Point>[];
+
+        // TODO if at zoom max, go to partner list with bbox set
+
         this.source.getClusterExpansionZoom(
           features[0].properties.cluster_id,
           (err, zoom) => {
@@ -210,6 +188,8 @@ export class MapComponent implements OnInit {
         );
       });
 
+      // TODO if click on unclustered, go to partnership list of partner
+
       const markerLayers = ['unclustered-point', 'clusters'];
 
       // Change the mouse pointer on markers
@@ -221,32 +201,50 @@ export class MapComponent implements OnInit {
       );
 
       // Update the list button label when navigating the map
-      const updateListButtonLabel = () => {
+      const updateListButtonLabel = async () => {
+        if (!this.visible) {
+          // early return in case map is not visible
+          return;
+        }
         this.bbox = this.map.getBounds();
 
-        const displayedMarkers = this.map.queryRenderedFeatures(null, {
+        // TODO update bbox in queryParams (without new search)
+
+        // Get all visible partners
+        const features = this.map.queryRenderedFeatures(null, {
           layers: markerLayers,
         });
-        this.partnersDisplayed = 0;
-        displayedMarkers.map((marker => this.partnersDisplayed += (
-          marker.properties.point_count || 1
-        )));
-        this.partnershipsDisplayed = 0;
-        displayedMarkers.map((marker => this.partnershipsDisplayed += (
-          marker.properties.partnerships_count || marker.properties.sum
-        )));
+
+        // Get leaves of clusters along with normal points
+        const markersPromises = features.map(({ properties: { point_count, cluster_id, ...properties } }) => {
+          return new Promise(resolve => {
+              if (cluster_id) {
+                // get leaves
+                this.source.getClusterLeaves(
+                  cluster_id,
+                  point_count,
+                  0,
+                  (error, leaves) =>
+                    resolve(leaves.map(leave => leave.properties))
+                );
+              } else {
+                // normal point, return properties
+                resolve([properties]);
+              }
+            }
+          );
+        });
+        const markersResults = await Promise.all(markersPromises);
+        const markers = [].concat(...markersResults.filter(Boolean));
+
+        this.visibleMarkersChanged.emit(markers);
       };
       this.map.on('zoomend', updateListButtonLabel);
       this.map.on('moveend', updateListButtonLabel);
     });
   }
 
-  goToList() {
-    this.router.navigate(['partners'], {
-      queryParamsHandling: 'merge',
-      queryParams: {
-        bbox: this.bbox
-      }
-    });
+  repaint() {
+    setTimeout(() => this.map.resize(), 50);
   }
 }

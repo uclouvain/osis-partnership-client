@@ -8,11 +8,7 @@ import Partnership, {
   PartnershipParams,
   ResultPartnerships
 } from '../interfaces/partnership';
-import Partner, {
-  PartnerParams,
-  ResultPartners
-} from '../interfaces/partners';
-import Marker from '../interfaces/marker';
+import Partner, { PartnerParams, } from '../interfaces/partners';
 import { CacheService } from './cache.service';
 
 @Injectable({
@@ -21,7 +17,6 @@ import { CacheService } from './cache.service';
 export class PartnershipsService {
   private cachePartnerships: BehaviorSubject<Partnership[]> = new BehaviorSubject([]);
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
-  private cacheMarkers: BehaviorSubject<Marker[]> = new BehaviorSubject([]);
 
   constructor(
     private cache: CacheService
@@ -64,18 +59,10 @@ export class PartnershipsService {
     );
   }
 
-  public searchPartners(query: PartnerParams): Observable<ResultPartners> {
+  public searchPartners(query: PartnerParams): Observable<Partner[]> {
     return this.requestPartners(query).pipe(
       tap((partners) => {
-        this.cachePartners.next(partners.results);
-      })
-    );
-  }
-
-  public searchMarkers(query: PartnerParams): Observable<Marker[]> {
-    return this.requestMarkers(query).pipe(
-      tap((markers) => {
-        this.cacheMarkers.next(markers);
+        this.cachePartners.next(partners);
       })
     );
   }
@@ -99,10 +86,6 @@ export class PartnershipsService {
   }
 
   private requestPartners(query: PartnerParams) {
-    return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`);
-  }
-
-  private requestMarkers(query: PartnerParams) {
-    return this.cache.get<Marker[]>(`${environment.api.url}partners-map?${queryString.stringify(query)}`);
+    return this.cache.get<Partner[]>(`${environment.api.url}partners?${queryString.stringify(query)}`);
   }
 }
