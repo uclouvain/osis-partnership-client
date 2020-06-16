@@ -237,7 +237,7 @@ export class MapComponent implements OnInit, OnChanges {
       popup.remove();
     });
 
-    // go to partnership details
+    // Go to partnership details
     this.map.on('click', 'unclustered-point', e => {
       const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
       // Go to partner modal.
@@ -248,7 +248,6 @@ export class MapComponent implements OnInit, OnChanges {
         }
       });
     });
-
 
     const markerLayers = ['unclustered-point', 'clusters'];
 
