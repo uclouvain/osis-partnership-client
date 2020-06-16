@@ -11,6 +11,7 @@ import * as mapboxgl from 'mapbox-gl';
 import * as GeoJSON from 'geojson';
 import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
+import { Router } from '@angular/router';
 
 
 /**
@@ -40,14 +41,20 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() markers: Partner[] = [];
   @Input() visible = false;
   @Output() visibleMarkersChanged = new EventEmitter<Partner[]>();
+  @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;
   private source: mapboxgl.GeoJSONSource;
   private style = 'mapbox://styles/mapbox/light-v10';
+
+  // Center on a point in the south of the mediterranean
   private defaultCenter = { lat: 20, lon: 22 };
   private bbox: mapboxgl.LngLatBounds;
 
   private maxZoom = 7;
+
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     this.initializeMap();
@@ -89,91 +96,111 @@ export class MapComponent implements OnInit, OnChanges {
     this.map.addControl(new mapboxgl.NavigationControl());
 
     this.map.on('load', () => {
-      // Add GeoJSON source
-      this.map.addSource('markers', {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: []
-        },
-        cluster: true,
-        clusterRadius: 65,
-        // Sum the partnership count in clusters
-        clusterProperties: {
-          sum: ['+', ['get', 'partnerships_count']],
-        }
-      });
-      this.source = this.map.getSource('markers') as mapboxgl.GeoJSONSource;
-      this.updateSource();
+      this.initializeLayers();
+      this.initializeMapEvents();
+    });
+  }
 
-      // Layer for cluster circles
-      this.map.addLayer({
-        id: 'clusters',
-        type: 'circle',
-        source: 'markers',
-        filter: ['has', 'point_count'],
-        paint: {
-          'circle-color': '#ffffff',
-          'circle-radius': 20,
-          'circle-stroke-width': 3,
-          'circle-stroke-color': '#5eb3e4',
-        }
-      });
+  private initializeLayers() {
+    // Add GeoJSON source
+    this.map.addSource('markers', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: []
+      },
+      cluster: true,
+      clusterRadius: 65,
+      // Sum the partnership count in clusters
+      clusterProperties: {
+        sum: ['+', ['get', 'partnerships_count']],
+      }
+    });
+    this.source = this.map.getSource('markers') as mapboxgl.GeoJSONSource;
+    this.updateSource();
 
-      // Layer for cluster text
-      this.map.addImage('line', createLineImage(25));
-      this.map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: 'markers',
-        filter: ['has', 'point_count'],
-        layout: {
-          'text-field': '{point_count}\n{sum}',
-          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-          'text-size': 12,
-          'text-line-height': 1.5,
-          'icon-image': 'line',
-        },
-      });
+    // Layer for cluster circles
+    this.map.addLayer({
+      id: 'clusters',
+      type: 'circle',
+      source: 'markers',
+      filter: ['has', 'point_count'],
+      paint: {
+        'circle-color': '#ffffff',
+        'circle-radius': 20,
+        'circle-stroke-width': 3,
+        'circle-stroke-color': '#5eb3e4',
+      }
+    });
 
-      // Layer for normal circles (single points)
-      this.map.addLayer({
-        id: 'unclustered-point',
-        type: 'circle',
-        source: 'markers',
-        filter: ['!', ['has', 'point_count']],
-        paint: {
-          'circle-color': '#5eb3e4',
-          'circle-radius': 12,
-          'circle-stroke-width': 3,
-          'circle-stroke-color': '#fff'
-        }
-      });
-      this.map.addLayer({
-        id: 'unclustered-point-detail',
-        type: 'symbol',
-        source: 'markers',
-        filter: ['!', ['has', 'point_count']],
-        layout: {
-          'text-field': '{partnerships_count}',
-          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-          'text-size': 12,
-        },
-        paint: {
-          'text-color': '#fff',
-        }
-      });
+    // Layer for cluster text
+    this.map.addImage('line', createLineImage(25));
+    this.map.addLayer({
+      id: 'cluster-count',
+      type: 'symbol',
+      source: 'markers',
+      filter: ['has', 'point_count'],
+      layout: {
+        'text-field': '{point_count}\n{sum}',
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+        'text-size': 12,
+        'text-line-height': 1.5,
+        'icon-image': 'line',
+      },
+    });
 
-      // Zoom in a cluster on click
-      this.map.on('click', 'clusters', (e) => {
-        const features = this.map.queryRenderedFeatures(e.point, {
-          layers: ['clusters']
-        }) as GeoJSON.Feature<GeoJSON.Point>[];
+    // Layer for normal circles (single points)
+    this.map.addLayer({
+      id: 'unclustered-point',
+      type: 'circle',
+      source: 'markers',
+      filter: ['!', ['has', 'point_count']],
+      paint: {
+        'circle-color': '#5eb3e4',
+        'circle-radius': 12,
+        'circle-stroke-width': 3,
+        'circle-stroke-color': '#fff'
+      }
+    });
+    this.map.addLayer({
+      id: 'unclustered-point-detail',
+      type: 'symbol',
+      source: 'markers',
+      filter: ['!', ['has', 'point_count']],
+      layout: {
+        'text-field': '{partnerships_count}',
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+        'text-size': 12,
+      },
+      paint: {
+        'text-color': '#fff',
+      }
+    });
+  }
 
-        // TODO if at zoom max, go to partner list with bbox set
+  private initializeMapEvents() {
+    // Zoom in a cluster on click
+    this.map.on('click', 'clusters', (e) => {
+      const features = this.map.queryRenderedFeatures(e.point, {
+        layers: ['clusters']
+      }) as GeoJSON.Feature<GeoJSON.Point>[];
 
+      const feature = features[0] as GeoJSON.Feature<GeoJSON.Point>;
+      if (this.map.getZoom() === this.maxZoom) {
+        // Get cluster leaves and switch to list
+        this.source.getClusterLeaves(
+          feature.properties.cluster_id,
+          feature.properties.point_count,
+          0,
+          (error, leaves) => {
+            const markers = leaves.map(leave => leave.properties) as Partner[];
+            this.visibleMarkersChanged.emit(markers);
+            this.switchToList.emit();
+          }
+        );
+      } else {
         this.source.getClusterExpansionZoom(
-          features[0].properties.cluster_id,
+          feature.properties.cluster_id,
           (err, zoom) => {
             if (err) {
               return;
@@ -181,67 +208,102 @@ export class MapComponent implements OnInit, OnChanges {
 
             this.map.easeTo({
               // @ts-ignore
-              center: features[0].geometry.coordinates,
+              center: feature.geometry.coordinates,
               zoom: Math.min(zoom, this.maxZoom)
             });
           }
         );
+      }
+    });
+
+    // Display a popup on hovering single partner
+    const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    });
+    this.map.on('mouseover', 'unclustered-point', e => {
+      this.map.getCanvas().style.cursor = 'pointer';
+
+      const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
+      // Initialize a popup and set its coordinates based on the feature found.
+      // @ts-ignore
+      popup.setLngLat(feature.geometry.coordinates)
+        .setHTML(feature.properties.name)
+        .addTo(this.map);
+    });
+    this.map.on('mouseout', 'unclustered-point', () => {
+      // Change the cursor style as a UI indicator.
+      this.map.getCanvas().style.cursor = '';
+      popup.remove();
+    });
+
+    // go to partnership details
+    this.map.on('click', 'unclustered-point', e => {
+      const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
+      // Go to partner modal.
+      this.router.navigate(['partners', feature.properties.uuid], {
+        queryParamsHandling: 'merge',
+        queryParams: {
+          partnerFilter: feature.properties.uuid
+        }
+      });
+    });
+
+
+    const markerLayers = ['unclustered-point', 'clusters'];
+
+    // Change the mouse pointer on markers
+    const changeMousePointer = () => this.map.getCanvas().style.cursor = 'pointer';
+    const resetMousePointer = () => this.map.getCanvas().style.cursor = '';
+    markerLayers.map(layerName => this.map
+      .on('mouseenter', layerName, changeMousePointer)
+      .on('mouseleave', layerName, resetMousePointer)
+    );
+
+    // Update the list button label when navigating the map
+    this.map.on('zoomend', () => this.updateListButtonLabel(markerLayers));
+    this.map.on('moveend', () => this.updateListButtonLabel(markerLayers));
+  }
+
+  private updateListButtonLabel(markerLayers: string[]) {
+    return async () => {
+      if (!this.visible) {
+        // early return in case map is not visible
+        return;
+      }
+      this.bbox = this.map.getBounds();
+
+      // TODO update bbox in queryParams (without new search)
+
+      // Get all visible partners
+      const features = this.map.queryRenderedFeatures(null, {
+        layers: markerLayers,
       });
 
-      // TODO if click on unclustered, go to partnership list of partner
-
-      const markerLayers = ['unclustered-point', 'clusters'];
-
-      // Change the mouse pointer on markers
-      const changeMousePointer = () => this.map.getCanvas().style.cursor = 'pointer';
-      const resetMousePointer = () => this.map.getCanvas().style.cursor = '';
-      markerLayers.map(layerName => this.map
-        .on('mouseenter', layerName, changeMousePointer)
-        .on('mouseleave', layerName, resetMousePointer)
-      );
-
-      // Update the list button label when navigating the map
-      const updateListButtonLabel = async () => {
-        if (!this.visible) {
-          // early return in case map is not visible
-          return;
-        }
-        this.bbox = this.map.getBounds();
-
-        // TODO update bbox in queryParams (without new search)
-
-        // Get all visible partners
-        const features = this.map.queryRenderedFeatures(null, {
-          layers: markerLayers,
-        });
-
-        // Get leaves of clusters along with normal points
-        const markersPromises = features.map(({ properties: { point_count, cluster_id, ...properties } }) => {
-          return new Promise(resolve => {
-              if (cluster_id) {
-                // get leaves
-                this.source.getClusterLeaves(
-                  cluster_id,
-                  point_count,
-                  0,
-                  (error, leaves) =>
-                    resolve(leaves.map(leave => leave.properties))
-                );
-              } else {
-                // normal point, return properties
-                resolve([properties]);
-              }
+      // Get leaves of clusters along with normal points
+      const markersPromises = features.map(({ properties: { point_count, cluster_id, ...properties } }) => {
+        return new Promise(resolve => {
+            if (cluster_id) {
+              // get leaves
+              this.source.getClusterLeaves(
+                cluster_id,
+                point_count,
+                0,
+                (error, leaves) =>
+                  resolve(leaves.map(leave => leave.properties))
+              );
+            } else {
+              // normal point, return properties
+              resolve([properties]);
             }
-          );
-        });
-        const markersResults = await Promise.all(markersPromises);
-        const markers = [].concat(...markersResults.filter(Boolean));
+          }
+        );
+      });
+      const markersResults = await Promise.all(markersPromises);
+      const markers = [].concat(...markersResults.filter(Boolean));
 
-        this.visibleMarkersChanged.emit(markers);
-      };
-      this.map.on('zoomend', updateListButtonLabel);
-      this.map.on('moveend', updateListButtonLabel);
-    });
+      this.visibleMarkersChanged.emit(markers);
+    };
   }
 
   repaint() {

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PartnershipsService } from '../../services/partnerships.service';
 import { getPartnerParams } from '../../helpers/partnerships.helpers';
 import { catchError } from 'rxjs/operators';
 import Partner from '../../interfaces/partners';
+import { MapComponent } from '../map/map.component';
+import { PartnersListComponent } from '../partners-list/partners-list.component';
 
 @Component({
   selector: 'app-partner-results',
@@ -11,6 +13,9 @@ import Partner from '../../interfaces/partners';
   styleUrls: ['./partner-results.component.css']
 })
 export class PartnerResultsComponent implements OnInit {
+  @ViewChild('map', { static: true }) map: MapComponent;
+  @ViewChild('table', { static: true }) table: PartnersListComponent;
+
   public mapVisible = true;
   public results: Partner[];
   public loading = true;
@@ -58,18 +63,9 @@ export class PartnerResultsComponent implements OnInit {
         this.loading = false;
         if (results) {
           this.results = results;
-          this.totalPartners = results.length;
-          this.totalPartnerships = 0;
-          this.visibleMarkers = results;
-          results.map(partner => {
-            this.totalPartnerships += partner.partnerships_count;
-          });
+          this.onVisibleMarkersUpdated(this.results);
         }
       });
-  }
-
-  switchVisibleComponent() {
-    this.mapVisible = !this.mapVisible;
   }
 
   onVisibleMarkersUpdated(partners: Partner[]) {
@@ -79,5 +75,15 @@ export class PartnerResultsComponent implements OnInit {
     partners.map(partner => {
       this.totalPartnerships += partner.partnerships_count;
     });
+  }
+
+  switchToMapLayout() {
+    this.mapVisible = true;
+    this.map.repaint();
+  }
+
+  switchToListLayout() {
+    this.mapVisible = false;
+    this.table.repaint();
   }
 }

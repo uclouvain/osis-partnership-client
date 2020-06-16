@@ -3,7 +3,7 @@
     class="btn btn-default"
     [ngClass]="{active: mapVisible}"
     id="map-button"
-    (click)="switchVisibleComponent(); map.repaint()"
+    (click)="switchToMapLayout()"
   >
     <span class="glyphicon glyphicon-map-marker"></span>
     Carte
@@ -11,7 +11,7 @@
   <a
     class="btn btn-default"
     [ngClass]="{active: !mapVisible}"
-    (click)="switchVisibleComponent(); table.repaint()"
+    (click)="switchToListLayout()"
     [ngPlural]="totalPartners"
   >
     <span class="glyphicon glyphicon-list"></span> &nbsp;
@@ -29,6 +29,7 @@
   [visible]="mapVisible"
   [markers]="results"
   (visibleMarkersChanged)="onVisibleMarkersUpdated($event)"
+  (switchToList)="switchToListLayout()"
   #map
 ></app-map>
 
@@ -39,3 +40,5 @@
   [totalPartnerships]="totalPartnerships"
   #table
 ></app-partners-list>
+
+<router-outlet></router-outlet>

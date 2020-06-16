@@ -13,7 +13,6 @@
     [sorts]="sorts"
     [columnMode]="'flex'"
     [loadingIndicator]="loading"
-    #table
   >
     <ngx-datatable-column [name]="'Partner institution' | translate" prop="name" [flexGrow]="4">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
@@ -84,5 +83,3 @@
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
-
-<router-outlet></router-outlet>
