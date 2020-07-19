@@ -1,7 +1,19 @@
-.partnership__form .btn {
+.partnership__form .btn:first-child {
   margin-right: .5em;
 }
 
-.partnership__form {
-  margin-bottom: 1em;
+.search-grid {
+  display: flex;
+}
+
+.search-grid--fields {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-grid--fields > div {
+  flex: 0 1 33%;
+  padding: 0 .5em .5em 0;
+  max-width: 33%;
 }

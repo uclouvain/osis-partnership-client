@@ -52,6 +52,7 @@ export class MapComponent implements OnInit, OnChanges {
   private bbox: mapboxgl.LngLatBounds;
 
   private maxZoom = 7;
+  public mainColor = '#ddc000';
 
   constructor(private router: Router) {
   }
@@ -129,7 +130,7 @@ export class MapComponent implements OnInit, OnChanges {
         'circle-color': '#ffffff',
         'circle-radius': 20,
         'circle-stroke-width': 3,
-        'circle-stroke-color': '#5eb3e4',
+        'circle-stroke-color': this.mainColor,
       }
     });
 
@@ -156,7 +157,7 @@ export class MapComponent implements OnInit, OnChanges {
       source: 'markers',
       filter: ['!', ['has', 'point_count']],
       paint: {
-        'circle-color': '#5eb3e4',
+        'circle-color': this.mainColor,
         'circle-radius': 12,
         'circle-stroke-width': 3,
         'circle-stroke-color': '#fff'
@@ -176,7 +177,6 @@ export class MapComponent implements OnInit, OnChanges {
         'text-color': '#fff',
       }
     });
-  }
 
   private initializeMapEvents() {
     // Zoom in a cluster on click

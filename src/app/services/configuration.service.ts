@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { shareReplay, map } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Configuration } from '../interfaces/configuration';
-import { getValueLabelList, getFormattedItemsList } from '../helpers/list.helpers';
 
 const CACHE_SIZE = 1;
 
@@ -27,44 +26,6 @@ export class ConfigurationService {
       );
     }
     return this.cache$;
-  }
-
-  public getCoutries(continent: string) {
-    return this.all().pipe(
-      map((config: Configuration) =>
-        getValueLabelList(config.continents, { name: 'countries', value: continent })
-      )
-    );
-  }
-
-  get continents() {
-    return this.all().pipe(
-      map((config: Configuration) => getValueLabelList(config.continents))
-    );
-  }
-
-  get educationFields() {
-    return this.all().pipe(
-      map((config: Configuration) => config.education_fields)
-    );
-  }
-
-  get partners() {
-    return this.all().pipe(
-      map((config: Configuration) => config.partners)
-    );
-  }
-
-  get uclUniversities() {
-    return this.all().pipe(
-      map((config: Configuration) => getFormattedItemsList(config.ucl_universities))
-    );
-  }
-
-  get fundings() {
-    return this.all().pipe(
-      map((config: Configuration) => config.fundings)
-    );
   }
 
   private requestConfiguration() {

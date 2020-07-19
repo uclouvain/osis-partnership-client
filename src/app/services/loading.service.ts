@@ -32,6 +32,7 @@ export class LoadingService {
   }
 
   begin(id: string): void {
+    this.error.next('');
     const ids = this.loadingIds.getValue();
     ids.push(id);
     this.loadingIds.next(ids);
@@ -80,7 +81,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         }),
         catchError((error: any) => {
           this.loading.finish(loadingId);
-          let errorMessage = '';
+          let errorMessage: string;
           if (error.error instanceof ErrorEvent) {
             // client-side error
             errorMessage = `Error: ${error.error.message}`;

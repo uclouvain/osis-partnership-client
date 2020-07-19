@@ -54,6 +54,7 @@
               "src/assets/drupal-dependencies/ucltheme/css/_ff5252_suite.css",
               "src/assets/drupal-dependencies/ucltheme/css/ucl_override.css",
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -262,6 +263,7 @@
             ],
             "styles": [
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
             "scripts": [],

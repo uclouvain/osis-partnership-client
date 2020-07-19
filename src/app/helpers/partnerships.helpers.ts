@@ -86,11 +86,9 @@ export function getCleanParams(params) {
 
 export function getPartnershipParams(query: any): PartnershipParams {
   return getCleanParams({
-    campus: query.campus || '',
     city: query.city || '',
-    continent: query.continent || '',
     country: query.country || '',
-    education_field: query.education_field || '',
+    education_level: query.education_level || '',
     limit: query.limitPartnership || '',
     offset: query.offsetPartnership || '',
     partner: query.partner || '',
@@ -105,19 +103,14 @@ export function getPartnershipParams(query: any): PartnershipParams {
 
 export function getPartnerParams(query: any): PartnerParams {
   return getCleanParams({
-    campus: query.campus || '',
     city: query.city || '',
-    continent: query.continent || '',
     country: query.country || '',
-    education_field: query.education_field || '',
-    limit: query.limit || '',
-    offset: query.offset || '',
-    partner: query.partner || '',
-    supervisor: query.supervisor || '',
+    education_level: query.education_level || '',
     type: query.type || '',
     ucl_entity: query.ucl_entity || '',
     mobility_type: query.mobility_type || [],
     funding: query.funding || [],
-    ordering: query.ordering || ''
+    ordering: query.ordering || '',
+    bbox: query.bbox || '',
   });
 }

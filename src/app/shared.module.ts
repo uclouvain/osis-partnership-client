@@ -1,16 +1,23 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
 import { SearchComponent } from './components/search/search.component';
@@ -18,7 +25,10 @@ import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-gro
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
-import { LoadingService, LoadingInterceptor } from './services/loading.service';
+import {
+  LoadingInterceptor,
+  LoadingService
+} from './services/loading.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PartnersListComponent } from './components/partners-list/partners-list.component';
 import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
@@ -28,6 +38,7 @@ import { AuthentificationService } from './services/authentification.service';
 import { ApiInterceptor } from './services/api-interecptor.service';
 import { MapComponent } from './components/map/map.component';
 import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -46,7 +57,7 @@ export function authenticateUser(authentificationService: AuthentificationServic
 
 
 @NgModule({
- imports: [
+  imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
@@ -57,7 +68,6 @@ export function authenticateUser(authentificationService: AuthentificationServic
         deps: [HttpClient]
       }
     }),
-    TypeaheadModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
@@ -65,7 +75,9 @@ export function authenticateUser(authentificationService: AuthentificationServic
     TooltipModule.forRoot(),
     HttpClientModule,
     NgxDatatableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    NgSelectModule,
   ],
   declarations: [
     SearchComponent,
@@ -84,7 +96,6 @@ export function authenticateUser(authentificationService: AuthentificationServic
     BrowserModule,
     FormsModule,
     TranslateModule,
-    TypeaheadModule,
     ModalModule,
     AlertModule,
     ButtonsModule,

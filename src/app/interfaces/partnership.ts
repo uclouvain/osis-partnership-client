@@ -8,6 +8,7 @@ export default interface Partnership {
   education_field:	string;
   ucl_faculty: AcronymEntity;
   ucl_entity: AcronymEntity;
+  ucl_sector: string;
   supervisor: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';
   status?: {

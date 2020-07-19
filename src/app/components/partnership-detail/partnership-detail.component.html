@@ -1,31 +1,50 @@
 <app-loader *ngIf="!data"></app-loader>
 
 <div *ngIf="data">
-  <a class="btn btn-link" [routerLink]="['/partners', data.partner.uuid]" queryParamsHandling="merge" *ngIf="showBackButton">
+  <a
+    class="btn btn-link"
+    [routerLink]="['/partners', data.partner.uuid]"
+    queryParamsHandling="merge"
+    *ngIf="showBackButton"
+  >
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
     {{'Back to partnership list' | translate}}
   </a>
   <dl class="detail-partnership">
     <dt *ngIf="data.partner.name">{{ 'Partner' | translate }}</dt>
     <dd *ngIf="data.partner.name">
-      <a class="detail-partnership__name" [href]="data.partner.website" rel="noopener" target="blank" [title]="'Go to partners website' | translate">
+      <a
+        class="detail-partnership__name"
+        [href]="data.partner.website"
+        rel="noopener"
+        target="blank"
+        [title]="'Go to partners website' | translate"
+      >
         {{data.partner.name}}
-      </a> <span *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</span><br/>
-      <span *ngIf="data.partner_entity">{{data.partner_entity}}<br /></span>
-      <span class="detail-partnership__city">{{data.partner.city}}, </span>
-      <span>{{data.partner.country}}</span>
+      </a>
+      <ng-container *ngIf="data.partner.erasmus_code">({{data.partner.erasmus_code}})</ng-container>
+      <br />
+      <ng-container *ngIf="data.partner_entity">{{data.partner_entity}}<br /></ng-container>
+      <ng-container class="detail-partnership__city">{{data.partner.city}},</ng-container>
+      {{data.partner.country}}
     </dd>
 
-    <dt>{{ 'UCLouvain' | translate }}</dt>
+    <dt>{{ 'UCLouvain entity' | translate }}</dt>
     <dd>
-        <span *ngIf="data.ucl_faculty.acronym">
-          {{data.ucl_faculty.title}} ({{data.ucl_faculty.acronym}})<br/>
-        </span>
-        {{data.ucl_entity.title}} ({{data.ucl_entity.acronym}})
+      <ng-container *ngIf="data.ucl_faculty.acronym">
+        {{data.ucl_faculty.title}} ({{data.ucl_sector}}/{{data.ucl_faculty.acronym}})<br />
+      </ng-container>
+      {{data.ucl_entity.title}}
+      <ng-container *ngIf="!data.ucl_faculty.acronym">
+        ({{data.ucl_sector}}/{{data.ucl_entity.acronym}})
+      </ng-container>
+      <ng-container *ngIf="data.ucl_faculty.acronym">
+        ({{data.ucl_sector}}/{{data.ucl_faculty.acronym}}/{{data.ucl_entity.acronym}})
+      </ng-container>
     </dd>
 
-    <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
-    <dd *ngIf="data.supervisor">Prof. {{data.supervisor}}</dd>
+    <dt *ngIf="data.supervisor">{{ 'UCLouvain coordinator' | translate }}</dt>
+    <dd *ngIf="data.supervisor">{{data.supervisor}}</dd>
 
     <dt *ngIf="data.education_fields">{{ 'Subject area' | translate }}</dt>
     <dd *ngIf="data.education_fields">
@@ -38,10 +57,16 @@
     <dd>{{mobilityType}}</dd>
 
     <dt>{{ 'Status' | translate }}</dt>
-    <dd *ngIf="!!data.status">{{ data.status.status | translate }} <span *ngIf="isValidated(data.status)">({{data.status.valid_years}})</span></dd>
+    <dd *ngIf="!!data.status">{{ data.status.status | translate }}
+      <ng-container *ngIf="isValidated(data.status)">
+        ({{data.status.valid_years}})
+      </ng-container>
+    </dd>
     <dd *ngIf="!data.status">{{ 'waiting' | translate }}</dd>
 
-    <dt *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">{{ 'Bilateral agreements' | translate }}</dt>
+    <dt *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">
+      {{ 'Bilateral agreements' | translate }}
+    </dt>
     <dd *ngIf="data.bilateral_agreements && data.bilateral_agreements.length > 0">
       <ul class="partnership__list">
         <li *ngFor="let bilateral_agreement of data.bilateral_agreements">
@@ -70,9 +95,14 @@
 
           <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
           <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">
-            <ng-container *ngFor="let entity of data.out_entities; index as index"><ng-container *ngIf="index !== 0">, </ng-container><span class="has-tooltip" [tooltip]="entity.title">{{entity.acronym}}</span></ng-container>
+            <ng-container *ngFor="let entity of data.out_entities; index as index">
+              <ng-container *ngIf="index !== 0">,</ng-container>
+              <span class="has-tooltip" [tooltip]="entity.title">{{entity.acronym}}</span>
+            </ng-container>
           </dd>
-          <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">{{ 'All' | translate }}</dd>
+          <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">
+            {{ 'All' | translate }}
+          </dd>
 
           <dt>{{ 'Program' | translate }}</dt>
           <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
@@ -85,14 +115,23 @@
             </ul>
           </dd>
 
-          <dt class="nomargin" *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">{{ 'Contact person OUT' | translate }}</dt>
-          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
-            <span *ngIf="data.out_contact.first_name || data.out_contact.last_name">{{data.out_contact.first_name}} {{data.out_contact.last_name}}<br/></span>
+          <dt class="nomargin" *ngIf="data.out_contact && (data.out_contact.first_name || data.out_contact.last_name)">
+            {{ 'Contact person OUT' | translate }}
+          </dt>
+          <dd class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+            <ng-container *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+              {{data.out_contact.first_name}} {{data.out_contact.last_name}}
+              <br />
+            </ng-container>
           </dd>
 
-          <dt class="nomargin" *ngIf="data.out_contact && data.out_contact.email">{{ 'E-mail' | translate }}</dt>
-          <dd  class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
-            <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">{{data.out_contact.email}}</a>
+          <dt class="nomargin" *ngIf="data.out_contact && data.out_contact.email">
+            {{ 'E-mail' | translate }}
+          </dt>
+          <dd class="nomargin" *ngIf="data.out_contact.first_name || data.out_contact.last_name">
+            <a href="mailto:{{data.out_contact.email}}" *ngIf="data.out_contact.email">
+              {{data.out_contact.email}}
+            </a>
           </dd>
 
           <dt *ngIf="data.out_portal">{{ 'Portal OUT' | translate }}</dt>
@@ -102,17 +141,22 @@
 
           <dt>{{ 'Funding' | translate }}</dt>
           <dd>
-            <span *ngIf="!data.out_funding">-</span>
-            <a *ngIf="data.out_funding" [href]="data.out_funding.url" rel="noopener" target="blank">{{data.out_funding.name}}</a>
+            <ng-container *ngIf="!data.out_funding">-</ng-container>
+            <a
+              *ngIf="data.out_funding" [href]="data.out_funding.url" rel="noopener" target="blank"
+            >{{data.out_funding.name}}</a>
           </dd>
 
-          <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
+          <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
+            {{ 'Contact person in partner institution' | translate }}
+          </dt>
           <dd *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
             <ul class="partnership__list">
               <li *ngFor="let contact of data.out_partner_contacts">
-                <span *ngIf="contact.title || contact.first_name || contact.last_name">
-                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br></span>
-                <span *ngIf="contact.phone">{{contact.phone}}<br></span>
+                <ng-container *ngIf="contact.title || contact.first_name || contact.last_name">
+                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br />
+                </ng-container>
+                <ng-container *ngIf="contact.phone">{{contact.phone}}<br /></ng-container>
                 <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
               </li>
             </ul>
@@ -121,9 +165,11 @@
           <dt>{{ 'Individual Student Evaluations' | translate }}</dt>
           <dd>{{ 'Address coming soon' | translate }}</dd>
 
-          <dt *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">{{ 'Summary Tables' | translate }}</dt>
+          <dt *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
+            {{ 'Summary Tables' | translate }}
+          </dt>
           <dd *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
-            <ul class="partnership__list">
+            <ul class="list-unstyled">
               <li *ngFor="let summary_table of data.out_summary_tables">
                 <a [href]="summary_table.url">{{summary_table.name}}</a>
               </li>
@@ -138,40 +184,61 @@
       </ng-template>
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
-          <dt class="nomargin" *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">{{ 'Contact person IN' | translate }}</dt>
+          <dt class="nomargin" *ngIf="data.in_contact && (data.in_contact.first_name || data.in_contact.last_name)">
+            {{ 'Contact person IN' | translate }}
+          </dt>
           <dd class="nomargin" *ngIf="data.in_contact.first_name || data.in_contact.last_name">
-            <span *ngIf="data.in_contact.first_name || data.in_contact.last_name">{{data.in_contact.first_name}} {{data.in_contact.last_name}}<br/></span>
+            <ng-container *ngIf="data.in_contact.first_name || data.in_contact.last_name">
+              {{data.in_contact.first_name}} {{data.in_contact.last_name}}
+              <br />
+            </ng-container>
           </dd>
 
           <dt class="nomargin" *ngIf="data.in_contact && data.in_contact.email"></dt>
           <dd class="nomargin" *ngIf="data.in_contact && data.in_contact.email">
-            <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">{{data.in_contact.email}}</a>
+            <a href="mailto:{{data.in_contact.email}}" *ngIf="data.in_contact.email">
+              {{data.in_contact.email}}
+            </a>
           </dd>
 
           <dt *ngIf="data.in_portal"></dt>
           <dd *ngIf="data.in_portal">
             <a [href]="data.in_portal" target="blank" rel="noopener">
               {{ 'Web portal incoming' | translate }}
-              <span *ngIf="data.ucl_faculty && data.ucl_faculty != data.ucl_entity">{{ data.ucl_entity.acronym }}/</span>
+              <ng-container *ngIf="data.ucl_faculty && data.ucl_faculty != data.ucl_entity">
+                {{ data.ucl_entity.acronym }}/
+              </ng-container>
               {{data.ucl_entity.acronym}}
             </a>
           </dd>
 
           <dt>{{ 'Admission' | translate }}</dt>
-          <dd><a href="http://www.uclouvain.be/en-exchange-application" target="_blank"><span [innerHTML]="'Admission Text 1' | translate"></span></a><br><span [innerHTML]="'Admission Text 2' | translate"></span></dd>
+          <dd>
+            <a href="http://www.uclouvain.be/en-exchange-application" target="_blank">
+              {{ 'Admission Text 1' | translate }}
+            </a>
+            <br />
+            {{ 'Admission Text 2' | translate }}
+          </dd>
 
           <dt>{{ 'Course catalogue' | translate }}</dt>
           <dd>
-            <a [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()" target="_blank">{{ 'Link to course catalogue' | translate }}</a>
-            <br><span *ngIf="getCourseCatalogueText()">{{ getCourseCatalogueText() }}</span>
+            <a
+              [href]="getCourseCatalogueUrl()" *ngIf="getCourseCatalogueUrl()" target="_blank"
+            >{{ 'Link to course catalogue' | translate }}</a>
+            <br />
+            <ng-container *ngIf="getCourseCatalogueText()">{{ getCourseCatalogueText() }}</ng-container>
           </dd>
 
           <dt>{{ 'Useful links' | translate }}</dt>
           <dd>
-            <a target="blank" rel="noopener"
-              [href]="'general_information_url' | translate">{{ 'General information for incoming exchange students' | translate }}</a><br>
-            <a target="blank" rel="noopener"
-              [href]="'internation_welcome_guide_url' | translate">{{ 'International Welcome Guide' | translate }}</a>
+            <a target="blank" rel="noopener" [href]="'general_information_url' | translate">
+              {{ 'General information for incoming exchange students' | translate }}
+            </a>
+            <br />
+            <a target="blank" rel="noopener" [href]="'internation_welcome_guide_url' | translate">
+              {{ 'International Welcome Guide' | translate }}
+            </a>
           </dd>
         </dl>
       </div>
@@ -183,15 +250,22 @@
       <div class="detail-partnership__tab">
         <dl class="detail-partnership">
           <dt *ngIf="data.staff_contact">{{ 'Contact person' | translate }}</dt>
-          <dd *ngIf="data.staff_contact"><a [href]="'mailto:' + data.staff_contact.email">{{data.staff_contact.first_name}} {{data.staff_contact.last_name}}</a></dd>
+          <dd *ngIf="data.staff_contact">
+            <a [href]="'mailto:' + data.staff_contact.email">
+              {{data.staff_contact.first_name}} {{data.staff_contact.last_name}}
+            </a>
+          </dd>
 
-          <dt *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">{{ 'Contact person in partner institution' | translate }}</dt>
+          <dt *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">
+            {{ 'Contact person in partner institution' | translate }}
+          </dt>
           <dd *ngIf="data.staff_partner_contacts && data.staff_partner_contacts.length > 0">
             <ul class="partnership__list">
               <li *ngFor="let contact of data.out_partner_contacts">
-                <span *ngIf="contact.title || contact.first_name || contact.last_name">
-                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br></span>
-                <span *ngIf="contact.phone">{{contact.phone}}<br></span>
+                <ng-container *ngIf="contact.title || contact.first_name || contact.last_name">
+                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br />
+                </ng-container>
+                <ng-container *ngIf="contact.phone">{{contact.phone}}<br /></ng-container>
                 <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
               </li>
             </ul>
@@ -199,7 +273,9 @@
 
           <dt>{{ 'Funding' | translate }}</dt>
           <dd>
-            <a [href]="'funding_staff_url' | translate" rel="noopener" target="blank">{{ 'Open call for staff mobility' | translate }}</a>
+            <a
+              [href]="'funding_staff_url' | translate" rel="noopener" target="blank"
+            >{{ 'Open call for staff mobility' | translate }}</a>
           </dd>
 
           <dt *ngIf="data.medias && data.medias.length > 0">{{ 'Medias' | translate }}</dt>
