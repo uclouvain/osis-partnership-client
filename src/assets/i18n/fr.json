@@ -89,5 +89,11 @@
   "Failed to load partner detail": "Une erreur s'est produite lors du chargement du détail du partenaire",
   "You must select at least one filter": "Veuillez sélectionner au moins un critère de recherche.",
   "Please select a value from the list.": "Veuillez sélectionner une valeur de la liste.",
-  "Bilateral agreements": "Accords bilatéraux"
+  "Bilateral agreements": "Accords bilatéraux",
+  "Further information": "En savoir plus",
+  "Funding program / Action": "Programme / Action",
+  "Missions or thematic": "Missions ou thématiques",
+  "Project title": "Intitulé",
+  "Id number": "N° ID",
+  "Project summary": "Résumé du projet"
 }

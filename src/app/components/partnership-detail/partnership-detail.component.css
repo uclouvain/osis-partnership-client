@@ -48,3 +48,8 @@
 .has-tooltip:hover {
   cursor: pointer;
 }
+
+.ngx-ellipsis-more {
+  text-decoration: underline;
+  font-weight: bold;
+}

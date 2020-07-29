@@ -32,7 +32,6 @@ export class LoadingService {
   }
 
   begin(id: string): void {
-    this.error.next('');
     const ids = this.loadingIds.getValue();
     ids.push(id);
     this.loadingIds.next(ids);

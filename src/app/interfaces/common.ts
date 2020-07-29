@@ -3,6 +3,11 @@ export interface ValueLabel {
   label: string;
 }
 
+export interface FundingElement {
+  value: string;
+  text: string;
+}
+
 export interface SearchItemChild {
   id: string;
   label: string;

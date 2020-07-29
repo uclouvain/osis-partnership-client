@@ -10,6 +10,17 @@
   </a>
   <a
     class="btn btn-default"
+    [ngClass]="{active: mapInfluence}"
+    id="map-influence"
+    (click)="toggleMapInfluence()"
+    *ngIf="mapVisible"
+  >
+    <span class="glyphicon glyphicon-screenshot"></span>
+    Filtrer sur l'emprise
+  </a>
+  <a
+    class="btn btn-default"
+    id="list-button"
     [ngClass]="{active: !mapVisible}"
     (click)="switchToListLayout()"
     [ngPlural]="totalPartners"
@@ -36,7 +47,7 @@
 <app-partners-list
   [ngClass]="{hidden: mapVisible}"
   [loading]="loading"
-  [rows]="visibleMarkers"
+  [rows]="this.mapInfluence ? this.visibleMarkers : this.results"
   [totalPartnerships]="totalPartnerships"
   #table
 ></app-partners-list>

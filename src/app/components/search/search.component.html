@@ -11,7 +11,6 @@
           [placeholder]="'Keyword' | translate"
           groupBy="children"
           [notFoundText]="'No result found' | translate"
-          [virtualScroll]="true"
           (change)="combinedSearchValueChanged($event)"
         >
           <ng-template ng-optgroup-tmp let-item="item">
@@ -46,6 +45,17 @@
         ></ng-select>
       </div>
 
+      <div *ngIf="model.ucl_entity" class="search-grid--checkbox">
+        <label>
+          <input
+            type="checkbox"
+            id="with-children"
+            name="with_children"
+            [(ngModel)]="model.with_children"
+          />
+          {{ "Include children entities" | translate }}
+        </label>
+      </div>
       <!--
       <div class="form-group">
         <label for="education_field">{{ 'Subject Area' | translate }}</label>

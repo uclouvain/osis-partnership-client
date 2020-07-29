@@ -9,7 +9,11 @@ import { Configuration } from 'src/app/interfaces/configuration.js';
 import { getCleanParams } from 'src/app/helpers/partnerships.helpers.js';
 import { Type } from 'src/app/interfaces/partnership_type';
 import { TranslateService } from '@ngx-translate/core';
-import { CombinedSearchItem, ValueLabel } from '../../interfaces/common';
+import {
+  CombinedSearchItem,
+  FundingElement,
+  ValueLabel
+} from '../../interfaces/common';
 
 const defaultModel = {
   type: null,
@@ -20,9 +24,10 @@ const defaultModel = {
   education_level: null,
   education_field: null,
   mobility_type: null,
-  funding: null,
-  limit: 25,
-  offset: 0
+  funding_source: null,
+  funding_type: null,
+  funding_program: null,
+  with_children: true,
 };
 
 @Component({
@@ -45,7 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public partners: ValueLabel[];
   public tags: ValueLabel[];
   public partnerTags: ValueLabel[];
-  public fundings: ValueLabel[];
+  public fundings: FundingElement[];
 
   // Other options
   public uclEntities: ValueLabel[];
@@ -122,8 +127,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           (city, index, self) => self.indexOf(city) === index
         ));
         this.partners = getFormattedItemsList(config.partners);
-        this.fundings = getFormattedItemsList(config.fundings);
-        this.fundings = getFormattedItemsList(config.fundings);
+        this.fundings = config.fundings;
         this.tags = getFormattedItemsList(config.tags);
         this.partnerTags = getFormattedItemsList(config.partner_tags);
 
@@ -153,12 +157,39 @@ export class SearchComponent implements OnInit, OnDestroy {
             })),
           },
           {
-            id: 'funding',
-            label: this.translate.instant('Funding'),
-            label_plural: this.translate.instant('Fundings'),
-            children: this.fundings.map(elem => ({
-              ...elem,
-              type: 'funding'
+            id: 'funding_source',
+            label: this.translate.instant('Funding source'),
+            label_plural: this.translate.instant('Funding sources'),
+            children: this.fundings.filter(
+              elem => elem.value.split('-')[0] === 'fundingsource'
+            ).map(elem => ({
+              id: elem.value.split('-')[1],
+              label: elem.text,
+              type: 'funding_source'
+            })),
+          },
+          {
+            id: 'funding_program',
+            label: this.translate.instant('Funding program'),
+            label_plural: this.translate.instant('Funding programs'),
+            children: this.fundings.filter(
+              elem => elem.value.split('-')[0] === 'fundingprogram'
+            ).map(elem => ({
+              id: elem.value.split('-')[1],
+              label: elem.text,
+              type: 'funding_program'
+            })),
+          },
+          {
+            id: 'funding_type',
+            label: this.translate.instant('Funding type'),
+            label_plural: this.translate.instant('Funding types'),
+            children: this.fundings.filter(
+              elem => elem.value.split('-')[0] === 'fundingtype'
+            ).map(elem => ({
+              id: elem.value.split('-')[1],
+              label: elem.text,
+              type: 'funding_type'
             })),
           },
           {
@@ -192,8 +223,6 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   searchPartners(event: any): void {
     event.preventDefault();
-    // Reset current page to 1
-    this.model.offset = 0;
     this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
     console.log(this.model, getCleanParams(this.model));
   }
@@ -216,7 +245,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         ...this.model,
         country: null,
         city: null,
-        funding: null,
+        funding_source: null,
+        funding_type: null,
+        funding_program: null,
       };
     }
   }
