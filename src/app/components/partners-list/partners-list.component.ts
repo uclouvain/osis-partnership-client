@@ -23,9 +23,9 @@ export class PartnersListComponent implements OnInit {
   @ViewChild('partnershipSummaryCell')
   partnershipSummaryCell: TemplateRef<any>;
 
-  @Input() rows: Partner[];
+  @Input() rows: Partner[] = [];
   @Input() loading = true;
-  @Input() totalPartnerships: number;
+  @Input() totalPartnerships = 0;
   public pageSize = 25;
   public sorts = [];
 

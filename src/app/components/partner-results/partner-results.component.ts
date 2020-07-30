@@ -17,7 +17,7 @@ export class PartnerResultsComponent implements OnInit {
   @ViewChild('table', { static: true }) table: PartnersListComponent;
 
   public mapVisible = true;
-  public results: Partner[];
+  public results: Partner[] = [];
   public loading = true;
   public partnersError = false;
   public totalPartners = 0;

@@ -14,6 +14,10 @@ export class SettingsService {
   }
 
   get(prop, defaultValue) {
-    return this.elementRef.nativeElement.getAttribute('data-' + prop) || defaultValue;
+    if (this.elementRef) {
+      return this.elementRef.nativeElement.getAttribute('data-' + prop) || defaultValue;
+    } else {
+      return defaultValue;
+    }
   }
 }

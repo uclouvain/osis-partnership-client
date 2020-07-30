@@ -224,7 +224,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchPartners(event: any): void {
     event.preventDefault();
     this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
-    console.log(this.model, getCleanParams(this.model));
   }
 
   /**
