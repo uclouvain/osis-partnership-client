@@ -1,9 +1,12 @@
 import { ElementRef, Injectable } from '@angular/core';
 
+/**
+ * Service that reads into the data-* properties of an element
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class SettingsService {
+export class HtmlElementPropertyService {
   private elementRef: ElementRef;
 
   constructor() {

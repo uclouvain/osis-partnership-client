@@ -56,7 +56,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   public uclEntities: ValueLabel[];
   public partnershipTypes: ValueLabel[];
 
-  // public educationFields: ValueLabel[];
   public educationLevels: ValueLabel[];
   public yearOffers: ValueLabel[];
   public mobilityTypeItems: ValueLabel[] = [
@@ -131,90 +130,93 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.tags = getFormattedItemsList(config.tags);
         this.partnerTags = getFormattedItemsList(config.partner_tags);
 
-        this.combinedSearch = [
-          {
-            id: 'country',
-            label: this.translate.instant('Country'),
-            label_plural: this.translate.instant('Countries'),
-            children: this.countries.map(elem => ({
-              ...elem,
-              type: 'country'
-            })),
-          },
-          {
-            id: 'city',
-            label: this.translate.instant('City'),
-            label_plural: this.translate.instant('Cities'),
-            children: this.cities.map(elem => ({ ...elem, type: 'city' })),
-          },
-          {
-            id: 'partner',
-            label: this.translate.instant('Partner'),
-            label_plural: this.translate.instant('Partners'),
-            children: this.partners.map(elem => ({
-              ...elem,
-              type: 'partner'
-            })),
-          },
-          {
-            id: 'funding_source',
-            label: this.translate.instant('Funding source'),
-            label_plural: this.translate.instant('Funding sources'),
-            children: this.fundings.filter(
-              elem => elem.value.split('-')[0] === 'fundingsource'
-            ).map(elem => ({
-              id: elem.value.split('-')[1],
-              label: elem.text,
-              type: 'funding_source'
-            })),
-          },
-          {
-            id: 'funding_program',
-            label: this.translate.instant('Funding program'),
-            label_plural: this.translate.instant('Funding programs'),
-            children: this.fundings.filter(
-              elem => elem.value.split('-')[0] === 'fundingprogram'
-            ).map(elem => ({
-              id: elem.value.split('-')[1],
-              label: elem.text,
-              type: 'funding_program'
-            })),
-          },
-          {
-            id: 'funding_type',
-            label: this.translate.instant('Funding type'),
-            label_plural: this.translate.instant('Funding types'),
-            children: this.fundings.filter(
-              elem => elem.value.split('-')[0] === 'fundingtype'
-            ).map(elem => ({
-              id: elem.value.split('-')[1],
-              label: elem.text,
-              type: 'funding_type'
-            })),
-          },
-          {
-            id: 'tag',
-            label: this.translate.instant('Tag'),
-            label_plural: this.translate.instant('Tags'),
-            children: [
-              ...this.tags.map(elem => ({ ...elem, type: 'tag' })),
-              ...this.partnerTags.map(elem => ({ ...elem, type: 'partner_tag' })),
-            ],
-          },
-        ];
+        this.initCombinedSearch(params);
 
-        // Init combinedSearch value
-        this.combinedSearch.map(group => {
-          if (params[group.id]) {
-            this.combinedSearchValue = group.children.find(elem => elem.id === params[group.id]);
-          }
-        });
-
-        // this.educationFields = getFormattedItemsList(config.education_fields);
         this.educationLevels = config.education_levels;
         this.uclEntities = config.ucl_universities;
         this.partnershipTypes = config.partnership_types;
       });
+  }
+
+  private initCombinedSearch(params) {
+    this.combinedSearch = [
+      {
+        id: 'country',
+        label: this.translate.instant('Country'),
+        label_plural: this.translate.instant('Countries'),
+        children: this.countries.map(elem => ({
+          ...elem,
+          type: 'country'
+        })),
+      },
+      {
+        id: 'city',
+        label: this.translate.instant('City'),
+        label_plural: this.translate.instant('Cities'),
+        children: this.cities.map(elem => ({ ...elem, type: 'city' })),
+      },
+      {
+        id: 'partner',
+        label: this.translate.instant('Partner'),
+        label_plural: this.translate.instant('Partners'),
+        children: this.partners.map(elem => ({
+          ...elem,
+          type: 'partner'
+        })),
+      },
+      {
+        id: 'funding_source',
+        label: this.translate.instant('Funding source'),
+        label_plural: this.translate.instant('Funding sources'),
+        children: this.fundings.filter(
+          elem => elem.value.split('-')[0] === 'fundingsource'
+        ).map(elem => ({
+          id: elem.value.split('-')[1],
+          label: elem.text,
+          type: 'funding_source'
+        })),
+      },
+      {
+        id: 'funding_program',
+        label: this.translate.instant('Funding program'),
+        label_plural: this.translate.instant('Funding programs'),
+        children: this.fundings.filter(
+          elem => elem.value.split('-')[0] === 'fundingprogram'
+        ).map(elem => ({
+          id: elem.value.split('-')[1],
+          label: elem.text,
+          type: 'funding_program'
+        })),
+      },
+      {
+        id: 'funding_type',
+        label: this.translate.instant('Funding type'),
+        label_plural: this.translate.instant('Funding types'),
+        children: this.fundings.filter(
+          elem => elem.value.split('-')[0] === 'fundingtype'
+        ).map(elem => ({
+          id: elem.value.split('-')[1],
+          label: elem.text,
+          type: 'funding_type'
+        })),
+      },
+      {
+        id: 'tag',
+        label: this.translate.instant('Tag'),
+        label_plural: this.translate.instant('Tags'),
+        children: [
+          ...this.tags.map(elem => ({ ...elem, type: 'tag' })),
+          ...this.partnerTags.map(elem => ({ ...elem, type: 'partner_tag' })),
+        ],
+      },
+    ];
+
+    // Init combinedSearch value
+    this.combinedSearch.map(group => {
+      if (params[group.id]) {
+        this.combinedSearchValue = group.children.find(elem => elem.id === params[group.id]);
+      }
+    });
   }
 
   /**
@@ -259,5 +261,18 @@ export class SearchComponent implements OnInit, OnDestroy {
         ucl_entity: null,
       };
     }
+  }
+
+  isWithChildrenFilterShown() {
+    return this.model.ucl_entity;
+  }
+
+  isTargetFilterShown() {
+    return this.model.type === Type.Mobility;
+  }
+
+  isEducationLevelFilterShown() {
+    return (this.model.type === Type.Mobility && this.model.mobility_type === 'student')
+      || this.model.type === Type.Course || Type.Doctorate === this.model.type;
   }
 }

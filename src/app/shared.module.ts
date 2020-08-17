@@ -35,12 +35,12 @@ import { PartnershipListComponent } from './components/partnership-list/partners
 import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
 import { AuthentificationService } from './services/authentification.service';
-import { ApiInterceptor } from './services/api-interecptor.service';
+import { ApiInterceptor } from './services/api-interceptor.service';
 import { MapComponent } from './components/map/map.component';
 import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EllipsisModule } from 'ngx-ellipsis';
-import { SettingsService } from './services/settings.service';
+import { HtmlElementPropertyService } from './services/html-element-property.service';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';

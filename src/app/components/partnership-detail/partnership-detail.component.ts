@@ -8,6 +8,8 @@ import { combineLatest } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Type } from '../../interfaces/partnership_type';
 
+const UCL_ROOT_ENTITY_NAME = 'UCL';
+
 @Component({
   selector: 'app-partnership-detail',
   templateUrl: './partnership-detail.component.html',
@@ -48,7 +50,7 @@ export class PartnershipDetailComponent implements OnInit {
   }
 
   get uclEntityParentDisplay() {
-    if (this.data.ucl_entity.acronym !== 'UCL' && this.data.ucl_faculty.acronym) {
+    if (this.data.ucl_entity.acronym !== UCL_ROOT_ENTITY_NAME && this.data.ucl_faculty.acronym) {
       return `${this.data.ucl_faculty.title} (${this.data.ucl_sector}/${this.data.ucl_faculty.acronym})`;
     }
     return '';
@@ -56,7 +58,7 @@ export class PartnershipDetailComponent implements OnInit {
 
   get uclEntityDisplay() {
     let ret = '';
-    if (this.data.ucl_entity.acronym === 'UCL') {
+    if (this.data.ucl_entity.acronym === UCL_ROOT_ENTITY_NAME) {
       return this.translate.instant('Insitutional partnership');
     }
     ret += `${this.data.ucl_entity.title} (`;

@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { AuthentificationService } from './services/authentification.service';
 import { Observable } from 'rxjs';
 import User from './interfaces/user';
-import { SettingsService } from './services/settings.service';
+import { HtmlElementPropertyService } from './services/html-element-property.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(
     private authentificationService: AuthentificationService,
-    private settingsService: SettingsService,
+    private settingsService: HtmlElementPropertyService,
     elm: ElementRef
   ) {
     this.settingsService.set(elm);

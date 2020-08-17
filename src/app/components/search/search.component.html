@@ -45,7 +45,7 @@
         ></ng-select>
       </div>
 
-      <div *ngIf="model.ucl_entity" class="search-grid--checkbox">
+      <div *ngIf="isWithChildrenFilterShown()" class="search-grid--checkbox">
         <label>
           <input
             type="checkbox"
@@ -56,20 +56,8 @@
           {{ "Include children entities" | translate }}
         </label>
       </div>
-      <!--
-      <div class="form-group">
-        <label for="education_field">{{ 'Subject Area' | translate }}</label>
-        <ng-select2
-          id="education_field"
-          name="education_field"
-          [placeholder]="'Education field' | translate"
-          [(ngModel)]="model.education_field"
-          [options]="combinedSearchOptions"
-        ></ng-select2>
-      </div>
-      -->
 
-      <div *ngIf="model.type === Type.Mobility">
+      <div *ngIf="isTargetFilterShown()">
         <label for="target-group" class="sr-only">{{ 'Target group' | translate }}</label>
         <ng-select
           id="target-group"
@@ -82,10 +70,7 @@
         ></ng-select>
       </div>
 
-      <div
-        *ngIf="(model.type === Type.Mobility && model.mobility_type === 'student')
-      || model.type === Type.Course || Type.Doctorate === model.type"
-      >
+      <div *ngIf="isEducationLevelFilterShown()">
         <label for="education-level" class="sr-only">{{ 'Education level' | translate }}</label>
         <ng-select
           id="education-level"

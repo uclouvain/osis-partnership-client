@@ -12,7 +12,7 @@ import * as GeoJSON from 'geojson';
 import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SettingsService } from '../../services/settings.service';
+import { HtmlElementPropertyService } from '../../services/html-element-property.service';
 
 
 /**
@@ -60,7 +60,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   constructor(
     private router: Router,
-    private settingsService: SettingsService,
+    private settingsService: HtmlElementPropertyService,
     private route: ActivatedRoute,
   ) {
     this.mainColor = settingsService.get('mainColor', '#ddc000');
