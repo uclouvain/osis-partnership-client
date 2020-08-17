@@ -26,22 +26,20 @@
     [ngPlural]="totalPartners"
   >
     <span class="glyphicon glyphicon-list"></span> &nbsp;
-    <ng-template ngPluralCase="=0">{{ 'No result' | translate }}</ng-template>
-    <ng-template ngPluralCase="=1">
-      {{ '1 partner' | translate }}
-      -
-      <ng-template [ngPlural]="totalPartnerships">
-        <ng-template ngPluralCase="=1">{{ '1 partnership' | translate }}</ng-template>
-        <ng-template ngPluralCase="other">
-          {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
-        </ng-template>
-      </ng-template>
-    </ng-template>
+    <ng-template ngPluralCase="0">{{ 'No result' | translate }}</ng-template>
+    <ng-template ngPluralCase="1">{{ '1 partner' | translate }}</ng-template>
     <ng-template ngPluralCase="other">
       {{ 'count_partners' | translate:{ 'count': totalPartners } }}
-      -
-      {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
     </ng-template>
+    <ng-container *ngIf="totalPartners" [ngPlural]="totalPartnerships">
+      -
+      <ng-template ngPluralCase="1">
+        {{ '1 partnership' | translate }}
+      </ng-template>
+      <ng-template ngPluralCase="other">
+        {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
+      </ng-template>
+    </ng-container>
   </a>
 </div>
 

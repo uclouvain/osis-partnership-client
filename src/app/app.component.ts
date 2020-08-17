@@ -14,10 +14,10 @@ export class AppComponent {
 
   constructor(
     private authentificationService: AuthentificationService,
-    private settingsService: HtmlElementPropertyService,
+    private htmlElementPropertyService: HtmlElementPropertyService,
     elm: ElementRef
   ) {
-    this.settingsService.set(elm);
+    this.htmlElementPropertyService.setRef(elm);
   }
 
   currentUser(): Observable<User> {

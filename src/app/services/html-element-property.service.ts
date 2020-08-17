@@ -12,11 +12,20 @@ export class HtmlElementPropertyService {
   constructor() {
   }
 
-  set(ref: ElementRef) {
+  /**
+   * Attach the original element
+   */
+  setRef(ref: ElementRef) {
     this.elementRef = ref;
   }
 
-  get(prop, defaultValue) {
+  /**
+   * Get data-* property value form element, if exists.
+   *
+   * @param prop The property name
+   * @param defaultValue The default value if the property is not found in data
+   */
+  get(prop: string, defaultValue: any) {
     if (this.elementRef) {
       return this.elementRef.nativeElement.getAttribute('data-' + prop) || defaultValue;
     } else {

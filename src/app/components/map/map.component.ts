@@ -60,10 +60,10 @@ export class MapComponent implements OnInit, OnChanges {
 
   constructor(
     private router: Router,
-    private settingsService: HtmlElementPropertyService,
+    private htmlElementPropertyService: HtmlElementPropertyService,
     private route: ActivatedRoute,
   ) {
-    this.mainColor = settingsService.get('mainColor', '#ddc000');
+    this.mainColor = htmlElementPropertyService.get('mainColor', '#ddc000');
     // Mapbox is unable to parse hash properly
     this.route.queryParams.subscribe((queryParams: any): any => {
       if (queryParams.map) {
@@ -279,6 +279,9 @@ export class MapComponent implements OnInit, OnChanges {
       .on('mouseenter', layerName, changeMousePointer)
       .on('mouseleave', layerName, resetMousePointer)
     );
+
+    this.map.on('zoomend', this.updateListButtonLabel);
+    this.map.on('moveend', this.updateListButtonLabel);
 
     // Trigger the above
     this.map.zoomTo(this.map.getZoom());
