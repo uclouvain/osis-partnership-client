@@ -6,7 +6,7 @@
     (click)="switchToMapLayout()"
   >
     <span class="glyphicon glyphicon-map-marker"></span>
-    Carte
+    {{ 'Map' | translate }}
   </a>
   <a
     class="btn btn-default"
@@ -16,7 +16,7 @@
     *ngIf="mapVisible"
   >
     <span class="glyphicon glyphicon-screenshot"></span>
-    Filtrer sur l'emprise
+    {{ 'Filter on map bounds' | translate }}
   </a>
   <a
     class="btn btn-default"
@@ -26,9 +26,21 @@
     [ngPlural]="totalPartners"
   >
     <span class="glyphicon glyphicon-list"></span> &nbsp;
-    <ng-template ngPluralCase="=0">Aucun résultat</ng-template>
-    <ng-template ngPluralCase="=1">1 partenaire</ng-template>
-    <ng-template ngPluralCase="other">{{ totalPartners }} partenaires - {{ totalPartnerships }} partenariats
+    <ng-template ngPluralCase="=0">{{ 'No result' | translate }}</ng-template>
+    <ng-template ngPluralCase="=1">
+      {{ '1 partner' | translate }}
+      -
+      <ng-template [ngPlural]="totalPartnerships">
+        <ng-template ngPluralCase="=1">{{ '1 partnership' | translate }}</ng-template>
+        <ng-template ngPluralCase="other">
+          {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
+        </ng-template>
+      </ng-template>
+    </ng-template>
+    <ng-template ngPluralCase="other">
+      {{ 'count_partners' | translate:{ 'count': totalPartners } }}
+      -
+      {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
     </ng-template>
   </a>
 </div>

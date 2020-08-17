@@ -8,9 +8,9 @@
           name="combined_search"
           [items]="combinedSearch"
           [(ngModel)]="combinedSearchValue"
-          [placeholder]="'Keyword' | translate"
+          [placeholder]="'Keyword' | translate"
           groupBy="children"
-          [notFoundText]="'No result found' | translate"
+          [notFoundText]="'No result found' | translate"
           (change)="combinedSearchValueChanged($event)"
         >
           <ng-template ng-optgroup-tmp let-item="item">
@@ -84,7 +84,7 @@
 
       <div
         *ngIf="(model.type === Type.Mobility && model.mobility_type === 'student')
-      || model.type === Type.Course || Type.Doctorate === model.type"
+      || model.type === Type.Course || Type.Doctorate === model.type"
       >
         <label for="education-level" class="sr-only">{{ 'Education level' | translate }}</label>
         <ng-select
@@ -107,7 +107,7 @@
         id="search-partners"
         (click)="searchPartners($event)"
       >
-        <span class="sr-only">{{ 'Search' | translate }}</span>
+        <span class="sr-only">{{ 'Search (action)' | translate }}</span>
         <span class="glyphicon glyphicon-search"></span>
       </button>
 
