@@ -1,18 +1,10 @@
 export default interface Partner {
   name: string;
-  erasmus_code: string;
-  partner_type: string;
   city: string;
   country: string;
   uuid: string;
-  website: string;
-}
-
-export interface ResultPartners {
-  count: number;
-  next: string;
-  previous: string;
-  results: Partner[];
+  partnerships_count: number;
+  location: GeoJSON.Geometry;
 }
 
 export interface PartnerParams {

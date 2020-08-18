@@ -1,0 +1,16 @@
+#map {
+  position: relative;
+}
+
+#map-legend {
+  position: absolute;
+  z-index: 1;
+}
+
+#map-legend {
+  background: #fff;
+  padding-left: .5em;
+  display: inline-block;
+  bottom: 0;
+  border-top-right-radius: 5px;
+}

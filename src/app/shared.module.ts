@@ -26,6 +26,8 @@ import { PartnershipDetailComponent } from './components/partnership-detail/part
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
 import { AuthentificationService } from './services/authentification.service';
 import { ApiInterceptor } from './services/api-interecptor.service';
+import { MapComponent } from './components/map/map.component';
+import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -67,6 +69,8 @@ export function authenticateUser(authentificationService: AuthentificationServic
   ],
   declarations: [
     SearchComponent,
+    MapComponent,
+    PartnerResultsComponent,
     CheckboxGroupComponent,
     PartnersListComponent,
     PartnershipListComponent,

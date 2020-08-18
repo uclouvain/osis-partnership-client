@@ -1,12 +1,4 @@
-<alert type="warning" *ngIf="empty" class="partnership__warning">
-  <p class="partnership__warning__message">{{ 'You must select at least one filter' | translate }}</p>
-</alert>
-
-<div *ngIf="!empty">
-  <h2 id="partners-list">{{ 'Partners' | translate }}</h2>
-
-  <app-error-message [title]="'Failed to load partners list' | translate" *ngIf="partnersError"></app-error-message>
-
+<div>
   <ngx-datatable
     class="bootstrap"
     [rows]="rows"
@@ -14,22 +6,36 @@
     [footerHeight]="40"
     [rowHeight]="'auto'"
     [reorderable]="false"
-    [externalPaging]="true"
     [externalSorting]="true"
-    [count]="page.totalElements"
-    [offset]="page.pageNumber"
-    [limit]="page.size"
-    (page)='setPage($event)'
+    [count]="rows.length"
+    [limit]="pageSize"
     (sort)="onSort($event)"
     [sorts]="sorts"
     [columnMode]="'flex'"
-    [loadingIndicator]="loading">
+    [loadingIndicator]="loading"
+  >
     <ngx-datatable-column [name]="'Partner institution' | translate" prop="name" [flexGrow]="4">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button type="button" class="btn btn-link btn-partner" [tooltip]="'See partnership' | translate" [container]="'body'" [title]="'See partnership' | translate" *ngIf="row.partnerships_count === 1" (click)="goToPartnerships($event, row.uuid)">
+        <button
+          type="button"
+          class="btn btn-link btn-partner"
+          [tooltip]="'See partnership' | translate"
+          [container]="'body'"
+          [title]="'See partnership' | translate"
+          *ngIf="row.partnerships_count === 1"
+          (click)="goToPartnerships($event, row.uuid)"
+        >
           <span class="partners-list__name">{{value}}</span>
         </button>
-        <button type="button" class="btn btn-link btn-partner" [tooltip]="'See {value} partnerships' | translate: { value: row.partnerships_count }" [container]="'body'" [title]="'See {value} partnerships' | translate: { value: row.partnerships_count }" *ngIf="row.partnerships_count > 1" (click)="goToPartnerships($event, row.uuid)">
+        <button
+          type="button"
+          class="btn btn-link btn-partner"
+          [tooltip]="'See {value} partnerships' | translate: { value: row.partnerships_count }"
+          [container]="'body'"
+          [title]="'See {value} partnerships' | translate: { value: row.partnerships_count }"
+          *ngIf="row.partnerships_count > 1"
+          (click)="goToPartnerships($event, row.uuid)"
+        >
           <span class="partners-list__name">{{value}}</span>
         </button>
       </ng-template>
@@ -50,15 +56,30 @@
     <ngx-datatable-column prop="" [name]="" [sortable]="false" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <span *ngIf="value.partnerships_count === 0">{{ 'No partnership' | translate }}</span>
-        <button type="button" class="btn btn-link btn-partnership" [tooltip]="'See partnership' | translate" [container]="'body'" [title]="'See partnership' | translate" *ngIf="value.partnerships_count === 1" (click)="goToPartnerships($event, value.uuid)">
+        <button
+          type="button"
+          class="btn btn-link btn-partnership"
+          [tooltip]="'See partnership' | translate"
+          [container]="'body'"
+          [title]="'See partnership' | translate"
+          *ngIf="value.partnerships_count === 1"
+          (click)="goToPartnerships($event, value.uuid)"
+        >
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-link btn-partnership" [tooltip]="'See {value} partnerships' | translate: { value: value.partnerships_count }" [container]="'body'" [title]="'See {value} partnerships' | translate: { value: value.partnerships_count }" *ngIf="value.partnerships_count > 1" (click)="goToPartnerships($event, value.uuid)">
-          <span class="badge">{{value.partnerships_count}}</span><i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <button
+          type="button"
+          class="btn btn-link btn-partnership"
+          [tooltip]="'See {value} partnerships' | translate: { value: value.partnerships_count }"
+          [container]="'body'"
+          [title]="'See {value} partnerships' | translate: { value: value.partnerships_count }"
+          *ngIf="value.partnerships_count > 1"
+          (click)="goToPartnerships($event, value.uuid)"
+        >
+          <span class="badge">{{value.partnerships_count}}</span>
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
-
-<router-outlet></router-outlet>
