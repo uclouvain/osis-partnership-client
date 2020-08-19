@@ -1,18 +1,27 @@
 import Partner from './partners';
 import Contact from './contact';
 import Funding from './funding';
+import { Type } from './partnership_type';
 
 export default interface Partnership {
+  description: string;
+  subtype: string;
   uuid: string;
   partner: Partner;
   education_field:	string;
   ucl_faculty: AcronymEntity;
   ucl_entity: AcronymEntity;
+  ucl_sector: string;
   supervisor: string;
+  funding_program: string;
+  id_number: string;
+  project_title: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';
   status?: {
     status: string,
-    valid_years: string
+    valid_years: string,
+    start_date: string,
+    end_date: string,
   };
   out_education_level: string[];
   out_entities: AcronymEntity[];
@@ -43,7 +52,14 @@ export default interface Partnership {
   out_university_offers: string[];
   medias: Media[];
   out_summary_tables: Media[];
-  bilateral_agreements: Media[];
+  out_useful_links: Media[];
+  partnership_type: Type;
+  type: string;
+  missions: string;
+  bilateral_agreements: {
+    name: string,
+    url: string,
+  }[];
 }
 
 export interface ResultPartnerships {

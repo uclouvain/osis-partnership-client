@@ -19,8 +19,7 @@ export const getFormattedItemsList = (items: any[]) => items.map(
 export const getLabel = (items: any[], value: string) => {
   const currentItem = items.find((item: string | ValueLabel) => (
     typeof item === 'string' && item === value ? true
-    : typeof item === 'object' && item.id === value ? true
-      : false
+    : typeof item === 'object' && item.id === value
   ));
   return currentItem
     ? typeof currentItem === 'string' ? currentItem : currentItem.label

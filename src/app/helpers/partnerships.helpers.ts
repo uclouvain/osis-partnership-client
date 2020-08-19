@@ -76,7 +76,7 @@ export function getMobilityType(partnership) {
 export function getCleanParams(params) {
   const cleanParams = {};
   Object.keys(params).map(key => {
-    if (params[key] && params[key].length > 0) {
+    if (params[key] !== null) {
       cleanParams[key] = params[key];
     }
   });
@@ -86,11 +86,9 @@ export function getCleanParams(params) {
 
 export function getPartnershipParams(query: any): PartnershipParams {
   return getCleanParams({
-    campus: query.campus || '',
     city: query.city || '',
-    continent: query.continent || '',
     country: query.country || '',
-    education_field: query.education_field || '',
+    education_level: query.education_level || '',
     limit: query.limitPartnership || '',
     offset: query.offsetPartnership || '',
     partner: query.partner || '',
@@ -99,25 +97,22 @@ export function getPartnershipParams(query: any): PartnershipParams {
     ucl_entity: query.ucl_entity || '',
     mobility_type: query.mobility_type || [],
     funding: query.funding || [],
-    ordering: 'ucl_entity'
+    ordering: 'ucl_entity',
+    with_children: query.with_children,
   });
 }
 
 export function getPartnerParams(query: any): PartnerParams {
   return getCleanParams({
-    campus: query.campus || '',
     city: query.city || '',
-    continent: query.continent || '',
     country: query.country || '',
-    education_field: query.education_field || '',
-    limit: query.limit || '',
-    offset: query.offset || '',
-    partner: query.partner || '',
-    supervisor: query.supervisor || '',
+    education_level: query.education_level || '',
     type: query.type || '',
     ucl_entity: query.ucl_entity || '',
     mobility_type: query.mobility_type || [],
     funding: query.funding || [],
-    ordering: query.ordering || ''
+    ordering: query.ordering || '',
+    bbox: query.bbox || '',
+    with_children: query.with_children,
   });
 }

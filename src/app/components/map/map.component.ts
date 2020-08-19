@@ -11,7 +11,8 @@ import * as mapboxgl from 'mapbox-gl';
 import * as GeoJSON from 'geojson';
 import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HtmlElementPropertyService } from '../../services/html-element-property.service';
 
 
 /**
@@ -31,6 +32,8 @@ const createLineImage = (width) => {
   return { data, width, height: 1 };
 };
 
+const markerLayers = ['unclustered-point', 'clusters'];
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -49,11 +52,29 @@ export class MapComponent implements OnInit, OnChanges {
 
   // Center on a point in the south of the mediterranean
   private defaultCenter = { lat: 20, lon: 22 };
+  private defaultZoom = 1;
   private bbox: mapboxgl.LngLatBounds;
 
-  private maxZoom = 7;
+  private maxZoom = 9;
+  public mainColor: string;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private htmlElementPropertyService: HtmlElementPropertyService,
+    private route: ActivatedRoute,
+  ) {
+    this.mainColor = htmlElementPropertyService.get('mainColor', '#ddc000');
+    // Mapbox is unable to parse hash properly
+    this.route.queryParams.subscribe((queryParams: any): any => {
+      if (queryParams.map) {
+        const values = queryParams.map.split('/');
+        this.defaultZoom = values[0];
+        this.defaultCenter = {
+          lat: values[1],
+          lon: values[2],
+        };
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -87,10 +108,11 @@ export class MapComponent implements OnInit, OnChanges {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 1,
+      zoom: this.defaultZoom,
       maxZoom: this.maxZoom,
       center: this.defaultCenter,
       accessToken: environment.mapbox.accessToken,
+      hash: 'map',
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
@@ -129,7 +151,7 @@ export class MapComponent implements OnInit, OnChanges {
         'circle-color': '#ffffff',
         'circle-radius': 20,
         'circle-stroke-width': 3,
-        'circle-stroke-color': '#5eb3e4',
+        'circle-stroke-color': this.mainColor,
       }
     });
 
@@ -156,7 +178,7 @@ export class MapComponent implements OnInit, OnChanges {
       source: 'markers',
       filter: ['!', ['has', 'point_count']],
       paint: {
-        'circle-color': '#5eb3e4',
+        'circle-color': this.mainColor,
         'circle-radius': 12,
         'circle-stroke-width': 3,
         'circle-stroke-color': '#fff'
@@ -237,7 +259,7 @@ export class MapComponent implements OnInit, OnChanges {
       popup.remove();
     });
 
-    // go to partnership details
+    // Go to partnership details
     this.map.on('click', 'unclustered-point', e => {
       const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
       // Go to partner modal.
@@ -250,8 +272,6 @@ export class MapComponent implements OnInit, OnChanges {
     });
 
 
-    const markerLayers = ['unclustered-point', 'clusters'];
-
     // Change the mouse pointer on markers
     const changeMousePointer = () => this.map.getCanvas().style.cursor = 'pointer';
     const resetMousePointer = () => this.map.getCanvas().style.cursor = '';
@@ -260,53 +280,54 @@ export class MapComponent implements OnInit, OnChanges {
       .on('mouseleave', layerName, resetMousePointer)
     );
 
-    // Update the list button label when navigating the map
-    this.map.on('zoomend', () => this.updateListButtonLabel(markerLayers));
-    this.map.on('moveend', () => this.updateListButtonLabel(markerLayers));
-  }
+    this.map.on('zoomend', this.updateListButtonLabel);
+    this.map.on('moveend', this.updateListButtonLabel);
 
-  private updateListButtonLabel(markerLayers: string[]) {
-    return async () => {
-      if (!this.visible) {
-        // early return in case map is not visible
-        return;
-      }
-      this.bbox = this.map.getBounds();
-
-      // TODO update bbox in queryParams (without new search)
-
-      // Get all visible partners
-      const features = this.map.queryRenderedFeatures(null, {
-        layers: markerLayers,
-      });
-
-      // Get leaves of clusters along with normal points
-      const markersPromises = features.map(({ properties: { point_count, cluster_id, ...properties } }) => {
-        return new Promise(resolve => {
-            if (cluster_id) {
-              // get leaves
-              this.source.getClusterLeaves(
-                cluster_id,
-                point_count,
-                0,
-                (error, leaves) =>
-                  resolve(leaves.map(leave => leave.properties))
-              );
-            } else {
-              // normal point, return properties
-              resolve([properties]);
-            }
-          }
-        );
-      });
-      const markersResults = await Promise.all(markersPromises);
-      const markers = [].concat(...markersResults.filter(Boolean));
-
-      this.visibleMarkersChanged.emit(markers);
-    };
+    // Trigger the above
+    this.map.zoomTo(this.map.getZoom());
   }
 
   repaint() {
     setTimeout(() => this.map.resize(), 50);
+  }
+
+  /**
+   * Update the list button label when navigating the map
+   */
+  updateListButtonLabel = async () => {
+    if (!this.visible) {
+      // early return in case map is not visible
+      return;
+    }
+    this.bbox = this.map.getBounds();
+
+    // Get all visible partners
+    const features = this.map.queryRenderedFeatures(null, {
+      layers: markerLayers,
+    });
+
+    // Get leaves of clusters along with normal points
+    const markersPromises = features.map(({ properties: { point_count, cluster_id, ...properties } }) => {
+      return new Promise(resolve => {
+          if (cluster_id) {
+            // get leaves
+            this.source.getClusterLeaves(
+              cluster_id,
+              point_count,
+              0,
+              (error, leaves) =>
+                resolve(leaves.map(leave => leave.properties))
+            );
+          } else {
+            // normal point, return properties
+            resolve([properties]);
+          }
+        }
+      );
+    });
+    const markersResults = await Promise.all(markersPromises);
+    const markers = [].concat(...markersResults.filter(Boolean));
+
+    this.visibleMarkersChanged.emit(markers);
   }
 }

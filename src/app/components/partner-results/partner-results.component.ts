@@ -17,12 +17,13 @@ export class PartnerResultsComponent implements OnInit {
   @ViewChild('table', { static: true }) table: PartnersListComponent;
 
   public mapVisible = true;
-  public results: Partner[];
+  public results: Partner[] = [];
   public loading = true;
   public partnersError = false;
   public totalPartners = 0;
   public totalPartnerships = 0;
   public visibleMarkers: Partner[] = [];
+  public mapInfluence = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,10 +69,20 @@ export class PartnerResultsComponent implements OnInit {
       });
   }
 
-  onVisibleMarkersUpdated(partners: Partner[]) {
+  toggleMapInfluence() {
+    this.mapInfluence = !this.mapInfluence;
+    this.updateCount();
+  }
+
+  onVisibleMarkersUpdated(visiblePartners: Partner[]) {
+    this.visibleMarkers = visiblePartners;
+    this.updateCount();
+  }
+
+  private updateCount() {
+    const partners = this.mapInfluence ? this.visibleMarkers : this.results;
     this.totalPartners = partners.length;
     this.totalPartnerships = 0;
-    this.visibleMarkers = partners;
     partners.map(partner => {
       this.totalPartnerships += partner.partnerships_count;
     });

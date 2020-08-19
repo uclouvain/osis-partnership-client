@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
+import { SharedModule } from 'src/app/shared.module';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -8,7 +9,7 @@ describe('MapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapComponent ]
+      imports: [ SharedModule ]
     })
     .compileComponents();
   }));

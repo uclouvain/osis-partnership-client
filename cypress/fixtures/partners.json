@@ -1,1 +1,2687 @@
-{"count":372,"next":"http://127.0.0.1:8000/partnerships/v1/partners?continent=Europe&limit=25&offset=25","previous":null,"results":[{"uuid":"bc203071-e421-4a7c-94c1-b1794b4906f4","name":"Johann Wolfgang Goethe-Universität Frankfurt am Main","website":"http://www.uni-frankfurt.de","erasmus_code":"D  FRANKFU01","partner_type":"Ambassade","city":"Frankfurt-am-Main","country":"Allemagne","country_iso":"DE","partnerships_count":1},{"uuid":"2abe5291-7434-4160-b788-f70e94637ab6","name":"Rheinische Friedrich-Wilhelms-Universität Bonn","website":"http://www.uni-bonn.de","erasmus_code":"D  BONN01","partner_type":"Ambassade","city":"Bonn","country":"Allemagne","country_iso":"DE","partnerships_count":2},{"uuid":"cd875edf-1841-4908-bd76-6690b776ae3a","name":"Universidad de Sevilla","website":"http://www.us.es","erasmus_code":"E  SEVILLA01","partner_type":"Ambassade","city":"Sevilla","country":"Espagne","country_iso":"ES","partnerships_count":4},{"uuid":"0c12c91e-95e2-4b5f-831a-ba06540d4491","name":"Technische Universiteit Eindhoven","website":"https://www.tue.nl","erasmus_code":"NL EINDHOV17","partner_type":"Ambassade","city":"Eindhoven","country":"Pays-Bas","country_iso":"NL","partnerships_count":2},{"uuid":"61b4c3cd-f3d1-425f-90df-ddf0bf933015","name":"Universidad de Granada","website":"http://www.ugr.es","erasmus_code":"E  GRANADA01","partner_type":"Ambassade","city":"Granada","country":"Espagne","country_iso":"ES","partnerships_count":5},{"uuid":"e45a3ac6-1298-40a7-8b51-fefb8be4c57c","name":"National University of Ireland Maynooth","website":"http://www.may.ie","erasmus_code":"IRLMAYNOOT01","partner_type":"Ambassade","city":"Maynooth","country":"Irlande (Eire)","country_iso":"IE","partnerships_count":1},{"uuid":"7c6ce897-e4f9-472d-9e44-03869928d7b5","name":"Universität Mannheim","website":"http://www.uni-mannheim.de","erasmus_code":"D  MANNHEI01","partner_type":"Ambassade","city":"Mannheim","country":"Allemagne","country_iso":"DE","partnerships_count":2},{"uuid":"928dbdb0-63e3-4da5-89b7-8a2701805721","name":"University of Edinburgh","website":"http://www.ed.ac.uk","erasmus_code":"UK EDINBUR01","partner_type":"Ambassade","city":"Edinburgh","country":"Gr.Bretagne/Irl.du Nord","country_iso":"GB","partnerships_count":1},{"uuid":"ba85306e-94dc-4770-b502-a0671a04dcce","name":"Erasmus Universiteit Rotterdam","website":"http://www.eur.nl","erasmus_code":"NL ROTTERD01","partner_type":"Ambassade","city":"Rotterdam","country":"Pays-Bas","country_iso":"NL","partnerships_count":1},{"uuid":"a8fd278c-9b87-452a-b854-8faccce25c6d","name":"Universität zu Köln","website":"http://www.uni-koeln.de","erasmus_code":"D  KOLN01","partner_type":"Ambassade","city":"Köln","country":"Allemagne","country_iso":"DE","partnerships_count":4},{"uuid":"2eada037-55d7-473a-8aa0-453f3eaf29d3","name":"The University of Exeter","website":"http://www.ex.ac.uk","erasmus_code":"UK EXETER01","partner_type":"Ambassade","city":"Exeter","country":"Gr.Bretagne/Irl.du Nord","country_iso":"GB","partnerships_count":2},{"uuid":"6bc72364-c98b-42f0-b663-48bbdf124b21","name":"Universidad de Córdoba","website":"http://www.uco.es","erasmus_code":"E  CORDOBA01","partner_type":"Ambassade","city":"Córdoba","country":"Espagne","country_iso":"ES","partnerships_count":1},{"uuid":"cec63ff6-8608-493a-a81e-099115247a41","name":"London School of Economics and Political Science","website":"http://www.lse.ac.uk","erasmus_code":"UK LONDON020","partner_type":"Ambassade","city":"London","country":"Gr.Bretagne/Irl.du Nord","country_iso":"GB","partnerships_count":2},{"uuid":"667c503a-1181-4de4-b187-e0ad54de0c28","name":"Karlsruher Institut für Technologie","website":"http://www.Kit.edu","erasmus_code":"D  KARLSRU01","partner_type":"Ambassade","city":"Karlsruhe","country":"Allemagne","country_iso":"DE","partnerships_count":3},{"uuid":"cd84f29c-e905-4cb9-9209-c2e81b24593e","name":"Trinity College Dublin","website":"http://www.tcd.ie","erasmus_code":"IRLDUBLIN01","partner_type":"Ambassade","city":"Dublin","country":"Irlande (Eire)","country_iso":"IE","partnerships_count":5},{"uuid":"73cf202e-d199-4f07-9578-47204006bc3f","name":"Université Paris 8 Vincennes Saint-Denis","website":"http://www.univ-paris8.fr","erasmus_code":"F  PARIS008","partner_type":"Ambassade","city":"Paris","country":"France","country_iso":"FR","partnerships_count":1},{"uuid":"2730a81d-df47-4bb5-a2a8-d2d97920de11","name":"Universität Konstanz","website":"http://www.uni-konstanz.de","erasmus_code":"D  KONSTAN01","partner_type":"Ambassade","city":"Konstanz","country":"Allemagne","country_iso":"DE","partnerships_count":1},{"uuid":"ddaaf96f-8f5c-418d-ad69-89b3f2bf6e55","name":"Georg-August-Universität Göttingen","website":"http://www.uni-goettingen.de","erasmus_code":"D  GOTTING01","partner_type":"Ambassade","city":"Göttingen","country":"Allemagne","country_iso":"DE","partnerships_count":2},{"uuid":"4f71005a-467d-4a1c-b3d9-e9f6ba0890c7","name":"Università Commerciale Luigi Bocconi","website":"http://www.unibocconi.eu","erasmus_code":"I  MILANO04","partner_type":"Ambassade","city":"Milano","country":"Italie","country_iso":"IT","partnerships_count":4},{"uuid":"aaf2acc8-b535-49f0-a225-207bb1627f3c","name":"Institut d'Etudes Politiques de Paris","website":"http://www.sciences-po.fr","erasmus_code":"F  PARIS014","partner_type":"Ambassade","city":"Paris","country":"France","country_iso":"FR","partnerships_count":3},{"uuid":"996acf17-4c75-41d1-9097-2f3219a85a4c","name":"Lancaster University","website":"http://www.lancs.ac.uk","erasmus_code":"UK LANCAST01","partner_type":"Ambassade","city":"Lancaster","country":"Gr.Bretagne/Irl.du Nord","country_iso":"GB","partnerships_count":1},{"uuid":"1b8d1a23-2e7d-4b79-ac5b-49d00983dc32","name":"Universidad Complutense de Madrid","website":"http://www.ucm.es","erasmus_code":"E  MADRID03","partner_type":"Ambassade","city":"Madrid","country":"Espagne","country_iso":"ES","partnerships_count":7},{"uuid":"5683ede8-41d9-4bd5-8eab-79850cdc5fd9","name":"Universitat politécnica de Valencia","website":"http://www.upv.es","erasmus_code":"E  VALENCI02","partner_type":"Ambassade","city":"Valencia","country":"Espagne","country_iso":"ES","partnerships_count":3},{"uuid":"6fd64f22-e0fa-4c1a-8047-639070c1d05a","name":"Università degli studi di Siena","website":"http://www.unisi.it","erasmus_code":"I  SIENA01","partner_type":"Ambassade","city":"Siena","country":"Italie","country_iso":"IT","partnerships_count":3},{"uuid":"e501ec74-f2bd-48c0-bb49-767eb46a8196","name":"Universitat de Barcelona","website":"http://www.ub.es","erasmus_code":"E  BARCELO01","partner_type":"Ambassade","city":"Barcelona","country":"Espagne","country_iso":"ES","partnerships_count":5}]}
+[
+  {
+    "uuid": "bc203071-e421-4a7c-94c1-b1794b4906f4",
+    "name": "Johann Wolfgang Goethe-Universität Frankfurt am Main",
+    "city": "Frankfurt-am-Main",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.6821267,
+        50.1109221
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "f9f329dc-33fd-4ee8-8fb0-d063c52ecc64",
+    "name": "Rheinische Friedrich-Wilhelms-Universität Bonn",
+    "city": "Bonn",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.0982068,
+        50.73743
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "d17f77a2-4b58-44ba-84b1-6b7fe0125671",
+    "name": "Universidad de Sevilla",
+    "city": "Sevilla",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.9844589,
+        37.3890924
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "14895438-87a5-415b-aee7-908888b69120",
+    "name": "Technische Universiteit Eindhoven",
+    "city": "Eindhoven",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.4697225,
+        51.441642
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "17c418d1-e6b1-44d2-83f5-367cc7079540",
+    "name": "Universidad de Granada",
+    "city": "Granada",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.5985571,
+        37.1773363
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "2fe18664-dc0b-439a-b938-db3db660a6d9",
+    "name": "National University of Ireland Maynooth",
+    "city": "Maynooth",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.5918499,
+        53.3812896
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "0ccf535e-8baa-4e5e-b2db-ddd323908c0b",
+    "name": "Universität Mannheim",
+    "city": "Mannheim",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.4660395,
+        49.4874592
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "8370cb99-2555-4fc6-a7c5-182c0e9a3a74",
+    "name": "University of Edinburgh",
+    "city": "Edinburgh",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.188267,
+        55.953252
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "6a9872d0-34a3-4efa-ab0e-211417146588",
+    "name": "Erasmus Universiteit Rotterdam",
+    "city": "Rotterdam",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.4777326,
+        51.9244201
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "f502b0df-3d3c-44a5-9e6f-85727386208c",
+    "name": "Universität zu Köln",
+    "city": "Köln",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.9602786,
+        50.937531
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "3367d527-4eb8-4400-a464-120aa81e0282",
+    "name": "The University of Exeter",
+    "city": "Exeter",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.533899,
+        50.718412
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "5d2d24b3-368c-43b3-a7ef-24ef463817e5",
+    "name": "Universidad de Córdoba",
+    "city": "Córdoba",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.7793835,
+        37.8881751
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "ac632728-7a3b-48e5-a038-aa18ade858fc",
+    "name": "London School of Economics and Political Science",
+    "city": "London",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.1277583,
+        51.5073509
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "360d5024-8113-4c12-972a-ff7b65ce47bb",
+    "name": "Karlsruher Institut für Technologie",
+    "city": "Karlsruhe",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.4036527,
+        49.0068901
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "2c9d3f6a-689e-4672-afb7-5edd4af36a11",
+    "name": "Trinity College Dublin",
+    "city": "Dublin",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.2603097,
+        53.3498053
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "b8351fd9-dd17-4b52-967d-c6c7dcd4c0fb",
+    "name": "Université Paris 8 Vincennes Saint-Denis",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "ed309082-fca4-4b34-b229-319068ce7d7d",
+    "name": "Universität Konstanz",
+    "city": "Konstanz",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.1732384,
+        47.6779496
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "e2352fde-18b8-4e4e-9ee1-c481afa019ab",
+    "name": "Georg-August-Universität Göttingen",
+    "city": "Göttingen",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.9158035,
+        51.54128040000001
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "d994d94f-7bda-499a-a05d-6be9961561f5",
+    "name": "Università Commerciale Luigi Bocconi",
+    "city": "Milano",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.189982,
+        45.4642035
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "841b974f-9b14-4c54-a57c-ceb034a33b64",
+    "name": "Institut d'Etudes Politiques de Paris",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "83fd3697-b918-4dcb-898f-876a4da12d74",
+    "name": "Lancaster University",
+    "city": "Lancaster",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "1b8ef054-ca37-4ea2-9ebc-6065ffebde00",
+    "name": "Universidad Complutense de Madrid",
+    "city": "Madrid",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.7037902,
+        40.4167754
+      ]
+    },
+    "partnerships_count": 7
+  },
+  {
+    "uuid": "300cfc45-c158-4514-93a8-f49c43110083",
+    "name": "Universitat politécnica de Valencia",
+    "city": "Valencia",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.3762881,
+        39.4699075
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "65c43eaf-71b6-44e6-8346-6baa4006d583",
+    "name": "Università degli studi di Siena",
+    "city": "Siena",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.3307574,
+        43.318809
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "4c87f28a-77d2-4b08-afa5-3150c4c5c8c2",
+    "name": "Universitat de Barcelona",
+    "city": "Barcelona",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.1734035,
+        41.3850639
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "e6e15f9b-c7ba-4f01-9f4b-1ba8ce47eee0",
+    "name": "Universidad de Salamanca",
+    "city": "Salamanca",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.6635397,
+        40.9701039
+      ]
+    },
+    "partnerships_count": 9
+  },
+  {
+    "uuid": "5d57da32-1ea8-4647-8854-ffc14d225b06",
+    "name": "University of Limerick",
+    "city": "Limerick",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.6267343,
+        52.6638367
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "3accbbdc-0bbd-4e35-858d-e63a4f3dc7f7",
+    "name": "Università di Bologna",
+    "city": "Bologna",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.3426162,
+        44.494887
+      ]
+    },
+    "partnerships_count": 13
+  },
+  {
+    "uuid": "00261d23-6aee-47bf-9d31-96dc067f772e",
+    "name": "Technische Universiteit Delft",
+    "city": "Delft",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.3570677,
+        52.01157689999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8c309749-b7b8-42dc-91eb-6df0e335500d",
+    "name": "Philipps Universität Marburg",
+    "city": "Marburg",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.7667933,
+        50.8021728
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "51dc68e3-6f7a-46d1-bee0-d60d44086989",
+    "name": "Cardiff University",
+    "city": "Cardiff",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.17909,
+        51.481581
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "d66947b1-3f5d-4add-aa73-ce213692f326",
+    "name": "Università Cattolica del Sacro Cuore",
+    "city": "Milano",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.189982,
+        45.4642035
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "37aeb848-5a56-4082-ac34-82edfc53c2f8",
+    "name": "Università degli studi di Padova",
+    "city": "Padova",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.8767611,
+        45.4064349
+      ]
+    },
+    "partnerships_count": 7
+  },
+  {
+    "uuid": "0de69112-fb8a-4e24-8b03-9ba0448601b7",
+    "name": "Universidade Nova de Lisboa",
+    "city": "Lisboa",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.1393366,
+        38.7222524
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "79f567c0-8779-4725-83b0-1e2a1650ff52",
+    "name": "Universidad de Oviedo",
+    "city": "Oviedo",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.8493887,
+        43.3619145
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "4bb37591-86e9-4781-bc1b-7ef0dca47599",
+    "name": "UDeusto",
+    "city": "Bilbao",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9349852,
+        43.2630126
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "e38b8a51-04b6-49ae-838f-3f390ae71bb1",
+    "name": "University of Oslo",
+    "city": "Oslo",
+    "country": "Norvège",
+    "country_iso": "NO",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.7522454,
+        59.9138688
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "009106ce-2b1f-4ecf-9c45-bddb462718a8",
+    "name": "Université Paris II Panthéon Assas",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "9cc4e475-c8ea-4e1c-8734-66316847ab40",
+    "name": "Universität Innsbruck",
+    "city": "Innsbruck",
+    "country": "Autriche",
+    "country_iso": "AT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.4041024,
+        47.2692124
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "4541ef2a-bab5-42a2-b742-22ca38a97924",
+    "name": "Bayerische Julius-Maximilians Universität Würzburg",
+    "city": "Würzburg",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.9533548,
+        49.79130439999999
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "346f85dc-d0d7-47f9-afd6-badefe92c1c6",
+    "name": "Christian-Albrechts-Universität zu Kiel",
+    "city": "Kiel",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.1227651,
+        54.3232927
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "21499387-c4c9-466c-b162-a1614b5490c0",
+    "name": "University of Glasgow",
+    "city": "Glasgow",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.251806,
+        55.864237
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "b6e5e3cb-d557-401b-987a-3d9eca497cfd",
+    "name": "Universität Wien",
+    "city": "Wien",
+    "country": "Autriche",
+    "country_iso": "AT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        16.3738189,
+        48.2081743
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "b1725596-4e3c-4e30-9c24-332a30f29c0b",
+    "name": "National University of Ireland Galway",
+    "city": "Galway",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.0567905,
+        53.270668
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "a8cbe8f9-bbd0-470c-93c8-de870fd2a4c6",
+    "name": "Copenhagen Business School",
+    "city": "København",
+    "country": "Danemark",
+    "country_iso": "DK",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.5683372,
+        55.6760968
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "d6c3c538-487f-4f7b-8733-002942714dfa",
+    "name": "Tilburg University",
+    "city": "Tilburg",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.056375,
+        51.58525280000001
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "3b82e619-e756-4eb7-bf7e-61d9b8183500",
+    "name": "Athens University of Economics and Business",
+    "city": "Athènes",
+    "country": "Grèce",
+    "country_iso": "GR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        23.7275388,
+        37.9838096
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "0507f8e3-51ce-4a4e-ad57-99de1f368d9e",
+    "name": "Technische Universität Darmstadt",
+    "city": "Darmstadt",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.6511929,
+        49.8728253
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "e1eb0409-db60-46d5-a6cc-5d59334696bf",
+    "name": "Università degli studi di Roma Tor Vergata",
+    "city": "Roma",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.4963655,
+        41.9027835
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "f5339c1d-95f4-4447-9b18-694e7d19277c",
+    "name": "Universidade de Coimbra",
+    "city": "Coimbra",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.4102573,
+        40.2033145
+      ]
+    },
+    "partnerships_count": 9
+  },
+  {
+    "uuid": "78c18a2e-3738-4e10-8437-4ce589b0d440",
+    "name": "Maastricht University",
+    "city": "Maastricht",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.6909725,
+        50.8513682
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "c17098d0-1fa7-4e32-b18d-2af99f4bd3b0",
+    "name": "Ecole des Hautes Etudes en Sciences Sociales",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "4dcd426d-3565-407f-a97e-76610f34190a",
+    "name": "Université de Franche-Comté",
+    "city": "Besançon",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.0240539,
+        47.237829
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "cbe32e8d-774e-4376-973e-9ea1f71bfe8a",
+    "name": "LUISS Università Guido Carli",
+    "city": "Roma",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.4963655,
+        41.9027835
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "bb375d11-1435-4c4c-861b-3f258c6698f9",
+    "name": "Universidade da Beira Interior",
+    "city": "Covilha",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.5043272,
+        40.2805633
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "bff9e7c8-bbd8-4446-aeb6-294fc82e6619",
+    "name": "Universidad de Extremadura",
+    "city": "Cáceres",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.3724247,
+        39.4752765
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "af7f3694-8c62-42ea-97e9-58e7e5dfdcbf",
+    "name": "University of Wolverhampton",
+    "city": "Wolverhampton",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5687cfe6-852d-4817-b6ad-5ffb73a925e4",
+    "name": "Katholieke Universiteit Leuven",
+    "city": "Leuven",
+    "country": "Belgique",
+    "country_iso": "BE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.7005176,
+        50.8798438
+      ]
+    },
+    "partnerships_count": 19
+  },
+  {
+    "uuid": "fafaa8d2-2159-40d1-adae-13d214322cf1",
+    "name": "Universität Bielefeld",
+    "city": "Bielefeld",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.5324708,
+        52.0302285
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "e9c34560-e1a1-439a-a5ba-f5ec8570081f",
+    "name": "Université de Nice Sophia antipolis",
+    "city": "Nice",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.2619532,
+        43.7101728
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "189b2506-0544-41b1-b1c9-245f1a7df7ef",
+    "name": "Universiteit Utrecht",
+    "city": "Utrecht",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.1214201,
+        52.09073739999999
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "2385487d-b2ef-4c0f-9fb5-806aaf229f88",
+    "name": "Universidade do Minho",
+    "city": "Braga",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.426507,
+        41.5454486
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "9e69a3d6-da86-464b-8962-33d9ca99554d",
+    "name": "University College Dublin",
+    "city": "Dublin",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.2603097,
+        53.3498053
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "5693d386-2dd1-4348-b29b-8ec1c5d717e1",
+    "name": "Ecole Nationale Supérieure des Mines de Paris",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "d4e7e332-de45-4be9-9f81-981ccdcf8dee",
+    "name": "RWTH Aachen University",
+    "city": "Aachen",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.0838868,
+        50.7753455
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "0833edca-80ba-442c-b8bf-5ab3ac0b8d2e",
+    "name": "Universidad Pontificia Comillas",
+    "city": "Madrid",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.7037902,
+        40.4167754
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "ab6eed99-e2ef-4c68-9512-1c4622751ed3",
+    "name": "Panteion University of Social and Political Sciences",
+    "city": "Athènes",
+    "country": "Grèce",
+    "country_iso": "GR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        23.7275388,
+        37.9838096
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "1905c670-7b4d-49b6-906b-d86a777b7c71",
+    "name": "Université Jean Moulin Lyon III",
+    "city": "Lyon",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.835659,
+        45.764043
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "c598f1d6-a322-49fd-8b84-d294de39bef5",
+    "name": "Université Paul Sabatier Toulouse III",
+    "city": "Toulouse",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        1.444209,
+        43.604652
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "8ec46d96-9658-43d1-8582-b5d52a13a7bf",
+    "name": "Université Bourgogne",
+    "city": "Dijon",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.04148,
+        47.322047
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "dbd766bd-1032-4877-b05f-2f1c164affbb",
+    "name": "Université Paris Diderot - Paris 7",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "a08ecbef-bdb2-4f2a-aa7f-2349f7b9fa0c",
+    "name": "Università degli studi di Roma La Sapienza",
+    "city": "Roma",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.4963655,
+        41.9027835
+      ]
+    },
+    "partnerships_count": 8
+  },
+  {
+    "uuid": "f3d18ae1-4c8c-4c70-9e69-b92aabe4a26c",
+    "name": "Università di Pisa",
+    "city": "Pisa",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.4016888,
+        43.7228386
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "34fb807e-ae11-4d27-9c1b-2bf123644bbf",
+    "name": "Politecnico di Torino",
+    "city": "Torino",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.686864,
+        45.0703393
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "8e37ddc9-5c37-4050-a516-5fd4f20ecd2f",
+    "name": "Institut Polytechnique de Grenoble",
+    "city": "Grenoble",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.724524,
+        45.188529
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "d465cafc-1097-4ce7-86ab-4ad3d952e241",
+    "name": "Institut national d'études supérieures agronomiques de Montpellier",
+    "city": "Montpellier",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        3.876716,
+        43.610769
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "6412e6f5-e0d7-4911-9d33-a3b67a40f78a",
+    "name": "Institut polytechnique Unilasalle",
+    "city": "Beauvais",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.0807123,
+        49.42953869999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "31eba852-d783-4ced-964d-925ebc4a3136",
+    "name": "Universidad de Valladolid",
+    "city": "Valladolid",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.7245321,
+        41.652251
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "407dd7da-961d-4421-a479-bac38725f9c0",
+    "name": "Université d'Angers",
+    "city": "Angers",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.5518257,
+        47.47116159999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "9badee61-eab1-4d82-a383-57d8bf763876",
+    "name": "Università degli studi di Messina",
+    "city": "Messina",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        15.5542057,
+        38.1937335
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "e367d4ac-38fc-432e-a144-1229369dab27",
+    "name": "Universidad de Cantabria",
+    "city": "Santander",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.8099803,
+        43.46230569999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "e293c4fd-6c36-4ac6-b2f7-3f883bcf0cc1",
+    "name": "Universidad del País Vasco",
+    "city": "Bilbao",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9349852,
+        43.2630126
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "3a0476b4-ebac-4f49-8b04-a0ef27a5dc73",
+    "name": "Università degli studi di Catania",
+    "city": "Catania",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        15.0830304,
+        37.5078772
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "268597ec-bcea-4212-92af-6123b448596a",
+    "name": "Eberhard-Karls-Universität Tübingen",
+    "city": "Tübingen",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.0576448,
+        48.5216364
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "9627bedf-c802-4e5f-98f9-77994964e03d",
+    "name": "HEC Paris",
+    "city": "Jouy-en-Josas",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.169007,
+        48.764545
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "afe79297-38a8-43f3-a7b1-a8c88bbc05d4",
+    "name": "Université Lumière Lyon II",
+    "city": "Lyon",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.835659,
+        45.764043
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "e237d28d-61d0-48e2-82f7-0f98b5ea55a5",
+    "name": "Aristotle University of Thessaloniki",
+    "city": "Thessaloniki",
+    "country": "Grèce",
+    "country_iso": "GR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        22.9444191,
+        40.6400629
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "dd1e3096-84ed-4cb2-b4ac-36dd8e7d54b6",
+    "name": "Università degli studi di Palermo",
+    "city": "Palermo",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        13.3614868,
+        38.11569
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "0168f5ca-a2ed-4327-895f-0bfdac23fd78",
+    "name": "Universidad Politécnica de Madrid",
+    "city": "Madrid",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.7037902,
+        40.4167754
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "b16be349-5f9a-470c-968e-4a4cbb0b67f0",
+    "name": "Università Iuav di Venezia",
+    "city": "Venezia",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.3155151,
+        45.4408474
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "59d5c50a-8be5-46f8-8bc3-e1cbb978c1be",
+    "name": "Università degli studi di Napoli Federico II",
+    "city": "Napoli",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        14.26812,
+        40.8517983
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "9156793f-0eaa-48c9-80ce-1110cf5d53af",
+    "name": "Westfälische Wilhelms-Universität Münster",
+    "city": "Münster",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.6261347,
+        51.9606649
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "33715160-a87f-4201-a2d5-66c0be6f5e00",
+    "name": "Università degli studi di Trento",
+    "city": "Trento",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.1217486,
+        46.0747793
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5d70173b-3e37-4e86-b4de-7a20af9c9502",
+    "name": "University of Manchester",
+    "city": "Manchester",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "32862327-6b95-4de7-aa7a-5051ce27843a",
+    "name": "Universidad de Zaragoza",
+    "city": "Zaragoza",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.8890853,
+        41.6488226
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "49652ffb-67ff-4909-b28e-87f495bf4fcd",
+    "name": "University of Newcastle Upon Tyne",
+    "city": "Newcastle-Upon-Tyne",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -1.61778,
+        54.978252
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8e239f50-e7fd-4a02-900b-77ba8052b22d",
+    "name": "Ruprecht-Karls-Universität Heidelberg",
+    "city": "Heidelberg",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.6724335,
+        49.3987524
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "daff15d9-695a-417b-a2e3-ee6b04df3beb",
+    "name": "Università degli studi di Torino",
+    "city": "Torino",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.686864,
+        45.0703393
+      ]
+    },
+    "partnerships_count": 7
+  },
+  {
+    "uuid": "b5148433-0195-4ad6-8607-87edb586dbfa",
+    "name": "Universiteit Leiden",
+    "city": "Leiden",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.4970097,
+        52.1601144
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "43e650ed-3a83-4cf1-a703-cb6654d94382",
+    "name": "Universitat Autónoma de Barcelona",
+    "city": "Barcelona",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.1734035,
+        41.3850639
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "a8495bd8-5428-44dd-92da-9927fe256830",
+    "name": "Freie Universität Berlin",
+    "city": "Berlin",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        13.404954,
+        52.52000659999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "604126c8-30be-4748-b824-228d34160a64",
+    "name": "Ruhr Universität Bochum",
+    "city": "Bochum",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.2162363,
+        51.4818445
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "186d6d72-06fa-4d62-b955-1d086f4a481a",
+    "name": "Università degli studi di Milano-Bicocca",
+    "city": "Milano",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.189982,
+        45.4642035
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8dd7e4b0-e70a-45e5-a073-8baea345d97b",
+    "name": "Royal Institute of Technology Stockholm",
+    "city": "Stockholm",
+    "country": "Suède",
+    "country_iso": "SE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        18.0685808,
+        59.32932349999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "45ab871a-6f3f-424b-8f26-8d63fc36ffb6",
+    "name": "Università degli studi di Salerno",
+    "city": "Salerno",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        14.7680961,
+        40.68244079999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "33849c49-1c86-4344-917e-eb08592cf942",
+    "name": "University of Warwick",
+    "city": "Coventry",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "6b65276a-e2fd-4d8f-b5cf-cb5a31aa7ce4",
+    "name": "Universidad de Navarra",
+    "city": "Pamplona",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -1.6457745,
+        42.812526
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "11949903-ff0b-4130-8ef6-014b3883b019",
+    "name": "Universidade do Porto",
+    "city": "Porto",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.6291053,
+        41.1579438
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "8336b1f9-b3db-40c8-b92a-316afbff6083",
+    "name": "Université de Poitiers",
+    "city": "Poitiers",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        0.340375,
+        46.580224
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "51b82463-06db-4cb8-b497-a3fa772d0339",
+    "name": "Université Charles de Gaulle - Lille III (Sc. Hum, Lettres, Arts)",
+    "city": "Lille",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        3.057256,
+        50.62925
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "f5abd3c3-a26c-41b1-a4d1-d46f5ab18e01",
+    "name": "University of Sheffield",
+    "city": "Sheffield",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "d50d5f49-d8b4-4355-8a0f-3bd0fd6453e4",
+    "name": "University of Groningen",
+    "city": "Groningen",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.5665017,
+        53.2193835
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "1aec0f42-2786-4762-81dc-4bffeb8ea99a",
+    "name": "Radboud University",
+    "city": "Nijmegen",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.8428281,
+        51.8448837
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "213268d9-ce9d-4e7e-8db9-3f0ae111731f",
+    "name": "Universidad de La Laguna",
+    "city": "Sta. Cruz de Tenerife",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -16.2518467,
+        28.4636296
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "92e81219-94ad-4968-ac58-a629e2305e2a",
+    "name": "Instituto Universitario de Lisboa",
+    "city": "Lisboa",
+    "country": "Portugal",
+    "country_iso": "PT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.1393366,
+        38.7222524
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "94fb3259-15b7-4d2f-a251-7fdb47d6ce2a",
+    "name": "Università degli studi di Bari Aldo Moro",
+    "city": "Bari",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        16.8718715,
+        41.1171432
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "558873ad-0047-45b2-9d10-50425d8e2d78",
+    "name": "Heinrich-Heine-Universität Düsseldorf",
+    "city": "Düsseldorf",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.7734556,
+        51.2277411
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "b08fddee-701c-4777-a57a-a0ee887dbf7a",
+    "name": "Friederich-Alexander-Universität Erlangen Nürnberg",
+    "city": "Erlangen",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.0119611,
+        49.5896744
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "243f32d5-208b-4177-8763-390e45d8dc7c",
+    "name": "Universität Regensburg",
+    "city": "Regensburg",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.1016236,
+        49.0134297
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "09a603ea-a1a3-4966-abec-2102d88794d3",
+    "name": "Universität Trier",
+    "city": "Trier",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.6371433,
+        49.749992
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "1c5fb95e-0a2a-4f97-9548-517c2282517b",
+    "name": "Syddansk Universitet",
+    "city": "Odense",
+    "country": "Danemark",
+    "country_iso": "DK",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.40237,
+        55.403756
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "48d03918-9516-453e-9766-7735260cd53f",
+    "name": "Universidad de Alcalá",
+    "city": "Alcalá de Henares",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.3635421,
+        40.4819791
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "cc34e68d-8b91-4102-9d65-509778ea9153",
+    "name": "Ludwig-Maximilians-Universität München",
+    "city": "München",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        11.5819805,
+        48.1351253
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "3f233e90-5785-49cc-aea5-cc1782ea5a10",
+    "name": "Università degli studi di Pavia",
+    "city": "Pavia",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.1582069,
+        45.1847248
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "24074612-28d2-4c9e-b97e-5d720f2a7fab",
+    "name": "Ecole nationale supérieure architecture de Montpellier",
+    "city": "Montpellier",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        3.876716,
+        43.610769
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "a1186304-599a-417c-8d95-2537ba1ec194",
+    "name": "Ecole nationale supérieure d'architecture de Strasbourg",
+    "city": "Strasbourg",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        7.7521113,
+        48.5734053
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "e216c5e8-eb8a-458e-a786-382813d99a11",
+    "name": "Politecnico di Milano",
+    "city": "Milano",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.189982,
+        45.4642035
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "df3c3e27-91d4-4c48-9d91-e89228ea5720",
+    "name": "Universidad Pontificia de Salamanca",
+    "city": "Salamanca",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.6635397,
+        40.9701039
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "c9951865-5e6a-4707-a9f7-f0ad9465465a",
+    "name": "Université de Toulouse II - Le Mirail",
+    "city": "Toulouse",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        1.444209,
+        43.604652
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "36633349-3570-488c-a2eb-049fbf741e3c",
+    "name": "Universität Paderborn",
+    "city": "Paderborn",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.7575093,
+        51.7189205
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5eab5b93-d358-4e51-bea7-179ba9669685",
+    "name": "Universidad Autónoma de Madrid",
+    "city": "Madrid",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.7037902,
+        40.4167754
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "6cef9cda-2a50-4da9-869b-7598beb58de6",
+    "name": "Universiteit van Amsterdam",
+    "city": "Amsterdam",
+    "country": "Pays-Bas",
+    "country_iso": "NL",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.8945398,
+        52.3666969
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8343c378-4439-4a2a-836a-5f45aceb46d0",
+    "name": "Ecole d'Architecture de Grenoble",
+    "city": "Grenoble",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.724524,
+        45.188529
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "02ded4d8-42c3-463c-83e1-f392869d3186",
+    "name": "Universiteit Gent",
+    "city": "Gent",
+    "country": "Belgique",
+    "country_iso": "BE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        3.7174243,
+        51.0543422
+      ]
+    },
+    "partnerships_count": 11
+  },
+  {
+    "uuid": "7fd84ae6-f6ca-4a01-9ec8-5e71be9c1607",
+    "name": "Université Paris Descartes",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "201df398-252c-4689-8cc2-bf4aa92a495b",
+    "name": "Johannes-Gutenberg-Universität Mainz",
+    "city": "Mainz",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.2472526,
+        49.9928617
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "e7641c6c-93aa-4c15-a474-1a60edd10c09",
+    "name": "Ecole normale supérieure de Cachan",
+    "city": "Cachan",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.331433,
+        48.791855
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5ad8a3f3-95d0-4c3b-a602-bae08aff893d",
+    "name": "University College Cork",
+    "city": "Cork",
+    "country": "Irlande (Eire)",
+    "country_iso": "IE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.4756035,
+        51.8985143
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "851df580-6a4b-4ca1-bbdf-eb04076efe48",
+    "name": "Queen's University Belfast",
+    "city": "Belfast",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.93012,
+        54.597285
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "7953a6bd-8def-4e03-8438-b52e79049d50",
+    "name": "Stockholm School of Economics",
+    "city": "Stockholm",
+    "country": "Suède",
+    "country_iso": "SE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        18.0685808,
+        59.32932349999999
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "1db97445-00ed-440b-b656-81919bd2bdaa",
+    "name": "Università degli studi di Genova",
+    "city": "Genova",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.946256,
+        44.4056499
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "d7878946-fb2e-4146-a643-5a4c7207fd99",
+    "name": "Université de Limoges",
+    "city": "Limoges",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        1.261105,
+        45.833619
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "10e074ca-9419-41ce-9f86-1feab6a4573d",
+    "name": "Université du Luxembourg",
+    "city": "Luxembourg",
+    "country": "Luxembourg",
+    "country_iso": "LU",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.1319346,
+        49.611621
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "88fdd717-d221-4314-b3b9-27b23012600d",
+    "name": "University of Leicester",
+    "city": "Leicester",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5d508dfb-b7f0-496d-a27f-3a8f04860bb8",
+    "name": "Vrije Universiteit Brussel",
+    "city": "Bruxelles",
+    "country": "Belgique",
+    "country_iso": "BE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        4.3517103,
+        50.8503396
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "b145062e-197a-4f9e-9561-abf64ec7d902",
+    "name": "Danmarks Tekniske Universitet",
+    "city": "Lyngby",
+    "country": "Danemark",
+    "country_iso": "DK",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        12.4949429,
+        55.763516
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "f890e888-e14f-432a-bd67-f87a4b987454",
+    "name": "Universitat Politécnica de Catalunya",
+    "city": "Barcelona",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.1734035,
+        41.3850639
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "f537c5a9-296c-49a2-9ec1-c51eb11eb7d7",
+    "name": "Università degli studi di Cassino e del Lazio Meridionale",
+    "city": "Cassino",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        13.8332193,
+        41.4866953
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "9bfd7272-c5d5-4fa4-b234-11a8d7461b92",
+    "name": "Ecole Nationale des chartes",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "45da6d0b-eae8-4d18-be6c-633c8f28f2e8",
+    "name": "Université de Caen Normandie",
+    "city": "Caen",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.370679,
+        49.182863
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "f8b76d6b-a03e-4ef7-b69c-b61cc2ab9d66",
+    "name": "Humboldt-Universität zu Berlin",
+    "city": "Berlin",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        13.404954,
+        52.52000659999999
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "b1bfe5ea-0f1e-453b-9ea6-af41c76f39c5",
+    "name": "University of Ulster",
+    "city": "Coleraine",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.6646103,
+        55.1325802
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "42269ca5-93b4-4820-a417-5d8e6441bf12",
+    "name": "Universitat de Valencia",
+    "city": "Valencia",
+    "country": "Espagne",
+    "country_iso": "ES",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -0.3762881,
+        39.4699075
+      ]
+    },
+    "partnerships_count": 5
+  },
+  {
+    "uuid": "ea39d294-0984-4495-a1cc-a163be317198",
+    "name": "University of Patras",
+    "city": "Patra",
+    "country": "Grèce",
+    "country_iso": "GR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        21.734574,
+        38.2466395
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "d839d60f-fab9-4d0a-ba6a-4a31b7c8c50e",
+    "name": "Università degli studi di Cagliari",
+    "city": "Cagliari",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        9.1216613,
+        39.2238411
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "9cd0f0ef-abda-4b5b-b55c-939e2d1f1322",
+    "name": "Université Paris XII Val de Marne",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "385c4986-c483-4e6e-8a2f-170c04e050bc",
+    "name": "University of Leeds",
+    "city": "Leeds",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "9383b6f6-5f3c-4708-b149-789e438e8924",
+    "name": "Deutsche Universität für Verwaltungswissenschaften Speyer",
+    "city": "Speyer",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        8.4412172,
+        49.3172765
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "9d0d1836-8286-4f84-ba2a-c11b00d0f922",
+    "name": "Aarhus Universitet",
+    "city": "Århus",
+    "country": "Danemark",
+    "country_iso": "DK",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.203921,
+        56.162939
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "414a811c-a67d-4cde-807c-2112b947820e",
+    "name": "Sciences Po Grenoble",
+    "city": "Grenoble",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.724524,
+        45.188529
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "daccb164-ffd0-4d60-9087-59380e5de8a8",
+    "name": "Otto-Friedrich-Universität Bamberg",
+    "city": "Bamberg",
+    "country": "Allemagne",
+    "country_iso": "DE",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.9027636,
+        49.8988135
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8e39647e-e3e2-4639-8b66-e8ef6c9039a7",
+    "name": "National and Kapodistrian University of Athens",
+    "city": "Athènes",
+    "country": "Grèce",
+    "country_iso": "GR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        23.7275388,
+        37.9838096
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "c99c2a91-d6d9-471c-bf6f-27eb65c9accd",
+    "name": "Université de Genève",
+    "city": "Genève",
+    "country": "Suisse",
+    "country_iso": "CH",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.1431577,
+        46.2043907
+      ]
+    },
+    "partnerships_count": 11
+  },
+  {
+    "uuid": "9812e2c1-d441-4c77-ad56-7ea7734cf532",
+    "name": "University of Kent",
+    "city": "Canterbury",
+    "country": "Gr.Bretagne/Irl.du Nord",
+    "country_iso": "GB",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -2.9326435,
+        48.2020471
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "8936ca21-10f2-4121-9acc-5d6be6ac5b21",
+    "name": "NHH Norwegian School of Economics",
+    "city": "Bergen",
+    "country": "Norvège",
+    "country_iso": "NO",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        5.3220544,
+        60.3912628
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "a042c5ec-9a93-46d1-97f1-85e1cd99f756",
+    "name": "Università degli studi di Trieste",
+    "city": "Trieste",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        13.7768182,
+        45.6495264
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "7d941230-136f-48dc-bb2f-c63dfdf5408f",
+    "name": "Université Toulouse 1 Capitole",
+    "city": "Toulouse",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        1.444209,
+        43.604652
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "f6dfb846-4554-4f55-9075-64a9d7d9d913",
+    "name": "Institut Mines Telecom - Telecom Paris Tech",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "af4b018d-9ee3-4daa-9b0f-6c93073058a2",
+    "name": "Wirtschaftsuniversität Wien",
+    "city": "Wien",
+    "country": "Autriche",
+    "country_iso": "AT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        16.3738189,
+        48.2081743
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "83813dbd-6793-4e9f-99e0-3e8b8bc26cf4",
+    "name": "Ecole polytechnique fédérale de Lausanne EPFL",
+    "city": "Lausanne",
+    "country": "Suisse",
+    "country_iso": "CH",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.6322734,
+        46.5196535
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "a1115f93-61c9-4cb7-bd18-b611e6301e6f",
+    "name": "Université Paris I Panthéon-Sorbonne",
+    "city": "Paris",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        2.3522219,
+        48.856614
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "c4fd933c-974e-4308-8390-7fcef22b2256",
+    "name": "University of Helsinki",
+    "city": "Helsinki",
+    "country": "Finlande",
+    "country_iso": "FI",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        24.9383791,
+        60.1698557
+      ]
+    },
+    "partnerships_count": 6
+  },
+  {
+    "uuid": "ea94c50a-4905-49d0-a413-31a70ea38e9c",
+    "name": "Université Rennes II",
+    "city": "Rennes",
+    "country": "France",
+    "country_iso": "FR",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -1.6777926,
+        48.117266
+      ]
+    },
+    "partnerships_count": 4
+  },
+  {
+    "uuid": "0747fce7-d2da-476d-bbbc-f39422db0c67",
+    "name": "University of Jyväskylä",
+    "city": "Jyväskylä",
+    "country": "Finlande",
+    "country_iso": "FI",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        25.7472567,
+        62.2426034
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5f0dc095-a7d3-4bfb-82a8-b8d18fba18df",
+    "name": "University of Trondheim",
+    "city": "Trondheim",
+    "country": "Norvège",
+    "country_iso": "NO",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.3950528,
+        63.4305149
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "0928f9d2-9197-427c-b0da-737a92d5fd89",
+    "name": "Universität für Bodenkultur Wien",
+    "city": "Wien",
+    "country": "Autriche",
+    "country_iso": "AT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        16.3738189,
+        48.2081743
+      ]
+    },
+    "partnerships_count": 1
+  },
+  {
+    "uuid": "5a9264b4-ebae-4016-907b-ffb92c5144c7",
+    "name": "Université de Neuchâtel",
+    "city": "Neuchâtel",
+    "country": "Suisse",
+    "country_iso": "CH",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        6.9292732,
+        46.9899874
+      ]
+    },
+    "partnerships_count": 3
+  },
+  {
+    "uuid": "25867629-3830-4be8-88ee-512b0b38ba89",
+    "name": "Università degli studi di Napoli L'Orientale",
+    "city": "Napoli",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        14.26812,
+        40.8517983
+      ]
+    },
+    "partnerships_count": 2
+  },
+  {
+    "uuid": "f328db12-c6ad-4128-8780-a8d04d70b22f",
+    "name": "Università degli studi di Parma",
+    "city": "Parma",
+    "country": "Italie",
+    "country_iso": "IT",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        10.3279036,
+        44.801485
+      ]
+    },
+    "partnerships_count": 1
+  }
+]

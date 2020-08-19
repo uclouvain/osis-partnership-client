@@ -80,7 +80,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         }),
         catchError((error: any) => {
           this.loading.finish(loadingId);
-          let errorMessage = '';
+          let errorMessage: string;
           if (error.error instanceof ErrorEvent) {
             // client-side error
             errorMessage = `Error: ${error.error.message}`;

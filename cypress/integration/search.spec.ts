@@ -16,54 +16,41 @@ describe('Search fields', () => {
     getH1().contains('OSIS Partnership');
   });
 
-  it('should display Student selected checkbox', () => {
-    getInputStudent().should('be.not.checked');
-  });
-
-  it('should display Staff not selected checkbox', () => {
-    getInputStaff().should('be.not.checked');
-  });
-
   it('ucl_entity field open typeahead', () => {
     cy.wait('@getConfiguration');
     cy.get('[name=ucl_entity]')
       .type('A')
-      .siblings('typeahead-container')
+      .children('ng-dropdown-panel')
       .should('exist');
   });
 
-  it('continent field open typeahead, then show country field', () => {
+  it('open typeahead to input country', () => {
     cy.wait('@getConfiguration');
-    cy.get('[name=continent]')
-      .type('Eur')
-      .siblings('typeahead-container')
+    cy.get('[name=combined_search]')
+      .type('Fran')
+      .children('ng-dropdown-panel')
       .should('exist');
 
-    cy.get('[name=continent]')
-      .type('{enter}')
-      .should('have.value', 'Europe')
-      .get('[name=country]')
-      .should('exist');
+    cy.get('[name=combined_search]')
+      .type('{enter}');
 
-    cy.get('[name=country]')
+    search();
+    cy.url().should('include', 'country=FR');
+
+    cy.get('[name=combined_search]')
       .type('Belg')
-      .type('{enter}')
-      .should('have.value', 'Belgique');
+      .type('{enter}');
+    cy.url().should('not.include', 'country=BE');
+
+    search();
+    cy.url().should('include', 'country=BE');
   });
 
   it('partner field open typeahead', () => {
     cy.wait('@getConfiguration');
-    cy.get('[name=partner]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-
-  it('education_field field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=education_field]')
-      .type('A')
-      .siblings('typeahead-container')
+    cy.get('[name=combined_search]')
+      .type('Universität')
+      .children('ng-dropdown-panel')
       .should('exist');
   });
 });
@@ -83,18 +70,12 @@ describe('Search url params', () => {
     cy.wait('@getConfiguration');
 
     // Country text and clear
-    cy.get('[name=continent]')
-      .type('Asia')
-      .type('{enter}')
-      .should('have.value', 'Asia');
-
-    cy.get('[name=country]')
+    cy.get('[name=combined_search]')
       .type('Japo')
-      .type('{enter}')
-      .should('have.value', 'Japon');
+      .type('{enter}');
 
     search();
-    cy.url().should('include', '?continent=Asia&country=JP');
+    cy.url().should('include', 'country=JP');
 
     resetForm();
     cy.url().should('include', '');
@@ -105,51 +86,53 @@ describe('Search url params', () => {
     cy.wait('@getConfiguration');
 
     cy.get('[name=ucl_entity]')
-      .type('AR')
+      .type('philo')
       .type('{enter}')
-      .should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
+      .find('.ng-value-label')
+      .should('contain.text', 'SSH / FIAL - Faculté de philosophie, arts et lettres');
 
     search();
-    cy.url().should('include', '?ucl_entity=75799811-6f67-46f7-9143-1e3da672f473');
+    cy.url().should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
 
-    cy.get('[name=continent]')
-      .type('Asia')
+    cy.get('[name=combined_search]')
+      .type('Paul Sabatier')
       .type('{enter}')
-      .should('have.value', 'Asia');
+      .find('.ng-value-label')
+      .should('contain.text', 'Université Paul Sabatier Toulouse III');
 
-    cy.get('[name=country]')
-      .type('Jap')
-      .type('{enter}')
-      .should('have.value', 'Japon');
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('mobilité')
+      .click();
 
-    cy.get('[name=city]')
-      .type('Tokyo');
-
-    cy.get('[name=partner]')
-      .type('Toulouse')
-      .type('{enter}')
-      .should('have.value', 'Université Paul Sabatier Toulouse III');
-
-    cy.get('[name=education_field]')
-      .type('science')
-      .type('{enter}')
-      .should('have.value', 'Education science');
+    cy.get('[name=partnership_type]')
+      .find('.ng-value-label')
+      .should('contain.text', 'Partenariat de mobilité');
 
     search();
-// tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_entity=75799811-6f67-46f7-9143-1e3da672f473&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+
+    cy.url()
+      .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
+      .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
+      .should('include', 'type=MOBILITY');
   });
 
   it('should retrieve url params in form', () => {
     // tslint:disable-next-line: max-line-length
-    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_entity=75799811-6f67-46f7-9143-1e3da672f473&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+    cy.visit('http://localhost:4200/#/?city=Tokyo&ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&type=MOBILITY');
     cy.wait('@getConfiguration');
 
-    cy.get('[name=ucl_entity]').should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
-    cy.get('[name=continent]').should('have.value', 'Asia');
-    cy.get('[name=country]').should('have.value', 'Japon');
-    cy.get('[name=city]').should('have.value', 'Tokyo');
-    cy.get('[name=partner]').should('have.value', 'Université Paul Sabatier Toulouse III');
-    cy.get('[name=education_field]').should('have.value', 'Education science');
+    cy.get('[name=combined_search]')
+      .find('.ng-value-label')
+      .should('contain.text', 'Tokyo');
+
+    cy.get('[name=ucl_entity]')
+      .find('.ng-value-label')
+      .should('contain.text', 'SSH / FIAL - Faculté de philosophie, arts et lettres');
+
+    cy.get('[name=partnership_type]')
+      .find('.ng-value-label')
+      .should('contain.text', 'Partenariat de mobilité');
   });
 });

@@ -12,23 +12,18 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partners?continent=Europe&ordering=country_en,city',
+      url: '/partnerships/v1/partners?**',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partnerships/?continent=Europe&ordering=ucl_entity&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/partnerships/v1/partnerships/?**',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
     navigateTo();
     cy.wait('@getConfiguration');
-
-    // Set continent filter
-    cy.get('[name=continent]')
-      .type('Eur')
-      .type('{enter}');
 
     // Click on search to set params in url
     search();
@@ -36,6 +31,8 @@ describe('Partner detail', () => {
   });
 
   it('should show right data OUT', () => {
+    cy.get('[id=list-button]').first().click();
+
     // Open first partner
     cy.get('[title="See partnership"]').first().click();
     cy.wait('@getPartnerships');
@@ -53,6 +50,8 @@ describe('Partner detail', () => {
   });
 
   it('should show right data IN', () => {
+    cy.get('[id=list-button]').first().click();
+
     // Open first partner
     cy.get('[title="See partnership"]').first().click();
     cy.wait('@getPartnerships');
