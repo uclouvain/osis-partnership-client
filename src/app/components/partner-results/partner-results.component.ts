@@ -36,7 +36,7 @@ export class PartnerResultsComponent implements OnInit {
     this.route.queryParams.subscribe((queryParams: Params): any => {
       if (queryParams.ordering === undefined) {
         queryParams = { ...queryParams, ordering: 'country_en,city' };
-        this.router.navigate(['partners'], {
+        this.router.navigate([''], {
           queryParamsHandling: 'merge',
           queryParams
         });

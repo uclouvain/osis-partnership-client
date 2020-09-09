@@ -3,7 +3,7 @@
 <div *ngIf="data">
   <a
     class="btn btn-link"
-    [routerLink]="['/partners', data.partner.uuid]"
+    [routerLink]="['/', data.partner.uuid]"
     queryParamsHandling="merge"
     *ngIf="showBackButton"
   >

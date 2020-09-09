@@ -263,7 +263,7 @@ export class MapComponent implements OnInit, OnChanges {
     this.map.on('click', 'unclustered-point', e => {
       const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
       // Go to partner modal.
-      this.router.navigate(['partners', feature.properties.uuid], {
+      this.router.navigate(['', feature.properties.uuid], {
         queryParamsHandling: 'merge',
         queryParams: {
           partnerFilter: feature.properties.uuid

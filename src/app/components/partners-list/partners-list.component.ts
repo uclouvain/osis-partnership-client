@@ -65,7 +65,7 @@ export class PartnersListComponent implements OnInit {
   goToPartnerships(e: any, value: Partner) {
     e.preventDefault();
     // If multiple partnerships, go to partnership list modal
-    this.router.navigate(['partners', value], {
+    this.router.navigate(['', value], {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: value
@@ -89,7 +89,7 @@ export class PartnersListComponent implements OnInit {
     }
 
     const ordering = (order === 'asc' ? '' : '-') + orderColumn;
-    this.router.navigate(['partners'], {
+    this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
         ordering,

@@ -105,7 +105,8 @@ export function authenticateUser(authentificationService: AuthentificationServic
     TooltipModule,
     HttpClientModule,
     NgxDatatableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SearchComponent,
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

@@ -225,7 +225,7 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   searchPartners(event: any): void {
     event.preventDefault();
-    this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
+    this.router.navigate([''], { queryParams: getCleanParams(this.model) });
   }
 
   /**
@@ -235,7 +235,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.model = { ...defaultModel };
     this.combinedSearchValue = null;
-    this.router.navigate(['partners']);
+    this.router.navigate(['']);
   }
 
   combinedSearchValueChanged(value) {

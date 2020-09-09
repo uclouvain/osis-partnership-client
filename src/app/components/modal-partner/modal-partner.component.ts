@@ -30,7 +30,7 @@ export class ModalPartnerComponent implements OnInit {
    * Close modal, come back to partners list
    */
   goToSearch() {
-    this.router.navigate(['partners'], {
+    this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: undefined,

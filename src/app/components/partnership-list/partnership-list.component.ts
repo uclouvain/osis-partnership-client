@@ -44,7 +44,7 @@ export class PartnershipListComponent implements OnInit {
             // Go to partnership detail if only one result
             const partnership = response.results[0];
             const partnershipId = partnership.uuid;
-            this.router.navigate([`partners/${partnership.partner.uuid}/partnership/${partnershipId}`], {
+            this.router.navigate([`${partnership.partner.uuid}/partnership/${partnershipId}`], {
               queryParamsHandling: 'merge',
               queryParams: {
                 uniquePartnership: true,
@@ -66,7 +66,7 @@ export class PartnershipListComponent implements OnInit {
   }
 
   getDetailLink(value: Partnership) {
-    return [`/partners/${value.partner.uuid}/partnership/${value.uuid}`];
+    return [`/${value.partner.uuid}/partnership/${value.uuid}`];
   }
 
   /**
@@ -75,7 +75,7 @@ export class PartnershipListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['partners'], {
+    this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
         offsetPartnership: offset
