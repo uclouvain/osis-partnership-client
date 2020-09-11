@@ -29,6 +29,8 @@ const defaultModel = {
   funding_type: null,
   funding_program: null,
   with_children: true,
+  partner_tag: null,
+  tag: null,
 };
 
 const compareObjectLabels = (a, b) => {
@@ -104,6 +106,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.model = {
           ...this.model,
           ...params,
+          with_children: params.with_children !== 'false',
         };
       });
   }

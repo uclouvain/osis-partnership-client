@@ -1,60 +1,5 @@
 import { navigateTo, getH1, getInputStudent, getInputStaff, search, resetForm } from '../support/po';
 
-describe('Search fields', () => {
-  beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
-    }).as('getConfiguration');
-
-    navigateTo();
-  });
-
-  it('should display welcome message', () => {
-    getH1().contains('OSIS Partnership');
-  });
-
-  it('ucl_entity field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=ucl_entity]')
-      .type('A')
-      .children('ng-dropdown-panel')
-      .should('exist');
-  });
-
-  it('open typeahead to input country', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=combined_search]')
-      .type('Fran')
-      .children('ng-dropdown-panel')
-      .should('exist');
-
-    cy.get('[name=combined_search]')
-      .type('{enter}');
-
-    search();
-    cy.url().should('include', 'country=FR');
-
-    cy.get('[name=combined_search]')
-      .type('Belg')
-      .type('{enter}');
-    cy.url().should('not.include', 'country=BE');
-
-    search();
-    cy.url().should('include', 'country=BE');
-  });
-
-  it('partner field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=combined_search]')
-      .type('Universität')
-      .children('ng-dropdown-panel')
-      .should('exist');
-  });
-});
-
 describe('Search url params', () => {
   beforeEach(() => {
     cy.server();
@@ -63,11 +8,16 @@ describe('Search url params', () => {
       url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
+    cy.route({
+      method: 'GET',
+      url: '/partnerships/v1/partners*',
+    }).as('getSearch');
   });
 
   it('should add url params and clear it if removed', () => {
     navigateTo();
     cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
 
     // Country text and clear
     cy.get('[name=combined_search]')
@@ -76,14 +26,16 @@ describe('Search url params', () => {
 
     search();
     cy.url().should('include', 'country=JP');
+    cy.wait('@getSearch').its('url').should('include', 'country=JP');
 
     resetForm();
-    cy.url().should('include', '');
+    cy.url().should('not.include', 'country=JP');
   });
 
   it('should add custom filters in url', () => {
     navigateTo();
     cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
 
     cy.get('[name=ucl_entity]')
       .type('philo')
@@ -93,6 +45,7 @@ describe('Search url params', () => {
 
     search();
     cy.url().should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
+    cy.wait('@getSearch').its('url').should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
 
     cy.get('[name=combined_search]')
       .type('Paul Sabatier')
@@ -106,16 +59,111 @@ describe('Search url params', () => {
       .contains('mobilité')
       .click();
 
-    cy.get('[name=partnership_type]')
-      .find('.ng-value-label')
-      .should('contain.text', 'Partenariat de mobilité');
-
     search();
-
+    cy.wait('@getSearch').its('url')
+      .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
+      .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
+      .should('include', 'type=MOBILITY');
     cy.url()
       .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
       .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
       .should('include', 'type=MOBILITY');
+  });
+
+  it('should add funding filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingSource')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'funding_source=4');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingProgram')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'funding_source=4')
+      .should('include', 'funding_program=4');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingType')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'funding_source=4')
+      .should('not.include', 'funding_program=4')
+      .should('include', 'funding_type=8');
+  });
+
+  it('should add tags filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('CLUSTER')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'tag=CLUSTER');
+  });
+
+  it('should add partner tags filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('The Guild')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'partner_tag=The Guild');
+  });
+
+  it('should show correct filters', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('mobilité')
+      .click();
+
+    cy.get('[name=target_group]')
+      .click()
+      .find('.ng-option-label')
+      .contains('Student')
+      .click();
+
+    cy.get('[name=education_level]')
+      .click()
+      .find('.ng-option-label')
+      .contains('Second')
+      .click();
+
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'mobility_type=student')
+      .should('include', 'education_level=ISCED-7');
+
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('doctorat')
+      .click();
+
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'mobility_type=student')
+      .should('include', 'education_level=ISCED-7');
   });
 
   it('should retrieve url params in form', () => {
