@@ -76,6 +76,7 @@ export interface PartnershipParams {
   continent?: string;
   country?: string;
   education_field?: string;
+  offer?: string;
   limit?: number;
   offset?: number;
   partner?: string;

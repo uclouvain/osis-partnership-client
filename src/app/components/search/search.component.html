@@ -82,6 +82,18 @@
           [items]="educationLevels"
         ></ng-select>
       </div>
+
+      <div *ngIf="isYearOfferFilterShown()">
+        <label for="offer" class="sr-only">{{ 'Diploma' | translate }}</label>
+        <ng-select
+          id="offer"
+          name="offer"
+          [placeholder]="'Diploma' | translate"
+          [(ngModel)]="model.offer"
+          bindValue="id"
+          [items]="yearOffers"
+        ></ng-select>
+      </div>
     </div>
 
     <div class="search-grid--buttons">

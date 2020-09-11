@@ -99,6 +99,7 @@ export function getPartnershipParams(query: any): PartnershipParams {
     funding: query.funding || [],
     ordering: 'ucl_entity',
     with_children: query.with_children,
+    offer: query.offer,
   });
 }
 
@@ -114,5 +115,6 @@ export function getPartnerParams(query: any): PartnerParams {
     ordering: query.ordering || '',
     bbox: query.bbox || '',
     with_children: query.with_children,
+    offer: query.offer,
   });
 }

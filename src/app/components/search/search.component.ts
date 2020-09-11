@@ -23,6 +23,7 @@ const defaultModel = {
   ucl_entity: null,
   education_level: null,
   education_field: null,
+  offer: null,
   mobility_type: null,
   funding_source: null,
   funding_type: null,
@@ -129,6 +130,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.fundings = config.fundings;
         this.tags = getFormattedItemsList(config.tags);
         this.partnerTags = getFormattedItemsList(config.partner_tags);
+        this.yearOffers = getFormattedItemsList(config.offers);
 
         this.initCombinedSearch(params);
 
@@ -274,5 +276,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   isEducationLevelFilterShown() {
     return (this.model.type === Type.Mobility && this.model.mobility_type === 'student')
       || this.model.type === Type.Course || Type.Doctorate === this.model.type;
+  }
+
+  isYearOfferFilterShown() {
+    return [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
   }
 }
