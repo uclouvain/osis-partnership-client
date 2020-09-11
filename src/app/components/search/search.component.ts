@@ -14,6 +14,7 @@ import {
   FundingElement,
   ValueLabel
 } from '../../interfaces/common';
+import { HtmlElementPropertyService } from '../../services/html-element-property.service';
 
 const defaultModel = {
   type: null,
@@ -81,17 +82,34 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public Type = Type;
 
+  public forceUclEntity?: string;
+  public forcePartnershipType?: string;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private configurationService: ConfigurationService,
     private loading: LoadingService,
-    private translate: TranslateService
-  ) {
+    private translate: TranslateService,
+    private htmlElementPropertyService: HtmlElementPropertyService,
+) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
       delay(0)).subscribe(status => (this.loaderStatus = status)
     );
+
+    // Get a forced config from attributes
+    this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
+    this.forcePartnershipType = htmlElementPropertyService.get('partnership-type');
+    this.model = {
+      ...defaultModel,
+      ucl_entity: this.forceUclEntity,
+      type: this.forcePartnershipType,
+    };
+
+    if (this.forceUclEntity || this.forcePartnershipType) {
+      this.searchPartners();
+    }
   }
 
   ngOnDestroy(): void {
@@ -238,8 +256,10 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Change route to add choosen options in url params
    * Then modal-partner component will fetch data with these new params
    */
-  searchPartners(event: any): void {
-    event.preventDefault();
+  searchPartners(event?: any): void {
+    if (event) {
+      event.preventDefault();
+    }
     this.router.navigate([''], { queryParams: getCleanParams(this.model) });
   }
 
@@ -248,9 +268,13 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   resetForm(event: any): void {
     event.preventDefault();
-    this.model = { ...defaultModel };
+    this.model = {
+      ...defaultModel,
+      ucl_entity: this.forceUclEntity,
+      type: this.forcePartnershipType,
+    };
     this.combinedSearchValue = null;
-    this.router.navigate(['']);
+    this.searchPartners();
   }
 
   combinedSearchValueChanged(value) {
@@ -296,7 +320,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isWithChildrenFilterShown() {
-    return this.model.ucl_entity;
+    return this.model.ucl_entity && !this.forceUclEntity;
   }
 
   isTargetFilterShown() {

@@ -59,13 +59,16 @@ export class MapComponent implements OnInit, OnChanges {
 
   private maxZoom = 9;
   public mainColor: string;
+  public height: number;
 
   constructor(
     private router: Router,
     private htmlElementPropertyService: HtmlElementPropertyService,
     private route: ActivatedRoute,
   ) {
-    this.mainColor = htmlElementPropertyService.get('mainColor', '#ddc000');
+    this.mainColor = htmlElementPropertyService.get('main-color', '#ddc000');
+    this.height = htmlElementPropertyService.get('height', 500);
+
     // Mapbox is unable to parse hash properly
     this.route.queryParams.subscribe((queryParams: any): any => {
       if (queryParams.map) {
@@ -87,6 +90,10 @@ export class MapComponent implements OnInit, OnChanges {
     if (changes.markers && changes.markers.previousValue !== changes.markers.currentValue) {
       this.markers = changes.markers.currentValue;
       this.updateSource();
+    }
+    // This ensures the canvas is correctly dimensionned with height
+    if (this.map) {
+      this.map.resize();
     }
   }
 

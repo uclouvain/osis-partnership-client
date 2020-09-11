@@ -19,7 +19,7 @@
         </ng-select>
       </div>
 
-      <div>
+      <div *ngIf="!forceUclEntity">
         <label for="ucl-entity" class="sr-only">{{ "UCLouvain entity" | translate}}</label>
         <ng-select
           name="ucl_entity"
@@ -32,7 +32,7 @@
         ></ng-select>
       </div>
 
-      <div>
+      <div *ngIf="!forcePartnershipType">
         <label for="partnership-type" class="sr-only">{{ "Partnership type" | translate }}</label>
         <ng-select
           id="partnership-type"
