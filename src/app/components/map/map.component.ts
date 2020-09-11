@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
+import { VisibleMarkerChangedEvent } from '../../interfaces/events';
 
 
 /**
@@ -43,8 +44,8 @@ export class MapComponent implements OnInit, OnChanges {
 
   @Input() markers: Partner[] = [];
   @Input() visible = false;
-  @Output() visibleMarkersChanged = new EventEmitter<Partner[]>();
   @Input() loading = false;
+  @Output() visibleMarkersChanged = new EventEmitter<VisibleMarkerChangedEvent>();
   @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;
@@ -217,7 +218,7 @@ export class MapComponent implements OnInit, OnChanges {
           0,
           (error, leaves) => {
             const markers = leaves.map(leave => leave.properties) as Partner[];
-            this.visibleMarkersChanged.emit(markers);
+            this.visibleMarkersChanged.emit({ markers, forceMapInfluence: true });
             this.switchToList.emit();
           }
         );
@@ -329,6 +330,6 @@ export class MapComponent implements OnInit, OnChanges {
     const markersResults = await Promise.all(markersPromises);
     const markers = [].concat(...markersResults.filter(Boolean));
 
-    this.visibleMarkersChanged.emit(markers);
+    this.visibleMarkersChanged.emit({ markers });
   }
 }
