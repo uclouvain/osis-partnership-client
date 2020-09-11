@@ -103,6 +103,17 @@ export class MapComponent implements OnInit, OnChanges {
           properties
         })),
       });
+
+      const bounds = new mapboxgl.LngLatBounds();
+      this.markers.map(({ location }) => {
+        if (location) {
+          // @ts-ignore
+          bounds.extend(location.coordinates);
+        }
+      });
+      if (!bounds.isEmpty()) {
+        this.map.fitBounds(bounds, { linear: true });
+      }
     }
   }
 
