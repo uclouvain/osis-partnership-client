@@ -31,6 +31,16 @@ const defaultModel = {
   with_children: true,
 };
 
+const compareObjectLabels = (a, b) => {
+  if (a.label > b.label) {
+    return  1;
+  } else if (a.label < b.label) {
+    return -1;
+  }
+  return 0;
+};
+
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -118,14 +128,14 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.countries = getFormattedItemsList([].concat.apply(
           // Get countries and flatten
           [], config.continents.map(continent => continent.countries)
-        ));
+        )).sort(compareObjectLabels);
         this.cities = getFormattedItemsList([].concat.apply(
           // Get cities and flatten
           [], [].concat.apply([], config.continents.map(continent => continent.countries)).map(country => country.cities)
         ).filter(
           // Remove duplicates
           (city, index, self) => self.indexOf(city) === index
-        ));
+        )).sort(compareObjectLabels);
         this.partners = getFormattedItemsList(config.partners);
         this.fundings = config.fundings;
         this.tags = getFormattedItemsList(config.tags);
