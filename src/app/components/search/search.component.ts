@@ -251,19 +251,36 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   combinedSearchValueChanged(value) {
+    // Reset every possible combined value
+    this.model = {
+      ...this.model,
+      partner: null,
+      country: null,
+      city: null,
+      funding_source: null,
+      funding_type: null,
+      funding_program: null,
+      tag: null,
+      partner_tag: null,
+    };
     if (value) {
       this.model[value.type] = value.id;
-    } else {
-      this.model = {
-        ...this.model,
-        country: null,
-        city: null,
-        funding_source: null,
-        funding_type: null,
-        funding_program: null,
-      };
     }
   }
+
+  partnershipTypeChanged() {
+    // Reset hidden values so that they do not interfere
+    if (!this.isTargetFilterShown()) {
+      this.model.mobility_type = null;
+    }
+    if (!this.isEducationLevelFilterShown()) {
+      this.model.education_level = null;
+    }
+    if (!this.isYearOfferFilterShown()) {
+      this.model.offer = null;
+    }
+  }
+
   uclEntityValueChanged(value) {
     if (value) {
       this.model.ucl_entity = value.value;

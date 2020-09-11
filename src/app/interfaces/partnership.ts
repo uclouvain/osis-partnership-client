@@ -71,21 +71,22 @@ export interface ResultPartnerships {
 
 export interface PartnershipParams {
   [key: string]: unknown;
-  campus?: string;
   city?: string;
-  continent?: string;
   country?: string;
   education_field?: string;
+  education_level?: string;
   offer?: string;
   limit?: number;
   offset?: number;
   partner?: string;
-  supervisor?: string;
   type?: string;
   ucl_entity?: string;
-  mobility_type?: string[];
-  funding?: string[];
-  ordering?: string;
+  mobility_type?: string;
+  funding_source?: number;
+  funding_program?: number;
+  funding_type?: number;
+  partner_tag?: string;
+  tag?: string;
 }
 
 export interface AcronymEntity {

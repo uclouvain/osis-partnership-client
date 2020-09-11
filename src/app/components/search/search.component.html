@@ -42,6 +42,7 @@
           [placeholder]="'Partnership type' | translate"
           [(ngModel)]="model.type"
           [searchable]="false"
+          (change)="partnershipTypeChanged()"
         ></ng-select>
       </div>
 
