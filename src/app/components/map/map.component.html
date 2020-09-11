@@ -1,4 +1,5 @@
-<div class="map" id="map" style="height: 500px">
+<div id="map" style="height: 500px">
+  <div id="map-loader" *ngIf="loading"></div>
   <div id="map-legend">
     <strong>{{ 'Legend' | translate }}</strong>
     <div class="legend-row">

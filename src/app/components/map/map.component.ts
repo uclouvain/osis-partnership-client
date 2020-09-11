@@ -44,6 +44,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() markers: Partner[] = [];
   @Input() visible = false;
   @Output() visibleMarkersChanged = new EventEmitter<Partner[]>();
+  @Input() loading = false;
   @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;

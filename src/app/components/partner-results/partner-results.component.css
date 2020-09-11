@@ -1,5 +1,14 @@
+#results-wrapper {
+  position: relative;
+}
+
 #list-controls {
   padding: .5em;
+}
+
+#list-controls.controls-over {
+  position: absolute;
+  z-index: 15;
 }
 
 #map-button, #map-influence {
