@@ -19,7 +19,7 @@
         </ng-select>
       </div>
 
-      <div>
+      <div *ngIf="!forceUclEntity">
         <label for="ucl-entity" class="sr-only">{{ "UCLouvain entity" | translate}}</label>
         <ng-select
           name="ucl_entity"
@@ -32,7 +32,7 @@
         ></ng-select>
       </div>
 
-      <div>
+      <div *ngIf="!forcePartnershipType">
         <label for="partnership-type" class="sr-only">{{ "Partnership type" | translate }}</label>
         <ng-select
           id="partnership-type"
@@ -42,6 +42,7 @@
           [placeholder]="'Partnership type' | translate"
           [(ngModel)]="model.type"
           [searchable]="false"
+          (change)="partnershipTypeChanged()"
         ></ng-select>
       </div>
 
@@ -82,6 +83,18 @@
           [items]="educationLevels"
         ></ng-select>
       </div>
+
+      <div *ngIf="isYearOfferFilterShown()">
+        <label for="offer" class="sr-only">{{ 'Diploma' | translate }}</label>
+        <ng-select
+          id="offer"
+          name="offer"
+          [placeholder]="'Diploma' | translate"
+          [(ngModel)]="model.offer"
+          bindValue="id"
+          [items]="yearOffers"
+        ></ng-select>
+      </div>
     </div>
 
     <div class="search-grid--buttons">
@@ -114,5 +127,7 @@
 <app-error-message
   [title]="'Failed to load configuration' | translate" *ngIf="configError"
 ></app-error-message>
+
+<app-partner-results></app-partner-results>
 
 <router-outlet></router-outlet>

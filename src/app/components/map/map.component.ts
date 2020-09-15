@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
+import { VisibleMarkerChangedEvent } from '../../interfaces/events';
 
 
 /**
@@ -43,7 +44,8 @@ export class MapComponent implements OnInit, OnChanges {
 
   @Input() markers: Partner[] = [];
   @Input() visible = false;
-  @Output() visibleMarkersChanged = new EventEmitter<Partner[]>();
+  @Input() loading = false;
+  @Output() visibleMarkersChanged = new EventEmitter<VisibleMarkerChangedEvent>();
   @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;
@@ -57,13 +59,16 @@ export class MapComponent implements OnInit, OnChanges {
 
   private maxZoom = 9;
   public mainColor: string;
+  public height: number;
 
   constructor(
     private router: Router,
     private htmlElementPropertyService: HtmlElementPropertyService,
     private route: ActivatedRoute,
   ) {
-    this.mainColor = htmlElementPropertyService.get('mainColor', '#ddc000');
+    this.mainColor = htmlElementPropertyService.get('main-color', '#ddc000');
+    this.height = htmlElementPropertyService.get('height', 500);
+
     // Mapbox is unable to parse hash properly
     this.route.queryParams.subscribe((queryParams: any): any => {
       if (queryParams.map) {
@@ -86,6 +91,10 @@ export class MapComponent implements OnInit, OnChanges {
       this.markers = changes.markers.currentValue;
       this.updateSource();
     }
+    // This ensures the canvas is correctly dimensionned with height
+    if (this.map) {
+      this.map.resize();
+    }
   }
 
   /**
@@ -101,6 +110,17 @@ export class MapComponent implements OnInit, OnChanges {
           properties
         })),
       });
+
+      const bounds = new mapboxgl.LngLatBounds();
+      this.markers.map(({ location }) => {
+        if (location) {
+          // @ts-ignore
+          bounds.extend(location.coordinates);
+        }
+      });
+      if (!bounds.isEmpty()) {
+        this.map.fitBounds(bounds, { linear: true });
+      }
     }
   }
 
@@ -216,7 +236,7 @@ export class MapComponent implements OnInit, OnChanges {
           0,
           (error, leaves) => {
             const markers = leaves.map(leave => leave.properties) as Partner[];
-            this.visibleMarkersChanged.emit(markers);
+            this.visibleMarkersChanged.emit({ markers, forceMapInfluence: true });
             this.switchToList.emit();
           }
         );
@@ -263,7 +283,7 @@ export class MapComponent implements OnInit, OnChanges {
     this.map.on('click', 'unclustered-point', e => {
       const feature = e.features[0] as GeoJSON.Feature<GeoJSON.Point>;
       // Go to partner modal.
-      this.router.navigate(['partners', feature.properties.uuid], {
+      this.router.navigate(['', feature.properties.uuid], {
         queryParamsHandling: 'merge',
         queryParams: {
           partnerFilter: feature.properties.uuid
@@ -328,6 +348,6 @@ export class MapComponent implements OnInit, OnChanges {
     const markersResults = await Promise.all(markersPromises);
     const markers = [].concat(...markersResults.filter(Boolean));
 
-    this.visibleMarkersChanged.emit(markers);
+    this.visibleMarkersChanged.emit({ markers });
   }
 }

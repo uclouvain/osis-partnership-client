@@ -14,6 +14,7 @@ import {
   FundingElement,
   ValueLabel
 } from '../../interfaces/common';
+import { HtmlElementPropertyService } from '../../services/html-element-property.service';
 
 const defaultModel = {
   type: null,
@@ -23,12 +24,25 @@ const defaultModel = {
   ucl_entity: null,
   education_level: null,
   education_field: null,
+  offer: null,
   mobility_type: null,
   funding_source: null,
   funding_type: null,
   funding_program: null,
   with_children: true,
+  partner_tag: null,
+  tag: null,
 };
+
+const compareObjectLabels = (a, b) => {
+  if (a.label > b.label) {
+    return  1;
+  } else if (a.label < b.label) {
+    return -1;
+  }
+  return 0;
+};
+
 
 @Component({
   selector: 'app-search',
@@ -68,17 +82,34 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public Type = Type;
 
+  public forceUclEntity?: string;
+  public forcePartnershipType?: string;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private configurationService: ConfigurationService,
     private loading: LoadingService,
-    private translate: TranslateService
-  ) {
+    private translate: TranslateService,
+    private htmlElementPropertyService: HtmlElementPropertyService,
+) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
       delay(0)).subscribe(status => (this.loaderStatus = status)
     );
+
+    // Get a forced config from attributes
+    this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
+    this.forcePartnershipType = htmlElementPropertyService.get('partnership-type');
+    this.model = {
+      ...defaultModel,
+      ucl_entity: this.forceUclEntity,
+      type: this.forcePartnershipType,
+    };
+
+    if (this.forceUclEntity || this.forcePartnershipType) {
+      this.searchPartners();
+    }
   }
 
   ngOnDestroy(): void {
@@ -93,6 +124,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.model = {
           ...this.model,
           ...params,
+          with_children: params.with_children !== 'false',
         };
       });
   }
@@ -117,18 +149,19 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.countries = getFormattedItemsList([].concat.apply(
           // Get countries and flatten
           [], config.continents.map(continent => continent.countries)
-        ));
+        )).sort(compareObjectLabels);
         this.cities = getFormattedItemsList([].concat.apply(
           // Get cities and flatten
           [], [].concat.apply([], config.continents.map(continent => continent.countries)).map(country => country.cities)
         ).filter(
           // Remove duplicates
           (city, index, self) => self.indexOf(city) === index
-        ));
+        )).sort(compareObjectLabels);
         this.partners = getFormattedItemsList(config.partners);
         this.fundings = config.fundings;
         this.tags = getFormattedItemsList(config.tags);
         this.partnerTags = getFormattedItemsList(config.partner_tags);
+        this.yearOffers = getFormattedItemsList(config.offers);
 
         this.initCombinedSearch(params);
 
@@ -223,9 +256,11 @@ export class SearchComponent implements OnInit, OnDestroy {
    * Change route to add choosen options in url params
    * Then modal-partner component will fetch data with these new params
    */
-  searchPartners(event: any): void {
-    event.preventDefault();
-    this.router.navigate(['partners'], { queryParams: getCleanParams(this.model) });
+  searchPartners(event?: any): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.router.navigate([''], { queryParams: getCleanParams(this.model) });
   }
 
   /**
@@ -233,25 +268,46 @@ export class SearchComponent implements OnInit, OnDestroy {
    */
   resetForm(event: any): void {
     event.preventDefault();
-    this.model = { ...defaultModel };
+    this.model = {
+      ...defaultModel,
+      ucl_entity: this.forceUclEntity,
+      type: this.forcePartnershipType,
+    };
     this.combinedSearchValue = null;
-    this.router.navigate(['partners']);
+    this.searchPartners();
   }
 
   combinedSearchValueChanged(value) {
+    // Reset every possible combined value
+    this.model = {
+      ...this.model,
+      partner: null,
+      country: null,
+      city: null,
+      funding_source: null,
+      funding_type: null,
+      funding_program: null,
+      tag: null,
+      partner_tag: null,
+    };
     if (value) {
       this.model[value.type] = value.id;
-    } else {
-      this.model = {
-        ...this.model,
-        country: null,
-        city: null,
-        funding_source: null,
-        funding_type: null,
-        funding_program: null,
-      };
     }
   }
+
+  partnershipTypeChanged() {
+    // Reset hidden values so that they do not interfere
+    if (!this.isTargetFilterShown()) {
+      this.model.mobility_type = null;
+    }
+    if (!this.isEducationLevelFilterShown()) {
+      this.model.education_level = null;
+    }
+    if (!this.isYearOfferFilterShown()) {
+      this.model.offer = null;
+    }
+  }
+
   uclEntityValueChanged(value) {
     if (value) {
       this.model.ucl_entity = value.value;
@@ -264,7 +320,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isWithChildrenFilterShown() {
-    return this.model.ucl_entity;
+    return this.model.ucl_entity && !this.forceUclEntity;
   }
 
   isTargetFilterShown() {
@@ -274,5 +330,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   isEducationLevelFilterShown() {
     return (this.model.type === Type.Mobility && this.model.mobility_type === 'student')
       || this.model.type === Type.Course || Type.Doctorate === this.model.type;
+  }
+
+  isYearOfferFilterShown() {
+    return [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
   }
 }

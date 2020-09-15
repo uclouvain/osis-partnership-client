@@ -18,6 +18,7 @@ export interface Configuration {
   ucl_universities: ValueLabel[];
   education_levels: ValueLabel[];
   education_fields: ValueLabel[];
+  offers: ValueLabel[];
   fundings: FundingElement[];
   tags: string[];
   partner_tags: string[];

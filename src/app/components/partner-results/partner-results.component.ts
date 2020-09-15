@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import Partner from '../../interfaces/partners';
 import { MapComponent } from '../map/map.component';
 import { PartnersListComponent } from '../partners-list/partners-list.component';
+import { VisibleMarkerChangedEvent } from '../../interfaces/events';
 
 @Component({
   selector: 'app-partner-results',
@@ -36,7 +37,7 @@ export class PartnerResultsComponent implements OnInit {
     this.route.queryParams.subscribe((queryParams: Params): any => {
       if (queryParams.ordering === undefined) {
         queryParams = { ...queryParams, ordering: 'country_en,city' };
-        this.router.navigate(['partners'], {
+        this.router.navigate([''], {
           queryParamsHandling: 'merge',
           queryParams
         });
@@ -64,7 +65,7 @@ export class PartnerResultsComponent implements OnInit {
         this.loading = false;
         if (results) {
           this.results = results;
-          this.onVisibleMarkersUpdated(this.results);
+          this.onVisibleMarkersUpdated({ markers: this.results });
         }
       });
   }
@@ -74,8 +75,11 @@ export class PartnerResultsComponent implements OnInit {
     this.updateCount();
   }
 
-  onVisibleMarkersUpdated(visiblePartners: Partner[]) {
-    this.visibleMarkers = visiblePartners;
+  onVisibleMarkersUpdated(event: VisibleMarkerChangedEvent) {
+    this.visibleMarkers = event.markers;
+    if (event.forceMapInfluence) {
+      this.mapInfluence = true;
+    }
     this.updateCount();
   }
 

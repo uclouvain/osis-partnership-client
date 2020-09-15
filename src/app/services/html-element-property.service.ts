@@ -25,7 +25,7 @@ export class HtmlElementPropertyService {
    * @param prop The property name
    * @param defaultValue The default value if the property is not found in data
    */
-  get(prop: string, defaultValue: any) {
+  get(prop: string, defaultValue?: any) {
     if (this.elementRef) {
       return this.elementRef.nativeElement.getAttribute('data-' + prop) || defaultValue;
     } else {
