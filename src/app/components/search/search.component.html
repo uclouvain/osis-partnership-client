@@ -104,9 +104,23 @@
         class="btn btn-primary"
         id="search-partners"
         (click)="searchPartners($event)"
+        title="{{ 'Search (action)' | translate }}"
       >
         <span class="sr-only">{{ 'Search (action)' | translate }}</span>
         <span class="glyphicon glyphicon-search"></span>
+      </button>
+
+      <button
+        [disabled]="loaderStatus"
+        type="button"
+        class="btn btn-primary"
+        id="export-partnerships"
+        (click)="export()"
+        title="{{ 'Export (action)' | translate }}"
+        *ngIf="exportEnabled"
+      >
+        <span class="sr-only">{{ 'Export (action)' | translate }}</span>
+        <span class="glyphicon glyphicon-download"></span>
       </button>
 
       <button
@@ -115,6 +129,7 @@
         class="btn btn-danger"
         id="reset-search-partners"
         (click)="resetForm($event)"
+        title="{{ 'Reset form' | translate }}"
       >
         <span class="sr-only">{{ 'Reset form' | translate }}</span>
         <span class="glyphicon glyphicon-remove"></span>

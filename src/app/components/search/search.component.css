@@ -1,5 +1,8 @@
-.partnership__form .btn:first-child {
+.partnership__form .btn {
   margin-right: .5em;
+}
+.partnership__form .btn:last-child {
+  margin-right: 0;
 }
 
 .search-grid {
