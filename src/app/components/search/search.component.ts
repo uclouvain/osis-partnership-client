@@ -21,6 +21,7 @@ import { HtmlElementPropertyService } from '../../services/html-element-property
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import * as queryString from 'query-string';
+import { PartnershipsService } from '../../services/partnerships.service';
 
 const defaultModel = {
   type: null,
@@ -99,7 +100,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private loading: LoadingService,
     private translate: TranslateService,
     private htmlElementPropertyService: HtmlElementPropertyService,
-    private http: HttpClient,
+    private partnershipsService: PartnershipsService,
 ) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
@@ -348,7 +349,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   export() {
     const query = getPartnerParams(this.model);
-    this.http.get<any>(`${environment.api.url}partnerships/get-export-url?${queryString.stringify(query)}`).subscribe(
+    this.partnershipsService.getExportUrl(query).subscribe(
       ({ url }) => window.open(url)
     );
   }
