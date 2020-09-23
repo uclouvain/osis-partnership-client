@@ -18,6 +18,7 @@ import {
   ValueLabel
 } from '../../interfaces/common';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import * as queryString from 'query-string';
 
@@ -98,6 +99,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private loading: LoadingService,
     private translate: TranslateService,
     private htmlElementPropertyService: HtmlElementPropertyService,
+    private http: HttpClient,
 ) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
@@ -346,6 +348,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   export() {
     const query = getPartnerParams(this.model);
-    window.open(`${environment.api.url}partnerships/export?${queryString.stringify(query)}`);
+    this.http.get<any>(`${environment.api.url}partnerships/get-export-url?${queryString.stringify(query)}`).subscribe(
+      ({ url }) => window.open(url)
+    );
   }
 }
