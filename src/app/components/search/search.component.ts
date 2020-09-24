@@ -6,7 +6,10 @@ import { ConfigurationService } from 'src/app/services/configuration.service';
 import { LoadingService } from 'src/app/services/loading.service.js';
 import { getFormattedItemsList } from 'src/app/helpers/list.helpers.js';
 import { Configuration } from 'src/app/interfaces/configuration.js';
-import { getCleanParams } from 'src/app/helpers/partnerships.helpers.js';
+import {
+  getCleanParams,
+  getPartnerParams
+} from 'src/app/helpers/partnerships.helpers.js';
 import { Type } from 'src/app/interfaces/partnership_type';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -15,6 +18,10 @@ import {
   ValueLabel
 } from '../../interfaces/common';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import * as queryString from 'query-string';
+import { PartnershipsService } from '../../services/partnerships.service';
 
 const defaultModel = {
   type: null,
@@ -84,6 +91,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public forceUclEntity?: string;
   public forcePartnershipType?: string;
+  public exportEnabled: boolean;
 
   constructor(
     private router: Router,
@@ -92,11 +100,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     private loading: LoadingService,
     private translate: TranslateService,
     private htmlElementPropertyService: HtmlElementPropertyService,
+    private partnershipsService: PartnershipsService,
 ) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
       delay(0)).subscribe(status => (this.loaderStatus = status)
     );
+
+    this.exportEnabled = htmlElementPropertyService.get('enable-export') === 'true';
 
     // Get a forced config from attributes
     this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
@@ -334,5 +345,12 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   isYearOfferFilterShown() {
     return [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
+  }
+
+  export() {
+    const query = getPartnerParams(this.model);
+    this.partnershipsService.getExportUrl(query).subscribe(
+      ({ url }) => window.open(url)
+    );
   }
 }

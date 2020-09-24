@@ -10,6 +10,7 @@ import Partnership, {
 } from '../interfaces/partnership';
 import Partner, { PartnerParams, } from '../interfaces/partners';
 import { CacheService } from './cache.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class PartnershipsService {
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
 
   constructor(
-    private cache: CacheService
+    private cache: CacheService,
+    private http: HttpClient,
   ) {
   }
 
@@ -76,6 +78,11 @@ export class PartnershipsService {
       map(partners => partners.find(partner => partner.uuid === id))
     );
   }
+
+  public getExportUrl(query: PartnerParams) {
+    return this.http.get<any>(`${environment.api.url}partnerships/get-export-url?${queryString.stringify(query)}`);
+  }
+
 
   private requestPartnerships(query: PartnershipParams) {
     return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`);
