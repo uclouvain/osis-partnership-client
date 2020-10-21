@@ -1,0 +1,48 @@
+#map {
+  position: relative;
+}
+
+#map-loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  opacity: .5;
+  background: #000;
+}
+
+#map-loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+  position: absolute;
+  top: calc(50% - 64px / 2);
+  left: calc(50% - 64px / 2);
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#map-legend {
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  padding-left: .5em;
+  display: inline-block;
+  bottom: 0;
+  border-top-right-radius: 5px;
+}

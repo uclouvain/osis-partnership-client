@@ -79,3 +79,7 @@ datatable-header-cell.sortable span.datatable-header-cell-label {
     transform: translateX(-50%) scale(0, 1);
   }
 }
+
+.ng-dropdown-panel {
+  width: auto !important;
+}

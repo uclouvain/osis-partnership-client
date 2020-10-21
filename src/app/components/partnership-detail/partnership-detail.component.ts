@@ -5,6 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Type } from '../../interfaces/partnership_type';
+
+const UCL_ROOT_ENTITY_NAME = 'UCL';
 
 @Component({
   selector: 'app-partnership-detail',
@@ -12,19 +16,21 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./partnership-detail.component.css']
 })
 export class PartnershipDetailComponent implements OnInit {
-
   public data: Partnership;
+
   public showBackButton = false;
+  public showEllipsis = true;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private partnershipsService: PartnershipsService,
+    private sanitizer: DomSanitizer,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
-    combineLatest(this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
+    combineLatest(this.route.parent && this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
       this.partnershipsService.getPartnership(parentParam.id, id).subscribe(partnership => {
         this.data = partnership;
       });
@@ -37,6 +43,33 @@ export class PartnershipDetailComponent implements OnInit {
 
   get mobilityType() {
     return getMobilityType(this.data);
+  }
+
+  get isMobility() {
+    return this.data.partnership_type === Type.Mobility;
+  }
+
+  get uclEntityParentDisplay() {
+    if (this.data.ucl_entity.acronym !== UCL_ROOT_ENTITY_NAME && this.data.ucl_faculty.acronym) {
+      return `${this.data.ucl_faculty.title} (${this.data.ucl_sector}/${this.data.ucl_faculty.acronym})`;
+    }
+    return '';
+  }
+
+  get uclEntityDisplay() {
+    let ret = '';
+    if (this.data.ucl_entity.acronym === UCL_ROOT_ENTITY_NAME) {
+      return this.translate.instant('Insitutional partnership');
+    }
+    ret += `${this.data.ucl_entity.title} (`;
+    if (this.data.ucl_sector) {
+      ret += `${this.data.ucl_sector}/`;
+    }
+    if (this.data.ucl_faculty.acronym) {
+      ret += `${this.data.ucl_faculty.acronym}/`;
+    }
+    ret += `${this.data.ucl_entity.acronym})`;
+    return ret;
   }
 
   getCourseCatalogueUrl() {

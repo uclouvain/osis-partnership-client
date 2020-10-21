@@ -1,7 +1,30 @@
 .partnership__form .btn {
   margin-right: .5em;
 }
+.partnership__form .btn:last-child {
+  margin-right: 0;
+}
 
-.partnership__form {
-  margin-bottom: 1em;
+.search-grid {
+  display: flex;
+}
+
+.search-grid--fields {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-grid--fields > div {
+  flex: 0 1 33%;
+  padding: 0 .5em .5em 0;
+  max-width: 33%;
+}
+
+.search-grid--fields .search-grid--checkbox {
+  padding: 0.5em;
+}
+
+.search-grid--checkbox label {
+  font-weight: normal;
 }

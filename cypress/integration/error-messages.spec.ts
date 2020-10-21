@@ -19,25 +19,6 @@ describe('Error messages', () => {
     cy.get('.partnership__error__title').first().should('have.text', 'Failed to load configuration');
   });
 
-  it('should display warning message on search if no params', () => {
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      status: 500,
-      response: {}
-    }).as('getConfiguration');
-
-    navigateTo();
-    cy.wait('@getConfiguration');
-
-    // Click on search
-    search();
-
-    // Should show warning message
-    cy.get('.partnership__warning').should('exist');
-    cy.get('.partnership__warning__message').first().should('have.text', 'You must select at least one filter');
-  });
-
   it('should display error message for partners failed', () => {
     cy.route({
       method: 'GET',
@@ -47,18 +28,13 @@ describe('Error messages', () => {
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partners?continent=Europe&ordering=country_en,city',
+      url: '/partnerships/v1/partners?**',
       status: 500,
       response: {}
     }).as('getPartners');
 
     navigateTo();
     cy.wait('@getConfiguration');
-
-    // Set continent filter
-    cy.get('[name=continent]')
-      .type('Eur')
-      .type('{enter}');
 
     // Click on search to set params in url
     search();
@@ -77,13 +53,13 @@ describe('Error messages', () => {
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partners?continent=Europe&ordering=country_en,city',
+      url: '/partnerships/v1/partners?**',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partnerships/?continent=Europe&ordering=ucl_entity&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/partnerships/v1/partnerships/?**',
       status: 500,
       response: {}
     }).as('getPartnerships');
@@ -91,15 +67,12 @@ describe('Error messages', () => {
     navigateTo();
     cy.wait('@getConfiguration');
 
-    // Set continent filter
-    cy.get('[name=continent]')
-      .type('Eur')
-      .type('{enter}');
-
     // Click on search to set params in url
     search();
 
     cy.wait('@getPartners');
+
+    cy.get('[id=list-button]').first().click();
 
     cy.get('[title="See partnership"]').first().click();
     cy.wait('@getPartnerships');

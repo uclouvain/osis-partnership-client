@@ -1,0 +1,70 @@
+<div id="results-wrapper">
+
+  <div id="list-controls" [class.controls-over]="mapVisible">
+    <a
+      class="btn btn-default"
+      [ngClass]="{active: mapVisible}"
+      id="map-button"
+      (click)="switchToMapLayout()"
+    >
+      <span class="glyphicon glyphicon-map-marker"></span>
+      {{ 'Map' | translate }}
+    </a>
+    <a
+      class="btn btn-default"
+      [ngClass]="{active: mapInfluence}"
+      id="map-influence"
+      (click)="toggleMapInfluence()"
+      *ngIf="mapVisible"
+    >
+      <span class="glyphicon glyphicon-screenshot"></span>
+      {{ 'Filter on map bounds' | translate }}
+    </a>
+    <a
+      class="btn btn-default"
+      id="list-button"
+      [ngClass]="{active: !mapVisible}"
+      (click)="switchToListLayout()"
+      [ngPlural]="totalPartners"
+    >
+      <span class="glyphicon glyphicon-list"></span>&nbsp;
+      <ng-template ngPluralCase="0">{{ 'No result' | translate }}</ng-template>
+      <ng-template ngPluralCase="1">{{ '1 partner' | translate }}</ng-template>
+      <ng-template ngPluralCase="other">
+        {{ 'count_partners' | translate:{ 'count': totalPartners } }}
+      </ng-template>
+      <ng-container *ngIf="totalPartners" [ngPlural]="totalPartnerships">
+        -
+        <ng-template ngPluralCase="1">
+          {{ '1 partnership' | translate }}
+        </ng-template>
+        <ng-template ngPluralCase="other">
+          {{ 'count_partnerships' | translate:{ 'count': totalPartnerships } }}
+        </ng-template>
+      </ng-container>
+    </a>
+  </div>
+
+  <app-error-message [title]="'Failed to load partners list' | translate" *ngIf="partnersError"></app-error-message>
+
+  <app-map
+    [ngClass]="{hidden: !mapVisible}"
+    [loading]="loading"
+    [visible]="mapVisible"
+    [markers]="results"
+    (visibleMarkersChanged)="onVisibleMarkersUpdated($event)"
+    (switchToList)="switchToListLayout()"
+    #map
+  ></app-map>
+
+  <app-partners-list
+    [ngClass]="{hidden: mapVisible}"
+    [loading]="loading"
+    [rows]="this.mapInfluence ? this.visibleMarkers : this.results"
+    [totalPartnerships]="totalPartnerships"
+    #table
+  ></app-partners-list>
+
+</div>
+
+<router-outlet></router-outlet>

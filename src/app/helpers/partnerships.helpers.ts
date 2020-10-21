@@ -76,7 +76,7 @@ export function getMobilityType(partnership) {
 export function getCleanParams(params) {
   const cleanParams = {};
   Object.keys(params).map(key => {
-    if (params[key] && params[key].length > 0) {
+    if (params[key] !== null) {
       cleanParams[key] = params[key];
     }
   });
@@ -86,38 +86,42 @@ export function getCleanParams(params) {
 
 export function getPartnershipParams(query: any): PartnershipParams {
   return getCleanParams({
-    campus: query.campus || '',
-    city: query.city || '',
-    continent: query.continent || '',
-    country: query.country || '',
-    education_field: query.education_field || '',
-    limit: query.limitPartnership || '',
-    offset: query.offsetPartnership || '',
-    partner: query.partner || '',
-    supervisor: query.supervisor || '',
-    type: query.type || '',
-    ucl_entity: query.ucl_entity || '',
-    mobility_type: query.mobility_type || [],
-    funding: query.funding || [],
-    ordering: 'ucl_entity'
+    city: query.city,
+    country: query.country,
+    education_level: query.education_level,
+    offer: query.offer,
+    limit: query.limitPartnership,
+    offset: query.offsetPartnership,
+    partner: query.partner,
+    type: query.type,
+    ucl_entity: query.ucl_entity,
+    mobility_type: query.mobility_type,
+    funding_source: query.funding_source,
+    funding_program: query.funding_program,
+    funding_type: query.funding_type,
+    tag: query.tag,
+    partner_tag: query.partner_tag,
+    with_children: !!query.with_children,
   });
 }
 
 export function getPartnerParams(query: any): PartnerParams {
   return getCleanParams({
-    campus: query.campus || '',
-    city: query.city || '',
-    continent: query.continent || '',
-    country: query.country || '',
-    education_field: query.education_field || '',
-    limit: query.limit || '',
-    offset: query.offset || '',
-    partner: query.partner || '',
-    supervisor: query.supervisor || '',
-    type: query.type || '',
-    ucl_entity: query.ucl_entity || '',
-    mobility_type: query.mobility_type || [],
-    funding: query.funding || [],
-    ordering: query.ordering || ''
+    city: query.city,
+    country: query.country,
+    education_level: query.education_level,
+    offer: query.offer,
+    partner: query.partner,
+    type: query.type,
+    ucl_entity: query.ucl_entity,
+    mobility_type: query.mobility_type,
+    ordering: query.ordering,
+    bbox: query.bbox,
+    funding_source: query.funding_source,
+    funding_program: query.funding_program,
+    funding_type: query.funding_type,
+    tag: query.tag,
+    partner_tag: query.partner_tag,
+    with_children: !!query.with_children,
   });
 }

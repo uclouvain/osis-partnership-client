@@ -4,9 +4,13 @@ import { map, tap } from 'rxjs/operators';
 import * as queryString from 'query-string';
 
 import { environment } from '../../environments/environment';
-import Partnership, { PartnershipParams, ResultPartnerships } from '../interfaces/partnership';
-import Partner, { PartnerParams, ResultPartners } from '../interfaces/partners';
+import Partnership, {
+  PartnershipParams,
+  ResultPartnerships
+} from '../interfaces/partnership';
+import Partner, { PartnerParams, } from '../interfaces/partners';
 import { CacheService } from './cache.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +20,8 @@ export class PartnershipsService {
   private cachePartners: BehaviorSubject<Partner[]> = new BehaviorSubject([]);
 
   constructor(
-    private cache: CacheService
+    private cache: CacheService,
+    private http: HttpClient,
   ) {
   }
 
@@ -56,10 +61,10 @@ export class PartnershipsService {
     );
   }
 
-  public searchPartners(query: PartnerParams): Observable<ResultPartners> {
+  public searchPartners(query: PartnerParams): Observable<Partner[]> {
     return this.requestPartners(query).pipe(
       tap((partners) => {
-        this.cachePartners.next(partners.results);
+        this.cachePartners.next(partners);
       })
     );
   }
@@ -74,6 +79,11 @@ export class PartnershipsService {
     );
   }
 
+  public getExportUrl(query: PartnerParams) {
+    return this.http.get<any>(`${environment.api.url}partnerships/get-export-url?${queryString.stringify(query)}`);
+  }
+
+
   private requestPartnerships(query: PartnershipParams) {
     return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`);
   }
@@ -83,6 +93,6 @@ export class PartnershipsService {
   }
 
   private requestPartners(query: PartnerParams) {
-    return this.cache.get<ResultPartners>(`${environment.api.url}partners?${queryString.stringify(query)}`);
+    return this.cache.get<Partner[]>(`${environment.api.url}partners?${queryString.stringify(query)}`);
   }
 }
