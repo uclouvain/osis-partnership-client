@@ -13,6 +13,9 @@
 .ngx-datatable.bootstrap .datatable-footer .datatable-pager {
   margin: 0 !important;
 }
+.ngx-datatable.bootstrap .datatable-footer .datatable-footer-inner {
+  overflow: hidden;
+}
 
 .modal-header {
   overflow: hidden;
