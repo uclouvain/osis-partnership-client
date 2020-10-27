@@ -50,10 +50,14 @@ export class PartnershipDetailComponent implements OnInit {
   }
 
   get uclEntityParentDisplay() {
-    if (this.data.ucl_entity.acronym !== UCL_ROOT_ENTITY_NAME && this.data.ucl_faculty.acronym) {
+    if (this.data.ucl_entity.acronym !== UCL_ROOT_ENTITY_NAME && this.entityIsNotFaculty()) {
       return `${this.data.ucl_faculty.title} (${this.data.ucl_sector}/${this.data.ucl_faculty.acronym})`;
     }
     return '';
+  }
+
+  private entityIsNotFaculty() {
+    return this.data.ucl_faculty.acronym && this.data.ucl_faculty.acronym !== this.data.ucl_entity.acronym;
   }
 
   get uclEntityDisplay() {
@@ -65,7 +69,7 @@ export class PartnershipDetailComponent implements OnInit {
     if (this.data.ucl_sector) {
       ret += `${this.data.ucl_sector}/`;
     }
-    if (this.data.ucl_faculty.acronym) {
+    if (this.entityIsNotFaculty()) {
       ret += `${this.data.ucl_faculty.acronym}/`;
     }
     ret += `${this.data.ucl_entity.acronym})`;
