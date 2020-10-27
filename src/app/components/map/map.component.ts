@@ -129,6 +129,7 @@ export class MapComponent implements OnInit, OnChanges {
       container: 'map',
       style: this.style,
       zoom: this.defaultZoom,
+      minZoom: 1,
       maxZoom: this.maxZoom,
       center: this.defaultCenter,
       accessToken: environment.mapbox.accessToken,
