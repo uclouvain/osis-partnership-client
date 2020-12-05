@@ -106,11 +106,11 @@ export class PartnersListComponent implements OnInit {
         .subscribe((response: ResultPartners) => {
           this.partnersError = false;
           this.loading = false;
-          if (response.results) {
-            this.page.totalElements = response.count;
+          if (response) {
+            this.page.totalElements = (<any>response).length;
             this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
             this.page.pageNumber = Math.ceil((+queryParams.offset || 0) / +this.page.size);
-            this.rows = response.results.map((partner: Partner) => ({
+            this.rows = (<any>response).map((partner: Partner) => ({
               ...partner,
               cellTemplate: this.partnershipSummaryCell
             }));

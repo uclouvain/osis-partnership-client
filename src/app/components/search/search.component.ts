@@ -153,9 +153,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       // Remove duplicates
       this.allCities = this.allCities.filter((city, index, self) => self.indexOf(city) === index);
       this.cities = this.allCities;
-      this.educationFields = getFormattedItemsList(config.education_fields);
+      this.educationFields = getFormattedItemsList(config.education_levels);
       this.partners = getFormattedItemsList(config.partners);
-      this.supervisors = getFormattedItemsList(config.supervisors);
+      this.supervisors = [] //getFormattedItemsList(config.supervisors);
       this.uclUniversities = getFormattedItemsList(config.ucl_universities);
 
       // Init default  values from url params
