@@ -14,13 +14,9 @@
     [footerHeight]="40"
     [rowHeight]="'auto'"
     [reorderable]="false"
-    [externalPaging]="true"
-    [externalSorting]="true"
     [count]="page.totalElements"
     [offset]="page.pageNumber"
-    [limit]="page.size"
-    (page)='setPage($event)'
-    (sort)="onSort($event)"
+    [limit]="page.size"    
     [sorts]="sorts"
     [columnMode]="'flex'"
     [loadingIndicator]="loading">

@@ -65,8 +65,8 @@ export class PartnershipsService {
 
   public searchPartners(query: PartnerParams): Observable<ResultPartners> {
     return this.requestPartners(query).pipe(
-      tap((partners) => {
-        this.cachePartners.next(partners.results);
+      tap((partners: any) => {
+        this.cachePartners.next(partners);
       })
     );
   }

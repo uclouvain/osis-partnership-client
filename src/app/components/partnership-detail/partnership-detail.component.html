@@ -18,8 +18,8 @@
 
     <dt>{{ 'UCLouvain' | translate }}</dt>
     <dd>
-        <span *ngIf="data.ucl_university">{{data.ucl_university.title}} ({{data.ucl_university.acronym}})<br/></span>
-        <span *ngIf="data.ucl_university_labo">{{data.ucl_university_labo.title}} ({{data.ucl_university_labo.acronym}})</span>
+        <span *ngIf="data.ucl_faculty">{{data.ucl_faculty.title}} ({{data.ucl_faculty.acronym}})<br/></span>
+        <span *ngIf="data.ucl_entity">{{data.ucl_entity.title}} ({{data.ucl_entity.acronym}})</span>
     </dd>
 
     <dt *ngIf="data.supervisor">{{ 'UCLouvain academic coordinator' | translate }}</dt>
@@ -148,7 +148,7 @@
 
           <dt *ngIf="data.in_portal"></dt>
           <dd *ngIf="data.in_portal">
-            <a [href]="data.in_portal" target="blank" rel="noopener">{{ 'Web portal incoming' | translate }} {{ data.ucl_university.acronym }}<span *ngIf="data.ucl_university_labo">/{{data.ucl_university_labo.acronym}}</span></a>
+            <a [href]="data.in_portal" target="blank" rel="noopener">{{ 'Web portal incoming' | translate }} {{ data.ucl_faculty.acronym }}<span *ngIf="data.ucl_entity">/{{data.ucl_entity.acronym}}</span></a>
           </dd>
 
           <dt>{{ 'Admission' | translate }}</dt>
