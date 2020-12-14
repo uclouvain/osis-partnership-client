@@ -336,8 +336,10 @@ export class MapComponent implements OnInit, OnChanges {
               cluster_id,
               point_count,
               0,
-              (error, leaves) =>
-                resolve(leaves.map(leave => leave.properties))
+              (error, leaves) => {
+                if (!leaves) { return; }
+                resolve(leaves.map(leave => leave.properties));
+              }
             );
           } else {
             // normal point, return properties

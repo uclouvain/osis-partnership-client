@@ -101,7 +101,7 @@ export function getPartnershipParams(query: any): PartnershipParams {
     funding_type: query.funding_type,
     tag: query.tag,
     partner_tag: query.partner_tag,
-    with_children: !!query.with_children,
+    with_children: query.with_children !== 'false',
   });
 }
 
@@ -122,6 +122,6 @@ export function getPartnerParams(query: any): PartnerParams {
     funding_type: query.funding_type,
     tag: query.tag,
     partner_tag: query.partner_tag,
-    with_children: !!query.with_children,
+    with_children: query.with_children !== 'false',
   });
 }

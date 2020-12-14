@@ -19,7 +19,7 @@
         </ng-select>
       </div>
 
-      <div *ngIf="!forceUclEntity">
+      <div *ngIf="!forceUclEntity || uclEntities">
         <label for="ucl-entity" class="sr-only">{{ "UCLouvain entity" | translate}}</label>
         <ng-select
           name="ucl_entity"
@@ -29,6 +29,7 @@
           [placeholder]="'UCLouvain entity' | translate"
           bindValue="value"
           (change)="uclEntityValueChanged($event)"
+          [clearable]="!forceUclEntity"
         ></ng-select>
       </div>
 

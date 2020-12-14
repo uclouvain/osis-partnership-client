@@ -1,4 +1,4 @@
-import { ValueLabel } from '../interfaces/common';
+import { IdLabel } from '../interfaces/common';
 
 /**
  * Returns items list with id and label for each item
@@ -17,7 +17,7 @@ export const getFormattedItemsList = (items: any[]) => items.map(
  * Returns label of given value from a list of items
  */
 export const getLabel = (items: any[], value: string) => {
-  const currentItem = items.find((item: string | ValueLabel) => (
+  const currentItem = items.find((item: string | IdLabel) => (
     typeof item === 'string' && item === value ? true
     : typeof item === 'object' && item.id === value
   ));

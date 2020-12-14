@@ -15,12 +15,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CombinedSearchItem,
   FundingElement,
-  ValueLabel
+  IdLabel, ValueLabel
 } from '../../interfaces/common';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import * as queryString from 'query-string';
 import { PartnershipsService } from '../../services/partnerships.service';
 
 const defaultModel = {
@@ -66,20 +63,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   // Combined search options
   public combinedSearch: CombinedSearchItem[];
   public combinedSearchValue: any;
-  public countries: ValueLabel[];
-  public cities: ValueLabel[];
-  public partners: ValueLabel[];
-  public tags: ValueLabel[];
-  public partnerTags: ValueLabel[];
+  public countries: IdLabel[];
+  public cities: IdLabel[];
+  public partners: IdLabel[];
+  public tags: IdLabel[];
+  public partnerTags: IdLabel[];
   public fundings: FundingElement[];
 
   // Other options
   public uclEntities: ValueLabel[];
-  public partnershipTypes: ValueLabel[];
+  public partnershipTypes: IdLabel[];
 
   public educationLevels: ValueLabel[];
-  public yearOffers: ValueLabel[];
-  public mobilityTypeItems: ValueLabel[] = [
+  public yearOffers: IdLabel[];
+  public mobilityTypeItems: IdLabel[] = [
     { id: 'student', label: this.translate.instant('Student') },
     { id: 'staff', label: this.translate.instant('Staff') },
   ];
@@ -115,6 +112,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...defaultModel,
       ucl_entity: this.forceUclEntity,
+      with_children: !this.forceUclEntity,
       type: this.forcePartnershipType,
     };
 
@@ -178,6 +176,18 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         this.educationLevels = config.education_levels;
         this.uclEntities = config.ucl_universities;
+        if (this.forceUclEntity) {
+          // If uclEntity is pre-selected, look for child entities in list
+          const rootLabel = config.ucl_universities.find(
+            ({ value }) => value === this.forceUclEntity
+          ).label.split('-')[0];
+          this.uclEntities = config.ucl_universities.filter(
+            ({ label }) => label.startsWith(rootLabel)
+          );
+          // Force with_children to false
+          this.model.with_children = false;
+        }
+
         this.partnershipTypes = config.partnership_types;
       });
   }
@@ -282,6 +292,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...defaultModel,
       ucl_entity: this.forceUclEntity,
+      with_children: !this.forceUclEntity,
       type: this.forcePartnershipType,
     };
     this.combinedSearchValue = null;
