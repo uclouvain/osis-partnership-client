@@ -81,7 +81,7 @@
         ({{data.status.valid_years}})
       </ng-container>
       <ng-container *ngIf="data.status.start_date">
-        ({{data.status.start_date}} - {{data.status.end_date}})
+        ({{data.status.start_date}} > {{data.status.end_date}})
       </ng-container>
     </dd>
 
@@ -105,7 +105,14 @@
 
       <ng-container *ngIf="data.funding_program">
         <dt class="nomargin">{{ 'Funding program / Action' | translate }}</dt>
-        <dd class="nomargin">{{data.funding_program}}</dd>
+        <dd class="nomargin">
+          <ng-container *ngIf="!data.funding_program.url">
+            {{ data.funding_program.name }}
+          </ng-container>
+          <a [href]="data.funding_program.url" target="_blank" *ngIf="data.funding_program.url">
+            {{ data.funding_program.name }}
+          </a>
+        </dd>
       </ng-container>
 
       <ng-container *ngIf="data.project_title">
@@ -118,13 +125,36 @@
         <dd>{{data.id_number}}</dd>
       </ng-container>
 
-      <dt>{{ 'Level of study' | translate }}</dt>
-      <dd *ngIf="!data.out_education_levels || !data.out_education_levels.length">
+      <dt class="nomargin">{{ 'Level of study' | translate }}</dt>
+      <dd class="nomargin" *ngIf="!data.out_education_levels || !data.out_education_levels.length">
         {{ 'Bachelor' | translate }}, {{ 'Master' | translate }}
       </dd>
-      <dd *ngIf="data.out_education_levels && data.out_education_levels.length">
+      <dd class="nomargin" *ngIf="data.out_education_levels && data.out_education_levels.length">
         {{ getEducationLevels() }}
       </dd>
+
+      <ng-container *ngIf="isCoorganisation">
+        <dt class="nomargin">{{ 'Faculty/School' | translate }}</dt>
+        <dd class="nomargin" *ngIf="data.out_entities && data.out_entities.length">
+          <ng-container *ngFor="let entity of data.out_entities; index as index">
+            <ng-container *ngIf="index !== 0">,</ng-container>
+            <span class="has-tooltip" [tooltip]="entity.title">{{entity.acronym}}</span>
+          </ng-container>
+        </dd>
+        <dd class="nomargin" *ngIf="!data.out_entities || !data.out_entities.length">
+          {{ 'All' | translate }}
+        </dd>
+
+        <dt>{{ 'Program' | translate }}</dt>
+        <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
+          {{ 'All programs' | translate }}
+        </dd>
+        <dd *ngIf="data.out_university_offers && data.out_university_offers.length">
+          <ul *ngFor="let level of data.out_university_offers" class="partnership__list">
+            <li>{{level}}</li>
+          </ul>
+        </dd>
+      </ng-container>
 
       <ng-container *ngIf="data.description">
         <dt>{{ 'Project summary' | translate }}</dt>
@@ -139,7 +169,7 @@
         </dd>
 
         <ng-template #noEllipsis>
-          {{data.description}}
+          <p [innerHTML]="data.description | nl2br "></p>
         </ng-template>
       </ng-container>
 
@@ -190,7 +220,6 @@
           <dd *ngIf="!data.out_university_offers || !data.out_university_offers.length">
             {{ 'All programs' | translate }}
           </dd>
-
           <dd *ngIf="data.out_university_offers && data.out_university_offers.length">
             <ul *ngFor="let level of data.out_university_offers" class="partnership__list">
               <li>{{level}}</li>
@@ -245,9 +274,6 @@
               </li>
             </ul>
           </dd>
-
-          <dt>{{ 'Individual Student Evaluations' | translate }}</dt>
-          <dd>{{ 'Address coming soon' | translate }}</dd>
 
           <ng-container *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
             <dt>{{ 'Summary Tables' | translate }}</dt>

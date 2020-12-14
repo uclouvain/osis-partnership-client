@@ -40,7 +40,7 @@ import { MapComponent } from './components/map/map.component';
 import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EllipsisModule } from 'ngx-ellipsis';
-import { HtmlElementPropertyService } from './services/html-element-property.service';
+import { Nl2brPipe } from './nl2br.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -92,6 +92,7 @@ export function authenticateUser(authentificationService: AuthentificationServic
     PartnershipDetailComponent,
     ModalPartnerComponent,
     ErrorMessageComponent,
+    Nl2brPipe,
     LoaderComponent
   ],
   exports: [

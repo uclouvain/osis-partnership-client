@@ -37,10 +37,6 @@
   padding: 0;
 }
 
-.partnership__list li {
-  margin-bottom: .5em;
-}
-
 .has-tooltip {
   text-decoration: underline dotted;
 }
