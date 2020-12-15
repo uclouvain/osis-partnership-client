@@ -119,7 +119,10 @@ export class MapComponent implements OnInit, OnChanges {
         }
       });
       if (!bounds.isEmpty()) {
-        this.map.fitBounds(bounds, { linear: true });
+        this.map.fitBounds(bounds, {
+          linear: true,
+          padding: 70,
+        });
       }
     }
   }
@@ -153,7 +156,7 @@ export class MapComponent implements OnInit, OnChanges {
         features: []
       },
       cluster: true,
-      clusterRadius: 65,
+      clusterRadius: 40,
       // Sum the partnership count in clusters
       clusterProperties: {
         sum: ['+', ['get', 'partnerships_count']],
