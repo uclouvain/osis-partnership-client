@@ -144,6 +144,8 @@
   [title]="'Failed to load configuration' | translate" *ngIf="configError"
 ></app-error-message>
 
-<app-partner-results></app-partner-results>
+<app-partner-results
+  (bboxChanged)="onBBoxChanged($event)"
+></app-partner-results>
 
 <router-outlet></router-outlet>

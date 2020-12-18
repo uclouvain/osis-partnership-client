@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PartnershipsService } from '../../services/partnerships.service';
 import { getPartnerParams } from '../../helpers/partnerships.helpers';
@@ -6,7 +12,10 @@ import { catchError } from 'rxjs/operators';
 import Partner from '../../interfaces/partners';
 import { MapComponent } from '../map/map.component';
 import { PartnersListComponent } from '../partners-list/partners-list.component';
-import { VisibleMarkerChangedEvent } from '../../interfaces/events';
+import {
+  BBoxChangedEvent,
+  VisibleMarkerChangedEvent
+} from '../../interfaces/events';
 
 @Component({
   selector: 'app-partner-results',
@@ -16,6 +25,7 @@ import { VisibleMarkerChangedEvent } from '../../interfaces/events';
 export class PartnerResultsComponent implements OnInit {
   @ViewChild('map', { static: true }) map: MapComponent;
   @ViewChild('table', { static: true }) table: PartnersListComponent;
+  @Output() bboxChanged = new EventEmitter<BBoxChangedEvent>();
 
   public mapVisible = true;
   public results: Partner[] = [];
@@ -84,6 +94,11 @@ export class PartnerResultsComponent implements OnInit {
       this.mapInfluence = true;
     }
     this.updateCount();
+  }
+
+  onBBoxChanged(event: BBoxChangedEvent) {
+    // Bubble up
+    this.bboxChanged.emit(event);
   }
 
   private updateCount() {

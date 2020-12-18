@@ -19,6 +19,8 @@ import {
 } from '../../interfaces/common';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
 import { PartnershipsService } from '../../services/partnerships.service';
+import { LngLatBounds } from 'mapbox-gl';
+import { BBoxChangedEvent } from '../../interfaces/events';
 
 const defaultModel = {
   type: null,
@@ -36,6 +38,9 @@ const defaultModel = {
   with_children: true,
   partner_tag: null,
   tag: null,
+  // This will not be modified, but is specified to reset state after closing
+  // the partnerships modal and changing search
+  partnerFilter: null,
 };
 
 const compareObjectLabels = (a, b) => {
@@ -89,6 +94,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   public forceUclEntity?: string;
   public forcePartnershipType?: string;
   public exportEnabled: boolean;
+
+  public bbox: LngLatBounds;
 
   constructor(
     private router: Router,
@@ -360,8 +367,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   export() {
     const query = getPartnerParams(this.model);
+    query.bbox = this.bbox.toArray().toString();
     this.partnershipsService.getExportUrl(query).subscribe(
       ({ url }) => window.open(url)
     );
+  }
+
+  onBBoxChanged(event: BBoxChangedEvent) {
+    this.bbox = event.bbox;
   }
 }

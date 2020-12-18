@@ -13,7 +13,10 @@ import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import { VisibleMarkerChangedEvent } from '../../interfaces/events';
+import {
+  BBoxChangedEvent,
+  VisibleMarkerChangedEvent
+} from '../../interfaces/events';
 
 
 /**
@@ -46,6 +49,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() visible = false;
   @Input() loading = false;
   @Output() visibleMarkersChanged = new EventEmitter<VisibleMarkerChangedEvent>();
+  @Output() bboxChanged = new EventEmitter<BBoxChangedEvent>();
   @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;
@@ -324,6 +328,7 @@ export class MapComponent implements OnInit, OnChanges {
       return;
     }
     this.bbox = this.map.getBounds();
+    this.bboxChanged.emit({ bbox: this.bbox });
 
     // Get all visible partners
     const features = this.map.queryRenderedFeatures(null, {

@@ -25,4 +25,5 @@ export interface PartnerParams {
   mobility_type?: string;
   funding?: string;
   ordering?: string;
+  bbox?: string;
 }

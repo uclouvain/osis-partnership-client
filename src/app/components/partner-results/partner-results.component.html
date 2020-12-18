@@ -53,6 +53,7 @@
     [visible]="mapVisible"
     [markers]="results"
     (visibleMarkersChanged)="onVisibleMarkersUpdated($event)"
+    (bboxChanged)="onBBoxChanged($event)"
     (switchToList)="switchToListLayout()"
     #map
   ></app-map>
