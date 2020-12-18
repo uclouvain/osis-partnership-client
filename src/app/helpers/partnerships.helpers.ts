@@ -87,6 +87,7 @@ export function getCleanParams(params) {
 export function getPartnershipParams(query: any): PartnershipParams {
   return getCleanParams({
     city: query.city,
+    continent: query.continent,
     country: query.country,
     education_level: query.education_level,
     offer: query.offer,
@@ -108,6 +109,7 @@ export function getPartnershipParams(query: any): PartnershipParams {
 export function getPartnerParams(query: any): PartnerParams {
   return getCleanParams({
     city: query.city,
+    continent: query.continent,
     country: query.country,
     education_level: query.education_level,
     offer: query.offer,

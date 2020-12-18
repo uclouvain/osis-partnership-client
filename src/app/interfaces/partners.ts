@@ -16,6 +16,7 @@ export default interface Partner {
 export interface PartnerParams {
   education_level?: string;
   city?: string;
+  continent?: string;
   country?: string;
   education_field?: string;
   limit?: number;

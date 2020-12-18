@@ -24,6 +24,7 @@ import { BBoxChangedEvent } from '../../interfaces/events';
 
 const defaultModel = {
   type: null,
+  continent: null,
   country: null,
   city: null,
   partner: null,
@@ -68,6 +69,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   // Combined search options
   public combinedSearch: CombinedSearchItem[];
   public combinedSearchValue: any;
+  public continents: IdLabel[];
   public countries: IdLabel[];
   public cities: IdLabel[];
   public partners: IdLabel[];
@@ -162,6 +164,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.config = config;
 
         // Combined search options
+        this.continents = getFormattedItemsList(config.continents.map(({ name }) => name));
         this.countries = getFormattedItemsList([].concat.apply(
           // Get countries and flatten
           [], config.continents.map(continent => continent.countries)
@@ -201,6 +204,15 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private initCombinedSearch(params) {
     this.combinedSearch = [
+      {
+        id: 'continent',
+        label: this.translate.instant('Continent'),
+        label_plural: this.translate.instant('Continent'),
+        children: this.continents.map(elem => ({
+          ...elem,
+          type: 'continent'
+        })),
+      },
       {
         id: 'country',
         label: this.translate.instant('Country'),
@@ -311,6 +323,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...this.model,
       partner: null,
+      continent: null,
       country: null,
       city: null,
       funding_source: null,
