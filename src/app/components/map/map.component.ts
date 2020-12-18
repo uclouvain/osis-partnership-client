@@ -65,6 +65,9 @@ export class MapComponent implements OnInit, OnChanges {
   public mainColor: string;
   public height: number;
 
+  public legendClosed = true;
+
+
   constructor(
     private router: Router,
     private htmlElementPropertyService: HtmlElementPropertyService,

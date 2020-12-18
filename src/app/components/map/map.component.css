@@ -46,3 +46,14 @@
   bottom: 0;
   border-top-right-radius: 5px;
 }
+#map-legend .btn {
+  padding: 0;
+  background: none;
+}
+#map-legend.closed {
+  writing-mode: sideways-lr;
+  padding: .5em 0 3em;
+}
+#map-legend.closed .legend-row {
+  display: none;
+}
