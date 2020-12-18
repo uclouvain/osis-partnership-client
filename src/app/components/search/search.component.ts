@@ -39,9 +39,6 @@ const defaultModel = {
   with_children: true,
   partner_tag: null,
   tag: null,
-  // This will not be modified, but is specified to reset state after closing
-  // the partnerships modal and changing search
-  partnerFilter: null,
 };
 
 const compareObjectLabels = (a, b) => {
@@ -121,7 +118,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...defaultModel,
       ucl_entity: this.forceUclEntity,
-      with_children: !this.forceUclEntity,
       type: this.forcePartnershipType,
     };
 
@@ -194,8 +190,6 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.uclEntities = config.ucl_universities.filter(
             ({ label }) => label.startsWith(rootLabel)
           );
-          // Force with_children to false
-          this.model.with_children = false;
         }
 
         this.partnershipTypes = config.partnership_types;
@@ -300,7 +294,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (event) {
       event.preventDefault();
     }
-    this.router.navigate([''], { queryParams: getCleanParams(this.model) });
+    this.router.navigate([''], {
+      queryParamsHandling: 'merge',
+      queryParams: {
+        ...getCleanParams(this.model),
+        // This resets state after using the partnerships modal and changing search
+        partnerFilter: null,
+      },
+    });
   }
 
   /**
@@ -311,7 +312,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...defaultModel,
       ucl_entity: this.forceUclEntity,
-      with_children: !this.forceUclEntity,
       type: this.forcePartnershipType,
     };
     this.combinedSearchValue = null;
@@ -362,7 +362,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isWithChildrenFilterShown() {
-    return this.model.ucl_entity && !this.forceUclEntity;
+    return this.model.ucl_entity && (!this.forceUclEntity || this.uclEntities);
   }
 
   isTargetFilterShown() {
