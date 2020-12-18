@@ -36,6 +36,17 @@ const createLineImage = (width) => {
   return { data, width, height: 1 };
 };
 
+/**
+ * Debounce the call for an event
+ */
+function debounce(cb, wait = 20) {
+    let h = 0;
+    return (...args: any) => {
+        clearTimeout(h);
+        h = setTimeout(() => cb(...args), wait);
+    };
+}
+
 const markerLayers = ['unclustered-point', 'clusters'];
 
 @Component({
@@ -258,11 +269,11 @@ export class MapComponent implements OnInit, OnChanges {
             if (err) {
               return;
             }
-
             this.map.easeTo({
               // @ts-ignore
               center: feature.geometry.coordinates,
-              zoom: Math.min(zoom, this.maxZoom)
+              zoom: Math.min(zoom, this.maxZoom),
+              padding: 70,
             });
           }
         );
@@ -311,8 +322,8 @@ export class MapComponent implements OnInit, OnChanges {
       .on('mouseleave', layerName, resetMousePointer)
     );
 
-    this.map.on('zoomend', this.updateListButtonLabel);
-    this.map.on('moveend', this.updateListButtonLabel);
+    this.map.on('zoomend', debounce(this.updateListButtonLabel, 100));
+    this.map.on('moveend', debounce(this.updateListButtonLabel, 100));
 
     // Trigger the above
     this.map.zoomTo(this.map.getZoom());

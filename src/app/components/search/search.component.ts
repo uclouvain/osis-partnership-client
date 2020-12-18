@@ -295,7 +295,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       event.preventDefault();
     }
     this.router.navigate([''], {
-      queryParamsHandling: 'merge',
       queryParams: {
         ...getCleanParams(this.model),
         // This resets state after using the partnerships modal and changing search
