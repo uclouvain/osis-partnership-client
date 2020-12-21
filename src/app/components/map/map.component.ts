@@ -13,7 +13,10 @@ import { environment } from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import { VisibleMarkerChangedEvent } from '../../interfaces/events';
+import {
+  BBoxChangedEvent,
+  VisibleMarkerChangedEvent
+} from '../../interfaces/events';
 
 
 /**
@@ -33,6 +36,17 @@ const createLineImage = (width) => {
   return { data, width, height: 1 };
 };
 
+/**
+ * Debounce the call for an event
+ */
+function debounce(cb, wait = 20) {
+    let h = 0;
+    return (...args: any) => {
+        clearTimeout(h);
+        h = setTimeout(() => cb(...args), wait);
+    };
+}
+
 const markerLayers = ['unclustered-point', 'clusters'];
 
 @Component({
@@ -46,6 +60,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() visible = false;
   @Input() loading = false;
   @Output() visibleMarkersChanged = new EventEmitter<VisibleMarkerChangedEvent>();
+  @Output() bboxChanged = new EventEmitter<BBoxChangedEvent>();
   @Output() switchToList = new EventEmitter();
 
   private map: mapboxgl.Map;
@@ -60,6 +75,9 @@ export class MapComponent implements OnInit, OnChanges {
   private maxZoom = 9;
   public mainColor: string;
   public height: number;
+
+  public legendClosed = true;
+
 
   constructor(
     private router: Router,
@@ -119,7 +137,10 @@ export class MapComponent implements OnInit, OnChanges {
         }
       });
       if (!bounds.isEmpty()) {
-        this.map.fitBounds(bounds, { linear: true });
+        this.map.fitBounds(bounds, {
+          linear: true,
+          padding: 70,
+        });
       }
     }
   }
@@ -153,7 +174,7 @@ export class MapComponent implements OnInit, OnChanges {
         features: []
       },
       cluster: true,
-      clusterRadius: 65,
+      clusterRadius: 40,
       // Sum the partnership count in clusters
       clusterProperties: {
         sum: ['+', ['get', 'partnerships_count']],
@@ -248,11 +269,11 @@ export class MapComponent implements OnInit, OnChanges {
             if (err) {
               return;
             }
-
             this.map.easeTo({
               // @ts-ignore
               center: feature.geometry.coordinates,
-              zoom: Math.min(zoom, this.maxZoom)
+              zoom: Math.min(zoom, this.maxZoom),
+              padding: 70,
             });
           }
         );
@@ -301,8 +322,8 @@ export class MapComponent implements OnInit, OnChanges {
       .on('mouseleave', layerName, resetMousePointer)
     );
 
-    this.map.on('zoomend', this.updateListButtonLabel);
-    this.map.on('moveend', this.updateListButtonLabel);
+    this.map.on('zoomend', debounce(this.updateListButtonLabel, 100));
+    this.map.on('moveend', debounce(this.updateListButtonLabel, 100));
 
     // Trigger the above
     this.map.zoomTo(this.map.getZoom());
@@ -321,6 +342,7 @@ export class MapComponent implements OnInit, OnChanges {
       return;
     }
     this.bbox = this.map.getBounds();
+    this.bboxChanged.emit({ bbox: this.bbox });
 
     // Get all visible partners
     const features = this.map.queryRenderedFeatures(null, {
@@ -336,8 +358,10 @@ export class MapComponent implements OnInit, OnChanges {
               cluster_id,
               point_count,
               0,
-              (error, leaves) =>
-                resolve(leaves.map(leave => leave.properties))
+              (error, leaves) => {
+                if (!leaves) { return; }
+                resolve(leaves.map(leave => leave.properties));
+              }
             );
           } else {
             // normal point, return properties

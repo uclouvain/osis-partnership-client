@@ -1,7 +1,12 @@
 <div id="map" [style.height.px]="height">
   <div id="map-loader" *ngIf="loading"></div>
-  <div id="map-legend">
+  <div id="map-legend" [class.closed]="legendClosed">
     <strong>{{ 'Legend' | translate }}</strong>
+    <button (click)="legendClosed = !legendClosed" type="button" class="btn">
+      &nbsp; <i
+      class="glyphicon" [class.glyphicon-menu-down]="legendClosed" [class.glyphicon-menu-left]="!legendClosed"
+    ></i>
+    </button>
     <div class="legend-row">
       <svg width="150" height="100">
         <circle r="20" cx="25" cy="25" fill="#fff" [attr.stroke]="mainColor" stroke-width="3"></circle>

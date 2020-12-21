@@ -13,7 +13,10 @@ export default interface Partnership {
   ucl_entity: AcronymEntity;
   ucl_sector: string;
   supervisor: string;
-  funding_program: string;
+  funding_program: {
+    name: string,
+    url?: string,
+  };
   id_number: string;
   project_title: string;
   mobility_type: 'student' | 'studies' | 'short_term' | 'training';

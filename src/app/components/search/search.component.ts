@@ -15,16 +15,16 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CombinedSearchItem,
   FundingElement,
-  ValueLabel
+  IdLabel, ValueLabel
 } from '../../interfaces/common';
 import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import * as queryString from 'query-string';
 import { PartnershipsService } from '../../services/partnerships.service';
+import { LngLatBounds } from 'mapbox-gl';
+import { BBoxChangedEvent } from '../../interfaces/events';
 
 const defaultModel = {
   type: null,
+  continent: null,
   country: null,
   city: null,
   partner: null,
@@ -66,20 +66,21 @@ export class SearchComponent implements OnInit, OnDestroy {
   // Combined search options
   public combinedSearch: CombinedSearchItem[];
   public combinedSearchValue: any;
-  public countries: ValueLabel[];
-  public cities: ValueLabel[];
-  public partners: ValueLabel[];
-  public tags: ValueLabel[];
-  public partnerTags: ValueLabel[];
+  public continents: IdLabel[];
+  public countries: IdLabel[];
+  public cities: IdLabel[];
+  public partners: IdLabel[];
+  public tags: IdLabel[];
+  public partnerTags: IdLabel[];
   public fundings: FundingElement[];
 
   // Other options
   public uclEntities: ValueLabel[];
-  public partnershipTypes: ValueLabel[];
+  public partnershipTypes: IdLabel[];
 
   public educationLevels: ValueLabel[];
-  public yearOffers: ValueLabel[];
-  public mobilityTypeItems: ValueLabel[] = [
+  public yearOffers: IdLabel[];
+  public mobilityTypeItems: IdLabel[] = [
     { id: 'student', label: this.translate.instant('Student') },
     { id: 'staff', label: this.translate.instant('Staff') },
   ];
@@ -92,6 +93,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   public forceUclEntity?: string;
   public forcePartnershipType?: string;
   public exportEnabled: boolean;
+
+  public bbox: LngLatBounds;
 
   constructor(
     private router: Router,
@@ -157,6 +160,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.config = config;
 
         // Combined search options
+        this.continents = getFormattedItemsList(config.continents.map(({ name }) => name));
         this.countries = getFormattedItemsList([].concat.apply(
           // Get countries and flatten
           [], config.continents.map(continent => continent.countries)
@@ -178,12 +182,31 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         this.educationLevels = config.education_levels;
         this.uclEntities = config.ucl_universities;
+        if (this.forceUclEntity) {
+          // If uclEntity is pre-selected, look for child entities in list
+          const rootLabel = config.ucl_universities.find(
+            ({ value }) => value === this.forceUclEntity
+          ).label.split('-')[0];
+          this.uclEntities = config.ucl_universities.filter(
+            ({ label }) => label.startsWith(rootLabel)
+          );
+        }
+
         this.partnershipTypes = config.partnership_types;
       });
   }
 
   private initCombinedSearch(params) {
     this.combinedSearch = [
+      {
+        id: 'continent',
+        label: this.translate.instant('Continent'),
+        label_plural: this.translate.instant('Continent'),
+        children: this.continents.map(elem => ({
+          ...elem,
+          type: 'continent'
+        })),
+      },
       {
         id: 'country',
         label: this.translate.instant('Country'),
@@ -271,7 +294,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (event) {
       event.preventDefault();
     }
-    this.router.navigate([''], { queryParams: getCleanParams(this.model) });
+    this.router.navigate([''], {
+      queryParams: {
+        ...getCleanParams(this.model),
+        // This resets state after using the partnerships modal and changing search
+        partnerFilter: null,
+      },
+    });
   }
 
   /**
@@ -293,6 +322,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.model = {
       ...this.model,
       partner: null,
+      continent: null,
       country: null,
       city: null,
       funding_source: null,
@@ -331,7 +361,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isWithChildrenFilterShown() {
-    return this.model.ucl_entity && !this.forceUclEntity;
+    return this.model.ucl_entity && (!this.forceUclEntity || this.uclEntities);
   }
 
   isTargetFilterShown() {
@@ -349,8 +379,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   export() {
     const query = getPartnerParams(this.model);
+    query.bbox = this.bbox.toArray().toString();
     this.partnershipsService.getExportUrl(query).subscribe(
       ({ url }) => window.open(url)
     );
+  }
+
+  onBBoxChanged(event: BBoxChangedEvent) {
+    this.bbox = event.bbox;
   }
 }

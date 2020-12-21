@@ -17,34 +17,63 @@
   [externalSorting]="true"
 >
 
-  <ngx-datatable-column [name]="'Faculty' | translate" [sortable]="false">
+  <ngx-datatable-column [name]="'Entity' | translate" [sortable]="false">
     <ng-template let-row="row" ngx-datatable-cell-template>
       <ng-container *ngIf="row.ucl_faculty.acronym && row.ucl_faculty.acronym != row.ucl_entity.acronym">
         <span
           [tooltip]="row.ucl_faculty.title"
-          [placement]="'top'"
-          [container]="'body'"
+          [adaptivePosition]="false"
+          container="body"
+          placement="top"
           class="has-tooltip"
         >{{row.ucl_faculty.acronym}} / </span>
       </ng-container>
       <span
         [tooltip]="row.ucl_entity.title"
-        [placement]="'top'"
-        [container]="'body'"
+        [adaptivePosition]="false"
+        container="body"
+        placement="top"
         class="has-tooltip"
       >{{row.ucl_entity.acronym}}</span>
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column [name]="'UCLouvain' | translate" prop="supervisor" [sortable]="false">
+  <ngx-datatable-column [name]="'Supervisor' | translate" prop="supervisor" [sortable]="false">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      {{value}}
+      {{ value }}
     </ng-template>
   </ngx-datatable-column>
 
   <ngx-datatable-column [name]="'Type' | translate" prop="type" [sortable]="false">
-    <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
-      {{value | translate}}
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ng-container *ngIf="isMobility(row)">{{ value }}</ng-container>
+      <span
+        [tooltip]="row.subtype"
+        container="body"
+        placement="top"
+        class="has-tooltip"
+        *ngIf="!isMobility(row) && !isProject(row)"
+      >
+          {{ value }}
+      </span>
+
+      <ng-template #tooltipProjectTemplate>
+          <ng-container *ngIf="row.funding_program.name">
+            {{ row.funding_program.name }} /
+          </ng-container>
+          <ng-container *ngIf="row.out_funding.name">
+            {{ row.out_funding.name }}
+          </ng-container>
+      </ng-template>
+      <span
+        [tooltip]="tooltipProjectTemplate"
+        container="body"
+        placement="top"
+        class="has-tooltip"
+        *ngIf="isProject(row)"
+      >
+          {{ value }}
+      </span>
     </ng-template>
   </ngx-datatable-column>
 

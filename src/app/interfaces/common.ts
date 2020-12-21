@@ -1,5 +1,10 @@
-export interface ValueLabel {
+export interface IdLabel {
   id: string;
+  label: string;
+}
+
+export interface ValueLabel {
+  value: string;
   label: string;
 }
 

@@ -1,7 +1,7 @@
-import { ValueLabel } from './common';
+import { IdLabel } from './common';
 
 export default interface University {
   value: string;
   label: string;
-  ucl_university_labos: ValueLabel[];
+  ucl_university_labos: IdLabel[];
 }

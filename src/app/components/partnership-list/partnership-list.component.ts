@@ -6,6 +6,7 @@ import {
   getMobilityType,
   getPartnershipParams
 } from 'src/app/helpers/partnerships.helpers';
+import { Type } from '../../interfaces/partnership_type';
 
 @Component({
   selector: 'app-partnership-list',
@@ -55,9 +56,9 @@ export class PartnershipListComponent implements OnInit {
             this.page.totalElements = response.count;
             this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
             this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
-            this.rows = response.results.map((partner: Partnership) => ({
-              ...partner,
-              mobility_type: partner && getMobilityType(partner),
+            this.rows = response.results.map((partnership: Partnership) => ({
+              ...partnership,
+              mobility_type: partnership && getMobilityType(partnership),
               cellTemplate: this.partnershipSummaryCell
             }));
           }
@@ -81,5 +82,13 @@ export class PartnershipListComponent implements OnInit {
         offsetPartnership: offset
       }
     });
+  }
+
+  isMobility(partnership) {
+    return partnership.partnership_type === Type.Mobility;
+  }
+
+  isProject(partnership) {
+    return partnership.partnership_type === Type.Project;
   }
 }

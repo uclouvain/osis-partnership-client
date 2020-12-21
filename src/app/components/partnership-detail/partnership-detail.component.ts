@@ -49,6 +49,10 @@ export class PartnershipDetailComponent implements OnInit {
     return this.data.partnership_type === Type.Mobility;
   }
 
+  get isCoorganisation() {
+    return [Type.Course, Type.Doctorate].includes(this.data.partnership_type);
+  }
+
   get uclEntityParentDisplay() {
     if (this.data.ucl_entity.acronym !== UCL_ROOT_ENTITY_NAME && this.entityIsNotFaculty()) {
       return `${this.data.ucl_faculty.title} (${this.data.ucl_sector}/${this.data.ucl_faculty.acronym})`;

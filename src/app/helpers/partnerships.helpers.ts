@@ -87,6 +87,7 @@ export function getCleanParams(params) {
 export function getPartnershipParams(query: any): PartnershipParams {
   return getCleanParams({
     city: query.city,
+    continent: query.continent,
     country: query.country,
     education_level: query.education_level,
     offer: query.offer,
@@ -101,13 +102,14 @@ export function getPartnershipParams(query: any): PartnershipParams {
     funding_type: query.funding_type,
     tag: query.tag,
     partner_tag: query.partner_tag,
-    with_children: !!query.with_children,
+    with_children: query.with_children !== 'false',
   });
 }
 
 export function getPartnerParams(query: any): PartnerParams {
   return getCleanParams({
     city: query.city,
+    continent: query.continent,
     country: query.country,
     education_level: query.education_level,
     offer: query.offer,
@@ -122,6 +124,6 @@ export function getPartnerParams(query: any): PartnerParams {
     funding_type: query.funding_type,
     tag: query.tag,
     partner_tag: query.partner_tag,
-    with_children: !!query.with_children,
+    with_children: query.with_children !== 'false',
   });
 }

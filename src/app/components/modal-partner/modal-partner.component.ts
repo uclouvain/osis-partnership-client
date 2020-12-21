@@ -33,10 +33,9 @@ export class ModalPartnerComponent implements OnInit {
     this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
-        partnerFilter: undefined,
-        uniquePartnership: undefined,
-        offsetPartnership: undefined,
-        orderingPartnership: undefined
+        partnerFilter: null,
+        uniquePartnership: null,
+        offsetPartnership: null,
       }
     });
   }
