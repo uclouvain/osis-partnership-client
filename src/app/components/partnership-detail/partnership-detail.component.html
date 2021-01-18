@@ -98,12 +98,12 @@
 
     <ng-container *ngIf="!isMobility">
 
-      <ng-container *ngIf="data.out_funding">
+      <ng-container *ngIf="data.out_funding && data.out_funding.name">
         <dt class="nomargin">{{ 'Funding' | translate }}</dt>
         <dd class="nomargin">{{ data.out_funding.name }}</dd>
       </ng-container>
 
-      <ng-container *ngIf="data.funding_program">
+      <ng-container *ngIf="data.funding_program && data.funding_program.name">
         <dt class="nomargin">{{ 'Funding program / Action' | translate }}</dt>
         <dd class="nomargin">
           <ng-container *ngIf="!data.funding_program.url">
