@@ -6,29 +6,24 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners?continent=Europe',
+      url: '/partnerships/v1/partners?**',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partnerships?continent=Europe&partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/partnerships/v1/partnerships/?**',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
     navigateTo();
     cy.wait('@getConfiguration');
-
-    // Set continent filter
-    cy.get('[name=continent]')
-      .type('Eur')
-      .type('{enter}');
 
     // Click on search to set params in url
     search();
@@ -36,6 +31,8 @@ describe('Partner detail', () => {
   });
 
   it('should show right data OUT', () => {
+    cy.get('[id=list-button]').first().click();
+
     // Open first partner
     cy.get('[title="See partnership"]').first().click();
     cy.wait('@getPartnerships');
@@ -48,11 +45,13 @@ describe('Partner detail', () => {
     cy.contains('Level of study').next('dd')
       .should('have.text', ' Bachelor, Master ');
 
-    cy.contains('Faculty/School').next('dd')
-      .should('have.text', 'PSAD');
+    cy.get('dl').contains('UCLouvain').next('dd')
+      .should('contain.text', 'PSAD');
   });
 
   it('should show right data IN', () => {
+    cy.get('[id=list-button]').first().click();
+
     // Open first partner
     cy.get('[title="See partnership"]').first().click();
     cy.wait('@getPartnerships');
@@ -65,6 +64,6 @@ describe('Partner detail', () => {
     cy.contains(' Information for incoming students ').should('have.have.class', 'active');
 
     cy.contains('Contact person IN').next('dd')
-      .should('have.text', 'Maria Rodrigues Leal Moitinho De Almeidamaria.rodrigues@gmail.com');
+      .should('have.text', 'Maria Rodrigues Leal Moitinho De Almeida');
   });
 });

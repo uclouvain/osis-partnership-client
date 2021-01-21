@@ -1,83 +1,151 @@
 <form #f="ngForm" class="partnership__form" autocomplete="off">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group" *ngIf="uclUniversities">
-        <label for="uclUniversity">{{ 'UCLouvain Faculty' | translate }}</label>
-        <input #uclUniversity [(ngModel)]="fields.uclUniversity" name="ucl_university" class="form-control" id="uclUniversity"
-          [typeahead]="uclUniversities" (typeaheadOnSelect)="onUclUniversitySelect($event)" (typeaheadOnBlur)="onUclUniversitySelect($event)"
-          (ngModelChange)="onUclUniversityChange($event)" (typeaheadNoResults)="noUniversity = $event"
-          typeaheadOptionField="label" typeaheadOptionsLimit="2000">
-        <div class="alert alert-danger" *ngIf="noUniversity">{{ 'Please select a value from the list.' | translate }}</div>
+  <div class="search-grid">
+    <div class="search-grid--fields">
+      <div>
+        <label for="combined-search" class="sr-only">{{ "Keyword" | translate }}</label>
+        <ng-select
+          id="combined-search"
+          name="combined_search"
+          [items]="combinedSearch"
+          [(ngModel)]="combinedSearchValue"
+          [placeholder]="'Keyword' | translate"
+          groupBy="children"
+          [notFoundText]="'No result found' | translate"
+          (change)="combinedSearchValueChanged($event)"
+        >
+          <ng-template ng-optgroup-tmp let-item="item">
+            {{ item.label_plural }}
+          </ng-template>
+        </ng-select>
       </div>
 
-      <div class="form-group" *ngIf="uclUniversitiesLabo && uclUniversitiesLabo.length > 0">
-        <label for="ucl_university_labo">{{ 'School' | translate }}</label>
-        <input #uclUniversityLabo [(ngModel)]="fields.uclUniversityLabo" name="ucl_university_labo" class="form-control"
-          id="ucl_university_labo" [typeahead]="uclUniversitiesLabo" (typeaheadOnSelect)="onUclUniversityLaboSelect($event)" (typeaheadOnBlur)="onUclUniversityLaboSelect($event)"
-          (ngModelChange)="onUclUniversityLaboChange($event)" (typeaheadNoResults)="noUniversityLabo = $event"
-          typeaheadOptionField="label" typeaheadOptionsLimit="2000">
-        <div class="alert alert-danger" *ngIf="noUniversityLabo">{{ 'Please select a value from the list.' | translate }}</div>
+      <div *ngIf="!forceUclEntity || uclEntities">
+        <label for="ucl-entity" class="sr-only">{{ "UCLouvain entity" | translate}}</label>
+        <ng-select
+          name="ucl_entity"
+          id="ucl-entity"
+          [(ngModel)]="model.ucl_entity"
+          [items]="uclEntities"
+          [placeholder]="'UCLouvain entity' | translate"
+          bindValue="value"
+          (change)="uclEntityValueChanged($event)"
+          [clearable]="!forceUclEntity"
+        ></ng-select>
       </div>
 
-     <!--<div class="form-group" *ngIf="educationFields">
-        <label for="education_field">{{ 'Subject Area' | translate }}</label>
-        <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
-          [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)"
-               (ngModelChange)="onEducationFieldChange($event)" (typeaheadNoResults)="noEducationField = $event">
-        <div class="alert alert-danger" *ngIf="noEducationField">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>-->
-
-      <div class="form-group">
-        <label>{{ 'Mobility Type' | translate }}</label>
-        <app-checkbox-group [options]="mobilityTypesOptions" (toggle)="onMobilityTypesChange($event)"
-          [selectedValues]="model.mobility_type">
-        </app-checkbox-group>
+      <div *ngIf="!forcePartnershipType">
+        <label for="partnership-type" class="sr-only">{{ "Partnership type" | translate }}</label>
+        <ng-select
+          id="partnership-type"
+          name="partnership_type"
+          [items]="partnershipTypes"
+          bindValue="value"
+          [placeholder]="'Partnership type' | translate"
+          [(ngModel)]="model.type"
+          [searchable]="false"
+          (change)="partnershipTypeChanged()"
+        ></ng-select>
       </div>
 
+      <div *ngIf="isWithChildrenFilterShown()" class="search-grid--checkbox">
+        <label>
+          <input
+            type="checkbox"
+            id="with-children"
+            name="with_children"
+            [(ngModel)]="model.with_children"
+          />
+          {{ "Include children entities" | translate }}
+        </label>
+      </div>
+
+      <div *ngIf="isTargetFilterShown()">
+        <label for="target-group" class="sr-only">{{ 'Target group' | translate }}</label>
+        <ng-select
+          id="target-group"
+          name="target_group"
+          [placeholder]="'Target group' | translate"
+          [(ngModel)]="model.mobility_type"
+          [searchable]="false"
+          bindValue="id"
+          [items]="mobilityTypeItems"
+        ></ng-select>
+      </div>
+
+      <div *ngIf="isEducationLevelFilterShown()">
+        <label for="education-level" class="sr-only">{{ 'Education level' | translate }}</label>
+        <ng-select
+          id="education-level"
+          name="education_level"
+          [placeholder]="'Education level' | translate"
+          [(ngModel)]="model.education_level"
+          [searchable]="false"
+          bindValue="value"
+          [items]="educationLevels"
+        ></ng-select>
+      </div>
+
+      <div *ngIf="isYearOfferFilterShown()">
+        <label for="offer" class="sr-only">{{ 'Diploma' | translate }}</label>
+        <ng-select
+          id="offer"
+          name="offer"
+          [placeholder]="'Diploma' | translate"
+          [(ngModel)]="model.offer"
+          bindValue="id"
+          [items]="yearOffers"
+        ></ng-select>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="form-group" *ngIf="continents">
-        <label for="continent">{{ 'Continent' | translate }}</label>
-        <input #continent [(ngModel)]="model.continent" name="continent" [typeahead]="continents" (ngModelChange)="onContinentChange($event)"
-          typeaheadOptionField="label" class="form-control" (typeaheadNoResults)="noContinent = $event" typeaheadOptionsLimit="2000"
-          (typeaheadOnSelect)="onContinentSelect($event)" (typeaheadOnBlur)="onContinentSelect($event)" id="continent">
-        <div class="alert alert-danger" *ngIf="noContinent">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>
+    <div class="search-grid--buttons">
+      <button
+        [disabled]="loaderStatus"
+        type="submit"
+        class="btn btn-primary"
+        id="search-partners"
+        (click)="searchPartners($event)"
+        title="{{ 'Search (action)' | translate }}"
+      >
+        <span class="sr-only">{{ 'Search (action)' | translate }}</span>
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
 
-      <div class="form-group" *ngIf="countries">
-        <label for="country">{{ 'Country' | translate }}</label>
-        <input #country [(ngModel)]="fields.country" name="country" [typeahead]="countries" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
-          typeaheadOptionField="label" (typeaheadOnSelect)="onCountrySelect($event)" (typeaheadOnBlur)="onCountrySelect($event)" class="form-control" id="country"
-          (ngModelChange)="onCountryChange($event)" (typeaheadNoResults)="noCountry = $event">
-        <div class="alert alert-danger" *ngIf="noCountry">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>
+      <button
+        [disabled]="loaderStatus"
+        type="button"
+        class="btn btn-primary"
+        id="export-partnerships"
+        (click)="export()"
+        title="{{ 'Export (action)' | translate }}"
+        *ngIf="exportEnabled"
+      >
+        <span class="sr-only">{{ 'Export (action)' | translate }}</span>
+        <span class="glyphicon glyphicon-download"></span>
+      </button>
 
-      <div class="form-group">
-        <label for="city">{{ 'City' | translate }}</label>
-        <input #city [(ngModel)]="model.city" name="city" [typeahead]="cities" [typeaheadScrollable]="true" typeaheadOptionsLimit="2000"
-          typeaheadOptionField="label" class="form-control" id="city" (typeaheadNoResults)="noCity = $event">
-        <div class="alert alert-danger" *ngIf="noCity">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>
-
-      <div class="form-group" *ngIf="partners">
-        <label for="partner">{{ 'Partner institution' | translate }}</label>
-        <input #partner [(ngModel)]="fields.partner" name="partner" class="form-control" id="partner" [typeahead]="partners"
-          (typeaheadOnSelect)="onPartnerSelect($event)" (typeaheadOnBlur)="onPartnerSelect($event)" (ngModelChange)="onPartnerChange($event)"
-          typeaheadOptionField="label" typeaheadOptionsLimit="2000" [typeaheadScrollable]="true" (typeaheadNoResults)="noPartner = $event">
-        <div class="alert alert-danger" *ngIf="noPartner">{{ 'Please select a value from the list.' | translate }}</div>
-      </div>
+      <button
+        [disabled]="loaderStatus"
+        type="reset"
+        class="btn btn-danger"
+        id="reset-search-partners"
+        (click)="resetForm($event)"
+        title="{{ 'Reset form' | translate }}"
+      >
+        <span class="sr-only">{{ 'Reset form' | translate }}</span>
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
     </div>
   </div>
 
-  <button [disabled]="loaderStatus" type="submit" class="btn btn-primary" id="search-partners"
-    (click)="searchPartners($event)">{{ 'Search' | translate }}</button>
-
-    <button [disabled]="loaderStatus" type="reset" class="btn btn-danger" id="reset-search-partners"
-    (click)="resetForm($event)">{{ 'Reset form' | translate }}</button>
 </form>
 
-<app-error-message [title]="'Failed to load configuration' | translate" *ngIf="configError"></app-error-message>
+<app-error-message
+  [title]="'Failed to load configuration' | translate" *ngIf="configError"
+></app-error-message>
+
+<app-partner-results
+  (bboxChanged)="onBBoxChanged($event)"
+></app-partner-results>
 
 <router-outlet></router-outlet>

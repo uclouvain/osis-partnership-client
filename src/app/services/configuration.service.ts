@@ -1,17 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap, shareReplay, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Configuration } from '../interfaces/configuration';
-import { getValueLabelList, getFormattedItemsList } from '../helpers/list.helpers';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: `${environment.api.authorizationHeader}`
-  })
-};
 
 const CACHE_SIZE = 1;
 
@@ -35,59 +28,7 @@ export class ConfigurationService {
     return this.cache$;
   }
 
-  public getCoutries(continent: string) {
-    return this.all().pipe(
-      map((config: Configuration) =>
-        getValueLabelList(config.continents, { name: 'countries', value: continent })
-      )
-    );
-  }
-
-  public getUclUniversitiesLabo(uclUniversity: string) {
-    return this.all().pipe(
-      map((config: Configuration) =>
-        getValueLabelList(config.ucl_universities, { name: 'ucl_university_labos', value: uclUniversity })
-      )
-    );
-  }
-
-  get continents() {
-    return this.all().pipe(
-      map((config: Configuration) => getValueLabelList(config.continents))
-    );
-  }
-
-  get educationFields() {
-    return this.all().pipe(
-      map((config: Configuration) => config.education_fields)
-    );
-  }
-
-  get partners() {
-    return this.all().pipe(
-      map((config: Configuration) => config.partners)
-    );
-  }
-
-  get supervisors() {
-    return this.all().pipe(
-      map((config: Configuration) => config.supervisors)
-    );
-  }
-
-  get uclUniversities() {
-    return this.all().pipe(
-      map((config: Configuration) => getFormattedItemsList(config.ucl_universities))
-    );
-  }
-
-  get fundings() {
-    return this.all().pipe(
-      map((config: Configuration) => config.fundings)
-    );
-  }
-
   private requestConfiguration() {
-    return this.http.get<Configuration>(`${environment.api.url}configuration`, httpOptions);
+    return this.http.get<Configuration>(`${environment.api.url}configuration`);
   }
 }

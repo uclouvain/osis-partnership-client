@@ -1,0 +1,31 @@
+import { FundingElement, ValueLabel } from './common';
+import { PartnershipType } from './partnership_type';
+
+export interface Country {
+  name: string;
+  iso_code: string;
+  cities: string[];
+}
+
+export interface Continent {
+  name: string;
+  countries: Country[];
+}
+
+export interface Configuration {
+  continents: Continent[];
+  partners: ValueLabel[];
+  ucl_universities: ValueLabel[];
+  education_levels: ValueLabel[];
+  education_fields: ValueLabel[];
+<<<<<<< HEAD
+  education_levels?: ValueLabel[];
+  fundings: string[];
+=======
+  offers: ValueLabel[];
+  fundings: FundingElement[];
+  tags: string[];
+  partner_tags: string[];
+  partnership_types: PartnershipType[];
+>>>>>>> 495b3162a9ff16cae5bf32feaef8e8e0e89b8fea
+}

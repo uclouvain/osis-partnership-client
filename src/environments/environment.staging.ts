@@ -3,19 +3,22 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    api: {
-      url: 'https://api.sgsi.ucl.ac.be:8243/partnerships/v1/',
-      authorizationHeader: ''
-    },
-    i18nPath: 'https://partnership-test.osis.uclouvain.be/osis-partnership-client-drupal/assets/i18n/'
-  };
+  production: false,
+  api: {
+    url: 'https://api.sgsi.ucl.ac.be:8243/partnerships/v1/',
+    authorizationHeader: ''
+  },
+  mapbox: {
+    accessToken: '<STAGING_TOKEN>'
+  },
+  i18nPath: 'https://partnership-test.osis.uclouvain.be/osis-partnership-client-drupal/assets/i18n/'
+};
 
-  /*
-   * For easier debugging in development mode, you can import the following file
-   * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
-   *
-   * This import should be commented out in production mode because it will have a negative impact
-   * on performance if an error is thrown.
-   */
-  // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

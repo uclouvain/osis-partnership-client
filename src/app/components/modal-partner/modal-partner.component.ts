@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getPartnershipParams } from 'src/app/helpers/partnerships.helpers';
-import { ResultPartnerships } from 'src/app/interfaces/partnership';
 import Partner from 'src/app/interfaces/partners';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
-import { combineLatest } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +11,7 @@ import { mergeMap } from 'rxjs/operators';
 })
 export class ModalPartnerComponent implements OnInit {
   public partner: Partner;
-  public partnerDetail: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -33,13 +30,12 @@ export class ModalPartnerComponent implements OnInit {
    * Close modal, come back to partners list
    */
   goToSearch() {
-    this.router.navigate(['partners'], {
+    this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
-        partnerFilter: undefined,
-        uniquePartnership: undefined,
-        offsetPartnership: undefined,
-        orderingPartnership: undefined
+        partnerFilter: null,
+        uniquePartnership: null,
+        offsetPartnership: null,
       }
     });
   }

@@ -6,49 +6,39 @@ describe('Partner list', () => {
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners?continent=Europe',
+      url: '/partnerships/v1/partners?**',
       response: 'fixture:partners.json'
     }).as('getPartners');
 
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/partners?continent=Europe&offset=25',
-      response: 'fixture:partners-2.json'
-    }).as('getPartners2');
-
-    cy.route({
-      method: 'GET',
-      url: '/api/v1/partnerships/partners?continent=Europe&ordering=city',
-      response: 'fixture:partners-ordering-city.json'
-    }).as('getPartnersCityOrdered');
-``
-    cy.route({
-      method: 'GET',
-      url: '/api/v1/partnerships/partnerships?continent=Europe?partner=bc203071-e421-4a7c-94c1-b1794b4906f4',
+      url: '/partnerships/v1/partnerships/?**',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
     navigateTo();
     cy.wait('@getConfiguration');
 
-    // Set continent filter
-    cy.get('[name=continent]')
-      .type('Eur')
+    // Set filter
+    cy.get('[id=combined-search]')
+      .type('France')
       .type('{enter}');
 
     // Click on search to set params in url
     search();
     cy.wait('@getPartners');
+
+    cy.get('[id=list-button]').first().click();
   });
 
-  it('should display a total of 372 results', () => {
-    cy.get('.page-count').should('have.text', ' 372 total ');
+  it('should display a total of 179 results', () => {
+    cy.get('.page-count').should('have.text', ' 179 total ');
     cy.get('.datatable-row-group').first()
       .get('.datatable-body-cell').first()
       .should('have.text', 'Johann Wolfgang Goethe-Universität Frankfurt am Main');
@@ -67,14 +57,13 @@ describe('Partner list', () => {
   it('should returns to page 1 on filters changed', () => {
     // Go to page 2
     cy.get('[aria-label="page 2"]').first().click();
-    cy.wait('@getPartners2');
 
     // Check if first item changed
     cy.get('.partners-list__name').first()
       .should('have.text', 'Universidad de Salamanca');
 
-    // Set continent filter
-    cy.get('[name=city]')
+    // Set filter
+    cy.get('[id=combined-search]')
       .type('Toulouse')
       .type('{enter}');
 
@@ -82,14 +71,13 @@ describe('Partner list', () => {
     search();
 
     // Check if url dosn't contain offset
-    cy.url().should('contain', '?continent=Europe&city=Toulouse');
+    cy.url().should('contain', '?country=FR&city=Toulouse');
     cy.url().should('not.contain', 'offset');
   });
 
   it('should returns to page 1 on sort changed', () => {
     // Go to page 2
     cy.get('[aria-label="page 2"]').first().click();
-    cy.wait('@getPartners2');
 
     // Check if first item changed
     cy.get('.partners-list__name').first()
@@ -100,10 +88,10 @@ describe('Partner list', () => {
       .find('span.datatable-header-cell-wrapper').click();
 
     // Wait until ordering data loaded
-    cy.wait('@getPartnersCityOrdered');
+    cy.wait('@getPartners');
 
     // Check if url dosn't contain offset
-    cy.url().should('contain', 'ordering=city');
+    cy.url().should('contain', 'ordering=-city');
     cy.url().should('not.contain', 'offset');
   });
 

@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
 import { SearchComponent } from './components/search/search.component';
@@ -18,12 +25,22 @@ import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-gro
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
-import { LoadingService, LoadingInterceptor } from './services/loading.service';
+import {
+  LoadingInterceptor,
+  LoadingService
+} from './services/loading.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { PartnersListComponent } from './components/partners-list/partners-list.component';
 import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
 import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
+import { AuthentificationService } from './services/authentification.service';
+import { ApiInterceptor } from './services/api-interceptor.service';
+import { MapComponent } from './components/map/map.component';
+import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { EllipsisModule } from 'ngx-ellipsis';
+import { Nl2brPipe } from './nl2br.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -34,8 +51,15 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
+export function authenticateUser(authentificationService: AuthentificationService) {
+  return (): Promise<any> => {
+    return authentificationService.authenticate().toPromise();
+  };
+}
+
+
 @NgModule({
- imports: [
+  imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
@@ -46,7 +70,6 @@ export function getBaseUrl() {
         deps: [HttpClient]
       }
     }),
-    TypeaheadModule.forRoot(),
     TabsModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
@@ -54,16 +77,22 @@ export function getBaseUrl() {
     TooltipModule.forRoot(),
     HttpClientModule,
     NgxDatatableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    NgSelectModule,
+    EllipsisModule,
   ],
   declarations: [
     SearchComponent,
+    MapComponent,
+    PartnerResultsComponent,
     CheckboxGroupComponent,
     PartnersListComponent,
     PartnershipListComponent,
     PartnershipDetailComponent,
     ModalPartnerComponent,
     ErrorMessageComponent,
+    Nl2brPipe,
     LoaderComponent
   ],
   exports: [
@@ -71,14 +100,14 @@ export function getBaseUrl() {
     BrowserModule,
     FormsModule,
     TranslateModule,
-    TypeaheadModule,
     ModalModule,
     AlertModule,
     ButtonsModule,
     TooltipModule,
     HttpClientModule,
     NgxDatatableModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SearchComponent,
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -88,7 +117,19 @@ export function getBaseUrl() {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    },
+    /* USE WHEN AUTHENTICATION PROBLEM IS SOLVED
+    {
+      provide: APP_INITIALIZER,
+      useFactory: authenticateUser,
+      deps: [AuthentificationService],
+      multi: true,
+    }*/
   ]
 })
 export class SharedModule {

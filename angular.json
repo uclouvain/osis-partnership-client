@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/osis-partnership-client",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -52,7 +53,8 @@
               "src/assets/drupal-dependencies/ucltheme/css/_ff5252.css",
               "src/assets/drupal-dependencies/ucltheme/css/_ff5252_suite.css",
               "src/assets/drupal-dependencies/ucltheme/css/ucl_override.css",
-
+              "node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -125,6 +127,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             },
@@ -149,6 +155,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -241,6 +251,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/osis-partnership-client-drupal",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -251,6 +262,8 @@
               "src/assets/i18n"
             ],
             "styles": [
+              "node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -258,14 +271,14 @@
           },
           "configurations": {
             "staging": {
+              "index": {
+                "input": "src/index.drupal.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.staging.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index.drupal.html"
                 }
               ],
               "optimization": true,
@@ -282,18 +295,22 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             },
             "production": {
+              "index": {
+                "input": "src/index.drupal.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index.drupal.html"
                 }
               ],
               "optimization": true,
@@ -310,6 +327,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -318,5 +339,8 @@
       }
     }
   },
-  "defaultProject": "osis-partnership-client"
+  "defaultProject": "osis-partnership-client",
+  "cli": {
+    "analytics": false
+  }
 }
