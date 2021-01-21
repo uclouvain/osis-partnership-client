@@ -1,185 +1,186 @@
 import { navigateTo, getH1, getInputStudent, getInputStaff, search, resetForm } from '../support/po';
 
-describe('Search fields', () => {
-  beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: 'GET',
-      url: '/api/v1/partnerships/configuration',
-      response: 'fixture:configuration.json'
-    }).as('getConfiguration');
-
-    navigateTo();
-  });
-
-  it('should display welcome message', () => {
-    getH1().contains('OSIS Partnership');
-  });
-
-  it('should display Student selected checkbox', () => {
-    getInputStudent().should('be.not.checked');
-  });
-
-  it('should display Staff not selected checkbox', () => {
-    getInputStaff().should('be.not.checked');
-  });
-
-  it('should have Erasmus and Test as checkbox options for funding', () => {
-    cy.wait('@getConfiguration');
-    cy.get('input#Erasmus').should('exist');
-    cy.get('input#Test').should('exist');
-
-    cy.get('input#Erasmus').should('be.not.checked');
-    cy.get('input#Test').should('be.not.checked');
-  });
-
-  it('ucl_university field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=ucl_university]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-
-  it('supervisor field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=supervisor]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-
-  it('continent field open typeahead, then show country field', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=continent]')
-      .type('Eur')
-      .siblings('typeahead-container')
-      .should('exist');
-
-    cy.get('[name=continent]')
-      .type('{enter}')
-      .should('have.value', 'Europe')
-      .get('[name=country]')
-      .should('exist');
-
-    cy.get('[name=country]')
-      .type('Belg')
-      .type('{enter}')
-      .should('have.value', 'Belgique');
-  });
-
-  it('partner field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=partner]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-
-  it('education_field field open typeahead', () => {
-    cy.wait('@getConfiguration');
-    cy.get('[name=education_field]')
-      .type('A')
-      .siblings('typeahead-container')
-      .should('exist');
-  });
-});
-
 describe('Search url params', () => {
   beforeEach(() => {
     cy.server();
     cy.route({
       method: 'GET',
-      url: '/api/v1/partnerships/configuration',
+      url: '/partnerships/v1/configuration',
       response: 'fixture:configuration.json'
     }).as('getConfiguration');
+    cy.route({
+      method: 'GET',
+      url: '/partnerships/v1/partners*',
+    }).as('getSearch');
   });
 
   it('should add url params and clear it if removed', () => {
     navigateTo();
     cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
 
     // Country text and clear
-    cy.get('[name=continent]')
-      .type('Asia')
-      .type('{enter}')
-      .should('have.value', 'Asia');
-
-    cy.get('[name=country]')
+    cy.get('[name=combined_search]')
       .type('Japo')
-      .type('{enter}')
-      .should('have.value', 'Japon');
+      .type('{enter}');
 
     search();
-    cy.url().should('include', '?continent=Asia&country=JP');
+    cy.url().should('include', 'country=JP');
+    cy.wait('@getSearch').its('url').should('include', 'country=JP');
 
     resetForm();
-    cy.url().should('include', '');
+    cy.url().should('not.include', 'country=JP');
   });
 
   it('should add custom filters in url', () => {
     navigateTo();
     cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
 
-    cy.get('[name=ucl_university]')
-      .type('FIA')
+    cy.get('[name=ucl_entity]')
+      .type('philo')
       .type('{enter}')
-      .should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
-
-    cy.get('[name=ucl_university_labo]')
-      .type('AR')
-      .type('{enter}')
-      .should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
-
-    cy.get('[name=supervisor]')
-      .type('BRAGA')
-      .type('{enter}')
-      .should('have.value', 'BRAGARD, Véronique');
+      .find('.ng-value-label')
+      .should('contain.text', 'SSH / FIAL - Faculté de philosophie, arts et lettres');
 
     search();
-// tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a');
+    cy.url().should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
+    cy.wait('@getSearch').its('url').should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
 
-    cy.get('[name=continent]')
-      .type('Asia')
+    cy.get('[name=combined_search]')
+      .type('Paul Sabatier')
       .type('{enter}')
-      .should('have.value', 'Asia');
+      .find('.ng-value-label')
+      .should('contain.text', 'Université Paul Sabatier Toulouse III');
 
-    cy.get('[name=country]')
-      .type('Jap')
-      .type('{enter}')
-      .should('have.value', 'Japon');
-
-    cy.get('[name=city]')
-      .type('Tokyo');
-
-    cy.get('[name=partner]')
-      .type('Toulouse')
-      .type('{enter}')
-      .should('have.value', 'Université Paul Sabatier Toulouse III');
-
-    cy.get('[name=education_field]')
-      .type('science')
-      .type('{enter}')
-      .should('have.value', 'Education science');
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('mobilité')
+      .click();
 
     search();
-// tslint:disable-next-line: max-line-length
-    cy.url().should('include', '?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+    cy.wait('@getSearch').its('url')
+      .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
+      .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
+      .should('include', 'type=MOBILITY');
+    cy.url()
+      .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
+      .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
+      .should('include', 'type=MOBILITY');
+  });
+
+  it('should add funding filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingSource')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'funding_source=4');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingProgram')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'funding_source=4')
+      .should('include', 'funding_program=4');
+
+    cy.get('[name=combined_search]')
+      .type('MakinaFundingType')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'funding_source=4')
+      .should('not.include', 'funding_program=4')
+      .should('include', 'funding_type=8');
+  });
+
+  it('should add tags filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('CLUSTER')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'tag=CLUSTER');
+  });
+
+  it('should add partner tags filters in url', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=combined_search]')
+      .type('The Guild')
+      .type('{enter}');
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'partner_tag=The Guild');
+  });
+
+  it('should show correct filters', () => {
+    navigateTo();
+    cy.wait('@getConfiguration');
+    cy.wait('@getSearch');
+
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('mobilité')
+      .click();
+
+    cy.get('[name=target_group]')
+      .click()
+      .find('.ng-option-label')
+      .contains('Student')
+      .click();
+
+    cy.get('[name=education_level]')
+      .click()
+      .find('.ng-option-label')
+      .contains('Second')
+      .click();
+
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('include', 'mobility_type=student')
+      .should('include', 'education_level=ISCED-7');
+
+    cy.get('[name=partnership_type]')
+      .click()
+      .find('.ng-option-label')
+      .contains('doctorat')
+      .click();
+
+    search();
+    cy.wait('@getSearch').its('url')
+      .should('not.include', 'mobility_type=student')
+      .should('include', 'education_level=ISCED-7');
   });
 
   it('should retrieve url params in form', () => {
     // tslint:disable-next-line: max-line-length
-    cy.visit('http://localhost:4200/#/?continent=Asia&country=JP&city=Tokyo&partner=19335648-29ae-4eaa-ab6d-ca28df5268e4&ucl_university=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&ucl_university_labo=75799811-6f67-46f7-9143-1e3da672f473&supervisor=74ad955c-88b8-4a95-877d-9340b60cc26a&education_field=cf5422b0-8117-42b6-8c81-1d67cd899a27');
+    cy.visit('http://localhost:4200/#/?city=Tokyo&ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&type=MOBILITY');
     cy.wait('@getConfiguration');
 
-    cy.get('[name=ucl_university]').should('have.value', 'FIAL - Faculté de philosophie, arts et lettres');
-    cy.get('[name=ucl_university_labo]').should('have.value', 'ARKE - Commission de programme en histoire de l\'art et archéologie');
-    cy.get('[name=supervisor]').should('have.value', 'BRAGARD, Véronique');
-    cy.get('[name=continent]').should('have.value', 'Asia');
-    cy.get('[name=country]').should('have.value', 'Japon');
-    cy.get('[name=city]').should('have.value', 'Tokyo');
-    cy.get('[name=partner]').should('have.value', 'Université Paul Sabatier Toulouse III');
-    cy.get('[name=education_field]').should('have.value', 'Education science');
+    cy.get('[name=combined_search]')
+      .find('.ng-value-label')
+      .should('contain.text', 'Tokyo');
+
+    cy.get('[name=ucl_entity]')
+      .find('.ng-value-label')
+      .should('contain.text', 'SSH / FIAL - Faculté de philosophie, arts et lettres');
+
+    cy.get('[name=partnership_type]')
+      .find('.ng-value-label')
+      .should('contain.text', 'Partenariat de mobilité');
   });
 });

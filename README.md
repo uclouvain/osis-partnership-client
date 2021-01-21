@@ -29,3 +29,13 @@ Run `ng e2e` to execute the end-to-end tests via [Cypress](https://docs.cypress.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Configuration by data-attributes
+
+| Attribute             | Type              | Controls                                                                                     |
+|-----------------------|-------------------|----------------------------------------------------------------------------------------------|
+| data-main-color       | hexadecimal color | Set the main color for the markers, needs the '#' prefix                                     |
+| data-height           | number            | The height (in px) of the map, do not add the 'px' suffix                                    |
+| data-ucl-entity       | uuid              | Forces the ucl entity to be shown (with children entities)                                   |
+| data-partnership-type | enum              | One of GENERAL,MOBILITY,COURSE,DOCTORATE,PROJECT. Forces the type of partnership to be shown |
+| data-enable-export    | boolean           | Show export button (set to 'true' to enable)                                                 |

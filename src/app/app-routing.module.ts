@@ -4,17 +4,18 @@ import { SearchComponent } from './components/search/search.component';
 import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
 import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
 import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
-import { PartnersListComponent } from './components/partners-list/partners-list.component';
 
 const routes: Routes = [
-  { path: '', component: SearchComponent, children: [
-    { path: 'partners', component: PartnersListComponent, children: [
-      { path: ':id', component: ModalPartnerComponent, children: [
-        { path: '', pathMatch: 'full', component: PartnershipListComponent },
-        { path: 'partnership/:id', component: PartnershipDetailComponent },
-      ]}
-    ] }
-  ] },
+  {
+    path: '', component: SearchComponent, children: [
+      {
+        path: ':id', component: ModalPartnerComponent, children: [
+          { path: '', pathMatch: 'full', component: PartnershipListComponent },
+          { path: 'partnership/:id', component: PartnershipDetailComponent },
+        ]
+      }
+    ]
+  },
 ];
 
 @NgModule({

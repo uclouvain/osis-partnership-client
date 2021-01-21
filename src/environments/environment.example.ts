@@ -8,6 +8,9 @@ export const environment = {
     url: '<OSIS-API-URL>/partnership/v1/',
     authorizationHeader: 'your_authorization_header'
   },
+  mapbox: {
+    accessToken: '<YOUR_TOKEN>'
+  },
   i18nPath: './assets/i18n/'
 };
 

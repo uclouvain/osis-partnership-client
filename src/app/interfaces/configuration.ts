@@ -1,4 +1,5 @@
-import { ValueLabel } from './common';
+import { FundingElement, ValueLabel } from './common';
+import { PartnershipType } from './partnership_type';
 
 export interface Country {
   name: string;
@@ -15,9 +16,11 @@ export interface Configuration {
   continents: Continent[];
   partners: ValueLabel[];
   ucl_universities: ValueLabel[];
-  ucl_university_labo: ValueLabel[];
-  supervisors: ValueLabel[];
+  education_levels: ValueLabel[];
   education_fields: ValueLabel[];
-  education_levels?: ValueLabel[];
-  fundings: string[];
+  offers: ValueLabel[];
+  fundings: FundingElement[];
+  tags: string[];
+  partner_tags: string[];
+  partnership_types: PartnershipType[];
 }

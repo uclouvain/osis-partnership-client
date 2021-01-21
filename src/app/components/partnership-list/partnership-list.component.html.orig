@@ -1,0 +1,107 @@
+<app-loader *ngIf="!rows"></app-loader>
+<ngx-datatable
+  *ngIf="rows"
+  class="bootstrap"
+  [rows]="rows"
+  [loadingIndicator]="loadingIndicator"
+  [columnMode]="'force'"
+  [headerHeight]="40"
+  [footerHeight]="40"
+  [externalPaging]="true"
+  [count]="page.totalElements"
+  [offset]="page.pageNumber"
+  [limit]="page.size"
+  (page)='setPage($event)'
+  [rowHeight]="'auto'"
+  [reorderable]="false"
+  [externalSorting]="true"
+>
+
+  <ngx-datatable-column [name]="'Entity' | translate" [sortable]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+<<<<<<< HEAD
+      <span [tooltip]="row.ucl_faculty.title" [placement]="'top'" [container]="'body'" class="has-tooltip">{{row.ucl_faculty.acronym}}</span>
+      <ng-container *ngIf="row.ucl_entity"> / <span [tooltip]="row.ucl_entity.title"
+                                          [placement]="'top'"
+                                          [container]="'body'" class="has-tooltip">{{row.ucl_entity.acronym}}</span></ng-container>
+=======
+      <ng-container *ngIf="row.ucl_faculty.acronym && row.ucl_faculty.acronym != row.ucl_entity.acronym">
+        <span
+          [tooltip]="row.ucl_faculty.title"
+          [adaptivePosition]="false"
+          container="body"
+          placement="top"
+          class="has-tooltip"
+        >{{row.ucl_faculty.acronym}} / </span>
+      </ng-container>
+      <span
+        [tooltip]="row.ucl_entity.title"
+        [adaptivePosition]="false"
+        container="body"
+        placement="top"
+        class="has-tooltip"
+      >{{row.ucl_entity.acronym}}</span>
+>>>>>>> 495b3162a9ff16cae5bf32feaef8e8e0e89b8fea
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'Supervisor' | translate" prop="supervisor" [sortable]="false">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      {{ value }}
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'Type' | translate" prop="type" [sortable]="false">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ng-container *ngIf="isMobility(row)">{{ value }}</ng-container>
+      <span
+        [tooltip]="row.subtype"
+        container="body"
+        placement="top"
+        class="has-tooltip"
+        *ngIf="!isMobility(row) && !isProject(row)"
+      >
+          {{ value }}
+      </span>
+
+      <ng-template #tooltipProjectTemplate>
+          <ng-container *ngIf="row.funding_program.name">
+            {{ row.funding_program.name }} /
+          </ng-container>
+          <ng-container *ngIf="row.out_funding.name">
+            {{ row.out_funding.name }}
+          </ng-container>
+      </ng-template>
+      <span
+        [tooltip]="tooltipProjectTemplate"
+        container="body"
+        placement="top"
+        class="has-tooltip"
+        *ngIf="isProject(row)"
+      >
+          {{ value }}
+      </span>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields" [sortable]="false">
+    <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ul *ngFor="let field of value" class="partnership__list">
+        <li>{{field}}</li>
+      </ul>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column prop="" [sortable]="false">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <a
+        class="btn btn-link"
+        [routerLink]="getDetailLink(value)"
+        queryParamsHandling="merge"
+      >
+        {{ 'See details' | translate }}
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>

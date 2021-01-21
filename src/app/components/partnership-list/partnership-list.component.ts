@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PartnershipsService } from 'src/app/services/partnerships.service';
-import Partner from 'src/app/interfaces/partners';
 import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership';
-import { getMobilityType, getPartnershipParams } from 'src/app/helpers/partnerships.helpers';
+import {
+  getMobilityType,
+  getPartnershipParams
+} from 'src/app/helpers/partnerships.helpers';
+import { Type } from '../../interfaces/partnership_type';
 
 @Component({
   selector: 'app-partnership-list',
@@ -39,21 +42,23 @@ export class PartnershipListComponent implements OnInit {
       .subscribe((response: ResultPartnerships) => {
         if (response && response.results) {
           if (response.results.length === 1) {
+            // Go to partnership detail if only one result
             const partnership = response.results[0];
             const partnershipId = partnership.uuid;
-            this.router.navigate([`partners/${partnership.partner.uuid}/partnership/${partnershipId}`], {
+            this.router.navigate([`${partnership.partner.uuid}/partnership/${partnershipId}`], {
               queryParamsHandling: 'merge',
               queryParams: {
                 uniquePartnership: true,
               }
             });
           } else {
+            // Go to partnership list if more than one result
             this.page.totalElements = response.count;
             this.page.totalPages = Math.ceil(this.page.totalElements / +this.page.size);
             this.page.pageNumber = Math.floor((+queryParams.offset || 0) / +this.page.size);
-            this.rows = response.results.map((partner: Partnership) => ({
-              ...partner,
-              mobility_type: partner && getMobilityType(partner),
+            this.rows = response.results.map((partnership: Partnership) => ({
+              ...partnership,
+              mobility_type: partnership && getMobilityType(partnership),
               cellTemplate: this.partnershipSummaryCell
             }));
           }
@@ -61,15 +66,8 @@ export class PartnershipListComponent implements OnInit {
       });
   }
 
-  goToPartnershipDetail(e: any, partnership: Partnership) {
-    e.preventDefault();
-    const partnerId = partnership.partner.uuid;
-    const partnershipId = partnership.uuid;
-    this.router.navigate([`partners/${partnerId}/partnership/${partnershipId}`], { queryParamsHandling: 'merge' });
-  }
-
   getDetailLink(value: Partnership) {
-    return [`/partners/${value.partner.uuid}/partnership/${value.uuid}`];
+    return [`/${value.partner.uuid}/partnership/${value.uuid}`];
   }
 
   /**
@@ -78,11 +76,19 @@ export class PartnershipListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate(['partners'], {
+    this.router.navigate([''], {
       queryParamsHandling: 'merge',
       queryParams: {
         offsetPartnership: offset
       }
     });
+  }
+
+  isMobility(partnership) {
+    return partnership.partnership_type === Type.Mobility;
+  }
+
+  isProject(partnership) {
+    return partnership.partnership_type === Type.Project;
   }
 }
