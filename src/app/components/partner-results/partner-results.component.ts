@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild
@@ -26,6 +27,8 @@ export class PartnerResultsComponent implements OnInit {
   @ViewChild('map', { static: true }) map: MapComponent;
   @ViewChild('table', { static: true }) table: PartnersListComponent;
   @Output() bboxChanged = new EventEmitter<BBoxChangedEvent>();
+  @Input() forceUclEntity?: string;
+  @Input() forcePartnershipType?: string;
 
   public mapVisible = true;
   public results: Partner[] = [];
@@ -45,6 +48,18 @@ export class PartnerResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams: Params): any => {
+      if (this.forceUclEntity) {
+        queryParams = {
+          ...queryParams,
+          ucl_entity: this.forceUclEntity,
+        };
+      }
+      if (this.forcePartnershipType) {
+        queryParams = {
+          ...queryParams,
+          type: this.forcePartnershipType,
+        };
+      }
       if (queryParams.ordering === undefined) {
         queryParams = { ...queryParams, ordering: 'country_en,city' };
         this.router.navigate([''], {
