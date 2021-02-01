@@ -308,7 +308,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.router.navigate(['', feature.properties.uuid], {
         queryParamsHandling: 'merge',
         queryParams: {
-          partnerFilter: feature.properties.uuid
+          partnerFilter: feature.properties.uuid,
         }
       });
     });

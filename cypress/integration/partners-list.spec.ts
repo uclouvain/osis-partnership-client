@@ -33,15 +33,17 @@ describe('Partner list', () => {
     // Click on search to set params in url
     search();
     cy.wait('@getPartners');
+    cy.get('#map-influence').click();
 
     cy.get('[id=list-button]').first().click();
   });
 
+  const firstResult = 'Aarhus Universitet';
   it('should display a total of 179 results', () => {
     cy.get('.page-count').should('have.text', ' 179 total ');
     cy.get('.datatable-row-group').first()
       .get('.datatable-body-cell').first()
-      .should('have.text', 'Johann Wolfgang Goethe-Universität Frankfurt am Main');
+      .should('have.text', firstResult);
   });
 
   it('should open modal on click on partner detail', () => {
@@ -51,16 +53,17 @@ describe('Partner list', () => {
 
     // Check if modal is open
     cy.get('.modal-dialog').should('exist');
-    cy.get('.modal-title').should('have.text', ' Partnership with Johann Wolfgang Goethe-Universität Frankfurt am Main ');
+    cy.get('.modal-title').should('have.text', ' Partnership with ' + firstResult + ' ');
   });
 
+  const firstResultOf2ndpage = 'Institut d\'Etudes Politiques de Paris';
   it('should returns to page 1 on filters changed', () => {
     // Go to page 2
     cy.get('[aria-label="page 2"]').first().click();
 
     // Check if first item changed
     cy.get('.partners-list__name').first()
-      .should('have.text', 'Universidad de Salamanca');
+      .should('have.text', firstResultOf2ndpage);
 
     // Set filter
     cy.get('[id=combined-search]')
@@ -71,27 +74,7 @@ describe('Partner list', () => {
     search();
 
     // Check if url dosn't contain offset
-    cy.url().should('contain', '?country=FR&city=Toulouse');
-    cy.url().should('not.contain', 'offset');
-  });
-
-  it('should returns to page 1 on sort changed', () => {
-    // Go to page 2
-    cy.get('[aria-label="page 2"]').first().click();
-
-    // Check if first item changed
-    cy.get('.partners-list__name').first()
-      .should('have.text', 'Universidad de Salamanca');
-
-    // Click on city table head
-    cy.get('datatable-header-cell[title=City]')
-      .find('span.datatable-header-cell-wrapper').click();
-
-    // Wait until ordering data loaded
-    cy.wait('@getPartners');
-
-    // Check if url dosn't contain offset
-    cy.url().should('contain', 'ordering=-city');
+    cy.url().should('contain', 'city=Toulouse');
     cy.url().should('not.contain', 'offset');
   });
 
