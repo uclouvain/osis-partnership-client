@@ -39,7 +39,7 @@ describe('Partner detail', () => {
 
     // Check if modal is open
     cy.get('.modal-dialog').should('exist');
-    cy.get('.modal-title').should('have.text', ' Partnership with Johann Wolfgang Goethe-Universität Frankfurt am Main ');
+    cy.get('.modal-title').should('have.text', ' Partnership with Aarhus Universitet ');
 
     // Check level of study
     cy.contains('Level of study').next('dd')
@@ -58,12 +58,12 @@ describe('Partner detail', () => {
 
     // Check if modal is open
     cy.get('.modal-dialog').should('exist');
-    cy.get('.modal-title').should('have.text', ' Partnership with Johann Wolfgang Goethe-Universität Frankfurt am Main ');
+    cy.get('.modal-title').should('have.text', ' Partnership with Aarhus Universitet ');
 
     cy.contains(' Information for incoming students ').click();
     cy.contains(' Information for incoming students ').should('have.have.class', 'active');
 
     cy.contains('Contact person IN').next('dd')
-      .should('have.text', 'Maria Rodrigues Leal Moitinho De Almeida');
+      .should('have.text', ' Maria Rodrigues Leal Moitinho De Almeida ');
   });
 });
