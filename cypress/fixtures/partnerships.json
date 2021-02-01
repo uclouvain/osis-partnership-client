@@ -6,17 +6,19 @@
     "uuid": "c864eae4-509d-47bf-a598-cf095ae5279f",
     "url": "http://127.0.0.1:8000/api/v1/partnership/partnerships/c864eae4-509d-47bf-a598-cf095ae5279f",
     "partner": {
-      "uuid": "bc203071-e421-4a7c-94c1-b1794b4906f4",
-      "name": "Johann Wolfgang Goethe-Universität Frankfurt am Main",
+      "uuid": "9d0d1836-8286-4f84-ba2a-c11b00d0f922",
+      "name": "Aarhus Universitet",
       "website": "http://www.uni-frankfurt.de",
       "erasmus_code": "D  FRANKFU01",
       "partner_type": "Ambassade",
       "city": "Frankfurt-am-Main",
       "country": "Allemagne",
-      "country_iso": "DE",
-      "partnerships_count": 1
+      "country_iso": "DE"
     },
     "supervisor": "SERVAIS, Olivier",
+    "type": "Partenariat de mobilité",
+    "partnership_type": "MOBILITY",
+    "ucl_sector": "SSH",
     "ucl_faculty": {
       "acronym": "ESPO",
       "title": "Faculté des sciences économiques, sociales, politiques et de communication"
@@ -25,12 +27,20 @@
       "acronym": "PSAD",
       "title": "Ecole des Sciences politiques et sociales / Louvain School of Political and Social Sciences"
     },
-    "ucl_sector": "SSH",
     "is_sms": true,
     "is_smp": false,
     "is_smst": false,
     "is_sta": false,
     "is_stt": false,
+    "missions": "Enseignement",
+    "subtype": null,
+    "description": "",
+    "id_number": "",
+    "project_title": "",
+    "funding_program": {
+      "name": "",
+      "url": null
+    },
     "education_fields": ["Political sciences and civics (0312)"],
     "status": {
       "valid_years": "2018-2021",
@@ -38,6 +48,12 @@
     },
     "partner_entity": null,
     "medias": [],
+    "bilateral_agreements": [
+      {
+        "url": "http://127.0.0.1:8000/partnerships/1219/agreements/1525/download_media/",
+        "name": "F POINTP05_FIAL"
+      }
+    ],
     "out_education_levels": [],
     "out_entities": ["PSAD"],
     "out_university_offers": [],

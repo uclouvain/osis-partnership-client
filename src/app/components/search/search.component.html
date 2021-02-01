@@ -146,6 +146,8 @@
 
 <app-partner-results
   (bboxChanged)="onBBoxChanged($event)"
+  [forcePartnershipType]="forcePartnershipType"
+  [forceUclEntity]="forceUclEntity"
 ></app-partner-results>
 
 <router-outlet></router-outlet>

@@ -36,6 +36,7 @@ export class ModalPartnerComponent implements OnInit {
         partnerFilter: null,
         uniquePartnership: null,
         offsetPartnership: null,
+        closingModal: true,
       }
     });
   }

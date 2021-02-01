@@ -6,11 +6,12 @@
     [footerHeight]="40"
     [rowHeight]="'auto'"
     [reorderable]="false"
-    [externalSorting]="true"
     [count]="rows.length"
     [limit]="pageSize"
-    (sort)="onSort($event)"
-    [sorts]="sorts"
+    [sorts]="[{
+      prop: 'name',
+      dir: 'asc'
+    }]"
     [columnMode]="'flex'"
     [loadingIndicator]="loading"
   >
@@ -41,7 +42,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [name]="'Country' | translate" prop="country" [flexGrow]="1">
+    <ngx-datatable-column [name]="'Country' | translate" prop="country_iso" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
         <button [tooltip]="row.country" class="btn btn-link btn-sm">{{row.country_iso}}</button>
       </ng-template>

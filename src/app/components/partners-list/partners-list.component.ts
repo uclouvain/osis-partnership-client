@@ -1,7 +1,6 @@
 import {
   Component,
   Input,
-  OnInit,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -16,7 +15,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
   templateUrl: './partners-list.component.html',
   styleUrls: ['./partners-list.component.css']
 })
-export class PartnersListComponent implements OnInit {
+export class PartnersListComponent {
   @ViewChild(DatatableComponent)
   private datatableComponent: DatatableComponent;
 
@@ -35,30 +34,6 @@ export class PartnersListComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe((queryParams: Params): any => {
-      if (queryParams.ordering !== undefined) {
-        this.setSorts(queryParams.ordering);
-      }
-    });
-  }
-
-  private setSorts(ordering: string) {
-    this.sorts = ordering.split(',').map((prop) => {
-      let dir = 'asc';
-      if (prop[0] === '-') {
-        dir = 'desc';
-        prop = prop.substr(1);
-      }
-      if (prop === 'partner') {
-        prop = 'name';
-      } else if (prop === 'country_en') {
-        prop = 'country';
-      }
-      return { prop, dir };
-    });
-  }
-
   /**
    * See partner's partnerships list
    */
@@ -69,30 +44,6 @@ export class PartnersListComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: {
         partnerFilter: value
-      }
-    });
-  }
-
-  /**
-   * Add ordering filter
-   * Reset offset to 0 to redirect to page 1
-   */
-  onSort(event) {
-    const order = event.newValue;
-    let orderColumn = event.column.prop;
-    if (orderColumn === 'name') {
-      orderColumn = 'partner';
-    }
-
-    if (orderColumn === 'country') {
-      orderColumn = 'country_en,city';
-    }
-
-    const ordering = (order === 'asc' ? '' : '-') + orderColumn;
-    this.router.navigate([''], {
-      queryParamsHandling: 'merge',
-      queryParams: {
-        ordering,
       }
     });
   }

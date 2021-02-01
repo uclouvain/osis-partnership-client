@@ -120,10 +120,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       ucl_entity: this.forceUclEntity,
       type: this.forcePartnershipType,
     };
-
-    if (this.forceUclEntity || this.forcePartnershipType) {
-      this.searchPartners();
-    }
   }
 
   ngOnDestroy(): void {
