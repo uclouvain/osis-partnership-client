@@ -67,8 +67,8 @@ export class PartnerResultsComponent implements OnInit {
           queryParams
         });
       }
-      // Prevent refetching when displaying modal while having results
-      if (!(queryParams.partnerFilter && this.results.length)) {
+      // Prevent refetching when displaying or closing modal while having results
+      if (!((queryParams.partnerFilter || queryParams.closingModal) && this.results.length)) {
         this.fetchPartners(queryParams);
       }
     });
