@@ -131,9 +131,16 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.route.queryParams
       .subscribe(params => {
         this.initFormFields(params);
+        // Resetting params set by subcomponents
+        const cleanedParams = {
+          ...params,
+          uniquePartnership: null,
+          closingModal: null,
+        };
+        // Injecting into model
         this.model = {
           ...this.model,
-          ...params,
+          ...cleanedParams,
           with_children: params.with_children !== 'false',
         };
       });
