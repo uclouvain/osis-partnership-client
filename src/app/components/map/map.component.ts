@@ -77,6 +77,7 @@ export class MapComponent implements OnInit, OnChanges {
   public height: number;
 
   public legendClosed = true;
+  public initializedWithHash = false;
 
 
   constructor(
@@ -91,6 +92,7 @@ export class MapComponent implements OnInit, OnChanges {
     this.route.queryParams.subscribe((queryParams: any): any => {
       if (queryParams.map) {
         const values = queryParams.map.split('/');
+        this.initializedWithHash = true;
         this.defaultZoom = values[0];
         this.defaultCenter = {
           lat: values[1],
@@ -136,11 +138,13 @@ export class MapComponent implements OnInit, OnChanges {
           bounds.extend(location.coordinates);
         }
       });
-      if (!bounds.isEmpty()) {
+      if (!bounds.isEmpty() && !this.initializedWithHash) {
         this.map.fitBounds(bounds, {
           linear: true,
           padding: 70,
         });
+      } else {
+        this.initializedWithHash = false;
       }
     }
   }
@@ -181,7 +185,11 @@ export class MapComponent implements OnInit, OnChanges {
       }
     });
     this.source = this.map.getSource('markers') as mapboxgl.GeoJSONSource;
-    this.updateSource();
+
+    // No need to update source if markers are yet to arrive
+    if (this.markers) {
+      this.updateSource();
+    }
 
     // Layer for cluster circles
     this.map.addLayer({
@@ -309,6 +317,7 @@ export class MapComponent implements OnInit, OnChanges {
         queryParamsHandling: 'merge',
         queryParams: {
           partnerFilter: feature.properties.uuid,
+          map: this.formatMapParam(),
         }
       });
     });
@@ -342,7 +351,7 @@ export class MapComponent implements OnInit, OnChanges {
       return;
     }
     this.bbox = this.map.getBounds();
-    this.bboxChanged.emit({ bbox: this.bbox });
+    this.bboxChanged.emit({ bbox: this.bbox, zoom: this.map.getZoom() });
 
     // Get all visible partners
     const features = this.map.queryRenderedFeatures(null, {
@@ -374,5 +383,10 @@ export class MapComponent implements OnInit, OnChanges {
     const markers = [].concat(...markersResults.filter(Boolean));
 
     this.visibleMarkersChanged.emit({ markers });
+  }
+
+  private formatMapParam() {
+    const center = this.map.getCenter();
+    return `${this.map.getZoom().toPrecision(2)}/${center.lat.toPrecision(2)}/${center.lng.toPrecision(2)}`;
   }
 }

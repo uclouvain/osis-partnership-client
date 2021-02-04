@@ -38,6 +38,7 @@ export class PartnerResultsComponent implements OnInit {
   public totalPartnerships = 0;
   public visibleMarkers: Partner[] = [];
   public mapInfluence = true;
+  public mapHash: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -114,6 +115,8 @@ export class PartnerResultsComponent implements OnInit {
   onBBoxChanged(event: BBoxChangedEvent) {
     // Bubble up
     this.bboxChanged.emit(event);
+    const center = event.bbox.getCenter();
+    this.mapHash = `${event.zoom.toPrecision(2)}/${center.lat.toPrecision(2)}/${center.lng.toPrecision(2)}`;
   }
 
   private updateCount() {
