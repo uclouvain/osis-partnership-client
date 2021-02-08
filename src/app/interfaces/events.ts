@@ -8,4 +8,5 @@ export interface VisibleMarkerChangedEvent {
 
 export interface BBoxChangedEvent {
     bbox: LngLatBounds;
+    zoom: number;
 }

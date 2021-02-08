@@ -25,6 +25,7 @@ export class PartnersListComponent {
   @Input() rows: Partner[] = [];
   @Input() loading = true;
   @Input() totalPartnerships = 0;
+  @Input() mapHash: string = null;
   public pageSize = 25;
   public sorts = [];
 
@@ -43,7 +44,8 @@ export class PartnersListComponent {
     this.router.navigate(['', value], {
       queryParamsHandling: 'merge',
       queryParams: {
-        partnerFilter: value
+        partnerFilter: value,
+        map: this.mapHash,
       }
     });
   }
