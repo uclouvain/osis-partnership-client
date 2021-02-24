@@ -38,6 +38,8 @@ export class PartnerResultsComponent implements OnInit {
   public totalPartnerships = 0;
   public visibleMarkers: Partner[] = [];
   public mapInfluence = true;
+  public mapHash: string;
+  public initializedWithForcedFields: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,19 +49,25 @@ export class PartnerResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializedWithForcedFields = !!(this.forceUclEntity || this.forcePartnershipType);
     this.route.queryParams.subscribe((queryParams: Params): any => {
-      if (this.forceUclEntity) {
+      if (this.forceUclEntity && this.initializedWithForcedFields) {
         queryParams = {
           ...queryParams,
           ucl_entity: this.forceUclEntity,
         };
       }
-      if (this.forcePartnershipType) {
+      if (this.forcePartnershipType && this.initializedWithForcedFields) {
         queryParams = {
           ...queryParams,
           type: this.forcePartnershipType,
         };
       }
+      // Remove forcing after first request
+      if (this.initializedWithForcedFields) {
+        this.initializedWithForcedFields = false;
+      }
+
       if (queryParams.ordering === undefined) {
         queryParams = { ...queryParams, ordering: 'country_en,city' };
         this.router.navigate([''], {
@@ -114,6 +122,8 @@ export class PartnerResultsComponent implements OnInit {
   onBBoxChanged(event: BBoxChangedEvent) {
     // Bubble up
     this.bboxChanged.emit(event);
+    const center = event.bbox.getCenter();
+    this.mapHash = `${event.zoom.toPrecision(2)}/${center.lat.toPrecision(2)}/${center.lng.toPrecision(2)}`;
   }
 
   private updateCount() {
