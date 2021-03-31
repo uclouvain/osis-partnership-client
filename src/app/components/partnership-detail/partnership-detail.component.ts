@@ -20,6 +20,7 @@ export class PartnershipDetailComponent implements OnInit {
 
   public showBackButton = false;
   public showEllipsis = true;
+  public showAllPartners = false;
 
   constructor(
     private route: ActivatedRoute,
