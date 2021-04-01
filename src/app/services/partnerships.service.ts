@@ -85,7 +85,7 @@ export class PartnershipsService {
 
 
   private requestPartnerships(query: PartnershipParams) {
-    return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships/?${queryString.stringify(query)}`);
+    return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships?${queryString.stringify(query)}`);
   }
 
   private requestPartnership(id: string) {
