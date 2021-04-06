@@ -59,7 +59,7 @@ describe('Error messages', () => {
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partnerships/?**',
+      url: '/partnerships/v1/partnerships?**',
       status: 500,
       response: {}
     }).as('getPartnerships');

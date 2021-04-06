@@ -18,7 +18,7 @@ describe('Partner detail', () => {
 
     cy.route({
       method: 'GET',
-      url: '/partnerships/v1/partnerships/?**',
+      url: '/partnerships/v1/partnerships?**',
       response: 'fixture:partnerships.json'
     }).as('getPartnerships');
 
