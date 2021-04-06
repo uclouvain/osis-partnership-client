@@ -260,7 +260,7 @@
             </a>
           </dd>
 
-          <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
+          <!-- <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
             {{ 'Contact person in partner institution' | translate }}
           </dt>
           <dd *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
@@ -273,7 +273,7 @@
                 <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
               </li>
             </ul>
-          </dd>
+          </dd> -->
 
           <ng-container *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
             <dt>{{ 'Summary Tables' | translate }}</dt>
@@ -339,7 +339,7 @@
               {{ 'Admission Text 1' | translate }}
             </a>
             <br />
-            {{ 'Admission Text 2' | translate }}
+            <span [innerHTML]="'Admission Text 2' | translate "></span>
           </dd>
 
           <dt>{{ 'Course catalogue' | translate }}</dt>
