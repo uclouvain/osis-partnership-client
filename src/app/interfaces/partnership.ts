@@ -5,7 +5,7 @@ import { Type } from './partnership_type';
 
 export default interface Partnership {
   description: string;
-  subtype: string;
+  subtype?: string;
   uuid: string;
   partner: Partner;
   education_field:	string;
