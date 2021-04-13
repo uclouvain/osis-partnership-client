@@ -95,6 +95,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public exportEnabled: boolean;
 
   public bbox: LngLatBounds;
+  private showDiplomaFilter = false;
 
   constructor(
     private router: Router,
@@ -111,6 +112,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     );
 
     this.exportEnabled = htmlElementPropertyService.get('enable-export') === 'true';
+    this.showDiplomaFilter = htmlElementPropertyService.get('show-diploma-filter') === 'true';
 
     // Get a forced config from attributes
     this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
@@ -377,7 +379,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isYearOfferFilterShown() {
-    return [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
+    return this.showDiplomaFilter && [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
   }
 
   export() {
