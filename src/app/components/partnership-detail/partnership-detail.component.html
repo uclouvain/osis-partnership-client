@@ -32,6 +32,25 @@
       </dd>
     </ng-container>
 
+    <ng-container *ngIf="data.partner_entities.length">
+      <dt>{{ 'Linked partners' | translate }}</dt>
+      <dd>
+        <ul class="partnership__list">
+          <ng-container *ngFor="let entity of data.partner_entities; let i = index">
+            <li *ngIf="!entity.includes(data.partner.name) && i <= 5">{{entity}}</li>
+            <li *ngIf="!entity.includes(data.partner.name) && i > 5 && showAllPartners">{{entity}}</li>
+          </ng-container>
+        </ul>
+        <a
+          *ngIf="data.partner_entities.length > 5 && !showAllPartners"
+          (click)="showAllPartners = true"
+          style="text-decoration: underline; font-weight: bold; cursor: pointer"
+        >
+          ...
+        </a>
+      </dd>
+    </ng-container>
+
     <dt>{{ 'UCLouvain entity' | translate }}</dt>
     <dd>
       <ng-container *ngIf="uclEntityParentDisplay">
@@ -260,7 +279,7 @@
             </a>
           </dd>
 
-          <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
+          <!-- <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
             {{ 'Contact person in partner institution' | translate }}
           </dt>
           <dd *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
@@ -273,7 +292,7 @@
                 <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
               </li>
             </ul>
-          </dd>
+          </dd> -->
 
           <ng-container *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
             <dt>{{ 'Summary Tables' | translate }}</dt>
@@ -339,7 +358,7 @@
               {{ 'Admission Text 1' | translate }}
             </a>
             <br />
-            {{ 'Admission Text 2' | translate }}
+            <span [innerHTML]="'Admission Text 2' | translate "></span>
           </dd>
 
           <dt>{{ 'Course catalogue' | translate }}</dt>

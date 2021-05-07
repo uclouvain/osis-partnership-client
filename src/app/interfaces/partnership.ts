@@ -5,7 +5,7 @@ import { Type } from './partnership_type';
 
 export default interface Partnership {
   description: string;
-  subtype: string;
+  subtype?: string;
   uuid: string;
   partner: Partner;
   education_field:	string;
@@ -50,6 +50,7 @@ export default interface Partnership {
   staff_funding: Funding;
   url: string;
   partner_entity: string;
+  partner_entities: string[];
   education_fields: string[];
   out_education_levels: string[];
   out_university_offers: string[];
