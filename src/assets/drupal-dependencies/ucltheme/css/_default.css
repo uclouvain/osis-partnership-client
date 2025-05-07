@@ -1361,7 +1361,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control, .input-group-lg > te
 input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="button"].btn-block { width: 100%; }
 
 .fade { opacity: 0; -webkit-transition: opacity 0.15s linear; -o-transition: opacity 0.15s linear; transition: opacity 0.15s linear; }
-.fade.in { opacity: 1; }
+.fade.show { opacity: 1; }
 
 .collapse { display: none; }
 .collapse.in { display: block; }
@@ -1993,7 +1993,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal { display: none; overflow: hidden; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1050; -webkit-overflow-scrolling: touch; outline: 0; }
 .modal.fade .modal-dialog { -webkit-transform: translate(0, -25%); -ms-transform: translate(0, -25%); -o-transform: translate(0, -25%); transform: translate(0, -25%); -webkit-transition: -webkit-transform 0.3s ease-out; -moz-transition: -moz-transform 0.3s ease-out; -o-transition: -o-transform 0.3s ease-out; transition: transform 0.3s ease-out; }
-.modal.in .modal-dialog { -webkit-transform: translate(0, 0); -ms-transform: translate(0, 0); -o-transform: translate(0, 0); transform: translate(0, 0); }
+.modal.show .modal-dialog { -webkit-transform: translate(0, 0); -ms-transform: translate(0, 0); -o-transform: translate(0, 0); transform: translate(0, 0); }
 
 .modal-open .modal { overflow-x: hidden; overflow-y: auto; }
 
@@ -2003,7 +2003,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-backdrop { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1040; background-color: #000; }
 .modal-backdrop.fade { opacity: 0; filter: alpha(opacity=0); }
-.modal-backdrop.in { opacity: 0.5; filter: alpha(opacity=50); }
+.modal-backdrop.show { opacity: 0.5; filter: alpha(opacity=50); }
 
 .modal-header { padding: 15px; border-bottom: 1px solid #e5e5e5; min-height: 16.42857px; }
 
