@@ -102,8 +102,7 @@
               "src/assets/drupal-dependencies/js/waypoints.min.js",
               "src/assets/drupal-dependencies/js/ajax_bootstrap.js",
               "src/assets/drupal-dependencies/js/drupal_settings.js"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "staging": {
@@ -266,8 +265,7 @@
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "staging": {
