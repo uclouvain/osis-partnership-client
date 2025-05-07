@@ -7,7 +7,7 @@
       id="map-button"
       (click)="switchToMapLayout()"
     >
-      <span class="glyphicon glyphicon-map-marker"></span>
+      <span class="fa fa-map-marker"></span>
       {{ 'Map' | translate }}
     </a>
     <a
@@ -17,7 +17,7 @@
       (click)="toggleMapInfluence()"
       *ngIf="mapVisible"
     >
-      <span class="glyphicon glyphicon-screenshot"></span>
+      <span class="fa fa-crosshairs"></span>
       {{ 'Filter on map bounds' | translate }}
     </a>
     <a
@@ -27,7 +27,7 @@
       (click)="switchToListLayout()"
       [ngPlural]="totalPartners"
     >
-      <span class="glyphicon glyphicon-list"></span>&nbsp;
+      <span class="fa fa-list"></span>&nbsp;
       <ng-template ngPluralCase="0">{{ 'No result' | translate }}</ng-template>
       <ng-template ngPluralCase="1">{{ '1 partner' | translate }}</ng-template>
       <ng-template ngPluralCase="other">

@@ -1,26 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, delay } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { ConfigurationService } from 'src/app/services/configuration.service';
-import { LoadingService } from 'src/app/services/loading.service.js';
-import { getFormattedItemsList } from 'src/app/helpers/list.helpers.js';
-import { Configuration } from 'src/app/interfaces/configuration.js';
-import {
-  getCleanParams,
-  getPartnerParams
-} from 'src/app/helpers/partnerships.helpers.js';
-import { Type } from 'src/app/interfaces/partnership_type';
-import { TranslateService } from '@ngx-translate/core';
-import {
-  CombinedSearchItem,
-  FundingElement,
-  IdLabel, ValueLabel
-} from '../../interfaces/common';
-import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import { PartnershipsService } from '../../services/partnerships.service';
-import { LngLatBounds } from 'mapbox-gl';
-import { BBoxChangedEvent } from '../../interfaces/events';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {catchError, delay} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
+import {ConfigurationService} from 'src/app/services/configuration.service';
+import {LoadingService} from 'src/app/services/loading.service';
+import {getFormattedItemsList} from 'src/app/helpers/list.helpers';
+import {Configuration} from 'src/app/interfaces/configuration';
+import {getCleanParams, getPartnerParams} from 'src/app/helpers/partnerships.helpers';
+import {Type} from 'src/app/interfaces/partnership_type';
+import {TranslateService} from '@ngx-translate/core';
+import {CombinedSearchItem, FundingElement, IdLabel, ValueLabel} from '../../interfaces/common';
+import {HtmlElementPropertyService} from '../../services/html-element-property.service';
+import {PartnershipsService} from '../../services/partnerships.service';
+import {LngLatBounds} from 'mapbox-gl';
+import {BBoxChangedEvent} from '../../interfaces/events';
 
 const defaultModel = {
   type: null,
@@ -63,40 +56,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public config: Configuration;
 
-  // Combined search options
-  public combinedSearch: CombinedSearchItem[];
-  public combinedSearchValue: any;
-  public continents: IdLabel[];
-  public countries: IdLabel[];
-  public cities: IdLabel[];
-  public partners: IdLabel[];
-  public tags: IdLabel[];
-  public partnerTags: IdLabel[];
-  public fundings: FundingElement[];
-
-  // Other options
-  public uclEntities: ValueLabel[];
-  public partnershipTypes: IdLabel[];
-
-  public educationLevels: ValueLabel[];
-  public yearOffers: IdLabel[];
-  public mobilityTypeItems: IdLabel[] = [
-    { id: 'student', label: this.translate.instant('Student') },
-    { id: 'staff', label: this.translate.instant('Staff') },
-  ];
-
-  public loaderStatus: boolean;
-  private loaderStatus$: Subscription;
-
-  public Type = Type;
-
-  public forceUclEntity?: string;
-  public forcePartnershipType?: string;
-  public exportEnabled: boolean;
-
-  public bbox: LngLatBounds;
-  private showDiplomaFilter = false;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -105,7 +64,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private htmlElementPropertyService: HtmlElementPropertyService,
     private partnershipsService: PartnershipsService,
-) {
+  ) {
     // add delay to prevent expression has changed after it was checked
     this.loaderStatus$ = this.loading.status.pipe(
       delay(0)).subscribe(status => (this.loaderStatus = status)
@@ -124,11 +83,46 @@ export class SearchComponent implements OnInit, OnDestroy {
     };
   }
 
+  // Combined search options
+  public combinedSearch: CombinedSearchItem[];
+  public combinedSearchValue: any;
+  public continents: IdLabel[];
+  public countries: IdLabel[];
+  public cities: IdLabel[];
+  public partners: IdLabel[];
+  public tags: IdLabel[];
+  public partnerTags: IdLabel[];
+  public fundings: FundingElement[];
+
+  // Other options
+  public uclEntities: ValueLabel[];
+  public partnershipTypes: IdLabel[];
+
+  public educationLevels: ValueLabel[];
+  public yearOffers: IdLabel[];
+  public mobilityTypeItems: IdLabel[] = [];
+
+  public loaderStatus: boolean;
+  private loaderStatus$: Subscription;
+
+  public Type = Type;
+
+  public forceUclEntity?: string;
+  public forcePartnershipType?: string;
+  public exportEnabled: boolean;
+
+  public bbox: LngLatBounds;
+  private showDiplomaFilter = false;
+
   ngOnDestroy(): void {
     this.loaderStatus$.unsubscribe();
   }
 
   ngOnInit() {
+    this.mobilityTypeItems = [
+      { id: 'student', label: this.translate.instant('Student') },
+      { id: 'staff', label: this.translate.instant('Staff') },
+    ];
     // Init form with url params
     this.route.queryParams
       .subscribe(params => {

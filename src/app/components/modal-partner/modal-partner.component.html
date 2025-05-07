@@ -3,10 +3,10 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left" *ngIf="partner" translate [translateParams]="{partner_name: partner.name}">
+        <h4 class="modal-title float-start" *ngIf="partner" translate [translateParams]="{partner_name: partner.name}">
           Partnership with partner_name
         </h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <button type="button" class="close float-end" aria-label="Close" (click)="modal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
