@@ -75,6 +75,7 @@
               "src/assets/drupal-dependencies/js/_progress.js",
               "src/assets/drupal-dependencies/js/matomo.js",
               "src/assets/drupal-dependencies/js/tag-it.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/drupal-dependencies/js/bootstrap-multiselect.js",
               "src/assets/drupal-dependencies/js/uclsearch.js",
               "src/assets/drupal-dependencies/js/ucltheme.js",
@@ -86,19 +87,7 @@
               "src/assets/drupal-dependencies/js/respond.min.js",
               "src/assets/drupal-dependencies/js/modernizr.js",
               "src/assets/drupal-dependencies/js/html5shiv.js",
-              "node_modules/bootstrap/js/affix.js",
-              "node_modules/bootstrap/js/alert.js",
-              "node_modules/bootstrap/js/button.js",
-              "node_modules/bootstrap/js/carousel.js",
-              "node_modules/bootstrap/js/collapse.js",
               "src/assets/drupal-dependencies/js/bootstrap-tabcollapse.js",
-              "node_modules/bootstrap/js/dropdown.js",
-              "node_modules/bootstrap/js/modal.js",
-              "node_modules/bootstrap/js/tooltip.js",
-              "node_modules/bootstrap/js/popover.js",
-              "node_modules/bootstrap/js/scrollspy.js",
-              "node_modules/bootstrap/js/tab.js",
-              "node_modules/bootstrap/js/transition.js",
               "src/assets/drupal-dependencies/js/waypoints.min.js",
               "src/assets/drupal-dependencies/js/ajax_bootstrap.js",
               "src/assets/drupal-dependencies/js/drupal_settings.js"
@@ -115,7 +104,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -143,7 +131,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -199,14 +186,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
@@ -230,11 +214,10 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "e2e/**/*.ts"
             ]
           }
         }
@@ -282,7 +265,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -314,7 +296,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
