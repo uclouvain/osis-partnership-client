@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { SharedModule } from './shared.module';
+import {AppComponent} from './app.component';
+import {SharedModule} from './shared.module';
 
 @NgModule({
   declarations: [

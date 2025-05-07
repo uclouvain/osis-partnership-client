@@ -1,19 +1,26 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {catchError, delay} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
-import {ConfigurationService} from 'src/app/services/configuration.service';
-import {LoadingService} from 'src/app/services/loading.service';
-import {getFormattedItemsList} from 'src/app/helpers/list.helpers';
-import {Configuration} from 'src/app/interfaces/configuration';
-import {getCleanParams, getPartnerParams} from 'src/app/helpers/partnerships.helpers';
-import {Type} from 'src/app/interfaces/partnership_type';
-import {TranslateService} from '@ngx-translate/core';
-import {CombinedSearchItem, FundingElement, IdLabel, ValueLabel} from '../../interfaces/common';
-import {HtmlElementPropertyService} from '../../services/html-element-property.service';
-import {PartnershipsService} from '../../services/partnerships.service';
-import {LngLatBounds} from 'mapbox-gl';
-import {BBoxChangedEvent} from '../../interfaces/events';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, delay } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { ConfigurationService } from 'src/app/services/configuration.service';
+import { LoadingService } from 'src/app/services/loading.service.js';
+import { getFormattedItemsList } from 'src/app/helpers/list.helpers.js';
+import { Configuration } from 'src/app/interfaces/configuration.js';
+import {
+  getCleanParams,
+  getPartnerParams
+} from 'src/app/helpers/partnerships.helpers.js';
+import { Type } from 'src/app/interfaces/partnership_type';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CombinedSearchItem,
+  FundingElement,
+  IdLabel, ValueLabel
+} from '../../interfaces/common';
+import { HtmlElementPropertyService } from '../../services/html-element-property.service';
+import { PartnershipsService } from '../../services/partnerships.service';
+import { LngLatBounds } from 'mapbox-gl';
+import { BBoxChangedEvent } from '../../interfaces/events';
 
 const defaultModel = {
   type: null,
@@ -56,33 +63,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public config: Configuration;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private configurationService: ConfigurationService,
-    private loading: LoadingService,
-    private translate: TranslateService,
-    private htmlElementPropertyService: HtmlElementPropertyService,
-    private partnershipsService: PartnershipsService,
-  ) {
-    // add delay to prevent expression has changed after it was checked
-    this.loaderStatus$ = this.loading.status.pipe(
-      delay(0)).subscribe(status => (this.loaderStatus = status)
-    );
-
-    this.exportEnabled = htmlElementPropertyService.get('enable-export') === 'true';
-    this.showDiplomaFilter = htmlElementPropertyService.get('show-diploma-filter') === 'true';
-
-    // Get a forced config from attributes
-    this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
-    this.forcePartnershipType = htmlElementPropertyService.get('partnership-type');
-    this.model = {
-      ...defaultModel,
-      ucl_entity: this.forceUclEntity,
-      type: this.forcePartnershipType,
-    };
-  }
-
   // Combined search options
   public combinedSearch: CombinedSearchItem[];
   public combinedSearchValue: any;
@@ -100,7 +80,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public educationLevels: ValueLabel[];
   public yearOffers: IdLabel[];
-  public mobilityTypeItems: IdLabel[] = [];
+  public mobilityTypeItems: IdLabel[] = [
+    { id: 'student', label: this.translate.instant('Student') },
+    { id: 'staff', label: this.translate.instant('Staff') },
+  ];
 
   public loaderStatus: boolean;
   private loaderStatus$: Subscription;
@@ -112,31 +95,49 @@ export class SearchComponent implements OnInit, OnDestroy {
   public exportEnabled: boolean;
 
   public bbox: LngLatBounds;
-  private showDiplomaFilter = false;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private configurationService: ConfigurationService,
+    private loading: LoadingService,
+    private translate: TranslateService,
+    private htmlElementPropertyService: HtmlElementPropertyService,
+    private partnershipsService: PartnershipsService,
+) {
+    // add delay to prevent expression has changed after it was checked
+    this.loaderStatus$ = this.loading.status.pipe(
+      delay(0)).subscribe(status => (this.loaderStatus = status)
+    );
+
+    this.exportEnabled = htmlElementPropertyService.get('enable-export') === 'true';
+
+    // Get a forced config from attributes
+    this.forceUclEntity = htmlElementPropertyService.get('ucl-entity');
+    this.forcePartnershipType = htmlElementPropertyService.get('partnership-type');
+    this.model = {
+      ...defaultModel,
+      ucl_entity: this.forceUclEntity,
+      type: this.forcePartnershipType,
+    };
+
+    if (this.forceUclEntity || this.forcePartnershipType) {
+      this.searchPartners();
+    }
+  }
 
   ngOnDestroy(): void {
     this.loaderStatus$.unsubscribe();
   }
 
   ngOnInit() {
-    this.mobilityTypeItems = [
-      { id: 'student', label: this.translate.instant('Student') },
-      { id: 'staff', label: this.translate.instant('Staff') },
-    ];
     // Init form with url params
     this.route.queryParams
       .subscribe(params => {
         this.initFormFields(params);
-        // Resetting params set by subcomponents
-        const cleanedParams = {
-          ...params,
-          uniquePartnership: null,
-          closingModal: null,
-        };
-        // Injecting into model
         this.model = {
           ...this.model,
-          ...cleanedParams,
+          ...params,
           with_children: params.with_children !== 'false',
         };
       });
@@ -149,6 +150,47 @@ export class SearchComponent implements OnInit, OnDestroy {
   initFormFields(params) {
     // Fetch configuration data from server
     this.configurationService.all()
+<<<<<<< HEAD
+    .pipe(
+      catchError((): any => {
+        this.configError = true;
+      })
+    )
+    .subscribe((config: Configuration) => {
+      this.configError = false;
+      this.config = config;
+      // Fundings options
+      config.fundings.map(funding => {
+        this.fundingOptions.push(new CheckboxItem(funding, funding, params.funding && params.funding.includes(funding)));
+      });
+      // Typeahead list options
+      this.continents = getValueLabelList(config.continents);
+      this.allCountries = [].concat.apply([], config.continents.map(continent => continent.countries));
+      this.countries = getFormattedItemsList(this.allCountries);
+      this.allCities = [].concat.apply([], this.allCountries.map(country => country.cities));
+      // Remove duplicates
+      this.allCities = this.allCities.filter((city, index, self) => self.indexOf(city) === index);
+      this.cities = this.allCities;
+      this.educationFields = getFormattedItemsList(config.education_levels);
+      this.partners = getFormattedItemsList(config.partners);
+      this.supervisors = [] //getFormattedItemsList(config.supervisors);
+      this.uclUniversities = getFormattedItemsList(config.ucl_universities);
+
+      // Init default  values from url params
+      if (params.continent) {
+        this.onContinentSelect({ value: params.continent });
+      }
+
+      if (params.country) {
+        this.fields.country = getLabel(this.countries, params.country);
+      }
+
+      if (params.ucl_university) {
+        this.fields.uclUniversity = getLabel(this.uclUniversities, params.ucl_university);
+        this.onUclUniversityChange(this.fields.uclUniversity, false);
+        if (params.ucl_university_labo) {
+          this.fields.uclUniversityLabo = getLabel(this.uclUniversitiesLabo, params.ucl_university_labo);
+=======
       .pipe(
         catchError((): any => {
           this.configError = true;
@@ -189,6 +231,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.uclEntities = config.ucl_universities.filter(
             ({ label }) => label.startsWith(rootLabel)
           );
+>>>>>>> 495b3162a9ff16cae5bf32feaef8e8e0e89b8fea
         }
 
         this.partnershipTypes = config.partnership_types;
@@ -373,7 +416,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   isYearOfferFilterShown() {
-    return this.showDiplomaFilter && [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
+    return [Type.Mobility, Type.Course, Type.Doctorate].includes(this.model.type);
   }
 
   export() {

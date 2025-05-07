@@ -1,22 +1,11 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChange
-} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as GeoJSON from 'geojson';
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import Partner from '../../interfaces/partners';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HtmlElementPropertyService } from '../../services/html-element-property.service';
-import {
-  BBoxChangedEvent,
-  VisibleMarkerChangedEvent
-} from '../../interfaces/events';
+import {ActivatedRoute, Router} from '@angular/router';
+import {HtmlElementPropertyService} from '../../services/html-element-property.service';
+import {BBoxChangedEvent, VisibleMarkerChangedEvent} from '../../interfaces/events';
 
 
 /**
@@ -43,7 +32,7 @@ function debounce(cb, wait = 20) {
     let h = 0;
     return (...args: any) => {
         clearTimeout(h);
-        h = setTimeout(() => cb(...args), wait);
+        h = window.setTimeout(() => cb(...args), wait);
     };
 }
 

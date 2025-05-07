@@ -33,6 +33,16 @@
         ></ng-select>
       </div>
 
+<<<<<<< HEAD
+     <!--<div class="form-group" *ngIf="educationFields">
+        <label for="education_field">{{ 'Subject Area' | translate }}</label>
+        <input #educationField [(ngModel)]="fields.educationField" name="education_field" class="form-control" id="education_field" [typeaheadScrollable]="true"
+          [typeahead]="educationFields" typeaheadOptionField="label" typeaheadOptionsLimit="2000"
+          (typeaheadOnSelect)="onEducationFieldSelect($event)" (typeaheadOnBlur)="onEducationFieldSelect($event)"
+               (ngModelChange)="onEducationFieldChange($event)" (typeaheadNoResults)="noEducationField = $event">
+        <div class="alert alert-danger" *ngIf="noEducationField">{{ 'Please select a value from the list.' | translate }}</div>
+      </div>-->
+=======
       <div *ngIf="!forcePartnershipType">
         <label for="partnership-type" class="sr-only">{{ "Partnership type" | translate }}</label>
         <ng-select
@@ -46,6 +56,7 @@
           (change)="partnershipTypeChanged()"
         ></ng-select>
       </div>
+>>>>>>> 495b3162a9ff16cae5bf32feaef8e8e0e89b8fea
 
       <div *ngIf="isWithChildrenFilterShown()" class="search-grid--checkbox">
         <label>
@@ -108,7 +119,7 @@
         title="{{ 'Search (action)' | translate }}"
       >
         <span class="sr-only">{{ 'Search (action)' | translate }}</span>
-        <span class="fa fa-search"></span>
+        <span class="glyphicon glyphicon-search"></span>
       </button>
 
       <button
@@ -121,7 +132,7 @@
         *ngIf="exportEnabled"
       >
         <span class="sr-only">{{ 'Export (action)' | translate }}</span>
-        <span class="fa fa-download"></span>
+        <span class="glyphicon glyphicon-download"></span>
       </button>
 
       <button
@@ -133,7 +144,7 @@
         title="{{ 'Reset form' | translate }}"
       >
         <span class="sr-only">{{ 'Reset form' | translate }}</span>
-        <span class="fa fa-times"></span>
+        <span class="glyphicon glyphicon-remove"></span>
       </button>
     </div>
   </div>
@@ -146,8 +157,6 @@
 
 <app-partner-results
   (bboxChanged)="onBBoxChanged($event)"
-  [forcePartnershipType]="forcePartnershipType"
-  [forceUclEntity]="forceUclEntity"
 ></app-partner-results>
 
 <router-outlet></router-outlet>
