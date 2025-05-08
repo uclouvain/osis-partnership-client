@@ -1,46 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import {
-  TranslateLoader,
-  TranslateModule,
-  TranslateService
-} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule
-} from '@angular/common/http';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { AlertModule } from 'ngx-bootstrap/alert';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {TabsModule} from 'ngx-bootstrap/tabs';
+import {AlertModule} from 'ngx-bootstrap/alert';
+import {ButtonsModule} from 'ngx-bootstrap/buttons';
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
 
-import { environment } from 'src/environments/environment';
-import { SearchComponent } from './components/search/search.component';
-import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorMessageComponent } from './components/error-message/error-message.component';
-import {
-  LoadingInterceptor,
-  LoadingService
-} from './services/loading.service';
-import { LoaderComponent } from './components/loader/loader.component';
-import { PartnersListComponent } from './components/partners-list/partners-list.component';
-import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
-import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
-import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
-import { AuthentificationService } from './services/authentification.service';
-import { ApiInterceptor } from './services/api-interceptor.service';
-import { MapComponent } from './components/map/map.component';
-import { PartnerResultsComponent } from './components/partner-results/partner-results.component';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { EllipsisModule } from 'ngx-ellipsis';
-import { Nl2brPipe } from './nl2br.pipe';
+import {environment} from 'src/environments/environment';
+import {SearchComponent} from './components/search/search.component';
+import {CheckboxGroupComponent} from './components/checkbox-group/checkbox-group.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorMessageComponent} from './components/error-message/error-message.component';
+import {LoadingInterceptor, LoadingService} from './services/loading.service';
+import {LoaderComponent} from './components/loader/loader.component';
+import {PartnersListComponent} from './components/partners-list/partners-list.component';
+import {PartnershipListComponent} from './components/partnership-list/partnership-list.component';
+import {PartnershipDetailComponent} from './components/partnership-detail/partnership-detail.component';
+import {ModalPartnerComponent} from './components/modal-partner/modal-partner.component';
+import {AuthentificationService} from './services/authentification.service';
+import {ApiInterceptor} from './services/api-interceptor.service';
+import {MapComponent} from './components/map/map.component';
+import {PartnerResultsComponent} from './components/partner-results/partner-results.component';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {EllipsisModule} from 'ngx-ellipsis';
+import {Nl2brPipe} from './nl2br.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   const i18nPath = (environment.i18nPath) ? environment.i18nPath : './assets/i18n/';
@@ -75,7 +64,6 @@ export function authenticateUser(authentificationService: AuthentificationServic
     AlertModule.forRoot(),
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
-    HttpClientModule,
     NgxDatatableModule,
     AppRoutingModule,
     CommonModule,
@@ -104,7 +92,6 @@ export function authenticateUser(authentificationService: AuthentificationServic
     AlertModule,
     ButtonsModule,
     TooltipModule,
-    HttpClientModule,
     NgxDatatableModule,
     AppRoutingModule,
     SearchComponent,

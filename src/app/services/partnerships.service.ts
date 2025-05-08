@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 import * as queryString from 'query-string';
 
-import { environment } from '../../environments/environment';
-import Partnership, {
-  PartnershipParams,
-  ResultPartnerships
-} from '../interfaces/partnership';
-import Partner, { PartnerParams, } from '../interfaces/partners';
-import { CacheService } from './cache.service';
-import { HttpClient } from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import Partnership, {PartnershipParams, ResultPartnerships} from '../interfaces/partnership';
+import Partner, {PartnerParams,} from '../interfaces/partners';
+import {CacheService} from './cache.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -86,10 +83,6 @@ export class PartnershipsService {
 
   private requestPartnerships(query: PartnershipParams) {
     return this.cache.get<ResultPartnerships>(`${environment.api.url}partnerships?${queryString.stringify(query)}`);
-  }
-
-  private requestPartnership(id: string) {
-    return this.cache.get<Partnership>(`${environment.api.url}partnerships/${id}`);
   }
 
   private requestPartners(query: PartnerParams) {
