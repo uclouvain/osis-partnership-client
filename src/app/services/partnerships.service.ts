@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import * as queryString from 'query-string';
+import queryString from 'query-string';
 
 import {environment} from '../../environments/environment';
 import Partnership, {PartnershipParams, ResultPartnerships} from '../interfaces/partnership';
