@@ -1,13 +1,7 @@
-import {
- HttpEvent,
- HttpInterceptor,
- HttpHandler,
- HttpRequest,
- HttpResponse
-} from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
