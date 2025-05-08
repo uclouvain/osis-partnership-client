@@ -1,9 +1,8 @@
-import { TestBed, async } from '@angular/core/testing';
-import { TranslateService } from '@ngx-translate/core';
-import { HttpTestingController} from '@angular/common/http/testing';
+import {async, TestBed} from '@angular/core/testing';
+import {TranslateService} from '@ngx-translate/core';
 
-import { AppComponent } from './app.component';
-import { SharedModule } from './shared.module';
+import {AppComponent} from './app.component';
+import {SharedModule} from './shared.module';
 
 describe('AppComponent', () => {
   let translate: TranslateService;
