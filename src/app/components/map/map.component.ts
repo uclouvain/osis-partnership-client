@@ -372,7 +372,7 @@ export class MapComponent implements OnInit, OnChanges {
     const markers = [].concat(...markersResults.filter(Boolean));
 
     this.visibleMarkersChanged.emit({ markers });
-  }
+  };
 
   private formatMapParam() {
     const center = this.map.getCenter();

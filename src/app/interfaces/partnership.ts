@@ -1,7 +1,7 @@
 import Partner from './partners';
 import Contact from './contact';
 import Funding from './funding';
-import { Type } from './partnership_type';
+import {Type} from './partnership_type';
 
 export default interface Partnership {
   description: string;
@@ -64,8 +64,7 @@ export default interface Partnership {
     name: string,
     url: string,
   }[];
-}
-
+};
 export interface ResultPartnerships {
   count: number;
   next: string;

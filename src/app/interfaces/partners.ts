@@ -1,4 +1,4 @@
-import { Type } from './partnership_type';
+import {Type} from './partnership_type';
 import * as GeoJSON from 'geojson';
 
 export default interface Partner {
@@ -11,7 +11,7 @@ export default interface Partner {
   partnerships_count: number;
   location: GeoJSON.Geometry;
   website: string;
-}
+};
 
 export interface PartnerParams {
   education_level?: string;

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, publishReplay, refCount, take, tap } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, publishReplay, refCount, take, tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -59,7 +59,7 @@ export class CacheService {
         }),
         catchError((error) => {
           delete this.cache[url];
-          return throwError(error)
+          return throwError(error);
         })
       );
     }
