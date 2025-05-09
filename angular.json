@@ -15,7 +15,8 @@
           "options": {
             "aot": true,
             "outputPath": {
-              "base": "dist/osis-partnership-client"
+              "base": "dist/osis-partnership-client",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
@@ -217,7 +218,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "e2e/**/*.ts"
+              "cypress/**/*.ts"
             ]
           }
         }
@@ -235,7 +236,8 @@
           "options": {
             "aot": true,
             "outputPath": {
-              "base": "dist/osis-partnership-client-drupal"
+              "base": "dist/osis-partnership-client-drupal",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
