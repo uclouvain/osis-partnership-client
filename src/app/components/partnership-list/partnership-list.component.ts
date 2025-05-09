@@ -24,6 +24,7 @@ export class PartnershipListComponent implements OnInit {
     pageNumber: 0,
     size: 25
   };
+  public loadingIndicator = false;
 
   constructor(
     private route: ActivatedRoute,
