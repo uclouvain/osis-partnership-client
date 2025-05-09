@@ -313,10 +313,10 @@ div.media-left.image > a > img { max-width: none }
     padding: 1em 0;
 }
 
-:root {
+.theme-dark {
   --color-heading-primary: inherit !important;
 }
 
 .modal-dialog {
-  max-width: fit-content;
+  max-width: fit-content !important;
 }
