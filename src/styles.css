@@ -87,3 +87,15 @@ datatable-header-cell.sortable span.datatable-header-cell-label {
 .ng-dropdown-panel {
   width: auto !important;
 }
+
+
+/* override */
+
+
+.theme-dark {
+  --color-heading-primary: inherit !important;
+}
+
+.modal-dialog {
+  max-width: fit-content !important;
+}
