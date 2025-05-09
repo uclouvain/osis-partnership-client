@@ -312,3 +312,11 @@ div.media-left.image > a > img { max-width: none }
     clear: both;
     padding: 1em 0;
 }
+
+:root {
+  --color-heading-primary: inherit !important;
+}
+
+.modal-dialog {
+  max-width: fit-content;
+}
