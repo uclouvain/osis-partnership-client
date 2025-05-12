@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import {TranslateService} from '@ngx-translate/core';
 
 import {AppComponent} from './app.component';
@@ -6,9 +6,8 @@ import {SharedModule} from './shared.module';
 
 describe('AppComponent', () => {
   let translate: TranslateService;
-  // let http: HttpTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppComponent ],
       imports: [
@@ -16,12 +15,10 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
     translate = TestBed.get(TranslateService);
-    // http = TestBed.get(HttpTestingController);
   }));
 
   afterEach(() => {
     translate = undefined;
-    // http = undefined;
   });
 
   it('should create the app', () => {

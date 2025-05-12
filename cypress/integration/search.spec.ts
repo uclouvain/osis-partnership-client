@@ -1,17 +1,12 @@
-import { navigateTo, getH1, getInputStudent, getInputStaff, search, resetForm } from '../support/po';
+import {navigateTo, resetForm, search} from '../support/po';
 
 describe('Search url params', () => {
   beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
+    cy.intercept('GET', '/partnerships/v1/configuration', {
+      fixture: 'configuration.json'
     }).as('getConfiguration');
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partners*',
-    }).as('getSearch');
+
+    cy.intercept('GET', '/partnerships/v1/partners*').as('getSearch');
   });
 
   it('should add url params and clear it if removed', () => {
@@ -26,7 +21,7 @@ describe('Search url params', () => {
 
     search();
     cy.url().should('include', 'country=JP');
-    cy.wait('@getSearch').its('url').should('include', 'country=JP');
+    cy.wait('@getSearch').its('request.url').should('include', 'country=JP');
 
     resetForm();
     cy.url().should('not.include', 'country=JP');
@@ -45,7 +40,7 @@ describe('Search url params', () => {
 
     search();
     cy.url().should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
-    cy.wait('@getSearch').its('url').should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
+    cy.wait('@getSearch').its('request.url').should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b');
 
     cy.get('[name=combined_search]')
       .type('Paul Sabatier')
@@ -60,7 +55,7 @@ describe('Search url params', () => {
       .click();
 
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('include', 'partner=c598f1d6-a322-49fd-8b84-d294de39bef5')
       .should('include', 'ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b')
       .should('include', 'type=MOBILITY');
@@ -79,14 +74,14 @@ describe('Search url params', () => {
       .type('MakinaFundingSource')
       .type('{enter}');
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('include', 'funding_source=4');
 
     cy.get('[name=combined_search]')
       .type('MakinaFundingProgram')
       .type('{enter}');
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('not.include', 'funding_source=4')
       .should('include', 'funding_program=4');
 
@@ -94,7 +89,7 @@ describe('Search url params', () => {
       .type('MakinaFundingType')
       .type('{enter}');
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('not.include', 'funding_source=4')
       .should('not.include', 'funding_program=4')
       .should('include', 'funding_type=8');
@@ -109,7 +104,7 @@ describe('Search url params', () => {
       .type('CLUSTER')
       .type('{enter}');
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('include', 'tag=CLUSTER');
   });
 
@@ -122,8 +117,8 @@ describe('Search url params', () => {
       .type('The Guild')
       .type('{enter}');
     search();
-    cy.wait('@getSearch').its('url')
-      .should('include', 'partner_tag=The Guild');
+    cy.wait('@getSearch').its('request.url')
+      .should('include', 'partner_tag=The%20Guild');
   });
 
   it('should show correct filters', () => {
@@ -150,7 +145,7 @@ describe('Search url params', () => {
       .click();
 
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('include', 'mobility_type=student')
       .should('include', 'education_level=ISCED-7');
 
@@ -161,13 +156,13 @@ describe('Search url params', () => {
       .click();
 
     search();
-    cy.wait('@getSearch').its('url')
+    cy.wait('@getSearch').its('request.url')
       .should('not.include', 'mobility_type=student')
       .should('include', 'education_level=ISCED-7');
   });
 
   it('should retrieve url params in form', () => {
-    // tslint:disable-next-line: max-line-length
+    // eslint-disable-next-line max-len
     cy.visit('http://localhost:4200/#/?city=Tokyo&ucl_entity=e3afa5b4-433d-4eb6-a187-eebb7f759d3b&type=MOBILITY');
     cy.wait('@getConfiguration');
 

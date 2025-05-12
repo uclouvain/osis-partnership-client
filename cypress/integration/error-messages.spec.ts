@@ -1,16 +1,10 @@
-import { navigateTo, getH1, getInputStudent, getInputStaff, search, resetForm } from '../support/po';
+import {navigateTo, search} from '../support/po';
 
 describe('Error messages', () => {
-  beforeEach(() => {
-    cy.server();
-  });
-
   it('should display error message for configuration load failed', () => {
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      status: 500,
-      response: {}
+    cy.intercept('GET', '/partnerships/v1/configuration', {
+      statusCode: 500,
+      body: {}
     }).as('getConfiguration');
 
     navigateTo();
@@ -20,17 +14,13 @@ describe('Error messages', () => {
   });
 
   it('should display error message for partners failed', () => {
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
+    cy.intercept('GET', '/partnerships/v1/configuration', {
+      fixture: 'configuration.json'
     }).as('getConfiguration');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partners?**',
-      status: 500,
-      response: {}
+    cy.intercept('GET', '/partnerships/v1/partners**', {
+      statusCode: 500,
+      body: {}
     }).as('getPartners');
 
     navigateTo();
@@ -45,23 +35,17 @@ describe('Error messages', () => {
   });
 
   it('should display error message for partner detail failed', () => {
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
+    cy.intercept('GET', '/partnerships/v1/configuration', {
+      fixture: 'configuration.json'
     }).as('getConfiguration');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partners?**',
-      response: 'fixture:partners.json'
+    cy.intercept('GET', '/partnerships/v1/partners**', {
+      fixture: 'partners.json'
     }).as('getPartners');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partnerships?**',
-      status: 500,
-      response: {}
+    cy.intercept('GET', '/partnerships/v1/partnerships**', {
+      statusCode: 500,
+      body: {}
     }).as('getPartnerships');
 
     navigateTo();

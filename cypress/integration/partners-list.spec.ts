@@ -1,26 +1,15 @@
-import { navigateTo, search } from '../support/po';
+import {navigateTo, search} from '../support/po';
 
 describe('Partner list', () => {
   beforeEach(() => {
-    cy.server();
+    cy.intercept('GET', '/partnerships/v1/configuration', { fixture: 'configuration.json' })
+      .as('getConfiguration');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
-    }).as('getConfiguration');
+    cy.intercept('GET', '/partnerships/v1/partners**', { fixture: 'partners.json' })
+      .as('getPartners');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partners?**',
-      response: 'fixture:partners.json'
-    }).as('getPartners');
-
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partnerships?**',
-      response: 'fixture:partnerships.json'
-    }).as('getPartnerships');
+    cy.intercept('GET', '/partnerships/v1/partnerships**', { fixture: 'partnerships.json' })
+      .as('getPartnerships');
 
     navigateTo();
     cy.wait('@getConfiguration');

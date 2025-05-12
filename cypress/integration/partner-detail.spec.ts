@@ -1,25 +1,17 @@
-import { navigateTo, search } from '../support/po';
+import {navigateTo, search} from '../support/po';
 
 describe('Partner detail', () => {
   beforeEach(() => {
-    cy.server();
-
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/configuration',
-      response: 'fixture:configuration.json'
+    cy.intercept('GET', '/partnerships/v1/configuration', {
+      fixture: 'configuration.json'
     }).as('getConfiguration');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partners?**',
-      response: 'fixture:partners.json'
+    cy.intercept('GET', /\/partnerships\/v1\/partners\?.*/i, {
+      fixture: 'partners.json'
     }).as('getPartners');
 
-    cy.route({
-      method: 'GET',
-      url: '/partnerships/v1/partnerships?**',
-      response: 'fixture:partnerships.json'
+    cy.intercept('GET', /\/partnerships\/v1\/partnerships\?.*/i, {
+      fixture: 'partnerships.json'
     }).as('getPartnerships');
 
     navigateTo();
@@ -38,7 +30,7 @@ describe('Partner detail', () => {
     cy.wait('@getPartnerships');
 
     // Check if modal is open
-    cy.get('.modal-dialog').should('exist');
+    cy.get('.modal-dialog').should('be.visible');
     cy.get('.modal-title').should('have.text', ' Partnership with Aarhus Universitet ');
 
     // Check level of study
@@ -57,11 +49,11 @@ describe('Partner detail', () => {
     cy.wait('@getPartnerships');
 
     // Check if modal is open
-    cy.get('.modal-dialog').should('exist');
+    cy.get('.modal-dialog').should('be.visible');
     cy.get('.modal-title').should('have.text', ' Partnership with Aarhus Universitet ');
 
     cy.contains(' Information for incoming students ').click();
-    cy.contains(' Information for incoming students ').should('have.have.class', 'active');
+    cy.contains(' Information for incoming students ').should('have.class', 'active');
 
     cy.contains('Contact person IN').next('dd')
       .should('have.text', ' Maria Rodrigues Leal Moitinho De Almeida ');

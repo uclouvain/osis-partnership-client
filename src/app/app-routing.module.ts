@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { SearchComponent } from './components/search/search.component';
-import { ModalPartnerComponent } from './components/modal-partner/modal-partner.component';
-import { PartnershipListComponent } from './components/partnership-list/partnership-list.component';
-import { PartnershipDetailComponent } from './components/partnership-detail/partnership-detail.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {SearchComponent} from './components/search/search.component';
+import {ModalPartnerComponent} from './components/modal-partner/modal-partner.component';
+import {PartnershipListComponent} from './components/partnership-list/partnership-list.component';
+import {PartnershipDetailComponent} from './components/partnership-detail/partnership-detail.component';
 
 const routes: Routes = [
   {

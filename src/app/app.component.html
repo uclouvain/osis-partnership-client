@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="osis-partnership">
-  <div *ngIf="currentUser() | async ">
-      CONNECTED as {{(currentUser() | async).username}}
+  <div *ngIf="currentUser() | async as user">
+      CONNECTED as {{user.username}}
   </div>
   <router-outlet></router-outlet>
 </div>
