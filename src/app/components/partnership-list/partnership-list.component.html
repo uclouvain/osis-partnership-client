@@ -78,10 +78,12 @@
   </ngx-datatable-column>
 
   <ngx-datatable-column [name]="'Subject area' | translate" prop="education_fields" [sortable]="false">
-    <ng-template *ngIf="value" let-row="row" let-value="value" ngx-datatable-cell-template>
-      <ul *ngFor="let field of value" class="partnership__list">
-        <li>{{field}}</li>
-      </ul>
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      <ng-container *ngIf="value">
+        <ul *ngFor="let field of value" class="partnership__list">
+          <li>{{field}}</li>
+        </ul>
+      </ng-container>
     </ng-template>
   </ngx-datatable-column>
 

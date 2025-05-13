@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { ErrorMessageComponent } from './error-message.component';
-import { SharedModule } from 'src/app/shared.module';
+import {ErrorMessageComponent} from './error-message.component';
+import {SharedModule} from 'src/app/shared.module';
 
 describe('ErrorMessageComponent', () => {
   let component: ErrorMessageComponent;
   let fixture: ComponentFixture<ErrorMessageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ SharedModule ]
     })

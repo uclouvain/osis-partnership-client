@@ -32,7 +32,7 @@
       </dd>
     </ng-container>
 
-    <ng-container *ngIf="data.partner_entities.length">
+    <ng-container *ngIf="data.partner_entities && data.partner_entities.length">
       <dt>{{ 'Linked partners' | translate }}</dt>
       <dd>
         <ul class="partnership__list">
@@ -279,20 +279,6 @@
             </a>
           </dd>
 
-          <!-- <dt *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
-            {{ 'Contact person in partner institution' | translate }}
-          </dt>
-          <dd *ngIf="data.out_partner_contacts && data.out_partner_contacts.length > 0">
-            <ul class="partnership__list">
-              <li *ngFor="let contact of data.out_partner_contacts">
-                <ng-container *ngIf="contact.title || contact.first_name || contact.last_name">
-                  {{contact.title}} {{contact.first_name}} {{contact.last_name}}<br />
-                </ng-container>
-                <ng-container *ngIf="contact.phone">{{contact.phone}}<br /></ng-container>
-                <a href="mailto:{{contact.email}}" *ngIf="contact.email">{{contact.email}}</a>
-              </li>
-            </ul>
-          </dd> -->
 
           <ng-container *ngIf="data.out_summary_tables && data.out_summary_tables.length > 0">
             <dt>{{ 'Summary Tables' | translate }}</dt>
@@ -345,7 +331,7 @@
           <dd *ngIf="data.in_portal">
             <a [href]="data.in_portal" target="blank" rel="noopener">
               {{ 'Web portal incoming' | translate }}
-              <ng-container *ngIf="data.ucl_faculty && data.ucl_faculty != data.ucl_entity">
+              <ng-container *ngIf="data.ucl_faculty && data.ucl_faculty !== data.ucl_entity">
                 {{ data.ucl_entity.acronym }}/
               </ng-container>
               {{data.ucl_entity.acronym}}

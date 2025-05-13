@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, publishReplay, refCount, take, tap } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, shareReplay, take, tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -47,9 +47,7 @@ export class CacheService {
           this.hits[url] = 0;
         }),
         // create a ReplaySubject that stores and emit last response during delay
-        publishReplay(1, this.refreshDelay),
-        // broadcast ReplaySubject
-        refCount(),
+        shareReplay({ bufferSize: 1, refCount: true, windowTime: this.refreshDelay }),
         // complete each observer after response has been emitted
         take(1),
         // increment hits each time request is subscribed
@@ -59,7 +57,7 @@ export class CacheService {
         }),
         catchError((error) => {
           delete this.cache[url];
-          return throwError(error)
+          return throwError(() => error)
         })
       );
     }

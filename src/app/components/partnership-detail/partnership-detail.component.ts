@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Partnership from 'src/app/interfaces/partnership';
-import { getMobilityType } from 'src/app/helpers/partnerships.helpers';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PartnershipsService } from 'src/app/services/partnerships.service';
-import { TranslateService } from '@ngx-translate/core';
-import { combineLatest } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Type } from '../../interfaces/partnership_type';
+import {getMobilityType} from 'src/app/helpers/partnerships.helpers';
+import {ActivatedRoute} from '@angular/router';
+import {PartnershipsService} from 'src/app/services/partnerships.service';
+import {TranslateService} from '@ngx-translate/core';
+import {combineLatest} from 'rxjs';
+import {Type} from '../../interfaces/partnership_type';
 
 const UCL_ROOT_ENTITY_NAME = 'UCL';
 
@@ -24,14 +23,12 @@ export class PartnershipDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private partnershipsService: PartnershipsService,
-    private sanitizer: DomSanitizer,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
-    combineLatest(this.route.parent && this.route.parent.params, this.route.params).subscribe(([parentParam, { id }]): any => {
+    combineLatest([this.route.parent && this.route.parent.params, this.route.params]).subscribe(([parentParam, { id }]): any => {
       this.partnershipsService.getPartnership(parentParam.id, id).subscribe(partnership => {
         this.data = partnership;
       });
@@ -68,7 +65,7 @@ export class PartnershipDetailComponent implements OnInit {
   get uclEntityDisplay() {
     let ret = '';
     if (this.data.ucl_entity.acronym === UCL_ROOT_ENTITY_NAME) {
-      return this.translate.instant('Insitutional partnership');
+      return this.translate.instant('Institutional partnership');
     }
     ret += `${this.data.ucl_entity.title} (`;
     if (this.data.ucl_sector) {

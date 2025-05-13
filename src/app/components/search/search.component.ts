@@ -160,17 +160,18 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         // Combined search options
         this.continents = getFormattedItemsList(config.continents.map(({ name }) => name));
-        this.countries = getFormattedItemsList([].concat.apply(
-          // Get countries and flatten
-          [], config.continents.map(continent => continent.countries)
-        )).sort(compareObjectLabels);
-        this.cities = getFormattedItemsList([].concat.apply(
-          // Get cities and flatten
-          [], [].concat.apply([], config.continents.map(continent => continent.countries)).map(country => country.cities)
-        ).filter(
-          // Remove duplicates
-          (city, index, self) => self.indexOf(city) === index
-        )).sort(compareObjectLabels);
+        // Get countries and flatten
+        this.countries = getFormattedItemsList(
+          config.continents.flatMap(continent => continent.countries)
+        ).sort(compareObjectLabels);
+        // Get cities and flatten
+        this.cities = getFormattedItemsList(
+          config.continents
+            .flatMap(continent => continent.countries)
+            .flatMap(country => country.cities)
+            // Remove duplicates
+            .filter((city, index, all) => all.indexOf(city) === index)
+        ).sort(compareObjectLabels);
         this.partners = getFormattedItemsList(config.partners);
         this.fundings = config.fundings;
         this.tags = getFormattedItemsList(config.tags);
