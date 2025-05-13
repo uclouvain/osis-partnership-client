@@ -91,6 +91,17 @@ datatable-header-cell.sortable span.datatable-header-cell-label {
 
 /* override */
 
+/* Add btn-default class for Bootstrap 5 compatibility */
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
 
 .theme-dark {
   --color-heading-primary: inherit !important;
