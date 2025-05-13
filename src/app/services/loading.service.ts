@@ -14,12 +14,11 @@ export class LoadingService {
   private loadingIds = new BehaviorSubject<string[]>([]); // list of ids
 
   constructor() {
-    const service = this;
     this.loadingIds.pipe(
       map((ids: string[]) => ids.length > 0)
     ).subscribe((isLoading: boolean) => {
-      if (isLoading !== service.status.getValue()) {
-        service.status.next(isLoading);
+      if (isLoading !== this.status.getValue()) {
+        this.status.next(isLoading);
       }
     });
     this.status.subscribe();
@@ -39,12 +38,6 @@ export class LoadingService {
         .filter((loadingId: string) => loadingId !== id);
       this.loadingIds.next(ids);
     }
-  }
-
-  isLoading(id: string): Observable<boolean> {
-    return this.loadingIds.pipe(map((loadingIds: string[]) => {
-      return loadingIds.indexOf(id) >= 0;
-    }));
   }
 
   setError(errorMessage: string) {
@@ -83,7 +76,7 @@ export class LoadingInterceptor implements HttpInterceptor {
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
           }
           this.loading.setError(errorMessage);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }

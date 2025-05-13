@@ -1,14 +1,9 @@
-import {
-  Component,
-  Input,
-  TemplateRef,
-  ViewChild
-} from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 
 import Partner from 'src/app/interfaces/partners.js';
 
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { DatatableComponent } from '@swimlane/ngx-datatable';
+import {Router} from '@angular/router';
+import {DatatableComponent} from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-partners-list',
@@ -27,10 +22,8 @@ export class PartnersListComponent {
   @Input() totalPartnerships = 0;
   @Input() mapHash: string = null;
   public pageSize = 25;
-  public sorts = [];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
   ) {
   }

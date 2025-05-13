@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'node_modules/@swimlane/ngx-datatable/index.css';
+@import 'node_modules/@swimlane/ngx-datatable/themes/material.css';
+@import 'node_modules/@swimlane/ngx-datatable/assets/icons.css';
+
 
 /* Override Drupal theme for pagination */
 .ngx-datatable .datatable-footer .datatable-pager .pager li a {
@@ -82,4 +86,12 @@ datatable-header-cell.sortable span.datatable-header-cell-label {
 
 .ng-dropdown-panel {
   width: auto !important;
+}
+
+
+/* override */
+
+
+.theme-dark {
+  --color-heading-primary: inherit !important;
 }

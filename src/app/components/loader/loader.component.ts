@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services/loading.service';
+import {Component, Input, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {delay} from 'rxjs/operators';
+import {LoadingService} from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-loader',

@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { ModalPartnerComponent } from './modal-partner.component';
-import { SharedModule } from 'src/app/shared.module';
+import {ModalPartnerComponent} from './modal-partner.component';
+import {SharedModule} from 'src/app/shared.module';
 
 describe('ModalPartnerComponent', () => {
   let component: ModalPartnerComponent;
   let fixture: ComponentFixture<ModalPartnerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule]
     })

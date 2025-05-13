@@ -13,7 +13,6 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 
 import {environment} from 'src/environments/environment';
 import {SearchComponent} from './components/search/search.component';
-import {CheckboxGroupComponent} from './components/checkbox-group/checkbox-group.component';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorMessageComponent} from './components/error-message/error-message.component';
@@ -23,7 +22,6 @@ import {PartnersListComponent} from './components/partners-list/partners-list.co
 import {PartnershipListComponent} from './components/partnership-list/partnership-list.component';
 import {PartnershipDetailComponent} from './components/partnership-detail/partnership-detail.component';
 import {ModalPartnerComponent} from './components/modal-partner/modal-partner.component';
-import {AuthentificationService} from './services/authentification.service';
 import {ApiInterceptor} from './services/api-interceptor.service';
 import {MapComponent} from './components/map/map.component';
 import {PartnerResultsComponent} from './components/partner-results/partner-results.component';
@@ -40,18 +38,11 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
-export function authenticateUser(authentificationService: AuthentificationService) {
-  return (): Promise<any> => {
-    return authentificationService.authenticate().toPromise();
-  };
-}
-
 
 @NgModule({ declarations: [
         SearchComponent,
         MapComponent,
         PartnerResultsComponent,
-        CheckboxGroupComponent,
         PartnersListComponent,
         PartnershipListComponent,
         PartnershipDetailComponent,
@@ -90,6 +81,7 @@ export function authenticateUser(authentificationService: AuthentificationServic
         CommonModule,
         NgSelectModule,
         EllipsisModule], providers: [
+        provideHttpClient(withInterceptorsFromDi()),
         { provide: 'BASE_URL', useFactory: getBaseUrl },
         TranslateService,
         LoadingService,
@@ -102,8 +94,7 @@ export function authenticateUser(authentificationService: AuthentificationServic
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptor,
             multi: true
-        },
-        provideHttpClient(withInterceptorsFromDi()),
+        }
     ] })
 export class SharedModule {
   constructor(translate: TranslateService) {

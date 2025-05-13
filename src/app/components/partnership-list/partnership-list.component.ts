@@ -1,12 +1,9 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PartnershipsService } from 'src/app/services/partnerships.service';
-import Partnership, { ResultPartnerships } from 'src/app/interfaces/partnership';
-import {
-  getMobilityType,
-  getPartnershipParams
-} from 'src/app/helpers/partnerships.helpers';
-import { Type } from '../../interfaces/partnership_type';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PartnershipsService} from 'src/app/services/partnerships.service';
+import Partnership, {ResultPartnerships} from 'src/app/interfaces/partnership';
+import {getMobilityType, getPartnershipParams} from 'src/app/helpers/partnerships.helpers';
+import {Type} from '../../interfaces/partnership_type';
 
 @Component({
   selector: 'app-partnership-list',
@@ -24,6 +21,7 @@ export class PartnershipListComponent implements OnInit {
     pageNumber: 0,
     size: 25
   };
+  public loadingIndicator = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -76,11 +74,12 @@ export class PartnershipListComponent implements OnInit {
   setPage(pageInfo) {
     this.page.pageNumber = +pageInfo.offset;
     const offset = +pageInfo.offset * this.page.size;
-    this.router.navigate([''], {
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
       queryParamsHandling: 'merge',
       queryParams: {
         offsetPartnership: offset
-      }
+      },
     });
   }
 
